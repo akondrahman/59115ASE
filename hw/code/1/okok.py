@@ -19,17 +19,18 @@ def _ok2():
 @ok
 def _ok3():
   assert 3==3 
+
+@ok
+def _okx():
+  assert 100==100 
   
-#@ok
-#def _okx():
-#  assert 10==100 
+@ok
+def _oky():
+  assert 31==13   
   
-#@ok
-#def _oky():
-#  assert 31==13   
 
 @ok
 def _ok4():
-  assert unittest.tries==4
-  assert unittest.fails==1
+  assert unittest.tries==6
+  assert unittest.fails==2
   print unittest.score() 
