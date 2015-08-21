@@ -3,6 +3,12 @@
 # Examples of Unit tests  in Python
 
 """
+'''
+This code works on top of Dr. Tim Menzies' code 
+provided in CSC 591 class of Fall 2015 @ NCSU 
+I have added two more test cases: one fails, one passes 
+I have adjusted _ok4() accordingly 
+'''
 import time
 from ok import *
 
