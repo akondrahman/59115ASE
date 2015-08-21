@@ -32,19 +32,29 @@ def findBdayMatches(stdCntParam, startParam, endParam, simRunCount):
     for k in range(simRunCount): 
         listToUse=generateBirthdays(stdCntParam, startParam, endParam)
         dupResult = has_duplicates(listToUse)
-        if dupResult: 
+        if dupResult==True: 
             countToRet =  countToRet + 1 
     return countToRet         
 
 #listToUse=['rahman', 'akond' , 'a', 'rahman'] 
 listToUse=[-10, -10000 , 4, 5] 
 res = has_duplicates(listToUse)
-print "Duplicates finding: ", res 
-##Birthday Paradox 
+#print "Duplicates ?: ", res 
+##Birthday Paradox , run # 1
 studentCount=23 
 startVal = 1 
 endVal =365
 simulationRun = 10 
 resBdayCount = findBdayMatches(studentCount, startVal, endVal, simulationRun)
+print "RUN # 1: "
 print "So far matches for {} students , are {}".format(studentCount, resBdayCount)  
- 
+print "--------------------"
+##Birthday Paradox , run # 2
+studentCount=100
+startVal = 1
+endVal =365
+simulationRun = 15
+resBdayCount = findBdayMatches(studentCount, startVal, endVal, simulationRun)
+print "RUN # 2: "
+print "So far matches for {} students , are {}".format(studentCount, resBdayCount)  
+print "--------------------" 
