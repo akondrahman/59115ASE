@@ -1,0 +1,47 @@
+\title{Notes on \textit{Ecological inference in empirical software engineering} \cite{posnett:2011}}
+\author{
+        Akond Rahman
+            \and
+        Manish Singh
+        	\and
+        Bennett Narron
+}
+\date{\today}
+
+\documentclass[12pt]{article}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Paste the paper's abstract here.
+\end{abstract}
+
+\section{Thesis}\label{thesis}
+Summary of the thesis being investigated along with research questions, goals, and hypotheses.
+
+\section{Contributions}\label{contrib}
+Summary of the authors' contributions, either implicit or explicit, to ASE
+
+\section{Investigation Methods}\label{invest}
+Summary of the authors' investigation methods or experimental design.
+
+\section{Results}\label{results}
+Summary of the authors' results
+
+\subsection{"Power"}\label{results-power}
+Notes on the impact of the authors' results
+
+\subsection{Applicability}\label{results-apply}
+Notes on the applicability of the authors' results
+
+\section{Technical Development}\label{tech}
+Summary of the authors' technical development
+
+\subsection{Examples}\label{tech-examples}
+Details of any examples to clarify technical developments
+
+\bibliographystyle{abbrv}
+\bibliography{01}
+
+\end{document}

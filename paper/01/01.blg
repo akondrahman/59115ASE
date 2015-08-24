@@ -1,11 +1,11 @@
-This is BibTeX, Version 0.99d (TeX Live 2014)
+This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: 01.aux
 The style file: abbrv.bst
-Database file #1: 01.bib.bib
+Database file #1: 01.bib
 You've used 1 entry,
             2118 wiz_defined-function locations,
-            504 strings with 3952 characters,
+            503 strings with 3946 characters,
 and the built_in function-call counts, 516 in all, are:
 = -- 54
 > -- 18
