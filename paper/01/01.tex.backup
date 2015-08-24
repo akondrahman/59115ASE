@@ -38,7 +38,21 @@ prediction, as well as in hypothesis testing.
 
 \section{Thesis}\label{thesis}
 Summary of the thesis being investigated along with research questions, goals, and hypotheses.
-This paper focuses on the importance of ecological inference in software engineering 
+This paper focuses on the importance of ecological inference in software engineering. Given that large systems consist of complex software
+resulting in hierarchical organization of the systems, the teams and the processes to develop the systems, it becomes important to study the ecological inference
+done at different levels of aggregation and how good the findings hold at other aggregated/dis-aggregated levels. The author emphasizes the importance of selecting the 
+right level of aggregation to conduct empirical studies to measure observable outcomes such as quality and productivity. The paper discusses the various risks accompany the 
+ecological inference done at the aggregated levels and which result in ecological fallacy when there is discrepancy between the findings at the aggregated and disaggregated levels.
+This paper tries to answer the following research questions:
+
+1. What is the right level of study?
+2. How does the level of study affect the truth, meaning and relevance of the findings?
+3. Are prediction models subject to ecological inference risk?
+4. Is hypothesis testing subject to ecological inference risk?
+5. What are the effects of aggregation on model quality?
+6. Do inferences drawn from models built at aggregated levels transfer to disaggregated levels used to build the aggregations?
+
+
 
 \section{Contributions}\label{contrib}
 Summary of the authors' contributions, either implicit or explicit, to ASE
