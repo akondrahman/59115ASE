@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=latex 2014.5.25)  24 AUG 2015 22:16
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=latex 2014.5.25)  24 AUG 2015 23:55
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -58,14 +58,27 @@ File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 77.
  [3]
-[4] (./01.bbl [5]) [6] (./01.aux) ) 
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 129.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 129.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 129.
+
+[4]
+Overfull \hbox (9.06067pt too wide) in paragraph at lines 160--162
+[]\OT1/cmr/m/n/12 iv2. The au-thors do not men-tion how they se-lected the spe-
+cific regression-
+ []
+
+[5] (./01.bbl) [6] (./01.aux) ) 
 Here is how much of TeX's memory you used:
- 255 strings out of 493118
- 2858 string characters out of 6135459
+ 272 strings out of 493118
+ 3039 string characters out of 6135459
  58906 words of memory out of 5000000
- 3793 multiletter control sequences out of 15000+600000
- 7929 words of font info for 28 fonts, out of 8000000 for 9000
+ 3804 multiletter control sequences out of 15000+600000
+ 10110 words of font info for 35 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  22i,6n,19p,338b,187s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on 01.dvi (6 pages, 13448 bytes).
+Output written on 01.dvi (6 pages, 14516 bytes).
