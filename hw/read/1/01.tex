@@ -67,6 +67,87 @@ inference risk'' and ``Hypothesis testing is subject to ecological risk''.The pa
 inference is unavoidable in software engineering research and coming up with ways to manage and mitigate the risks resulting from ecological fallacy is the way to go ahead.
 
 
+\section{Keywords}
+\label{keywords}
+We identify the following keywords to be the most significant ones.  Each of the keywords 
+are accompanied with definitions. 
+
+\begin{itemize}
+\begin{item}
+ii1. Aggregation Levels: \\
+A software system that has a hierarchical organization has different layers, where
+each higher layer is comprised of sub-layer components.  The paper defines 
+each of these higher layers as an aggregated level. The paper uses Eclipse as a real-life
+example: Eclipse si consists of modules, which is a collection of packages. Each package 
+is a collection of files. Here, each package, and file is an aggregated level.   
+\end{item}
+\begin{item}
+ii2. Ecological Inference: \\
+Ecological inference is the empirical finding that is evident at aggregated level of 
+software, as well as, dis-aggregated level of software. For example, in case of ecological inference, if an empirical finding that is evident at package level, which is collection of
+files, will also be evident at dis-aggregated levels such as files. 
+\end{item}
+\begin{item}
+ii3. Ecological Fallacy: \\
+Ecological fallacy is that particular empirical finding that is evident at aggregated level of software is \textit{not evident} at dis-aggregated level of software. In case of ecological fallacy, if an empirical finding that is evident at package level, will not be evident at dis-aggregated levels such as files. 
+\end{item}
+\begin{item}
+ii4. Ecological Inference Risk: \\
+The paper defines empirical inference risk as generalizing an empirical inference that is 
+evident at aggregated level, to a dis-aggregated level without running 
+the same model with the factors existent at the dis-aggregated level. 
+\end{item}
+\end{itemize} 
+
+\section{Brief Notes}
+\label{brief}
+We identify the following keywords to be the most significant ones.  Each of the keywords 
+are accompanied with definitions. 
+
+\begin{itemize}
+\begin{item}
+iii1. Motivational Statement: \\
+Researchers have mined large scale software repositories at different levels 
+of the software hierarchy and presented their findings. However, what remains 
+unknown is,  how strongly can a hypotheses that was achieved at one level agreegation is 
+applicable to a dis-aggregated level of the software.  This paper presents a conceptual 
+framework that investigates the \textit{ideal} level 
+to look for empirical findings, and whether those findings hold for both: aggregated 
+and dis-aggregated levels of the software.    
+\end{item}
+\begin{item}
+iii2. Study Instruments: \\
+The paper used data extracted from the JIRA tracking system abg Github repositories 
+which contained 18 different Apache Software Foundation projects including Cassandra,  
+Lucene, and OpenEJB. 
+
+\end{item}
+\begin{item}
+iii3. Statistical Tests: \\
+The paper uses hypotheses testing to determine if a certain hypotheses 
+holds at aggregated level and disaggregated level. The authors state that  
+they found a number of cases where the null hypotheses is rejected 
+for aggregated level, which however, was not rejected at dis-aggregated level. 
+The opposite observation was also observed and reported in the paper.  
+
+\end{item}
+\begin{item}
+iii4. Future Work: \\
+One possible future direction that can work on top of  this 
+paper is replicating the study for other software repositories 
+which follow different hierarchical architectures, and are implemented 
+in different languages. \\ 
+The authors have reported two levels of the hierarchy: files and packages. 
+Another potenial extension of this study can look at the effects of looking 
+at modules and observe if the empirical findings hold. \\
+The paper has observed and reported the hypotheses derived 
+from an empirical invstigation cannot be generalized. One interesting future 
+work wouldbe coming up with a model that can map these differences 
+in empirical findings using the same factors.      
+
+\end{item}
+\end{itemize} 
+
 \section{Investigation Methods}\label{invest}
 Summary of the authors' investigation methods or experimental design.
 
