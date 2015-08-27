@@ -1,5 +1,5 @@
 #Coding Homework # 2 
-##Date August 19, 2015
+##Date August 27, 2015
 
 ###Instructions 
     1. Navigate to hw/code/2 
