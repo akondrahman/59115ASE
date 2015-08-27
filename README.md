@@ -8,6 +8,6 @@ for the CSC 591: Automated Software Engineering
 class taught in Fall 2015. 
 
 ###Members
-Akond Rahman   (aarahman@ncsu.edu) 
-Bennett Narron (bynarron@ncsu.edu) 
-Manish Singh   (mrsingh@ncsu.edu)  
+- Akond Rahman   (aarahman@ncsu.edu) 
+- Bennett Narron (bynarron@ncsu.edu) 
+- Manish Singh   (mrsingh@ncsu.edu)  
