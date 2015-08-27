@@ -1,4 +1,5 @@
-\title{Notes on \textit{Ecological inference in empirical software engineering} \cite{posnett:2011}}
+\title{Summary of \\ \textbf{Ecological Inference in Empirical Software Engineering} \cite{posnett:2011}}
+
 \author{
         Akond Rahman
             \and
@@ -6,13 +7,16 @@
         	\and
         Bennett Narron
 }
+
 \date{\today}
 
 \documentclass[12pt]{article}
+\usepackage{verbatim}
 
 \begin{document}
 \maketitle
 
+\begin{comment}
 \begin{abstract}
 Systems are decomposed hierarchically, for example, into modules, packages and files. This hierarchical decomposition has a profound influence on evolvability, main-tainability and work assignment. Hierarchical decomposition is
 thus clearly of central concern for empirical software engineering researchers; but it also poses a quandary. At what level do we study phenomena, such as quality, distribution, collaboration and
@@ -22,7 +26,9 @@ thus far been explicitly investigated. We describe the related idea of ecologica
 engineering; we also present some case studies, using defect and process data from 18 open source projects to illustrate the risks of modeling at an aggregation level in the context of defect
 prediction, as well as in hypothesis testing.
 \end{abstract}
+\end{comment}
 
+\begin{comment}
 \section{Thesis}\label{thesis}
 \paragraph{}This paper focuses on the importance of ecological inference in software engineering and the risk of ecological fallacy as a result of mistaken ecological inference. Given that large systems consist of complex software
 resulting in hierarchical organization of the systems, the teams and the processes to develop the systems, it becomes important to study the ecological inference
@@ -40,16 +46,16 @@ paper also discusses the various factors - sample size, zonation and class imbal
   \item What are the effects of aggregation on model quality?
   \item Do inferences drawn from models built at aggregated levels transfer to disaggregated levels used to build the aggregations?
 \end{enumerate}
+\end{comment}
 
-
-\section{Contributions}\label{contrib}
-\paragraph{} The authors explore the relevance of ecological inference and ecological fallacy in software engineering. The paper discusses their importance in software engineering and 
-what are the risks in using ecological inference in software engineering. The authors further discuss the various factors that contribute to the risk of ecological fallacy - sample size,
-zonation and class imbalance. The authors conduct experiment , involving 18 open source projects in order to study and understand the incidence of ecological inference in these projects.
-They further construct models at various aggregation levels and check if the inference derived at an aggregation level holds true for the disaggregated levels that build those levels. They find
-that there exists a risk of ecological fallacy if the inference is transferred from one level to another. Their findings support the claims that - ``Prediction models are subject to ecological
-inference risk'' and ``Hypothesis testing is subject to ecological risk''.The paper lays out a conceptual framework of ecological risk in software engineering and concludes that ecological
-inference is unavoidable in software engineering research and coming up with ways to manage and mitigate the risks resulting from ecological fallacy is the way to go ahead.
+%\section{Contributions}\label{contrib}
+%\paragraph{} The authors explore the relevance of ecological inference and ecological fallacy in software %engineering. The paper discusses their importance in software engineering and 
+%what are the risks in using ecological inference in software engineering. The authors further discuss the %various factors that contribute to the risk of ecological fallacy - sample size,
+%zonation and class imbalance. The authors conduct experiment , involving 18 open source projects in %order to study and understand the incidence of ecological inference in these projects.
+%They further construct models at various aggregation levels and check if the inference derived at an %aggregation level holds true for the disaggregated levels that build those levels. They find
+%that there exists a risk of ecological fallacy if the inference is transferred from one level to another. Their %findings support the claims that - ``Prediction models are subject to ecological
+%inference risk'' and ``Hypothesis testing is subject to ecological risk''.The paper lays out a conceptual %framework of ecological risk in software engineering and concludes that ecological
+%inference is unavoidable in software engineering research and coming up with ways to manage and %mitigate the risks resulting from ecological fallacy is the way to go ahead.
 
 
 \section{Keywords}
@@ -59,12 +65,12 @@ are accompanied with definitions.
 
 \begin{itemize}
 \begin{item}
-ii1. Aggregation Levels: \\
+ii1. Varying aggregation Levels: \\
 A software system that has a hierarchical organization has different layers, where
 each higher layer is comprised of sub-layer components.  The paper defines 
-each of these higher layers as an aggregated level. The paper uses Eclipse as a real-life
-example: Eclipse si consists of modules, which is a collection of packages. Each package 
-is a collection of files. Here, each package, and file is an aggregated level.   
+each of these higher layers as varying aggregation levels. The paper uses Eclipse as a real-life
+example: Eclipse consists of modules, which is a collection of packages. Each package 
+is a collection of files. Here, each package can be labelled as an \textit{aggregated level}, and file can be labelled as  \textit{dis-aggregated level}.   
 \end{item}
 \begin{item}
 ii2. Ecological Inference: \\
@@ -74,7 +80,7 @@ files, will also be evident at dis-aggregated levels such as files.
 \end{item}
 \begin{item}
 ii3. Ecological Fallacy: \\
-Ecological fallacy is that particular empirical finding that is evident at aggregated level of software is \textit{not evident} at dis-aggregated level of software. In case of ecological fallacy, if an empirical finding that is evident at package level, will not be evident at dis-aggregated levels such as files. 
+Ecological fallacy is that particular empirical finding that is evident at aggregated level of software, is \textit{not evident} at dis-aggregated level of software. In case of ecological fallacy, if an empirical finding that is evident at package level, will not be evident at dis-aggregated levels such as files. 
 \end{item}
 \begin{item}
 ii4. Ecological Inference Risk: \\
@@ -92,15 +98,15 @@ the same model with the factors existent at the dis-aggregated level.
 iii1. Motivational Statement: \\
 Researchers have mined large scale software repositories at different levels 
 of the software hierarchy and presented their findings. However, what remains 
-unknown is,  how strongly can a hypotheses that was achieved at one level agreegation is 
-applicable to a dis-aggregated level of the software.  This paper presents a conceptual 
+unknown is, to what level, a hypotheses that was achieved at aggregated level, is 
+applicable to a dis-aggregated level of the software. This paper presents a conceptual 
 framework that investigates the \textit{ideal} level 
 to look for empirical findings, and whether those findings hold for both: aggregated 
 and dis-aggregated levels of the software.    
 \end{item}
 \begin{item}
 iii2. Study Instruments: \\
-The paper used data extracted from the JIRA tracking system abg Github repositories 
+The paper used data extracted from the JIRA tracking system and Github repositories 
 which contained 18 different Apache Software Foundation projects including Cassandra,  
 Lucene, and OpenEJB. 
 
@@ -124,10 +130,9 @@ in different languages. \\
 The authors have reported two levels of the hierarchy: files and packages. 
 Another potenial extension of this study can look at the effects of looking 
 at modules and observe if the empirical findings hold. \\
-The paper has observed and reported the hypotheses derived 
-from an empirical invstigation cannot be generalized. One interesting future 
-work wouldbe coming up with a model that can map these differences 
-in empirical findings using the same factors.      
+%Another interesting future 
+%work would be coming up with a model that can map these differences 
+%in empirical findings, , using the same factors.      
 
 \end{item}
 \end{itemize} 
@@ -144,7 +149,6 @@ can be plugged in the model and see whether the empirical findings change or not
 \begin{item}
 iv2. The authors do not mention how they selected the specific regression-based models, and what specific models were used. One area of improvement can be of applying other software models 
 such as linear, bi-objective, or multi-objective models. 
-
 \end{item}
 \begin{item}
 iv3. To quantitavely test how inferences can be different at aggregated 
@@ -152,29 +156,27 @@ and dis-aggreagted levels, the authors have used teh concept of
 diffrence in significance. Statistical signifacance has its limitations
 and other tests can be applied to test the difference in inferred hypotheses
 at two levels. 
-
-
 \end{item}
 
 \end{itemize} 
 
-\section{Investigation Methods}\label{invest}
-Summary of the authors' investigation methods or experimental design.
+%\section{Investigation Methods}\label{invest}
+%Summary of the authors' investigation methods or experimental design.
 
-\section{Results}\label{results}
-Summary of the authors' results
+%\section{Results}\label{results}
+%Summary of the authors' results
 
-\subsection{"Power"}\label{results-power}
-Notes on the impact of the authors' results
+%\subsection{"Power"}\label{results-power}
+%Notes on the impact of the authors' results
 
-\subsection{Applicability}\label{results-apply}
-Notes on the applicability of the authors' results
+%\subsection{Applicability}\label{results-apply}
+%Notes on the applicability of the authors' results
 
-\section{Technical Development}\label{tech}
-Summary of the authors' technical development
+%\section{Technical Development}\label{tech}
+%Summary of the authors' technical development
 
-\subsection{Examples}\label{tech-examples}
-Details of any examples to clarify technical developments
+%\subsection{Examples}\label{tech-examples}
+%Details of any examples to clarify technical developments
 
 \bibliographystyle{abbrv}
 \bibliography{01}

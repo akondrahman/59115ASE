@@ -10,6 +10,7 @@ License: GNU GPLv3 http://www.gnu.org/licenses/gpl.html
 import random
 
 
+
 class Card(object):
     """Represents a standard playing card.
     
@@ -98,6 +99,8 @@ class Deck(object):
         """
         for i in range(num):
             hand.add_card(self.pop_card())
+            
+           
 
 
 class Hand(Deck):

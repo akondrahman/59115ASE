@@ -95,7 +95,7 @@ def print_slashgrid(colToExpandParam):
     for x in range(0, colToExpandParam):
         temp = x % 5
         if temp==0:      
-           print "/" , 
+           print "|" , 
         else:
             print " " ,
 
