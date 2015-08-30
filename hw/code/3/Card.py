@@ -7,6 +7,9 @@ License: GNU GPLv3 http://www.gnu.org/licenses/gpl.html
 
 """
 
+### This python file was downloaded from http://www.greenteapress.com/thinkpython/code/
+###
+###
 import random
 
 
@@ -76,12 +79,7 @@ class Deck(object):
 
         i: index of the card to pop; by default, pops the last card.
         """
-        #if self.cards.count() > 0:
-        #print 'la la la ' , len(self.cards)
-        cardListLen = len(self.cards)
-        if cardListLen > 0:         
-            return self.cards.pop()            
-            #return self.cards.pop(i)
+        return self.cards.pop(i)
 
     def shuffle(self):
         """Shuffles the cards in this deck."""
@@ -110,6 +108,8 @@ class Hand(Deck):
         self.cards = []
         self.label = label
 
+### the following portion of the code have not been used by us 
+
 
 def find_defining_class(obj, method_name):
     """Finds and returns the class object that will provide 
@@ -125,13 +125,13 @@ def find_defining_class(obj, method_name):
     return None
 
 
-#if __name__ == '__main__':
-#    deck = Deck()
-#    deck.shuffle()
+if __name__ == '__main__':
+    deck = Deck()
+    deck.shuffle()
 
-#    hand = Hand()
-#    print find_defining_class(hand, 'shuffle')
+    hand = Hand()
+    print find_defining_class(hand, 'shuffle')
 
-#    deck.move_cards(hand, 5)
-#    hand.sort()
-#    print hand
+    deck.move_cards(hand, 5)
+    hand.sort()
+    print hand

@@ -5,12 +5,13 @@ Created on Tue Aug 25 20:13:18 2015
 @author: akond
 """
 from Card import  *
-import sys 
+
+### As per assignment instructions, this code works on top of PokerHand.py available at http://www.greenteapress.com/thinkpython/code/ 
 
 class DeckOfCards(Deck):
-    def deal_hands(deck, numCardParam, numHandParam):
+    def assignCardsToHands(deck, numCardParam, numHandParam):
       listOfHands = []
-      for i in range(numHandParam):        
+      for cnt in range(numHandParam):        
             handObj = PokerHand()
             deck.move_cards(handObj, numCardParam)            
             handObj.classify()            
@@ -21,18 +22,12 @@ class PokerHand(Hand):
 
     # 
     pokerLabels = ["three_kind" , "four_kind", "full_house", "flush", "straight_flush",
-                     "one_pair",   "high_card",   "two_pair",  "straight"]
-
+                        "two_pair",  "straight"]
+                     
+    #pokerLabels = ["three_kind" , "four_kind", "full_house", "flush", "straight_flush",
+    #                 "one_pair",   "high_card",   "two_pair",  "straight"]
+                     
     def getCardFreq(self):
-        """Computes histograms for suits and hands.
-
-        Creates attributes:
-
-          suits: a histogram of the suits in the hand.
-          ranks: a histogram of the ranks.
-          sets: a sorted list of the rank sets in the hand.
-        """
-
         self.suits = {}
         self.ranks = {}        
         
@@ -46,14 +41,15 @@ class PokerHand(Hand):
  
 
 
-    def has_flush(self):
+    def flush_exists(self):
         ## Wiki says: where all five cards are of the same suit, but not in sequence
+        valToRet = False
         for val in self.suits.values():
             if val >= 5:
-                return True
-	return False
+                valToRet =  True
+	return valToRet
 
-    def has_straight(self):
+    def straight_exists(self):
         ## Wiki says: 
         ##  a hand that contains five cards of sequential rank in at least two different suits.
         cardRanks = self.ranks
@@ -63,7 +59,8 @@ class PokerHand(Hand):
     def checkIfInARow(self, ranksParam, howManyP):
         valToRet = False 
         count = 0
-        for i in range(1, 15):
+        # remmeber there are 14 different ranks as defined in Card.py 
+        for i in range(1, 14):
             if ranksParam.get(i, 0):
                 count += 1
                 if count == howManyP: 
@@ -72,11 +69,9 @@ class PokerHand(Hand):
                 count = 0
         return valToRet
 
-
-
-    
         
-    def check_sets(self, *otherParam):
+    def checkRankCriteria(self, *otherParam):
+        # didn't have to write functions for method overloading : thanks * operator !
         valToRet = True
         tempMap = zip(otherParam, self.sets)
         for comparer, compared in tempMap:
@@ -84,104 +79,95 @@ class PokerHand(Hand):
                 valToRet = False
         return valToRet
 
-    def has_one_pair(self):
+    #buggy
+    #def one_pair_exists(self):
         ## (1) Wiki says : a hand that contains two cards of one rank, plus three cards which are not of this rank nor the same as each other. 
         ##
-        return self.check_sets(2)
+   #     return self.checkRankCriteria(2)
         
-    def has_two_pair(self):
+    def two_pair_exists(self):
         ## (2) Wiki says : a hand that contains two cards of the same rank, plus two cards of another rank
         ##
-        return self.check_sets(2, 2)
+        return self.checkRankCriteria(2, 2)
         
-    def has_three_kind(self):
+    def three_kind_exists(self):
         ## (3) Wiki says : a hand that contains all three cards of one rank and any other (unmatched) card
         ##
-        return self.check_sets(3)
+        return self.checkRankCriteria(3)
         
-    def has_four_kind(self):
+    def four_kind_exists(self):
         ## (4) Wiki says : a hand that contains three cards of the same rank, plus two cards which are not of this rank nor the same as each other.
         ##
-        return self.check_sets(4)
+        return self.checkRankCriteria(4)
 
-    def has_full_house(self):
+    def full_house_exists(self):
         ## (5) Wiki says : a hand that  contains three matching cards of one rank and two matching cards of another rank
         ##
-        return self.check_sets(3, 2)    
+        return self.checkRankCriteria(3, 2)    
 
                 
-    def has_straight_flush(self):
+    def straight_flush_exists(self):
         # (6) Wiki says: 
         # A straight flush is a hand that contains five cards in sequence, all of the same suit 
         # partition the hand by suit and check each
         # sub-hand for a straight
+        valToRet = False        
         myDict = {}
         for cardObj in self.cards:
             tempHand = PokerHand()
             temp = myDict.setdefault(cardObj.suit, tempHand)
             temp.add_card(cardObj)
-            
-
         for handObj in myDict.values():
             if len(handObj.cards) < 5:
                 continue
             handObj.getCardFreq()
-            if handObj.has_straight():
-                return True
-        return False
-    def has_high_card(self):
-        ## Wiki says: does not fall under (1)-(6) 
-        return len(self.cards)
+            if handObj.straight_exists():
+                valToRet = True
+        return valToRet
+    
+    #buggy    
+    #def high_card_exists(self):
+    #    valToRet = False 
+    #    if len(self.cards) > 0:
+    #        valToRet = True
+        ## Wiki says: this does not fall under (1)-(6) 
+    #    return valToRet
 
     def classify(self):
-        ### ???
-        ### ???
         self.getCardFreq()
 
         self.labels = []
         for label in PokerHand.pokerLabels:
-            boolValToUse = getattr(self, 'has_' + label)
-            #print "f: {} <> {}".format(f, f())
+            # if my hand has flush/st. flush then add the correspondin label to the hand 
+            boolValToUse = getattr(self,  label + "_exists")
             if boolValToUse():
                 self.labels.append(label)
                 
-                
-                
-
-        
 def incrementCounter(histParam, labelP): 
     histParam[labelP] = histParam.get(labelP, 0) + 1    
     if histParam[labelP] == 0:
         del histParam[labelP]
 
 
-def main(*args):
+def executeSimulation(cardP, handP, simRunP):
     labelDict = {}
-    cardNumber = 5
-    handNumber = 10
-
-
-    n = 1000     
-    for i in range(n):
+    for i in range(simRunP):
         deck = DeckOfCards()
         deck.shuffle()
-
-        hands = deck.deal_hands(cardNumber, handNumber)
+        hands = deck.assignCardsToHands(cardP, handP)
         for hand in hands:
             for label in hand.labels:
                 incrementCounter(labelDict, label)
-            
-    #totalCnt = 7 * n
-    #print "Total number of handling {}".format(totalCnt)
-    totalCnt = n 
+    printResultTable(labelDict, simRunP)            
 
-    for label in PokerHand.pokerLabels:
-        freq = labelDict.get(label, 0)
+def printResultTable(labelDictP, simRunP):
+      sepVar = "=\t"
+      print "LabelName" + sepVar + "Probability"
+      print "---------------------------"
+      for label in PokerHand.pokerLabels:
+        freq = labelDictP.get(label, 0)
         if freq == 0:
             continue
-        prob = float (totalCnt) / float(freq)
-        print "{} happens once out of {} times".format(label, prob)
-
-        
-if __name__ == '__main__':
-    main(*sys.argv)           
+            # to handle division by error 
+        prob = float (simRunP) / float(freq)
+        print "{}".format(label) + sepVar +"{}/{}".format(str(1), prob)    
