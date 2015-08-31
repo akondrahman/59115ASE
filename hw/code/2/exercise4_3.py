@@ -23,7 +23,7 @@ def drawTriangle(turtleParam, length, angle):
     
 ## 
 def drawPie(tParam, segmentCount, lengthParam):
-    angle = 360 / segmentCount
+    angle = 360.0 / segmentCount   # Made it floating point computation for issue #5 
     for count in range(segmentCount):
         drawTriangle(tParam, lengthParam, angle/2)
         lt(tParam, angle)
@@ -60,6 +60,13 @@ drawPie(turtleObj, segments, lengthVal)
 world = TurtleWorld()
 turtleObj = Turtle()
 segments=8
+drawPie(turtleObj, segments, lengthVal)
+
+
+#Added by Manish
+world = TurtleWorld()
+turtleObj = Turtle()
+segments=7
 drawPie(turtleObj, segments, lengthVal)
 #drawTriangle(turtleObj, lengthVal, angleVal)       
 wait_for_user()
