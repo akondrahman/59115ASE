@@ -13,6 +13,7 @@ import randomGeneration, energy
 minMaxSchaffer = energy.getBaselineMinMaxForSchaffer()
 ##############################
 kMaxVal =1000
+#kMinVal = 1
 eMaxVal = -1.0 ## as we have normalized it , it should be in between 0 and 1 
 ###################### Start doing simulated annelaing 
 startVal = randomGeneration.getRandVal()
@@ -22,7 +23,7 @@ print "Starting Energy -> {} for {}".format(currEnergyVal, startVal)
 currSolnVal=startVal
 bestSolVal = startVal 
 bestEnergyVal = currEnergyVal
-counter = 1  
+counter = 1
 
 ###print purpose
 cntForQ=0
@@ -58,9 +59,13 @@ while (counter < kMaxVal)  and (currEnergyVal > eMaxVal):
     counter = counter + 1
     if counter % 50 == 0:
        print "\n ?={} !={} +={} .={} |".format(cntForQ, cntForExcl, cntForPlus, cntForDot)
+       cntForQ = 0 
+       cntForExcl = 0
+       cntForPlus = 0
+       cntForDot = 0
 
 print"\n"
-print "We tried it {} times".format(counter)
+print "We tried it {} times".format( counter)
 print"\n"
 print "The best solution is : {} , and it's energy is {}".format(bestSolVal, bestEnergyVal)        
         
