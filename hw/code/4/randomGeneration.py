@@ -20,7 +20,7 @@ def getRandVal():
 def getProbOfAcceptance(currEnergyP, neighbourEnergyP, tParam):
   # t = k/kmax
   import math
-  equation = float(-1*(currEnergyP-neighbourEnergyP)/float(tParam))
+  equation = float(1*(currEnergyP-neighbourEnergyP)/float(tParam))
   accepProbToret = math.exp(equation)
   return accepProbToret
 
