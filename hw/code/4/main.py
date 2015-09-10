@@ -58,7 +58,7 @@ while (counter > 0)  and (currEnergyVal > eMaxVal):
     print "." , 
     cntForDot = cntForDot + 1
     counter = counter - 1
-    if counter % 50 == 0:
+    if counter % 40 == 0:
        print "\n ?={} !={} +={} .={} |".format(cntForQ, cntForExcl, cntForPlus, cntForDot)
        cntForQ = 0 
        cntForExcl = 0
