@@ -2,6 +2,9 @@
 ##Date September 10, 2015 
 ### Summary of *Think Locally, Act Globally: Improving Defect and Effort Prediction Models* [1] 
 
+#### Download Link
+http://dl.acm.org/citation.cfm?id=2664455 
+
 #### Keywords	 
 * ii1: Global Model: A prediction model that is created by using all the features available in the dataset. 
 * ii2: Local Model: A prediction model that is created by using a subset of the features available in the dataset. The other subsets are used in testing the predictive performance of the prediction model

@@ -1,6 +1,9 @@
 #Reading Assignment # 2 
 ##Date September 08, 2015 
-### Summary of *The Influence of Organizational Structure on Software Quality: An Empirical Case Study* [1] 
+### Summary of *The Influence of Organizational Structure on Software Quality: An Empirical Case Study* [1]
+
+#### Download Link 
+http://dl.acm.org/citation.cfm?id=1368160  
 
 #### Keywords	 
 * ii1: Organizational Structure: The hypothetical structure that is used to categorize the responsibilities and assigner-assignee relationship inside that organization. 
