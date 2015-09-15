@@ -30,7 +30,7 @@ http://tiny.cc/32be3x
   *  PART
   *  C4.5 + Part
   *  C4.5
-* iii3: 
+* iii3: _New Results_: The authors' defend their research procedures as a way to move forward in fault prediction modeling.  Having empirically evaluated "all combinations of three distinct sets of candidate measures (OO structural measures, code churn measures, and process change and fault measures), and eight, carefully selected modeling techniques, using a number 
 * iii4: _Future Work_:  The authors' cost-effectiveness measure (CE) for the purpose of the paper was a surrogate measure.  Since publication, the authors have performed a pilot study to asses real CE and return on investment. The C4.5 prediction model was applied in a new release of the Java legacy software that was studied in this paper. Developers spent one additional week of unit testing with the most fault-prone classes (determined by the authors' fault prediction model), yielding an ROI of about 100% by preventing these faults from continuing into later phases of the the PLC where they would have been more expensive to fix.  In actual future work, the authors intend to extend these positive results to a larger-scale for further testing.
 
 #### Suggestions for Improvement
@@ -39,6 +39,7 @@ http://tiny.cc/32be3x
 * iv3:
 
 #### Connection to Intitial Paper
+While it seems that predecessory related works focused on performance metrics and evaluation of various singular or combinatorial data-mining and fault prediction models, this paper had the intension of systematically exploring the space, and the authors were eager for results.  The outcome was modest, suggesting that what is best for any given system is highly dependent upon the evaluation criteria applied.  The authors conclude that it is important that predictive models are justified in context by any evaluation criteria. These results paved the way for the systematic approach to predictive modeling employed by the authors of the original paper, where evaluation criteria of such models was questioned at different levels of aggregation/disaggregation--a shortcoming of the procedures documented in this paper.
 
 #### References
 [1] Arisholm, Erik, Lionel C. Briand, and Eivind B. Johannessen. "A systematic and comprehensive investigation of methods to build and evaluate fault prediction models." Journal of Systems and Software 83.1 (2010): 2-17.
