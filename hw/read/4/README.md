@@ -30,12 +30,12 @@ http://tiny.cc/32be3x
   *  PART
   *  C4.5 + Part
   *  C4.5
-* iii3:
-* iii4:
+* iii3: 
+* iii4: _Future Work_:  The authors' cost-effectiveness measure (CE) for the purpose of the paper was a surrogate measure.  Since publication, the authors have performed a pilot study to asses real CE and return on investment. The C4.5 prediction model was applied in a new release of the Java legacy software that was studied in this paper. Developers spent one additional week of unit testing with the most fault-prone classes (determined by the authors' fault prediction model), yielding an ROI of about 100% by preventing these faults from continuing into later phases of the the PLC where they would have been more expensive to fix.  In actual future work, the authors intend to extend these positive results to a larger-scale for further testing.
 
 #### Suggestions for Improvement
-* iv1:
-* iv2:
+* iv1: The most evident shortcoming of this paper is the unfounded assumption that class-level examination of code should yield applicable results. This is an easy stab at the authors' procedure after exposure to our initial paper, which discussed the implications of choosing any particular level of aggregation in a software system to examine when constructing models for fault detection.
+* iv2: 
 * iv3:
 
 #### Connection to Intitial Paper
