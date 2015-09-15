@@ -9,13 +9,14 @@ http://tiny.cc/32be3x
 
 #### Keywords
 * ii1: _Fault Prediction Models_: "binary classifiers typically developed using one of the supervised learning techniques from either a subset of the fault data from the current project or from a similar past project." [2]
-* ii2: _Fault Proneness Models_:
+* ii2: _Fault Proneness_: "the number of defects detected in a software component (e.g., class)" [1]
 * ii3: _Cost-Effectiveness_: 
 * ii4: _Verification_: 
 
 #### Key Points
-* iii1:
-* iii2:
+* iii1: _Motivational Statements_: After performing a literature review of select publications within the field of fault-proneness prediction models, the authors found that none addressed the impact of _selecting_ any particular modeling technique for fault prediction.  The paper focuses on the systematic assessment of three aspects on how to build and evaluate fault-proneness models in context of a Java legacy system development project in an industrial setting.  These three aspects are:
+  1. "Assess the impact of using different metric sets" (e.g., source code structural measures, change history"
+* iii2: _Related Works_:
 * iii3:
 * iii4:
 
