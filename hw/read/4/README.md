@@ -10,8 +10,8 @@ http://tiny.cc/32be3x
 #### Keywords
 * ii1: _Fault Prediction Models_: "binary classifiers typically developed using one of the supervised learning techniques from either a subset of the fault data from the current project or from a similar past project." [2]
 * ii2: _Fault Proneness_: "the number of defects detected in a software component (e.g., class)" [1]
-* ii3: _Cost-Effectiveness_: 
-* ii4: _Verification_: 
+* ii3: _Cost-Effectiveness_: refers to the return on investment of time and resources expended to acheive a desired outcome.  In the context of this paper, _cost-effectiveness_ is measured per model by the ratio of the percentage of the number of lines of code examined (% NOS) to the percentage of totals faults discovered (% faults).  _Cost effectiveness_ is used as a variable for success criteria.
+* ii4: _Verification_: in testing, the act of ensuring that a particular software system meets specifications and meets its intended purpose [3]
 
 #### Key Points
 * iii1: _Motivational Statements_: After performing a literature review of select publications within the field of fault-proneness prediction models, the authors found that none addressed the impact of _selecting_ any particular modeling technique for fault prediction.  Therefore, the authors focus the paper on the systematic assessment of three aspects on how to build and evaluate fault-proneness models in context of a Java legacy system development project in an industrial setting.  These three aspects are:
@@ -37,3 +37,5 @@ http://tiny.cc/32be3x
 APA	
 
 [2] Jiang, Yue, et al. "Variance analysis in software fault prediction models." Software Reliability Engineering, 2009. ISSRE'09. 20th International Symposium on. IEEE, 2009.
+
+[3] https://en.wikipedia.org/wiki/Software_verification_and_validation
