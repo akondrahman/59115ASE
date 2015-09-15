@@ -9,8 +9,9 @@ http://tiny.cc/32be3x
 
 #### Keywords
 * ii1: _Fault Prediction Models_: "binary classifiers typically developed using one of the supervised learning techniques from either a subset of the fault data from the current project or from a similar past project." [2]
-* ii2: _Cost-Effectiveness_: 
-* ii3: _Verification_: 
+* ii2: _Fault Proneness Models_:
+* ii3: _Cost-Effectiveness_: 
+* ii4: _Verification_: 
 
 #### Key Points
 * iii1:
@@ -22,7 +23,6 @@ http://tiny.cc/32be3x
 * iv1:
 * iv2:
 * iv3:
-* 
 #### Connection to Intitial Paper
 
 #### References
