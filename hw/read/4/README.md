@@ -21,7 +21,15 @@ http://tiny.cc/32be3x
     * confusion matrix criteria
     * ranking ability
     * author-proposed cost-effectiveness measure
-* iii2: _Related Works_: 
+* iii2: _Related Works_: Gathered in the aforementioned literature review, the authors present accounts of multiple fault prediction models in previous works, which they intend to use in their experiment. The authors note in response to related works that existing studies only considered "code structural metrics", and only a subset of studies included any further measures. The authors note that there exist a few studies which compare a comprehensive set of data mining techniques for building fault prediction models; though, none were performed systematically nor did they attempt to evaulate the benefits of including particular structural measures, such as code churn and process measures. Models gleaned from related works include:
+  *  Neural Network
+  *  Decorate C4.5
+  *  SVM
+  *  Logistic Regression
+  *  Boost C4.5
+  *  PART
+  *  C4.5 + Part
+  *  C4.5
 * iii3:
 * iii4:
 
