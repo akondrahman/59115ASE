@@ -32,8 +32,7 @@ http://tiny.cc/32be3x
   *  C4.5
 * iii3: _New Results_: The authors' defend their research procedures as a way to move forward in fault prediction modeling.  Having empirically evaluated "all combinations of three distinct sets of candidate measures (OO structural measures, code churn measures, and process change and fault measures), and eight, carefully selected modeling techniques, using a number of evaluation criteria", they proved (to the community and to themselves) that a gold standard in modeling is unattainable.  The confounding effects of the many variables results in the need for _ad hoc_ methods for developing predictive fault models. The following is an table to illustrate the scope of the variables considered in their experiment:
 
-Inline-style: 
-![alt text](https://github.com/akondrahman/59115ASE/edit/master/hw/read/4/table_1.png "Table 1: Summary of the Explanatory Variables")
+![alt text] (https://github.com/akondrahman/59115ASE/edit/master/hw/read/4/table_1.png "Table 1: Summary of the Explanatory Variables")
 
 * iii4: _Future Work_:  The authors' cost-effectiveness measure (CE) for the purpose of the paper was a surrogate measure.  Since publication, the authors have performed a pilot study to asses real CE and return on investment. The C4.5 prediction model was applied in a new release of the Java legacy software that was studied in this paper. Developers spent one additional week of unit testing with the most fault-prone classes (determined by the authors' fault prediction model), yielding an ROI of about 100% by preventing these faults from continuing into later phases of the the PLC where they would have been more expensive to fix.  In actual future work, the authors intend to extend these positive results to a larger-scale for further testing.
 
