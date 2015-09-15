@@ -38,8 +38,8 @@ http://tiny.cc/32be3x
 
 #### Suggestions for Improvement
 * iv1: The most evident shortcoming of this paper is the unfounded assumption that class-level examination of code should yield applicable results. This is an easy stab at the authors' procedure after exposure to our initial paper, which discussed the implications of choosing any particular level of aggregation in a software system to examine when constructing models for fault detection.
-* iv2: 
-* iv3:
+* iv2: Experiments were performed on a single Java legacy software system. The authors could have extended their research, as we have seen in the initial paper, to a much larger base of open-sourced projects that are in active development, and may have used bug reports to determine actual faults in code.  Doing so may elucidate other variables that they may not witness with a single data set.
+* iv3: The authors claim that they have specifically chosen modeling techniques, though provide no explanation of the reasoning behind their decisions.  The modeling techniques seem to have been selected from the techniques described in their literature review.  A section dedicated to validating their selection of these techniques would lend to the validity of their experiment.
 
 #### Connection to Intitial Paper
 While it seems that predecessory related works focused on performance metrics and evaluation of various singular or combinatorial data-mining and fault prediction models, this paper had the intension of systematically exploring the space, and the authors were eager for results.  The outcome was modest, suggesting that what is best for any given system is highly dependent upon the evaluation criteria applied.  The authors conclude that it is important that predictive models are justified in context by any evaluation criteria. These results paved the way for the systematic approach to predictive modeling employed by the authors of the original paper, where evaluation criteria of such models was questioned at different levels of aggregation/disaggregation--a shortcoming of the procedures documented in this paper.
