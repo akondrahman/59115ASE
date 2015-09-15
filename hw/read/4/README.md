@@ -14,9 +14,14 @@ http://tiny.cc/32be3x
 * ii4: _Verification_: 
 
 #### Key Points
-* iii1: _Motivational Statements_: After performing a literature review of select publications within the field of fault-proneness prediction models, the authors found that none addressed the impact of _selecting_ any particular modeling technique for fault prediction.  The paper focuses on the systematic assessment of three aspects on how to build and evaluate fault-proneness models in context of a Java legacy system development project in an industrial setting.  These three aspects are:
-  1. "Assess the impact of using different metric sets" (e.g., source code structural measures, change history"
-* iii2: _Related Works_:
+* iii1: _Motivational Statements_: After performing a literature review of select publications within the field of fault-proneness prediction models, the authors found that none addressed the impact of _selecting_ any particular modeling technique for fault prediction.  Therefore, the authors focus the paper on the systematic assessment of three aspects on how to build and evaluate fault-proneness models in context of a Java legacy system development project in an industrial setting.  These three aspects are:
+  * "compare many data mining and machine learning techniques to build fault-proneness models"
+  * "assess the impact of using different metric sets" (e.g., source code structural measures, change history)
+  * "compare several alternative ways of assessing the performance of the models", including:
+    * confusion matrix criteria
+    * ranking ability
+    * author-proposed cost-effectiveness measure
+* iii2: _Related Works_: 
 * iii3:
 * iii4:
 
