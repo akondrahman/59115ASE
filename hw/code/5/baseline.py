@@ -1,9 +1,10 @@
 import random
-import math
+#import math
 from oscyzaka2 import _firstObj, _secondObj
 import checker
 
 def calcNormEnergy(xVecParam, minMaxTuple):
+  ''' reused materials from code 4 '''  
   #print maxSchafferP
   minO2P = minMaxTuple[0]
   maxO2P = minMaxTuple[1]
@@ -21,10 +22,10 @@ def _getEnergy(xVecParam):
 
 
 def getBaselineMinMaxForO2():
-
+  ''' reused materials from code 4 '''
   minMaxTuple=[]
-  minVal = -100000
-  maxVal = 100000
+  #minVal = -100000
+  #maxVal = 100000
   val = getValidVector()
   minEnergy = _getEnergy(val)
   maxEnergy = _getEnergy(val)

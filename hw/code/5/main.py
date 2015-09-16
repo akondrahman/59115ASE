@@ -2,8 +2,8 @@ import random
 from baseline import getVariableBounds, getValidVector, getBaselineMinMaxForO2, calcNormEnergy
 import checker
 
-def maxWalkSat(maxTries=100000, maxChanges=10, threshold=.98, p=0.5):
-
+def maxWalkSat(maxTries=100000, maxChanges=10, threshold=.95, p=0.5):
+  ''' This is the main place holder fo the MaxSatWalk() Algo '''
   minMaxTuple = getBaselineMinMaxForO2()
   vec = getValidVector()
   start = calcNormEnergy(vec, minMaxTuple)
@@ -15,9 +15,12 @@ def maxWalkSat(maxTries=100000, maxChanges=10, threshold=.98, p=0.5):
         return solution
 
       if p < random.random():
+        ## when probailility is > 0.5 then we randomly select a variable and mutate it        
         mutate(vec)
         solution = calcNormEnergy(vec, minMaxTuple)
       else:
+        ## when probailility is <= 0.5 then we  mutate all the variables in the vector 
+        ## one by one ,see which gives the maximum energy, and keep it as solution           
         energyVecList = mutateSelectively(vec, minMaxTuple)
         tempMax = energyVecList[0][1]
         tempVec = energyVecList[0][0]
@@ -37,7 +40,7 @@ def maxWalkSat(maxTries=100000, maxChanges=10, threshold=.98, p=0.5):
 
 
 def mutate(xVecParam):
-
+  '''This module selects any one of the six variables, and then mutates it only '''
   index = random.randrange(0,6)
   vec = xVecParam
   vec[index] = getVariableBounds(index)
@@ -50,6 +53,7 @@ def mutate(xVecParam):
 
 
 def mutateSelectively(xVecParam, minMaxTuple):
+  '''This module selects any all of the six variables, one by one, mutates it, and keeps track of the energy '''    
   energyVecList = []
   for cnt in range(len(xVecParam)):
     vec = xVecParam
@@ -59,3 +63,6 @@ def mutateSelectively(xVecParam, minMaxTuple):
     energyVecList.append((vec, calcNormEnergy(vec, minMaxTuple)))
 
   return energyVecList
+  
+  
+maxWalkSat()  
