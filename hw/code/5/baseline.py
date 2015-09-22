@@ -72,5 +72,28 @@ def getValidVector():
 
   return vec
 
+# A function for retrieving a random value within the upper and lower bounds for each variable
+def getCompleteRange(varIndex):
+  tupToRet=()
+  if (varIndex == 0):
+    tupToRet=(0, 11)
 
+  if (varIndex == 1):
+    tupToRet=(0, 11)
+
+  if (varIndex == 2):
+    tupToRet=(1, 6)
+
+  if (varIndex == 3):
+    tupToRet=(0, 7)
+
+  if (varIndex == 4):
+    tupToRet=(1, 6)
+
+  if (varIndex == 5):
+    tupToRet=(0, 11)
+    
+    
+    
+  return  tupToRet
 

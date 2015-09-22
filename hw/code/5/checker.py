@@ -5,9 +5,10 @@ Created on Mon Sep 14 19:23:44 2015
 @author: akond
 """
 
-from ok import *
+
 
 def checkVariableBounds(xVecParam):
+  #print xVecParam  
   valToRet = False
   trueCount = 0
   constList=[]

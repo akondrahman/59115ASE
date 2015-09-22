@@ -18,10 +18,10 @@ def _firstObj(xVecParam):
       valToRet = -1 * (factor1 + factor2 + factor3 + factor4)
     else:
       valToRet =  float('nan')  
-      print "Input vector violates Oscyzaka-II's constraints !"    
+      print "First Objective Failed : Input vector violates Oscyzaka-II's constraints !" , xVecParam   
   else:
       valToRet =  float('nan')        
-      print "Input vector violates Oscyzaka-II's variable bounds !"
+      print "First Objective Failed : Input vector violates Oscyzaka-II's variable bounds !", xVecParam
   return valToRet        
   
   
@@ -35,9 +35,9 @@ def _secondObj(xVecParam):
         valToRet = valToRet + math.pow(valI, 2)
     else:
       valToRet =  float('nan')  
-      print "Input vector violates Oscyzaka-II's constraints !"    
+      print "Second Objective Failed : Input vector violates Oscyzaka-II's constraints !", xVecParam    
   else:
       valToRet =  float('nan')        
-      print "Input vector violates Oscyzaka-II's variable bounds !"
+      print "Second Objective Failed : Input vector violates Oscyzaka-II's variable bounds !", xVecParam
   #print valToRet    
   return valToRet          
