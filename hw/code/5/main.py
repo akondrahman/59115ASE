@@ -70,8 +70,9 @@ def doMaxWalkSat(maxTries=10000, maxChanges=50, threshold=1.0, p=0.5):
       elif calcNormEnergy(xBest, minMaxTuple) > calcNormEnergy(xCurrent, minMaxTuple):
          output += "!"
          cnt_Exc = cnt_Exc + 1
-      output += "."
-      cnt_Dot = cnt_Dot + 1
+      else:
+        output += "."
+        cnt_Dot = cnt_Dot + 1
       solutionVecAndEnergyToRet = [xBest, calcNormEnergy(xBest, minMaxTuple)]
       printCounter = printCounter + 1
       if printCounter % 40 == 0:

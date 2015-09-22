@@ -58,9 +58,9 @@ while (counter > 0)  and (currEnergyVal > eMaxVal):
        currEnergyVal = energyNeighbour
        output += "?"
        cntForQ = cntForQ + 1
-
-    output +=  "."
-    cntForDot = cntForDot + 1
+    else:
+      output +=  "."
+      cntForDot = cntForDot + 1
     counter = counter - 1
     if counter % 40 == 0:
        say("\n ?={} !={} +={} .={} | ".format(cntForQ, cntForExcl, cntForPlus, cntForDot))
