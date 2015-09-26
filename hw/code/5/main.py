@@ -7,7 +7,7 @@ import checker
 def say(x): print(x, end="")
 
 
-def doMaxWalkSat(maxTries=10000, maxChanges=50, threshold=1.0, p=0.5):
+def doMaxWalkSat(maxTries=10000, maxChanges=50, threshold=0.95, p=0.5):
   ''' This is the main place holder fo the MaxSatWalk() Algo '''
   solutionVecAndEnergyToRet=[]
   minMaxTuple = getBaselineMinMaxForO2()
@@ -51,7 +51,9 @@ def doMaxWalkSat(maxTries=10000, maxChanges=50, threshold=1.0, p=0.5):
       else:
         ## when probailility is <= 0.5 then we  mutate all the variables in the vector
         ## one by one ,see which gives the maximum energy, and keep it as solution
-        mutatedVec = _mutateSelectively(vec, minMaxTuple, indexToChange)
+       
+        #mutatedVec = _mutateSelectively(vec, minMaxTuple, indexToChange)
+        mutatedVec = _mutateSelectivelyWithModifiedRange(vec, minMaxTuple, indexToChange)
 
 
       xCurrent =   [ _ for _ in mutatedVec]
@@ -139,6 +141,42 @@ def _mutateSelectively(xVecParam, minMaxTuple,indexP, stepParam=20):
     return valToret
 
 
+def _mutateSelectivelyWithModifiedRange(xVecParam, minMaxTuple,indexP, stepParam=1):
+
+
+    valToret = 0    
+    xCurrent=[x for x in xVecParam]
+    xBest=xVecParam
+    
+    listOfMax=[10, 10, 5, 6, 5, 10]
+    listOfMin=[ 0,  0, 1, 0, 1,  0] 
+    
+    
+    fractionedMax = [float(x)*float(stepParam*10)/float(100) for x in listOfMax]
+    fractionedMin = [float(x)*float((stepParam*10)/100) for x in listOfMin]   
+    
+    #print "{}--{}".format(fractionedMax, fractionedMin)
+    
+    maxRangeOI = float(fractionedMax[indexP])
+    minRangeOI = float(fractionedMin[indexP])
+    stepOfI = maxRangeOI - minRangeOI 
+    #print "stepOfI... ", stepOfI
+    cnt = minRangeOI    
+    run = 0     
+    while cnt <= maxRangeOI:
+      xCurrent[indexP] = cnt 
+      if checker.checkConstraints(xCurrent):
+        if calcNormEnergy(xBest, minMaxTuple) <= calcNormEnergy(xCurrent, minMaxTuple):
+           xBest = [xtemp for xtemp in xCurrent]   
+      cnt = cnt + stepOfI 
+      run = run + 1    
+    valToret = [ _ for _ in xBest]
+    #print "run ..." , run
+    run  = 0    
+    return valToret
+
+
+
 def _printEndMsg( cntTryParam, cntChnageParam):
         print("\n")
         print("End of MaxWalkSat .... ")
@@ -147,3 +185,9 @@ def _printEndMsg( cntTryParam, cntChnageParam):
 
 completeSolution = doMaxWalkSat()
 print("Final answer: solution {}, corresponding energy {}".format(completeSolution[0], completeSolution[1]))
+print("\n")
+print("-----------------------------------")
+print("Note-1(a): '?' means *mutated solution* is better than *best solution* ")
+print("Note-1(b): '+' means *old solution* is better than *mutated solution* ")        
+print("Note-1(c): '!' means *best solution* is better than *current solution* ")     
+print("-----------------------------------")           
