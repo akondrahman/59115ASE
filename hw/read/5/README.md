@@ -6,10 +6,10 @@
 http://ieeexplore.ieee.org.prox.lib.ncsu.edu/stamp/stamp.jsp?tp=&arnumber=4527256
 
 #### Keywords	 
-* ii1: Classification : . 
-* ii2: Software Defect Prediction: 
-* ii3: Data Mining: 
-* ii4: Statistical Methods: 
+* ii1: Classification : This term refers to the categorization of data values into discrete classes. For example, a binary classification will have two categories or classes - "YES" and "NO"
+* ii2: Software Defect Prediction: This term refers to the process of identifying error prone software modules by means of data mining techniques. This helps in efficient allocation of resources to high-risk software segments. 
+* ii3: Data Mining: It is a process of analyzing data from various sources and analyzing and deriving useful insights and patterns from the data , that can be used to make better decision in future.
+* ii4: Statistical Methods: Statistics deals with the collection, interpretation, presentation and analysis of data. It offers various methods to estimate and correct for any bias within a sample and data collection procedures.
 
 #### Key Points
 * iii1: Related Work: 
