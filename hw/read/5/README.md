@@ -18,10 +18,10 @@ http://ieeexplore.ieee.org.prox.lib.ncsu.edu/stamp/stamp.jsp?tp=&arnumber=452725
 * iii4: New Results: The authors have established that AUC is the primary accuracy indicator for comparative studies in software defect prediction as it separates predictive performance from class and cost distributions, which are project-specific characteristics that may be unknown or subject to change. Another contribution was the usage of statistical testing procedures for comparing and contrasting classification models. Further, as per the results obtained, the predictive accuracy of the models did not differ significantly. Thus, the assessment and selection of a classification model should not be based on the predictive accuracy. Instead it should be based on other factors such as computation costs, efficiency, ease of use and comprehensibility.
 
 #### Suggestions for Improvement 
-* iv1: 
-* iv2: 
-* iv3:  
-* iv4: 
+* iv1: Although the authors mention that same studies using the same models can conclude different results based on the selection of threshold criteria, the authors themselves are using threshold criteria for AUC which can be debatable.
+* iv2: The data set from NASA need not be representative enough unless someone runs similar experiment on other data sets and verifies the results.
+* iv3: There are more than 22 classifier algorithms available and the authors have not covered all of them. Further, the author does not do any statistical proof that these 22 classifiers are representative of the entire domain of classifier algorithms available.
+* iv4: The authors have specifically focused on classification problem in the data mining domain. The data mining problem involves several steps and stages. So, it is possible that if we do some previous step such as data preprocessing properly, it can improve the performance or prediction accuracy of a classification model and the results of two different models will no longer be "not statistically significant" - that is, there will be significant difference in the software defect prediction accuracy and the framework demonstrated by this paper would fail to hold ground.
 
 #### Connection to the Initial Paper
 Our selected initial paper titled *Ecological Inference in Empirical Software Engineering [2]* provided a conceptual framework on how prediction models can vary if metrics that are collected at aggregated with that of metrics collected at non-aggregated level. In this paper, the authors take a holistic approach, and discuss the global distributed model of software development, at different levels of separation and its effect on software quality.  
