@@ -1,9 +1,9 @@
-#Reading Assignment # 3 
+#Reading Assignment # 5 
  
-### Summary of *Does Distributed Development Affect Software Quality? An Empirical Case Study of Windows Vista* [1]
+### Summary of *Benchmarking Classification Models for Software Defect Prediction: A Proposed Framework and Novel Findings* [1]
 
 #### Download Link 
-http://ieeexplore.ieee.org.prox.lib.ncsu.edu/stamp/stamp.jsp?tp=&arnumber=5070550
+http://ieeexplore.ieee.org.prox.lib.ncsu.edu/stamp/stamp.jsp?tp=&arnumber=4527256
 
 #### Keywords	 
 * ii1: Distributed Development: This term refers development of software that is spread across various levels - building, campus, locality, continent, world. Different teams working at different locations work together to build a complex software system. 
@@ -28,6 +28,6 @@ http://ieeexplore.ieee.org.prox.lib.ncsu.edu/stamp/stamp.jsp?tp=&arnumber=507055
 Our selected initial paper titled *Ecological Inference in Empirical Software Engineering [2]* provided a conceptual framework on how prediction models can vary if metrics that are collected at aggregated with that of metrics collected at non-aggregated level. In this paper, the authors take a holistic approach, and discuss the global distributed model of software development, at different levels of separation and its effect on software quality.  
 
 ####Reference
-[1] Christian Bird, Nachiappan Nagappan, Premkumar Devanbu, Harald Gall,and Brendan Murphy. Does Distributed Development Affect Software Quality?: An Empirical Case Study of Windows Vista, in *International conference on Software engineering (ICSE '09)*, pages 518-528, ACM, 2009
+[1] Stefan Lessmann, Bart Baesens, Christophe Mues, and Swantje Pietsch. Benchmarking Classification Models for Software Defect Prediction: A Proposed Framework and Novel Findings in *IEEE TRANSACTIONS ON SOFTWARE ENGINEERING, VOL.34, NO.4, JULY/AUGUST 2008*
 [2] D. Posnett, V. Filkov, and P. Devanbu. Ecological inference in empirical software engineering. In Proceedings of the 2011 26th IEEE/ACM Inter- national Conference on Automated Software Engineering, pages 362–371. IEEE Computer Society, 2011. 
 
