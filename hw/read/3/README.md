@@ -25,9 +25,8 @@ http://ieeexplore.ieee.org.prox.lib.ncsu.edu/stamp/stamp.jsp?tp=&arnumber=507055
 
 
 #### Connection to the Initial Paper
-Our selected initial paper titled *Ecological Inference in Empirical Software Engineering [2]* provided a conceptual framework on how prediction models can vary if metrics that are collected at aggregated with that of metrics collected at non-aggregated level. In this paper, the authors take a holistic organizational approach, disregarding the difference of aggregated and dis-aggregated levels.  
+Our selected initial paper titled *Ecological Inference in Empirical Software Engineering [2]* provided a conceptual framework on how prediction models can vary if metrics that are collected at aggregated with that of metrics collected at non-aggregated level. In this paper, the authors take a holistic approach, and discuss the global distributed model of software development, at different levels of separation and its effect on software quality.  
 
 ####Reference
-[1] Nachiappan Nagappan, Brendan Murphy, and Victor Basili. The Influence of Organizational Structure on Software Quality: An Empirical Case Study, in *Proceedings of the 30th International conference on Software engineering (ICSE '08)*, pages 521-530, ACM, 2008
+[1] Christian Bird, Nachiappan Nagappan, Premkumar Devanbu, Harald Gall,and Brendan Murphy. Does Distributed Development Affect Software Quality?: An Empirical Case Study of Windows Vista, in *International conference on Software engineering (ICSE '09)*, pages 518-528, ACM, 2009
 
-[2] D. Posnett, V. Filkov, and P. Devanbu. Ecological inference in empirical software engineering. In Proceedings of the 2011 26th IEEE/ACM Inter- national Conference on Automated Software Engineering, pages 362–371. IEEE Computer Society, 2011. 
