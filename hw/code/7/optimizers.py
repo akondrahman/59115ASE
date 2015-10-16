@@ -135,7 +135,9 @@ def MaxWalkSat(model, maxTries=100, maxChanges=10, threshold=0, p=0.5, step=10):
     _printEndMsg(MaxWalkSat.__name__)
     return sbest.decisionVec
 
-
+# Differential Evolution : Pending
+def DiffEvol():
+    pass;
 
 
 #def _mutateSelectivelyWithModifiedRange(modelP, currSolP, indexP, stepParam=10.0):

@@ -11,15 +11,15 @@ from random import seed
 from time import time
 #import numpy as np
 #from pdb import set_trace
-from model import Schaffer, Osyczka2, Kursawe
-from optimizers import SimulatedAnnealing, MaxWalkSat 
+from model import Schaffer, Osyczka2, Kursawe, Golinski
+from optimizers import SimulatedAnnealing, MaxWalkSat, DiffEvol
 
 
 
 
 seed(time())
-for model in [Kursawe, Osyczka2, Schaffer ]:
-  for optimizer in [MaxWalkSat, SimulatedAnnealing]:
+for model in [Kursawe, Osyczka2, Schaffer, Golinski]:
+  for optimizer in [MaxWalkSat, SimulatedAnnealing, DiffEvol]:
      print "Optimizer '{}' will now work on Model '{}'".format(optimizer.__name__, model.__name__)
      print "-------------------------------------------------------------------------------------"
      optimizer(model)
