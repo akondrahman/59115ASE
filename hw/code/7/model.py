@@ -56,15 +56,27 @@ class Golinski(Model):
         self.generateInitialVector()
 
     def check(self):
-        constCheckerVec = [0,0,0,0,0,0,0]
-        constCheckerVec[0]=     ((1.0)/(self.decisionVec[0]*math.pow(self.decisionVec[1],2)*self.decisionVec[2])) - (1.0/27.0) 
-        constCheckerVec[1]= 6 - (self.decisionVec[0]) - (self.decisionVec[1])
-        constCheckerVec[2]= 2 - (self.decisionVec[1]) + (self.decisionVec[0])
-        constCheckerVec[3]= 2 - (self.decisionVec[0]) + (3*self.decisionVec[1])
-        constCheckerVec[4]= 4 - (self.decisionVec[3]) - math.pow(((self.decisionVec[2]) - 3), 2)
-        constCheckerVec[5]=     math.pow((self.decisionVec[4]-3), 3) + ((self.decisionVec[5]) - 4) 
+        constCheckerVec    = [0,0,0,0,0,0,0,0,0,0,0]
+        constCheckerVec[0] = ((1.0)/(self.decisionVec[0]*math.pow(self.decisionVec[1],2)*self.decisionVec[2])) - (1.0/27.0) 
+        constCheckerVec[1] = ((1.0)/(self.decisionVec[0]*math.pow(self.decisionVec[1],2)*self.decisionVec[2])) - (1.0/27.0)  
+
+        constCheckerVec[2] = (math.pow(self.decisionVec[3],3)/(self.decisionVec[1]*math.pow(self.decisionVec[2],2)*math.pow(self.decisionVec[5],4)) - (1.0/1.93) 
+        constCheckerVec[3] = (math.pow(self.decisionVec[4],3)/(self.decisionVec[1]*math.pow(self.decisionVec[2],1)*math.pow(self.decisionVec[6],4)) - (1.0/1.93) 
+
+        constCheckerVec[4] = self.decisionVec[1]*self.decisionVec[2] - 40
+        constCheckerVec[5] = (self.decisionVec[0]/self.decisionVec[1]) - 12
+        constCheckerVec[6] = 5 - (self.decisionVec[0]/self.decisionVec[1]) 
+        constCheckerVec[7] = 1.9 - self.decisionVec[3] + 1.5*self.decisionVec[5] 
+        constCheckerVec[8] = 1.9 - self.decisionVec[4] + 1.1*self.decisionVec[6] 
+        obj_temp           = self.getobj
+        constCheckerVec[9] = obj_temp[1] - 1300
+        a                  = 745.0*self.decisionVec[4]/(self.decisionVec[1]*self.decisionVec[3])
+        b                  = 1.575*math.pow(10,8)
+        a_squared          = math.pow(a,2)
+        constCheckerVec[10]=(math.sqrt(a_squared+b)/(0.1*math.pow(self.decisionVec[6],3))) - 1100
+
         for cnt in range(0,self.numOfDec):
-            if (self.decisionVec[cnt] < self.lowerRange[cnt]) or (self.decisionVec[cnt]>self.upperRange[cnt]) or (constCheckerVec[cnt] < 0):
+            if (self.decisionVec[cnt] < self.lowerRange[cnt]) or (self.decisionVec[cnt]>self.upperRange[cnt]) or (constCheckerVec[cnt] > 0):
               return False
         return True
 
