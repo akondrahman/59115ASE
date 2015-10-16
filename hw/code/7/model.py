@@ -82,23 +82,26 @@ class Golinski(Model):
 
 
     def getobj(self):
-        giveSquaredValue = lambda val : math.pow(val, 2)
-        f1=-(
-             25 * math.pow((self.decisionVec[0]-2), 2)+
-             math.pow((self.decisionVec[1]-2), 2)     +
-             math.pow((self.decisionVec[2]-1), 2)     * 
-             math.pow((self.decisionVec[3]-4), 2)     + 
-             math.pow((self.decisionVec[4]-1), 2)
-             )
         
-        f2=( 
-             giveSquaredValue(self.decisionVec[0]) + 
-             giveSquaredValue(self.decisionVec[1]) +
-             giveSquaredValue(self.decisionVec[2]) +
-             giveSquaredValue(self.decisionVec[3]) +
-             giveSquaredValue(self.decisionVec[4]) +
-             giveSquaredValue(self.decisionVec[5])
-           )
+        giveSquaredValue = lambda val : math.pow(val, 2)
+        giveCubeValue    = lambda val : math.pow(val, 3)
+        giveSeventhPower = lambda val : math.pow(val, 7)
+
+        # Temporary values for f1
+        tmp1 = (10*giveSquaredValue(self.decisionVec[2])/3) + 14.933*self.decisionVec[2] - 43.0934
+        tmp2 = 1.508*self.decisionVec[0](giveSquaredValue(self.decisionVec[5]) + giveSquaredValue(self.decisionVec[6]))
+        tmp3 = 7.477*(giveCubeValue(self.decisionVec[5]) + giveCubeValue(self.decisionVec[6]))
+        tmp4 = 0.7854*(self.decisionVec[3]*giveSquaredValue(self.decisionVec[5]) + self.decisionVec[4]*giveSquaredValue(6))
+
+        f1   = 0.7854*self.decisionVec[0]*giveSquaredValue(self.decisionVec[1])(tmp1) - tmp2 + tmp3 + tmp4
+
+        # Temporary values for f2
+        x    = 745.0*self.decisionVec[3]/(self.decisionVec[1]*self.decisionVec[2])
+        y    = 1.69*giveSeventhPower(10)
+        z    = 0.1*giveCubeValue(self.decisionVec[5])
+
+        f2   = math.sqrt(giveSquaredValue(x) + y) / z
+        
         return [f1,f2]
 
 class Osyczka2(Model):
