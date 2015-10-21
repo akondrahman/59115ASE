@@ -36,7 +36,8 @@ the absence of a fault history... Example structural measures include lines of c
 
  Because they were measuring performance and not testing any hypotheses, the authors simply used all available variables.
  
-* iii4:
+* iii4: Results: Suspicions were confirmed by the results of the analysis: *cross-project fault prediction* is significantly worse than prediction based on historical defect data within a project. However, the authors found "that cost-sensitive cross-project prediction is a) as good as within-project prediction, and b) substantially better than what we would expect under a random model." The conclude with the following block statement:
+>In terms of aucec, cross-project defect prediction performs surprisingly well and may have a comparable performance to that of the within-project models.
 
 #### Suggestions for Improvement 
 * iv1: The authors were critical of former approaches that used standard IR-based metrics and Logistic Regression, and in turn, used it themselves.  It seems that the motivational statement lamenting the progress made in cross-project error protect should qualify--rather than criticize--previous methods which obviously influenced the procedures of this work.  The focus of their work was actually based upon the tuning of thresholds.
