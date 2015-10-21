@@ -51,6 +51,7 @@ the absence of a fault history... Example structural measures include lines of c
  Though they fail to offer intution or avenues to discover (via future work) what metrics, if not product metrics, are better for fault prediction.
 
 #### Connection to Initial Paper
+This paper demonstrates the consideration of the risk of *ecological inference* (Posnett et al) before proceeding, explicitly stating that their choice of file-level analysis was directly motivated by Posnett's findings.
 
 #### Reference
 1. Rahman, Foyzur, Daryl Posnett, and Premkumar Devanbu. "Recalling the imprecision of cross-project defect prediction." Proceedings of the ACM SIGSOFT 20th International Symposium on the Foundations of Software Engineering. ACM, 2012.
