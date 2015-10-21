@@ -23,6 +23,7 @@ the absence of a fault history... Example structural measures include lines of c
   * *Features* - "Number of new features in this file during this release"
   * *Improvements* - "Number of improvements in this file during this release"
   * *Log* - "SLOC Log source lines of code" 
+
 Project List: Axis2, CXF, Camel, Cayenne, Derby, Lucene, OpenEJB, Wicket, XercesJ
 * iii3: 
 * iii4:
