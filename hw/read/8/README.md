@@ -13,9 +13,18 @@ the absence of a fault history... Example structural measures include lines of c
 * ii4: *Cross-Project Prediction*: "using data from one project to predict defects in another [1]."  As the title of the paper suggests, this is an imprecise practice.
 
 #### Key Points
-* iii1:
-* iii2:
-* iii3:
+* iii1: *Motivation Statements*: Because new projects are slight on historical data, there is growing interest in *cross-project prediction*--using data from existing projects to predict defects in another.  However, to date the results of these studies have been underwhelming.  Past projects have used the standard IR-based measures of *precision*, *recall*, and *f-score*, with specific threshold settings determined by methods such as logistic regression.  Rahman et al, argue that these are not well suited for cross-project predition.  The authors propose that a variety of tradeoffs (*viz*, 5%, 10%, or 20% of files tested or inspected) would be more suitable.
+* iii2: *Sampling Procedures*: The authors "collected defect data and predictive metrics for several projects". They chose data sets and process metrics considering the following features:
+  * *Commits* - "Number of commits made to this file during release"
+  * *Active Devs* -  "Number of developers who made changes during this release"
+  * *Added* - "LOC during this release normalized by file size"
+  * *Deleted* - "Deleted LOC during this release normalized by file size"
+  * *Changed* - "Changed LOC during this release normalized by file size"
+  * *Features* - "Number of new features in this file during this release"
+  * *Improvements* - "Number of improvements in this file during this release"
+  * *Log* - "SLOC Log source lines of code"
+Project List: Axis2, CXF, Camel, Cayenne, Derby, Lucene, OpenEJB, Wicket, XercesJ
+* iii3: 
 * iii4:
 
 #### Suggestions for Improvement 
