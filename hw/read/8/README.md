@@ -40,10 +40,15 @@ the absence of a fault history... Example structural measures include lines of c
 >In terms of aucec, cross-project defect prediction performs surprisingly well and may have a comparable performance to that of the within-project models.
 
 #### Suggestions for Improvement 
-* iv1: The authors were critical of former approaches that used standard IR-based metrics and Logistic Regression, and in turn, used it themselves.  It seems that the motivational statement lamenting the progress made in cross-project error protect should qualify--rather than criticize--previous methods which obviously influenced the procedures of this work.  The focus of their work was actually based upon the tuning of thresholds.
+* iv1: The authors were critical of former approaches that used standard IR-based metrics and Logistic Regression, and in turn, used it themselves for validation.  It seems that the motivational statement lamenting the progress made in cross-project error protect should qualify--rather than criticize--previous methods which obviously influenced the procedures of this work.
 
-* iv2:
-* iv3:
+* iv2: Self-admittedly, none of their cross-project prediction methods were testing on projects that were actually new, rather they were tested among existing projects.  This somewhat undermines the emboldened statement at the conclusion of the paper, as the utility of cross-project prediction is highest among new projects.  Perhaps the authors could reexamine their solutions with the inclusion of a new project. I'm sure there would be some corporate interest in such a study
+
+
+* iv3: The authors state:
+>Our results suggest that using product metrics, which are usually correlated with size, might actually give worse cross-project performance for cost-sensitive crossprediction models.
+
+ Though they fail to offer intution or avenues to discover (via future work) what metrics, if not product metrics, are better for fault prediction.
 
 #### Connection to Initial Paper
 
