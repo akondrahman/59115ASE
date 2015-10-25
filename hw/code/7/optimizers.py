@@ -136,8 +136,101 @@ def MaxWalkSat(model, maxTries=100, maxChanges=10, threshold=0, p=0.5, step=10):
     return sbest.decisionVec
 
 # Differential Evolution : Pending
-def DiffEvol():
-    pass;
+def DiffEvol(max = 100, # number of repeats
+             np = 100,  # number of candidates
+             f = 0.75,  # extrapolate amount
+             cr = 0.3,  # probability of cross-over
+             epsilon = 0.01
+             ):
+    frontier = [candidate() for _ in range(np)]
+
+    for k in range(max):
+        total,n = update(f,cf,frontier)
+        if total/n > (1 - epsilon):
+            break
+    return frontier
+
+
+def update(f,cf, frontier, total = 0.0, n=0):
+    for x in frontier:
+        s = x.score
+        new = extrapolate(frontier,x,f,cf)
+        if new.score > s:
+            x.score = new.score
+            x.have = new.have
+        total += x.score
+        n += 1
+    return total,n
+
+def extrapolate(frontier, one, f, cf):
+    out = Thing(id = one.id,
+                have = copy(one.have))
+    two,three,four = threeOthers(frontier,one)
+    changed = False
+
+    for d in decisions():
+        x,y,z = two.have[d],three.have[d],four.have[d]
+        if rand() < cr:
+            changed = True
+            new = x + f*(y - z)
+            out.have[d] = trim(new,d) #keep in range
+        if not changed:
+            d = a(decisions())
+            out.have[d] = two[d]
+        out.score = score(out)  # remember to score it
+        return out
+
+#Returns three different things that are not 'avoid'.
+
+def threeOthers(lst,avoid):
+    def oneOther():
+        x = avoid
+        while x.id in seen:
+            x = a(lst)
+        seen.append(x.id)
+        return x
+    # ----------
+    seen = [ avoid.id ]
+    this = oneOther()
+    that = oneOther()
+    theOtherThing = oneOther()
+    return this, that, theOtherThing
+
+def a(lst) :
+    return lst[n(len(lst))]
+
+def lo(d):
+    # return max range of decision d
+
+def hi(d):
+    # return min range of decision d
+
+def decisions():
+    # return list of indexes of the decisions
+
+def trim(x,d): # trim to legal range
+    return max(lo(d),min(x,hi(d)))
+
+def candidate():
+    something = [lo(d) + n(hi(d) - lo(d))
+                for d in decisions()]
+    new = Thing()
+    new.have = something
+    new.score = score(new)
+    return new
+
+def n(max):
+    return int(random.uniform(0,max))
+
+class Thing():
+    id = 0
+
+    def __init__(self, **entries):
+        self.id = Thing.id = Thing.id + 1
+        self.__dict__.update(entries)
+
+    def score(one):
+        #returns distance from hell ( combination of all objectives) 
 
 
 #def _mutateSelectivelyWithModifiedRange(modelP, currSolP, indexP, stepParam=10.0):
