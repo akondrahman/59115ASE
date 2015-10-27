@@ -20,7 +20,8 @@ http://goo.gl/FqTGs2
 ![output](projects.png?)
 
 * iii2: 
-* iii3:
+* iii3: *Anti-Patterns*:  The authors acknowledge the work of Posnett et al. in *Threats to Validity* for avoiding generalization.  They note that in order to avoid risk of the *ecological fallacy*, they have taken measures to compare their findings in a per project setting, reporting similar results.  In a previous paper by Rahman [2], it was noted that the file-level was chosen for analysis in response to the risk of *ecological fallacy*, while the same decision was made for this work without explicit declaration.
+
 * iii4:
 
 #### Suggestions for Improvement 
