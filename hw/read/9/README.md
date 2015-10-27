@@ -17,7 +17,7 @@ http://goo.gl/FqTGs2
 #### Key Points
 * iii1: *Sampling Procedures*: The authors selected 12 Java-based, Apache Software Foundations (ASF) projects from diverse domains.  For each project, they extracted the commit history from each project's GIT repository, while also using GIT *BLAME* on every file at each release to get detailed contributor information.  All 12 projects used JIRA, from which the authors extracted defect information and the defect-correcting commits.  The JIRA commits were diffed with the GIT commits to label the modified files as defective.  The following table includes information on the 12 selected projects:
 
-![output](projects.png?raw=true=150x100)
+![output](projects.png?)
 
 * iii2: 
 * iii3:
