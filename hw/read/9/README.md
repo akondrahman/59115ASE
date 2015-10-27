@@ -21,7 +21,11 @@ http://goo.gl/FqTGs2
 
 ![output](projects.png?)
 
-* iii3: 
+* iii3: *Statistical Tests*: The output of all prediction models was the probability of defect proneness of files.  Minimum thresholds for defect classification varied, while the authors recorded the *accuracy*, *precision*, *recall*, *f-measure*, *receiver operating characteristic (ROC)*, and *cost-effectiveness*, stating that different thresholds could alter these values. The authors began by "comparing the performance of process and code metrics in release based prediction settings using *AUC*, *AUCEC* and F<sub>50</sub>". And in their own jargon:
+
+>> We compared the AUC performance for all types of metrics for a given learning technique using Wilcoxon tests and corrected the p-values using Benjamini-Hochberg (BH) correction. We also do the same to compare the performance of different learning techniques for a given set of metrics.
+
+
 * iii4: *Anti-Patterns*:  The authors acknowledge the work of Posnett et al. in *Threats to Validity* for avoiding generalization.  They note that in order to avoid risk of the *ecological fallacy*, they have taken measures to compare their findings in a per project setting, reporting similar results.  In a previous paper by Rahman [2], it was noted that the file-level was chosen for analysis in response to the risk of *ecological fallacy*, while the same decision was made for this work without explicit declaration.
 
 #### Suggestions for Improvement 
@@ -33,3 +37,4 @@ http://goo.gl/FqTGs2
 
 #### Reference
 1. Rahman, Foyzur, and Premkumar Devanbu. "How, and why, process metrics are better." Proceedings of the 2013 International Conference on Software Engineering. IEEE Press, 2013.
+2. Rahman, Foyzur, Daryl Posnett, and Premkumar Devanbu. "Recalling the imprecision of cross-project defect prediction." Proceedings of the ACM SIGSOFT 20th International Symposium on the Foundations of Software Engineering. ACM, 2012.
