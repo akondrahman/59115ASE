@@ -29,11 +29,14 @@ http://goo.gl/FqTGs2
 * iii4: *Anti-Patterns*:  The authors acknowledge the work of Posnett et al. in *Threats to Validity* for avoiding generalization.  They note that in order to avoid risk of the *ecological fallacy*, they have taken measures to compare their findings in a per project setting, reporting similar results.  In a previous paper by Rahman [2], it was noted that the file-level was chosen for analysis in response to the risk of *ecological fallacy*, while the same decision was made for this work without explicit declaration.
 
 #### Suggestions for Improvement 
-* iv1: 
-* iv2: 
-* iv3:
+* iv1: The authors have an *ad hoc* way of describing procedures, as they often augment statistical analyses to produce clearer results. It would, perhaps, be helpful to clear up the order of changes and throught processes through a list or some other structure.  In paragraph form, discerning the important from the unimportant is tedious.
+
+* iv2: From the way in which the procedures are communicated, the paper also seems to be model-heavy, with not much effort attributed to sampling procedures and variable extraction other than blanket statements.  Submitted papers tend to have length requirements, but it would be helpful to understand how certain features were extracted and why particular projects were chosen (other than they were the ones available).
+
+* iv3: Is using only file-level defect prediction really the answer to the *ecological fallacy*?  From my understanding, the ecological fallacy restricts generalization of results to a different level of aggregations, not necessarily stating that the file-level is the answer.  Perhaps this should have been made more clear:  "These results only apply to file-level analysis of defect prediction in projects."
 
 #### Connection to Initial Paper
+It seems like every paper that follows Posnett et al's *ecological fallacy* has to, in some way at least once, describe some measure to taken to avoid the risk of it occuring.  This paper is not an exception.  In threats to validity, as mentioned previously, the authors describe an extra measure taken to cross-compare their results with analyses run per project.  It appears that, even today, researchers in defect prediction are still determining what the ecological fallacy means in terms of the organization of their research and their analysis and results.
 
 #### Reference
 1. Rahman, Foyzur, and Premkumar Devanbu. "How, and why, process metrics are better." Proceedings of the 2013 International Conference on Software Engineering. IEEE Press, 2013.
