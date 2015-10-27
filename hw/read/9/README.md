@@ -6,13 +6,13 @@
 http://goo.gl/FqTGs2
 
 #### Keywords
-* ii1: *performance*:
+* ii1: *performance*: authors "compare the *performance* of different models in terms of both traditional measures such as AUC and F-score, and the newer cost-effectiveness measures"
 
-* ii2: *stability*:
+* ii2: *stability*: authors "compare the *stability* of prediction performance of the models across time and over multiple releases"
 
-* ii3: *portability*:
+* ii3: *portability*: authors "compare the *portability* of prediction models: how do they perform when trained and evaluated on completely different projects?"
 
-* ii4: *stasis*:
+* ii4: *stasis*: authors "study *stasis*, *viz..*, the degree of change (or lack thereof) in the different metrics, and the corresponding models over time. [They] then releate these changes with their ability to prevent defects."
 
 #### Key Points
 * iii1:
