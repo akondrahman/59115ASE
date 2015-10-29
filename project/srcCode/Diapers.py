@@ -7,11 +7,10 @@ Created on Thu Oct 29 10:02:08 2015
 #import random
 #r   = random.random
 #isa = isinstance
-from Has import Stock, Aux, Flow 
-S,A,F = Stock,Aux,Flow
-
 from Model import Model
 from Uber import Uber
+from Has import Stock, Aux, Flow 
+S,A,F = Stock,Aux,Flow
 class Diapers(Model):
   def have(i):
     return Uber(C = S(100), D = S(0),

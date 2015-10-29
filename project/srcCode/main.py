@@ -6,5 +6,8 @@ Created on Thu Oct 29 10:07:08 2015
 """
 
 from Diapers import Diapers
+from IntegratedDefectModel import IntegratedDefectModel
 import utility 
-utility.printm(Diapers().run())
+#utility.printm(Diapers().run())
+print "Auxiliary Model ..."
+utility.printm(IntegratedDefectModel().run())
