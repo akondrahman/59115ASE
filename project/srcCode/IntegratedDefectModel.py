@@ -16,16 +16,34 @@ class IntegratedDefectModel(Model):
                 activeReWorkNeededPerError = A(8), 
                 dailyMPForRework = A(0), 
                 PotErrorDetectionRate = F(10), 
-                ErrorDetectionRate = F(25) )
+                ErrorDetectionRate = F(25), 
+                PotDetectableError = S(0), 
+                SWDevelopmentRate = A(50),
+                NominalError = A(5),
+                MultiplierDueToWorkforce = A(10), 
+                MultiplierDueToSchedPressure = A(50), 
+                ErrorGenerationRate = F(0) )
 
   def step(i,dt,t,u,v):
-    def saturday(x): return int(x) % 7 == 6
+    weirdChange = lambda x : int(x) % 7 == 6  
+    #def saturday(x): return int(x) % 7 == 6
+    # Reworked Errors Part
     v.ReworkedErrors +=  dt*( u.ReworkRate  +  u.activeReWorkNeededPerError + u.dailyMPForRework)
+    # Detected Errors Part    
     v.DetectedErrors  +=  dt*(u.ErrorDetectionRate + u.PotErrorDetectionRate - u.ReworkRate) 
-    v.detectedError  =  5  if saturday(t) else 0     
-    v.activeReWorkNeededPerError  =  10  if saturday(t) else 0 
-    v.dailyMPForRework  =  50 if saturday(t) else 0
-    v.ReworkRate  =  -10 if saturday(t) else 0
+    # Potentially Detectable Error 
+    v.PotDetectableError += dt* ( u.SWDevelopmentRate + u.NominalError 
+                                  + u.MultiplierDueToWorkforce + u.MultiplierDueToSchedPressure
+                                  - v.ErrorDetectionRate
+                                )
+    # the following are dummy values ... needs change 
+    v.detectedError  =  5  if weirdChange(t) else 0     
+    v.activeReWorkNeededPerError  =  10  if weirdChange(t) else 0 
+    v.dailyMPForRework  =  50 if weirdChange(t) else 0
+    v.ReworkRate  =  -10 if weirdChange(t) else 0
+    # potantially detectable error 
+
+
       
       
 #class ReworkedErrors(Model):
