@@ -22,7 +22,11 @@ class IntegratedDefectModel(Model):
                 NominalError = A(5),
                 MultiplierDueToWorkforce = A(10), 
                 MultiplierDueToSchedPressure = A(50), 
-                ErrorGenerationRate = F(0) )
+                ErrorGenerationRate = F(0), 
+                EscapedError =S(0),
+                ErrorEscapeRate=F(0), 
+                QARate = A(10), 
+                AvgNoErrorPerTask = A(50) )
 
   def step(i,dt,t,u,v):
     weirdChange = lambda x : int(x) % 7 == 6  
@@ -34,8 +38,10 @@ class IntegratedDefectModel(Model):
     # Potentially Detectable Error 
     v.PotDetectableError += dt* ( u.SWDevelopmentRate + u.NominalError 
                                   + u.MultiplierDueToWorkforce + u.MultiplierDueToSchedPressure
-                                  - v.ErrorDetectionRate
+                                  - v.ErrorDetectionRate - v.ErrorEscapeRate
                                 )
+    # Escaped Error 
+    v.EscapedError += dt * (u.ErrorEscapeRate + u.QARate + u.AvgNoErrorPerTask )                             
     # the following are dummy values ... needs change 
     v.detectedError  =  5  if weirdChange(t) else 0     
     v.activeReWorkNeededPerError  =  10  if weirdChange(t) else 0 
