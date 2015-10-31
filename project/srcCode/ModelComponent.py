@@ -12,5 +12,5 @@ class ModelComponent(object):
     self.curr = 0   
     self.name =  nameStr
   def __str__(self): 
-   strToRet =  self.name + ": "  + ", current=" + str(self.curr)
+   strToRet =  self.name + ": "  + ", currentValue=" + str(self.curr)
    return strToRet 
