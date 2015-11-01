@@ -136,8 +136,8 @@ def MaxWalkSat(model, maxTries=100, maxChanges=10, threshold=0, p=0.5, step=10):
     return sbest.decisionVec
 
 # Differential Evolution : Pending
-def DiffEvol(max = 100, # number of repeats
-             np = 100,  # number of candidates
+def DiffEvol(model, max = 100, # number of repeats
+             np = 100,  # number of candidates   #Should be ten times the number of decisions
              f = 0.75,  # extrapolate amount
              cr = 0.3,  # probability of cross-over
              epsilon = 0.01
