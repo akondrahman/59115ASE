@@ -17,7 +17,7 @@ import utility
 #print "Auxiliary Model ..."
 #utility.printm(IntegratedDefectModel().run())
 ### Auxiliaries 
-print "Auxiliaries ..."
+#print "Auxiliaries ..."
 #print "-----\t A1 \t-----"
 MultiplierSchedPressure = Auxiliary("MultiplierSchedPressure")
 #print "Before update : ", MultiplierSchedPressure 
@@ -64,7 +64,7 @@ DailyMPRework = Auxiliary("DailyMPRework")
 #DailyMPRework.setInput(87)
 #print "After Update: ", DailyMPRework
 ### Flows 
-print "Flows ..."
+#print "Flows ..."
 #print "-----\t F1 \t-----"
 ErrGenRate = Flow("ErrGenRate")
 #print "Before update : ", ErrGenRate 
@@ -91,7 +91,7 @@ ReworkRate = Flow("ReworkRate")
 #ReworkRate.setInput(DailyMPRework.curr)
 #print "After Update: ", ReworkRate
 ### Stocks 
-print "Stocks ..."
+#print "Stocks ..."
 #print "Stock # 1: "
 PotentiallyDetectableError = Stock("PotentiallyDetectableError")
 #print "Before update : ", PotentiallyDetectableError 
@@ -118,10 +118,20 @@ ReworkedError = Stock("ReworkedError")
 auxList = [MultiplierSchedPressure, MultiplierWorkforce, NominalErr, SWDevelopmentRate] 
 auxDict = utility.createAuxiliaries(len(auxList))
 #print auxDict
-curr = State("Current")
-prev = State("Prev")
+curr = State("CurrentState")
+prev = State("PrevState")
 dt = 1
 for key_,val_ in auxDict.items():
+ # current state's stocks are dependent on prev. state's flows    
+ # some have in and out flows  
+ curr.PotentiallyDetectableError_.setInput(dt * (prev.ErrGenRate_.curr - prev.ErrDetRate_.curr - prev.ErrEscapeRate_.curr ))
+ curr.DetectedError_.setInput( dt*( ErrDetRate.curr - ReworkRate.curr  ))
+ # some only ahve in flows  
+ curr.EscapedError_.setInput( dt*(ErrEscapeRate.curr))
+ curr.ReworkedError_.setInput(dt*(ReworkRate.curr))
+ print "{} ---> {}".format( key_,  curr)   
+ print "---------------" 
+ #setting up auxiliaries 
  MultiplierSchedPressure.setInput(val_[0])   
  MultiplierWorkforce.setInput(val_[1])   
  NominalErr.setInput(val_[2])
@@ -129,19 +139,23 @@ for key_,val_ in auxDict.items():
  PotErrDetectRate.setInput(val_[4])
  AvgErrPerTask.setInput(val_[5])
  QARate.setInput(val_[6])
+ ActualReworkMP.setInput(val_[7])
+ DailyMPRework.setInput(val_[8])
+ #fillign flows 
  ErrGenRate.fillFlowsByAuxs(MultiplierSchedPressure, MultiplierWorkforce, NominalErr, SWDevelopmentRate)
  ErrDetRate.fillFlowsByAuxs(PotErrDetectRate)
  ErrEscapeRate.fillFlowsByAuxs(AvgErrPerTask, QARate)
+ ReworkRate.fillFlowsByAuxs(ActualReworkMP, DailyMPRework)
+ # updating current state's flows  
  curr.updateErrGenRate(ErrGenRate)
  curr.updateErrDetRate(ErrDetRate)
  curr.updateErrEscapeRate(ErrEscapeRate) 
- #print "Prev summary ... "
- #prevStr = key_ + "----ErrGen" + str(prev.ErrGenRate.curr) + "-ErrDet" + str(prev.ErrDetRate.curr) + "-Erresc" +str(prev.ErrEscapeRate.curr) 
- #print prevStr
- curr.PotentiallyDetectableError.setInput(dt * (prev.ErrGenRate.curr - prev.ErrDetRate.curr - prev.ErrEscapeRate.curr ))
- curr.EscapedError.setInput( dt*(ErrEscapeRate.curr))
- print "{} ---> {}".format( key_,  curr)
+ curr.updateReworkRate(ReworkRate)
+ print "{} ---> {}".format( key_,  curr.getFlows())    
+ print "---------------"  
  prev = curr.copy("Prev") 
+
+  
  #print "Prev: ZZZ ",prev_ 
  # MultiplierSchedPressure.setInput(0)   
  # MultiplierWorkforce.setInput(0)   
@@ -149,10 +163,13 @@ for key_,val_ in auxDict.items():
  # SWDevelopmentRate.setInput(0)  
  # ErrGenRate.fillFlowsByAuxs(MultiplierSchedPressure, MultiplierWorkforce, NominalErr, SWDevelopmentRate) 
  
- ErrGenRate.resetInput()
- ErrDetRate.resetInput()
- ErrEscapeRate.resetInput()
- 
+ #ErrGenRate.resetInput()
+ #ErrDetRate.resetInput()
+ #ErrEscapeRate.resetInput()
+ #print "Prev summary ... "
+ #prevStr = key_ + "----ErrGen" + str(prev.ErrGenRate_.curr) + "-ErrDet" + str(prev.ErrDetRate_.curr) + "-Erresc" +str(prev.ErrEscapeRate_.curr) 
+ #print prevStr  
+ print "###################"
 #ErrDetRate.fillFlowsByAuxs(PotErrDetectRate)
 #ErrEscapeRate.fillFlowsByAuxs()
 

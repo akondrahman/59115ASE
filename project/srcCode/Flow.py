@@ -12,7 +12,11 @@ class Flow(ModelComponent):
   def resetInput(self):
    self.curr = 0  
   def setInput(self, inputVal):
-   self.curr = self.curr + inputVal
+   #self.curr = self.curr + inputVal
+   self.curr =  inputVal
   def fillFlowsByAuxs(self, *auxP):
-      for i_ in auxP: 
-       self.setInput(i_.curr)            
+      val_ = 0 
+      for i_ in auxP:
+       val_ = val_ + i_.curr   
+      self.curr =val_
+                 
