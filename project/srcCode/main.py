@@ -7,4 +7,5 @@ Created on Thu Oct 29 10:07:08 2015
 
 
 import ModelExec
-ModelExec.executeModel()
+ModelExec.executeModelTop()
+# ModelExec.executeModelBottom()
