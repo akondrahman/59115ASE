@@ -9,24 +9,18 @@ Created on Mon Nov  2 10:10:56 2015
 
 from ok import * 
 import utility , ModelExec
+testDictSyn = utility.createTestStock_Top()  
+testDictMod = ModelExec.executeModelTop()
 @ok
 def _testStock_PotentiallyDetectableError():
-  testDictSyn = utility.createTestStock()  
-  testDictMod = ModelExec.executeModel()
-  auxDictLen = len(utility.createAuxiliaries())
+  auxDictLen = len(utility.createAuxiliaries_Top())
   for i_ in xrange(auxDictLen):
     key_ = "Day-"+ str(i_) 
     assert testDictSyn[key_][0]== testDictMod[key_][0]    
     
-    
-    
-
-    
 @ok
 def _testStock_DetectedError_():
-  testDictSyn = utility.createTestStock()  
-  testDictMod = ModelExec.executeModel()
-  auxDictLen = len(utility.createAuxiliaries())
+  auxDictLen = len(utility.createAuxiliaries_Top())
   for i_ in xrange(auxDictLen):
     key_ = "Day-"+ str(i_) 
     assert testDictSyn[key_][1]== testDictMod[key_][1] 
@@ -34,9 +28,7 @@ def _testStock_DetectedError_():
 
 @ok
 def _testStock_EscapedError_():
-  testDictSyn = utility.createTestStock()  
-  testDictMod = ModelExec.executeModel()
-  auxDictLen = len(utility.createAuxiliaries())
+  auxDictLen = len(utility.createAuxiliaries_Top())
   for i_ in xrange(auxDictLen):
     key_ = "Day-"+ str(i_) 
     assert testDictSyn[key_][2]== testDictMod[key_][2]       
@@ -44,9 +36,7 @@ def _testStock_EscapedError_():
     
 @ok
 def _testStock_ReworkedError_():
-  testDictSyn = utility.createTestStock()  
-  testDictMod = ModelExec.executeModel()
-  auxDictLen = len(utility.createAuxiliaries())
+  auxDictLen = len(utility.createAuxiliaries_Top())
   for i_ in xrange(auxDictLen):
     key_ = "Day-"+ str(i_) 
     assert testDictSyn[key_][3]== testDictMod[key_][3]           

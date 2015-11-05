@@ -29,7 +29,7 @@ def executeModelTop():
   ReworkRate = Flow("ReworkRate")
 
   ## we need to fill up auxiliaries ...
-  auxDict = utility.createAuxiliaries()
+  auxDict = utility.createAuxiliaries_Top()
   ##States
   curr = State("CurrentState")
   prev = State("PrevState")
@@ -96,7 +96,7 @@ def executeModelBottom():
   PassiveErrorGenRate = Flow("PassiveErrorGenRate")
   ActiveErrorGenRate = Flow("ActiveErrorGenRate")
 
-  auxDict = utility.createAuxiliariesBottom()
+  auxDict = utility.createAuxiliaries_Bottom()
 
   ##States
   curr = State("CurrentState")

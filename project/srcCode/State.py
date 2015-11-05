@@ -16,14 +16,14 @@ class State(object):
     self.DetectedError_ = Stock("DetectedError")
     self.ReworkedError_ = Stock("ReworkedError")
 
-    # Test Top Stocks
-    self.stockList = [self.PotentiallyDetectableError_, self.EscapedError_, self.DetectedError_, self.ReworkedError_]
+    # Test Top Stock List
+    #self.stockList = [self.PotentiallyDetectableError_, self.EscapedError_, self.DetectedError_, self.ReworkedError_]
 
     ## Bottom Stocks
     self.UndetectedActiveErrors_ = Stock("UndetectedActiveErrors")
 
-    # Test Bottom Stocks
-    # self.stockList = [self.UndetectedActiveErrors_]
+    # Test Bottom Stock List
+    self.stockList = [self.UndetectedActiveErrors_]
 
     ## Top Flows
     self.ErrGenRate_ = Flow("ErrGenRate")
@@ -32,7 +32,7 @@ class State(object):
     self.ReworkRate_ = Flow("ReworkRate")
 
     # Test Top Flows
-    self.flowList = [self.ErrGenRate_, self.ErrDetRate_, self.ErrEscapeRate_, self.ReworkRate_]
+    #self.flowList = [self.ErrGenRate_, self.ErrDetRate_, self.ErrEscapeRate_, self.ReworkRate_]
 
     ## Bottom Flows
     self.ActiveErrorRegenRate_ = Flow("ActiveErrorRegenRate")
@@ -42,8 +42,8 @@ class State(object):
     # self.PassiveErrorGenRate_ = Flow("PassiveErrorGenRate")
     self.ActiveErrorGenRate_ = Flow("ActiveErrorGenRate")
 
-    # Test Bottom Flows
-    # self.flowList = [self.ActiveErrorRegenRate_, self.ActiveErrorDetectAndCorrectRate_, self.ActiveErrorRetirementRate_, self.ActiveErrorGenRate_]
+    # Test Bottom Lists
+    self.flowList = [self.ActiveErrorRegenRate_, self.ActiveErrorDetectAndCorrectRate_, self.ActiveErrorRetirementRate_, self.ActiveErrorGenRate_]
 
   def __str__(self):
     stockStr , dummyStr ="" , ""

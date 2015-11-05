@@ -7,7 +7,7 @@ Created on Fri Oct 30 19:44:38 2015
 
 
 
-def createAuxiliaries():
+def createAuxiliaries_Top():
   dict_={}
   dict_['Day-0'] = [0, 0, 0, 0, 0, 0, 0, 0, 0]
   dict_['Day-1'] = [1, 1, 1, 1, 1, 1, 1, 15, 1]
@@ -19,7 +19,7 @@ def createAuxiliaries():
   return dict_
 
 
-def createAuxiliariesBottom():
+def createAuxiliaries_Bottom():
   dict_={}
   dict_['Day-0'] = [0, 0, 0, 0, 0, 0, 0]
   dict_['Day-1'] = [1, 1, 1, 1, 1, 1, 1]
@@ -31,7 +31,7 @@ def createAuxiliariesBottom():
   return dict_
 
 
-def createTestStock():
+def createTestStock_Top():
   dict_={}
   dict_['Day-0'] = [0, 0, 0, 0]
   dict_['Day-1'] = [0, 0, 0, 0]
