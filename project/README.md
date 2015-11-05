@@ -1,23 +1,27 @@
 #Project - Integrated Defect Model
 
-## Date: Nov 02, 2015
+## Starting Date: October 30, 2015
 
 #### Execution 
-      * output: run *python main.py* 
-      * tests:  run *python tests.py* 
-      * run *python tests.py* first
+    output and tests: run *python main.py* 
 
-#### Updates 
+
+#### Updates (Nov 05, 2015)
  * Implemented and tested _Potentially Detetable Errors_ with synthetic test values 
  * Implemented and tested _Escaped Errors_ with synthetic test values 
  * Implemented and tested _Detected Errors_ with synthetic test values 
  * Implemented and tested _Reworked Errors_ with synthetic test values
  * The relevant, four flows, and nine auxiliaries were also implemented  
  * Implemented test cases for the above four stocks 
+ * Implemented and tested _Undetected Active Errors_ with synthetic test values 
+ * The relevant, four flows, and seven auxiliaries were also implemented  
+ * Implemented test cases for _Undetected Active Errors_
+ * Refactored and re-arranged to facilitate top and bottom parts of the model to
+ run them at the same time automatically  
   
 #### Output
 
-![output](output/update_nov_1.png?raw=true=150x100)
+![output](output/update_Nov_5.png?raw=true=150x100)
 
 
 #### References

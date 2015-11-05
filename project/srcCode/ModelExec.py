@@ -10,7 +10,7 @@ from Flow import Flow
 from State import State
 import utility
 
-def executeModelTop():
+def executeModelTop(showFlows):
 
   ##Auxiliaries
   MultiplierSchedPressure = Auxiliary("MultiplierSchedPressure")
@@ -31,8 +31,8 @@ def executeModelTop():
   ## we need to fill up auxiliaries ...
   auxDict = utility.createAuxiliaries_Top()
   ##States
-  curr = State("CurrentState")
-  prev = State("PrevState")
+  curr = State("CurrentState", True)
+  prev = State("PrevState", True)
   dt = 1
   ##output & test purpose
   stockDict ={}
@@ -68,15 +68,16 @@ def executeModelTop():
    curr.updateErrDetRate(ErrDetRate)
    curr.updateErrEscapeRate(ErrEscapeRate)
    curr.updateReworkRate(ReworkRate)
-   # print "{} ---> {}".format( key_,  curr.getFlows())
-   # print "---------------"
+   if(showFlows):
+    print "{} ---> {}".format( key_,  curr.getFlows())
+    print "---------------"
    prev = curr.copyTop("Prev")
    #print "Prev: ZZZ ",prev_
    print "###################"
   return stockDict
 
 
-def executeModelBottom():
+def executeModelBottom(showFlows):
 
   ## Auxiliaries
   TimeToSmooth = Auxiliary("TimeToSmooth")
@@ -99,8 +100,8 @@ def executeModelBottom():
   auxDict = utility.createAuxiliaries_Bottom()
 
   ##States
-  curr = State("CurrentState")
-  prev = State("PrevState")
+  curr = State("CurrentState", False)
+  prev = State("PrevState", False)
   dt = 1
   ##output & test purpose
   stockDict ={}
@@ -135,9 +136,9 @@ def executeModelBottom():
     curr.updateActiveErrorDetectAndCorrectRate(ActiveErrorDetectAndCorrectRate)
     curr.updateActiveErrorRetirementRate(ActiveErrorRetirementRate)
     curr.updateActiveErrorGenRate(ActiveErrorGenRate)
-
-    # print "{} ---> {}".format( key_,  curr.getFlows())
-    # print "---------------"
+    if(showFlows):
+      print "{} ---> {}".format( key_,  curr.getFlows())
+      print "---------------"
     prev = curr.copyBottom("Prev")
     #print "Prev: ZZZ ",prev_
     print "###################"

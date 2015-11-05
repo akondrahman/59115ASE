@@ -7,7 +7,7 @@ Created on Fri Oct 30 19:16:00 2015
 from Stock import Stock
 from Flow import Flow
 class State(object):
-  def __init__(self, nameP):
+  def __init__(self, nameP, topFlag):
     ##Name
     self.name_ =  nameP
     ## Top Stocks
@@ -16,14 +16,16 @@ class State(object):
     self.DetectedError_ = Stock("DetectedError")
     self.ReworkedError_ = Stock("ReworkedError")
 
-    # Test Top Stock List
-    #self.stockList = [self.PotentiallyDetectableError_, self.EscapedError_, self.DetectedError_, self.ReworkedError_]
-
     ## Bottom Stocks
     self.UndetectedActiveErrors_ = Stock("UndetectedActiveErrors")
 
-    # Test Bottom Stock List
-    self.stockList = [self.UndetectedActiveErrors_]
+
+    if (topFlag):
+      # Test Top Stock List
+      self.stockList = [self.PotentiallyDetectableError_, self.EscapedError_, self.DetectedError_, self.ReworkedError_]
+    else:
+      # Test Bottom Stock List
+      self.stockList = [self.UndetectedActiveErrors_]        
 
     ## Top Flows
     self.ErrGenRate_ = Flow("ErrGenRate")
@@ -31,8 +33,6 @@ class State(object):
     self.ErrEscapeRate_ = Flow("ErrEscapeRate")
     self.ReworkRate_ = Flow("ReworkRate")
 
-    # Test Top Flows
-    #self.flowList = [self.ErrGenRate_, self.ErrDetRate_, self.ErrEscapeRate_, self.ReworkRate_]
 
     ## Bottom Flows
     self.ActiveErrorRegenRate_ = Flow("ActiveErrorRegenRate")
@@ -42,8 +42,12 @@ class State(object):
     # self.PassiveErrorGenRate_ = Flow("PassiveErrorGenRate")
     self.ActiveErrorGenRate_ = Flow("ActiveErrorGenRate")
 
-    # Test Bottom Lists
-    self.flowList = [self.ActiveErrorRegenRate_, self.ActiveErrorDetectAndCorrectRate_, self.ActiveErrorRetirementRate_, self.ActiveErrorGenRate_]
+    if (topFlag):
+      # Test Top Flow Lists 
+      self.flowList = [self.ErrGenRate_, self.ErrDetRate_, self.ErrEscapeRate_, self.ReworkRate_]
+    else:
+      # Test Bottom Flow Lists
+      self.flowList = [self.ActiveErrorRegenRate_, self.ActiveErrorDetectAndCorrectRate_, self.ActiveErrorRetirementRate_, self.ActiveErrorGenRate_]
 
   def __str__(self):
     stockStr , dummyStr ="" , ""
@@ -101,7 +105,7 @@ class State(object):
 
   ## to copy prev_ from curr_
   def copyTop(self, nameParam):
-    stateObj = State(nameParam)
+    stateObj = State(nameParam, True)
 
     #Flows
     stateObj.ErrDetRate_ = self.ErrDetRate_
@@ -118,7 +122,7 @@ class State(object):
 
 
   def copyBottom(self, nameParam):
-    stateObj = State(nameParam)
+    stateObj = State(nameParam, False)
 
     #Flows
     stateObj.ActiveErrorGenRate_ = self.ActiveErrorGenRate_

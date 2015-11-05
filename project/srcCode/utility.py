@@ -42,3 +42,13 @@ def createTestStock_Top():
   dict_['Day-6'] = [15, -29, 30, 44]
   return dict_
 
+def createTestStock_Bottom():
+  dict_={}
+  dict_['Day-0'] = [0]
+  dict_['Day-1'] = [0]
+  dict_['Day-2'] = [2]
+  dict_['Day-3'] = [4]
+  dict_['Day-4'] = [8]
+  dict_['Day-5'] = [10]
+  dict_['Day-6'] = [30]
+  return dict_

@@ -6,6 +6,30 @@ Created on Thu Oct 29 10:07:08 2015
 """
 
 
-import ModelExec
-#ModelExec.executeModelTop()
-ModelExec.executeModelBottom()
+
+import ModelExec, tests
+def execBottom(showFlows):
+  print "############# BOTTOM #########"
+  print "Executing test cases for bottom ... no fail means passing !"
+  tests.testBottom(showFlows)
+  print "Executing the 'bottom' part of the model ... "
+  ModelExec.executeModelBottom(showFlows)
+
+
+    
+def execTop(showFlows):
+  print "############# TOP #########"
+  print "Executing test cases for top ... no fail means passing !"
+  tests.testTop(showFlows)
+  print "Executing the 'top' part of the model ... "
+  ModelExec.executeModelTop(showFlows) 
+
+
+
+
+showFlows=False
+execTop(showFlows)
+execBottom(showFlows)
+
+
+   
