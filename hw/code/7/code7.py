@@ -27,17 +27,20 @@ def n(max):
 	return (random.uniform(0,max))
 
 def score(curr_candidate_sol):
-	f1,f2 = curr_candidate_sol.getobj()
+	objective_list = curr_candidate_sol.getobj()
 	square = lambda val: math.pow(val,2)
 	sq_root = lambda val: math.sqrt(val)
-	dist_from_hell =sq_root(square(f1) + square(f2))
+	dist_from_hell =0
+	for f in objective_list:
+		dist_from_hell += square(f)
+	dist_from_hell = sq_root(dist_from_hell)
 	return dist_from_hell
 
 
 def get_min_max(model):
 	min = 999999
 	max = -999999
-	for x in xrange(7000):
+	for x in xrange(2000):
 		temp_candidate_sol = model()
 		temp_score = score(temp_candidate_sol)
 		if(temp_score > max):
