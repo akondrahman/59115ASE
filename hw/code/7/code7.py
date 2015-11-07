@@ -37,7 +37,7 @@ def score(curr_candidate_sol):
 def get_min_max(model):
 	min = 999999
 	max = -999999
-	for x in xrange(2000):
+	for x in xrange(7000):
 		temp_candidate_sol = model()
 		temp_score = score(temp_candidate_sol)
 		if(temp_score > max):
@@ -47,8 +47,8 @@ def get_min_max(model):
 	return (min,max)
 
 class BaseLine():
-	baseline_min
-	baseline_max
+	baseline_min=0
+	baseline_max=0
 
 class Thing():
 	id = 0
@@ -84,33 +84,44 @@ def de(model, baseline_min,baseline_max, max = 100, f = 0.75, cf = 0.3, epsilon 
 
 	for each_thing in frontier:
 		if(each_thing.score < 0):
-			baseline_min = 0
-		if(each_thing.score < baseline_min):
-			baseline_min = each_thing.score
-		if(each_thing.score > baseline_max):
-			baseline_max = each_thing.score
+			BaseLine.baseline_min = 0
+			print "--------"
+		if(each_thing.score < BaseLine.baseline_min):
+			BaseLine.baseline_min = each_thing.score
+			print "--------------"
+		if(each_thing.score > BaseLine.baseline_max):
+			BaseLine.baseline_max = each_thing.score
+			print "---------"
 
 
 
 	#Normalize the scores of each thing now
 
-	for each_thing in frontier:
-		prev_each_thing_score = each_thing.score
-		each_thing.score = float(each_thing.score - baseline_min)/(baseline_max - baseline_min)
+	# for each_thing in frontier:
+	# 	prev_each_thing_score = each_thing.score
+	# 	each_thing.score = float(each_thing.score - BaseLine.baseline_min)/(BaseLine.baseline_max - BaseLine.baseline_min)
 	
 	#total = total score of all the candidates found so far
 	for k in xrange(max):
-		total,n = update(f,cf,frontier,curr_candidate_sol,baseline_min,baseline_max)
-		if total/n > (1 - epsilon):
-			break
+		total,n = update(f,cf,frontier,curr_candidate_sol,BaseLine.baseline_min,BaseLine.baseline_max)
+		# print "BASELINE: MIN=", BaseLine.baseline_min," MAX=", BaseLine.baseline_max
+		# if total/n > (1 - epsilon):
+		# 	print "break: value of k=", k, " total=",total, "n=",n 
+		# 	break
 	# for x in frontier:
 	# 	print "print --x:",x.id," ",x.have, x.score
+
+	#Now baseline everything again 
+
+	for each_thing in frontier:
+		each_thing.score = (each_thing.score - BaseLine.baseline_min) / ( BaseLine.baseline_max - BaseLine.baseline_min + 0.001)
 
 	score_have_dict = { obj.score:obj.have for obj in frontier}
 	print "==================="
 	# for key in sorted(score_have_dict.keys(),reverse = True):
  #  		print "%s: %s" % (key, score_have_dict[key])
 
+	print "BASELINE: MIN=", BaseLine.baseline_min," MAX=", BaseLine.baseline_max
   	sorted_keys = sorted(score_have_dict.keys(),reverse = True)
   	print "%s: %s" % (sorted_keys[0], score_have_dict[sorted_keys[0]])
 	
@@ -169,14 +180,18 @@ def extrapolate(frontier, one, f, cf,curr_candidate_sol,baseline_min,baseline_ma
 		curr_candidate_sol.decisionVec = out.have
 
 	current_score = score(curr_candidate_sol)	
-	if (current_score > baseline_max):
-		baseline_max = current_score
+	if (current_score > BaseLine.baseline_max):
+		BaseLine.baseline_max = current_score
+		print "------"
 	if (current_score < 0):
-		baseline_min = 0
-	if (current_score > 0 and current_score < baseline_min):
-		baseline_min = current_score
+		BaseLine.baseline_min = 0
+		print "------"
+	if (current_score > 0 and current_score < BaseLine.baseline_min):
+		BaseLine.baseline_min = current_score
+		print "------"
 
-	out.score = (score(curr_candidate_sol) - baseline_min)/(baseline_max - baseline_min)
+	# out.score = (score(curr_candidate_sol) - BaseLine.baseline_min)/(BaseLine.baseline_max - BaseLine.baseline_min)
+	out.score = score(curr_candidate_sol) 
 	return out
 
 
@@ -204,7 +219,12 @@ if __name__ == "__main__":
 	model=Golinski
 	# model=Osyczka2
 	# model=Schaffer
+	# obj = BaseLine()
+
 	baseline_min,baseline_max = get_min_max(model)
+	# print "BASELINE: MIN=", baseline_min, " MAX=", baseline_max 
+	BaseLine.baseline_min = baseline_min
+	BaseLine.baseline_max = baseline_max
 	print "baseline_min,baseline_max ", baseline_min," ",baseline_max
 	de(model,baseline_min,baseline_max,1000)
 
