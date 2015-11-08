@@ -52,7 +52,13 @@ def a12(lst1,lst2):
   a12_value=gt/(n1*n2) + eq/2/(n1*n2)
   return a12_value
 
+#For bootstrap below
 
+def sampleWithReplacement(lst):
+  "returns a list same size as list"
+  def any(n)  : return random.uniform(0,n)
+  def one(lst): return lst[ int(any(len(lst))) ]
+  return [one(lst) for _ in lst]
 
 if __name__ == '__main__':
 	lst = [1,2,3,4,5]
