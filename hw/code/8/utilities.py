@@ -60,6 +60,23 @@ def sampleWithReplacement(lst):
   def one(lst): return lst[ int(any(len(lst))) ]
   return [one(lst) for _ in lst]
 
+
+def testStatistic(y,z): 
+    """Checks if two means are different, tempered
+     by the sample size of 'y' and 'z'"""
+    tmp1 = tmp2 = 0
+    for y1 in y.all: tmp1 += (y1 - y.mu)**2 
+    for z1 in z.all: tmp2 += (z1 - z.mu)**2
+    s1    = (float(tmp1)/(y.n - 1))**0.5
+    s2    = (float(tmp2)/(z.n - 1))**0.5
+    delta = z.mu - y.mu
+    if s1+s2:
+      delta =  delta/((s1/y.n + s2/z.n)**0.5)
+    return delta
+
+
+
+
 if __name__ == '__main__':
 	lst = [1,2,3,4,5]
 	median = median(lst)
