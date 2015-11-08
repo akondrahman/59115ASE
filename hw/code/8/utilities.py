@@ -75,6 +75,30 @@ def testStatistic(y,z):
     return delta
 
 
+def bootstrap(y0,z0,conf=0.01,b=1000):
+  """The bootstrap hypothesis test from
+     p220 to 223 of Efron's book 'An
+    introduction to the boostrap."""
+  class total():
+    "quick and dirty data collector"
+    def __init__(i,some=[]):
+      i.sum = i.n = i.mu = 0 ; i.all=[]
+      for one in some: i.put(one)
+    def put(i,x):
+      i.all.append(x);
+      i.sum +=x; i.n += 1; i.mu = float(i.sum)/i.n
+    def __add__(i1,i2): return total(i1.all + i2.all)
+  y, z   = total(y0), total(z0)
+  x      = y + z
+  tobs   = testStatistic(y,z)
+  yhat   = [y1 - y.mu + x.mu for y1 in y.all]
+  zhat   = [z1 - z.mu + x.mu for z1 in z.all]
+  bigger = 0.0
+  for i in range(b):
+    if testStatistic(total(sampleWithReplacement(yhat)),
+                     total(sampleWithReplacement(zhat))) > tobs:
+      bigger += 1
+  return bigger / b < conf
 
 
 if __name__ == '__main__':
