@@ -22,6 +22,7 @@ class o():
     return [k for k in sorted(i.__dict__.keys()) 
             if not "_" in k]
 
+#Note: This is a12 FAST
 def a12(lst1,lst2):
   """how often is lst1 often more than y in lst2?
   assumes lst1 nums are meant to be greater than lst2"""
