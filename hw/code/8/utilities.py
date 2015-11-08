@@ -128,6 +128,11 @@ def _bootstraped():
                mu2= 10.8, sigma2= 1)
 
 
+def different(l1,l2):
+  #return bootstrap(l1,l2) and a12(l2,l1)
+  return a12(l2,l1) and bootstrap(l1,l2)
+
+
 if __name__ == '__main__':
 	lst = [1,2,3,4,5]
 	median = median(lst)
