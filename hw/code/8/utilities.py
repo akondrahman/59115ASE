@@ -1,3 +1,7 @@
+import random
+
+
+
 def median(lst,ordered=False):
   lst = lst if ordered else sorted(lst)
   n   = len(lst)
@@ -101,6 +105,29 @@ def bootstrap(y0,z0,conf=0.01,b=1000):
   return bigger / b < conf
 
 
+def _bootstraped(): 
+  def worker(n=1000,
+             mu1=10,  sigma1=1,
+             mu2=10.2, sigma2=1):
+    def g(mu,sigma) : return random.gauss(mu,sigma)
+    x = [g(mu1,sigma1) for i in range(n)]
+    y = [g(mu2,sigma2) for i in range(n)]
+    return n,mu1,sigma1,mu2,sigma2,\
+        'different' if bootstrap(x,y) else 'same'
+  # very different means, same std
+  print worker(mu1=10, sigma1=10, 
+               mu2=100, sigma2=10)
+  # similar means and std
+  print worker(mu1= 10.1, sigma1=1, 
+               mu2= 10.2, sigma2=1)
+  # slightly different means, same std
+  print worker(mu1= 10.1, sigma1= 1, 
+               mu2= 10.8, sigma2= 1)
+  # different in mu eater by large std
+  print worker(mu1= 10.1, sigma1= 10, 
+               mu2= 10.8, sigma2= 1)
+
+
 if __name__ == '__main__':
 	lst = [1,2,3,4,5]
 	median = median(lst)
@@ -112,4 +139,6 @@ if __name__ == '__main__':
 	lst2=[100,100,0,100,100]
 	a12_output = a12(lst1,lst2)
 	print "a12_output:=", a12_output
+	print "---------"
 
+	_bootstraped()
