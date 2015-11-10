@@ -61,11 +61,11 @@ def executeModelAll(showFlows):
    # current state's stocks are dependent on prev. state's flows
    # some have in and out flows
    curr.PotentiallyDetectableError_.setInput(dt * (prev.ErrGenRate_.curr - prev.ErrDetRate_.curr - prev.ErrEscapeRate_.curr ))
-   curr.DetectedError_.setInput( dt*( ErrDetRate.curr - ReworkRate.curr  ))
+   curr.DetectedError_.setInput( dt*( prev.ErrDetRate_.curr - prev.ReworkRate_.curr  ))
 
    # some only have in flows from top
-   curr.EscapedError_.setInput( dt*(ErrEscapeRate.curr))
-   curr.ReworkedError_.setInput(dt*(ReworkRate.curr))
+   curr.EscapedError_.setInput( dt*(prev.ErrEscapeRate_.curr))
+   curr.ReworkedError_.setInput(dt*(prev.ReworkRate_.curr))
 
    # Update stock from inflows and outflows from Bottom
    curr.UndetectedActiveErrors_.setInput(dt * (prev.ActiveErrorRegenRate_.curr + prev.ActiveErrorGenRate_.curr) - (prev.ActiveErrorRetirementRate_.curr + prev.ActiveErrorDetectAndCorrectRate_.curr) )
@@ -99,6 +99,12 @@ def executeModelAll(showFlows):
    ErrDetRate.fillFlowsByAuxs(PotErrDetectRate)
    ErrEscapeRate.fillFlowsByAuxs(AvgErrPerTask, QARate)
    ReworkRate.fillFlowsByAuxs(ActualReworkMP, DailyMPRework)
+   
+   # updating current state's flows
+   curr.updateErrGenRate(ErrGenRate)
+   curr.updateErrDetRate(ErrDetRate)
+   curr.updateErrEscapeRate(ErrEscapeRate)
+   curr.updateReworkRate(ReworkRate)   
 
    # Connecting top to the bottom 
    # Error Escape Rate -> Fraction Escaping Errors
@@ -114,12 +120,6 @@ def executeModelAll(showFlows):
    PassiveErrorGenRate.fillFlowsByAuxs(BadFixGenRate, FractionEscapingErrors)
    PassiveErrorDetectAndCorrectRate.fillFlowsByAuxs(PassiveErrorDensity, TestingRate)
 
-   # updating current state's flows
-   curr.updateErrGenRate(ErrGenRate)
-   curr.updateErrDetRate(ErrDetRate)
-   curr.updateErrEscapeRate(ErrEscapeRate)
-   curr.updateReworkRate(ReworkRate)
-
 
    # updating current state's flows: six flows from bottom
    curr.updateActiveErrorRegenRate(ActiveErrorRegenRate)
@@ -129,8 +129,10 @@ def executeModelAll(showFlows):
    curr.updatePassiveErrorGenRate(PassiveErrorGenRate)
    curr.updatePassiveErrorDetectAndCorrectRate(PassiveErrorDetectAndCorrectRate)
 
-
-
+   if(showFlows):
+     print "Printing F-L-O-W-S !"  
+     print "key, flow value ---> {}, {}".format(key_, curr.getFlows())      
+   ## copying current to prev. 
    prev = curr.copyAll("prev") 
    print "###################"
   return stockDict

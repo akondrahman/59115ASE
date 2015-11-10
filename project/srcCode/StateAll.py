@@ -21,12 +21,8 @@ class StateAll(object):
     self.UndetectedPassiveErrors_ = Stock("UndetectedPassiveErrors")
 
 
-    # if (topFlag):
-      # Test Top Stock List
     self.stockList = [self.PotentiallyDetectableError_, self.EscapedError_, self.DetectedError_, self.ReworkedError_,self.UndetectedActiveErrors_,self.UndetectedPassiveErrors_]
-    # else:
-      # Test Bottom Stock List
-      # self.stockList = [self.UndetectedActiveErrors_,self.UndetectedPassiveErrors_]   
+
 
 
     ## Top Flows
@@ -45,12 +41,9 @@ class StateAll(object):
     self.ActiveErrorGenRate_ = Flow("ActiveErrorGenRate")
     self.PassiveErrorDetectAndCorrectRate_ = Flow("PassiveErrorDetectAndCorrectRate")
 
-    # if (topFlag):
-      # Test Top Flow Lists 
+
     self.flowList = [self.ErrGenRate_, self.ErrDetRate_, self.ErrEscapeRate_, self.ReworkRate_,self.ActiveErrorRegenRate_, self.ActiveErrorDetectAndCorrectRate_, self.ActiveErrorRetirementRate_, self.ActiveErrorGenRate_,self.PassiveErrorGenRate_,self.PassiveErrorDetectAndCorrectRate_]
-    # else:
-      # Test Bottom Flow Lists
-      # self.flowList = [self.ActiveErrorRegenRate_, self.ActiveErrorDetectAndCorrectRate_, self.ActiveErrorRetirementRate_, self.ActiveErrorGenRate_,self.PassiveErrorGenRate_,self.PassiveErrorDetectAndCorrectRate_]
+
 
   def __str__(self):
     stockStr , dummyStr ="" , ""
@@ -62,9 +55,6 @@ class StateAll(object):
 
   ##All flow related
   def getFlows(self):
-    #dummyStr = "\nFrom left to right ... ErrGenRate_, ErrDetRate_, ErrEscapeRate_, ReworkRate_: "
-    #str_ = str(self.ErrGenRate_.curr) +"\t" + str(self.ErrDetRate_.curr) +"\t"+ str(self.ErrEscapeRate_.curr) +"\t"+ str(self.ReworkRate_.curr)
-    #str_ = dummyStr + str_
     dummyStr , flowStr ="" , ""
     for ite_ in self.flowList:
       dummyStr += "\t" + ite_.name
@@ -72,7 +62,7 @@ class StateAll(object):
     str_ = dummyStr + "\n" + "Name: " + self.name_ + " flow values= " +  flowStr
     return str_
 
-  # Flow updates methods for Top
+
   def updateErrGenRate(self, ErrGenRateObj):
     self.ErrGenRate_ = ErrGenRateObj
     self.flowList[0] = self.ErrGenRate_

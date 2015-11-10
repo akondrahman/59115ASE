@@ -29,14 +29,11 @@ def execAll(showFlows):
   import ModelExecAll
   print "############# ALL #########"
   # print "Executing test cases for top ... no fail means passing !"
-  # tests.testTop(showFlows)
   print "Executing the 'ALL' part of the model ... "
   ModelExecAll.executeModelAll(showFlows) 
 
 
 showFlows=False
-# execTop(showFlows)
-# execBottom(showFlows)
 execAll(showFlows)
 
 
