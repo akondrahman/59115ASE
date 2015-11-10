@@ -79,7 +79,7 @@ def executeModelTop(showFlows):
 
 def executeModelBottom(showFlows):
 
-  ## Auxiliaries
+  ## Eight Unique Auxiliaries
   TimeToSmooth = Auxiliary("TimeToSmooth")
   MultiplierToRegen = Auxiliary("MultiplierToRegen")
   ActiveErrorDensity = Auxiliary("ActiveErrorDensity")
@@ -89,11 +89,11 @@ def executeModelBottom(showFlows):
   ActiveErrorsRetiringFraction = Auxiliary("ActiveErrorsRetiringFraction")
   BadFixGenRate = Auxiliary("BadFixGenRate")
 
-  ## Flows
+  ## Six Flows
   ActiveErrorRegenRate = Flow("ActiveErrorRegenRate")
   ActiveErrorDetectAndCorrectRate = Flow("ActiveErrorDetectAndCorrectRate")
   ActiveErrorRetirementRate = Flow("ActiveErrorRetirementRate")
-  PassiveErrorDetectionRate = Flow("PassiveErrorDetectionRate")
+  PassiveErrorDetectAndCorrectRate = Flow("PassiveErrorDetectAndCorrectRate")
   PassiveErrorGenRate = Flow("PassiveErrorGenRate")
   ActiveErrorGenRate = Flow("ActiveErrorGenRate")
 
@@ -111,12 +111,13 @@ def executeModelBottom(showFlows):
 
     # Update stock from inflows and outflows
     curr.UndetectedActiveErrors_.setInput(dt * (prev.ActiveErrorRegenRate_.curr + prev.ActiveErrorGenRate_.curr) - (prev.ActiveErrorRetirementRate_.curr + prev.ActiveErrorDetectAndCorrectRate_.curr) )
+    curr.UndetectedPassiveErrors_.setInput(dt * (prev.ActiveErrorRetirementRate_.curr + prev.PassiveErrorGenRate_.curr)- prev.PassiveErrorDetectAndCorrectRate_.curr) 
     print "{} ---> {}".format( key_,  curr)
 
     stockDict[key_]=[curr.UndetectedActiveErrors_.curr]
     print "---------------"
 
-    #Setting up Auxiliaries
+    #Setting up eight Auxiliaries
     TimeToSmooth.setInput(val_[0])
     MultiplierToRegen.setInput(val_[1])
     ActiveErrorDensity.setInput(val_[2])
@@ -124,18 +125,24 @@ def executeModelBottom(showFlows):
     ActiveErrorsRetiringFraction.setInput(val_[4])
     FractionEscapingErrors.setInput(val_[5])
     BadFixGenRate.setInput(val_[6])
+    PassiveErrorDensity.setInput(val_[7] + curr.UndetectedPassiveErrors_.curr)
 
-    # Filling Flows
+    # Filling Flows : six flows
     ActiveErrorRegenRate.fillFlowsByAuxs(TimeToSmooth, MultiplierToRegen, ActiveErrorDensity)
     ActiveErrorDetectAndCorrectRate.fillFlowsByAuxs(ActiveErrorDensity)
     ActiveErrorRetirementRate.fillFlowsByAuxs(TestingRate, ActiveErrorsRetiringFraction)
     ActiveErrorGenRate.fillFlowsByAuxs(FractionEscapingErrors, BadFixGenRate)
+    PassiveErrorGenRate.fillFlowsByAuxs(BadFixGenRate, FractionEscapingErrors)
+    PassiveErrorDetectAndCorrectRate.fillFlowsByAuxs(PassiveErrorDensity, TestingRate)
 
-    # updating current state's flows
+    # updating current state's flows: six flows
     curr.updateActiveErrorRegenRate(ActiveErrorRegenRate)
     curr.updateActiveErrorDetectAndCorrectRate(ActiveErrorDetectAndCorrectRate)
     curr.updateActiveErrorRetirementRate(ActiveErrorRetirementRate)
     curr.updateActiveErrorGenRate(ActiveErrorGenRate)
+    curr.updatePassiveErrorGenRate(PassiveErrorGenRate)
+    curr.updatePassiveErrorDetectAndCorrectRate(PassiveErrorDetectAndCorrectRate)
+
     if(showFlows):
       print "{} ---> {}".format( key_,  curr.getFlows())
       print "---------------"

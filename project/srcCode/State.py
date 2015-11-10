@@ -18,6 +18,7 @@ class State(object):
 
     ## Bottom Stocks
     self.UndetectedActiveErrors_ = Stock("UndetectedActiveErrors")
+    self.UndetectedPassiveErrors_ = Stock("UndetectedPassiveErrors")
 
 
     if (topFlag):
@@ -25,7 +26,8 @@ class State(object):
       self.stockList = [self.PotentiallyDetectableError_, self.EscapedError_, self.DetectedError_, self.ReworkedError_]
     else:
       # Test Bottom Stock List
-      self.stockList = [self.UndetectedActiveErrors_]        
+      self.stockList = [self.UndetectedActiveErrors_,self.UndetectedPassiveErrors_]   
+
 
     ## Top Flows
     self.ErrGenRate_ = Flow("ErrGenRate")
@@ -38,16 +40,17 @@ class State(object):
     self.ActiveErrorRegenRate_ = Flow("ActiveErrorRegenRate")
     self.ActiveErrorDetectAndCorrectRate_ = Flow("ActiveErrorDetectAndCorrectRate")
     self.ActiveErrorRetirementRate_ = Flow("ActiveErrorRetirementRate")
-    # self.PassiveErrorDetectionRate_ = Flow("PassiveErrorDetectionRate")
-    # self.PassiveErrorGenRate_ = Flow("PassiveErrorGenRate")
+    self.PassiveErrorDetectionRate_ = Flow("PassiveErrorDetectionRate")
+    self.PassiveErrorGenRate_ = Flow("PassiveErrorGenRate")
     self.ActiveErrorGenRate_ = Flow("ActiveErrorGenRate")
+    self.PassiveErrorDetectAndCorrectRate_ = Flow("PassiveErrorDetectAndCorrectRate")
 
     if (topFlag):
       # Test Top Flow Lists 
       self.flowList = [self.ErrGenRate_, self.ErrDetRate_, self.ErrEscapeRate_, self.ReworkRate_]
     else:
       # Test Bottom Flow Lists
-      self.flowList = [self.ActiveErrorRegenRate_, self.ActiveErrorDetectAndCorrectRate_, self.ActiveErrorRetirementRate_, self.ActiveErrorGenRate_]
+      self.flowList = [self.ActiveErrorRegenRate_, self.ActiveErrorDetectAndCorrectRate_, self.ActiveErrorRetirementRate_, self.ActiveErrorGenRate_,self.PassiveErrorGenRate_,self.PassiveErrorDetectAndCorrectRate_]
 
   def __str__(self):
     stockStr , dummyStr ="" , ""
@@ -86,7 +89,7 @@ class State(object):
     self.ReworkRate_ = ReworkRateObj
     self.flowList[3] = self.ReworkRate_
 
-  ## Flow update methods for Bottom
+  ## Flow update methods(six) for Bottom
   def updateActiveErrorRegenRate(self, Obj):
     self.ActiveErrorRegenRate_ = Obj
     self.flowList[0] = self.ActiveErrorRegenRate_
@@ -102,6 +105,17 @@ class State(object):
   def updateActiveErrorGenRate(self, Obj):
     self.ActiveErrorGenRate_ = Obj
     self.flowList[3] = self.ActiveErrorGenRate_
+
+
+  def updatePassiveErrorGenRate(self, Obj):
+    self.PassiveErrorGenRate_ = Obj
+    self.flowList[4] = self.PassiveErrorGenRate_
+
+  def updatePassiveErrorDetectAndCorrectRate(self, Obj):
+    self.PassiveErrorDetectAndCorrectRate_ = Obj
+    self.flowList[5] = self.PassiveErrorDetectAndCorrectRate_
+
+
 
   ## to copy prev_ from curr_
   def copyTop(self, nameParam):
@@ -129,10 +143,14 @@ class State(object):
     stateObj.ActiveErrorDetectAndCorrectRate_ = self.ActiveErrorDetectAndCorrectRate_
     stateObj.ActiveErrorRetirementRate_ = self.ActiveErrorRetirementRate_
     stateObj.ActiveErrorRegenRate_ = self.ActiveErrorRegenRate_
+    stateObj.PassiveErrorGenRate_ = self.PassiveErrorGenRate_
+    stateObj.PassiveErrorDetectAndCorrectRate_ = self.PassiveErrorDetectAndCorrectRate_
     stateObj.flowList = self.flowList
 
     #Stocks
     stateObj.UndetectedActiveErrors_ = self.UndetectedActiveErrors_
+    stateObj.PassiveErrorDetectAndCorrectRate_ = self.PassiveErrorDetectAndCorrectRate_
     stateObj.stockList = self.stockList
+
 
     return stateObj

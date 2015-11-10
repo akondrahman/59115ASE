@@ -10,8 +10,8 @@ Created on Thu Oct 29 10:07:08 2015
 import ModelExec, tests
 def execBottom(showFlows):
   print "############# BOTTOM #########"
-  print "Executing test cases for bottom ... no fail means passing !"
-  tests.testBottom(showFlows)
+  # print "Executing test cases for bottom ... no fail means passing !"
+  # tests.testBottom(showFlows)
   print "Executing the 'bottom' part of the model ... "
   ModelExec.executeModelBottom(showFlows)
 
@@ -28,7 +28,7 @@ def execTop(showFlows):
 
 
 showFlows=False
-execTop(showFlows)
+# execTop(showFlows)
 execBottom(showFlows)
 
 
