@@ -1,0 +1,38 @@
+# Auxiliaries
+
+(1) Software_Development_Productivity = Potential_Productivity*Multiplier_for_Losses
+
+(2) Nominal_Errors_Committed_per_Task = Nominal_Errors_Committed_per_DSI* DSI_per_Task/ 1000
+
+(3) Multiplier_Due_To_Workforce_Mix = GRAPH(Ratio_of_Pros_to_Rookies) (0.00, 2.00), (0.2, 1.80), (0.4, 1.60), (0.6, 1.40), (0.8, 1.20), (1, 1.00)
+
+(4) Multiplier_Due_to_Schedule_Pressure = GRAPH(Schedule_Pressure) (-0.4, 0.9), (-0.2, 0.94), (-5.55e-17, 1.00), (0.2, 1.05), (0.4, 1.14), (0.6, 1.24), (0.8, 1.36), (1, 1.50)
+
+(5) Average_#_Errors_per_Task = If Tasks_Worked = 0 then 0 else max(Potentially_Detectable_Errors/ (Tasks_Worked),0)
+
+(6) QA_Rate = DELAY(Software_Development_Rate,Average_QA_Delay, 0)
+
+(7) Potential_Error_Detection_Rate = Daily_MP_for_QA/QA_Manpower_Needed_to_Detect_an_Error
+
+(8) Actual_Rework_Manpower_Needed_per_Error = Nominal_Rework_Manpower_Needed_per_Error/ Multiplier_for_Losses
+
+(9) Daily_MP_for_Rework = min((Desired_Error_Correction_Rate* Perceived_Rework_MP_Needed_per_Error),Daily_MP_for_SW_Prod)
+
+(10) Fraction_Escaping_Errors_that_will_be_Active = GRAPH(Percent_of_Job_Actually_Worked) (0.00, 1.00), (0.1, 1.00), (0.2, 1.00), (0.3, 1.00), (0.4, 0.95), (0.5, 0.85), (0.6, 0.5), (0.7, 0.2), (0.8, 0.075), (0.9, 0.00), (1, 0.00)
+
+(11) Bad_Fix_Gen_Rate = Rework_Rate*Percent_Bad_Fixes
+
+(12) Time_to_Smooth_Active_Error_Density = 40
+
+(13) Multiplier_to_Regen_Due_to_Error_Density = GRAPH(smth1(Active_Error_Density*1000/ DSI_per_Task,Time_to_Smooth_Active_Error_Density))
+(0.00, 1.00), (10.0, 1.10), (20.0, 1.20), (30.0, 1.32), (40.0, 1.45), (50.0, 1.60), (60.0, 2.00), (70.0, 2.50), (80.0, 3.25), (90.0, 4.35), (100, 6.00)
+
+(14) Active_Error_Density = if Cumulative_Tasks_QA'd = 0 then 0 else Undetected_Active_Errors/ (Cumulative_Tasks_QA'd)
+
+(15) Testing_Rate = min(Cumulative_Tasks_QA'd/dt,Daily_MP_for_Testing/ Testing_MP_per_Task)
+
+(16) Passive_Error_Density = IF Cumulative_Tasks_QA'd = 0 then 0 else Undetected_Passive_Errors/ (Cumulative_Tasks_QA'd)
+
+(17) Active_Errors_Retiring_Fraction = GRAPH(Percent_of_Job_Actually_Worked)
+(0.00, 0.00), (0.1, 0.00), (0.2, 0.00), (0.3, 0.00), (0.4, 0.01), (0.5, 0.02), (0.6, 0.03), (0.7, 0.04), (0.8, 0.1), (0.9, 0.3), (1, 1.00)
+
