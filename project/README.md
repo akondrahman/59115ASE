@@ -18,10 +18,13 @@
  * Implemented test cases for _Undetected Active Errors_
  * Refactored and re-arranged to facilitate top and bottom parts of the model to
  run them at the same time automatically  
-  
+ 
+#### Updates (Nov 17, 2015)
+ * Refactored and re-arranged code to facilitate model integration with D.E. 
+   
 #### Output
 
-![output](output/update_Nov_5.png?raw=true=150x100)
+![output](output/update_nov_17.png?raw=true=150x100)
 
 
 #### References
