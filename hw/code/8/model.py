@@ -17,6 +17,7 @@ class Model(object):
         self.upperRange=[0]
 
 
+
     def check(self):
         for count in range(0,self.numOfDec):
             if (self.decisionVec[count]<self.lowerRange[count]) or (self.decisionVec[count]>self.upperRange[count]):
@@ -42,6 +43,7 @@ class Model(object):
 
     def sumOfObjs(self):
         return sum(self.getobj())
+
 
 class Osyczka2(Model):
 
@@ -132,3 +134,59 @@ class Kursawe(Model):
                 f1 = f1 + ( -10*math.exp(-0.2*math.sqrt( math.pow( self.decisionVec[cntI], 2) + math.pow( self.decisionVec[cntI+1], 2))))
                 f2 = f2 + ( math.pow( abs(self.decisionVec[cntI]), theA ) + 5 * math.sin( math.pow( self.decisionVec[cntI], theB) ) )
         return [f1,f2]
+class dtlz7(Model):
+
+    def __init__(self):
+        ## first specify the requirements 
+        self.decisionVec=[0,0,0, 0,0,0, 0,0,0, 0]        
+        self.lowerRange= [0,0,0, 0,0,0, 0,0,0, 0]        
+        self.numOfDec=10
+        self.numOfObjs=2
+        self.upperRange= [1,1,1, 1,1,1, 1,1,1, 1]
+        ## baseline 
+        self.baseline = [9999999, 0]
+        ## then create the initialization 
+        self.generateInitialVector()
+        
+
+    def calcG(self, decVecParam):
+      res= float(0)
+      res = 1 + float(9)/float(len(decVecParam)) * sum(decVecParam)
+      return float(res) 
+    def calcH(self, f1Obj, gValueParam):
+       res= float(0) 
+       res  = float(self.numOfObjs) - float(f1Obj/( 1 + gValueParam)) * float(1 + math.sin(3* math.pi*f1Obj))
+       return res 
+        
+    def getobj(self):
+        gVal = self.calcG(self.decisionVec)
+        f1=self.decisionVec[0]
+        f2= (1 + gVal) * self.calcH(f1, gVal)
+        return [f1,f2]     
+    def copy(self,other):
+        self.decisionVec = [_ for _ in other.decisionVec]
+        self.lowerRange = [_ for _ in other.lowerRange]
+        self.numOfDec = other.numOfDec
+        self.numOfObjs = other.numOfObjs        
+        self.upperRange = [_ for _ in other.upperRange]   
+        self.baseline = [_ for _ in other.baseline]
+    def getIntialBaseline(self):
+      tries=1000000
+      minEnergy = 9999999
+      maxEnergy = 0
+      for cnt in range(tries): 
+       energyToCheck = self.sumOfObjsInit( )  
+      if energyToCheck < minEnergy: 
+         minEnergy = energyToCheck
+      if maxEnergy < energyToCheck: 
+         maxEnergy = energyToCheck 
+      return [minEnergy , maxEnergy]  
+    def updateBaseline(self, baselineParam):
+      self.baseline =   [_ for _ in   baselineParam ]
+    def getCurrentBaseline(self):
+      return self.baseline     
+    def sumOfObjsInit(self):
+        return float(sum(self.getobj()))             
+    def sumOfObjs(self):
+        return float(sum(self.getobj())  / sum(self.getCurrentBaseline()))       
+        

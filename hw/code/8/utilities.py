@@ -410,7 +410,15 @@ class Num:
       return i.all[1] - i.all[0]
     else:
       return i.all[int(n2)] - i.all[int(n1)]
+      
 
+#def doLoss():
+#      
+#def computeLoss(era0List, eraNList): 
+#  for it_ in era0List:
+#    for ite_ in eraNList:
+#      doLoss(ite_, it_) 
+      
 
 def _rdivs():
   seed(1)

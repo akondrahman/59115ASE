@@ -10,6 +10,7 @@ Created on Fri Oct  2 11:25:29 2015
 from __future__ import print_function, unicode_literals
 from __future__ import absolute_import, division
 from random import uniform,randint,random
+import utilities 
 #from time import time
 #import numpy as np
 def SimulatedAnnealing(modelParam):
@@ -26,12 +27,28 @@ def SimulatedAnnealing(modelParam):
     curr_sol=modelParam()
     best_sol =modelParam()
     best_sol.copy(curr_sol)
+    #print("Before ... ", curr_sol.getCurrentBaseline()) 
+    
+    curr_sol.updateBaseline(curr_sol.getIntialBaseline())
+    #print( "After ... ",    curr_sol.getCurrentBaseline())  
+    #exit 
     ## kMaxVal is always fixed to 1000 !
     kMaxVal=1000
     counter = 0 
     counter = 1000
+    ## to keep track of eras 
+    eraDict = {}
+    eraCount  = 0
+    eraTracker = 50
+    crr_era, prev_era = [], [0 for _ in range(curr_sol.numOfDec)]
+    terminateCount = 0 
+    terminator = 10 
+    eraList = []
+    a12Factor = 0.56
+    eraDictCount  = 0
     while (counter > 0) and (curr_sol.sumOfObjs() > eMaxVal):
         printCounter = printCounter + 1
+
         neighbor_sol=generateNeighbor(curr_sol, randint(0, curr_sol.numOfDec-1), modelParam)
         
 
@@ -51,18 +68,43 @@ def SimulatedAnnealing(modelParam):
         else:
            output = output + "."
            cntForDot = cntForDot  + 1
-        if printCounter % 40 == 0:
+        if printCounter % eraTracker == 0:
            print("\ncounter={}, best energy seen so far={}, '?'={}, '!'={}, '+'={}, '.'={}, output={}".format(printCounter, best_sol.sumOfObjs(), cntForQ, cntForExcl, cntForPlus, cntForDot, output))
            cntForQ = 0
            cntForExcl = 0
            cntForPlus = 0
            cntForDot = 0
            output = ""
+           ## era purpose 
+        if eraCount >=20:   
+          ## comparing prev and current 
+          crr_era = sorted(eraList, reverse=True)
+          #print("Current era: ", crr_era)
+          eraDictCount = eraDictCount + 1
+          eraDict[eraDictCount] = crr_era
+          a12Output =  utilities.a12(crr_era, prev_era) 
+
+          if a12Output <= a12Factor:
+             terminateCount = terminateCount + 1 
+          eraList = []
+          eraCount = 0
+          prev_era = crr_era
+          #print("era count ={}, era dict= {}, a12={}, terminator={}".format(eraCount, prev_era, crr_era, a12Output, terminateCount))
+        else:
+          eraList.append(best_sol.getobj()) 
+          eraCount +=  1
+        #if terminateCount >= terminator: 
+        #     break 
+        if best_sol.sumOfObjs() < best_sol.getCurrentBaseline()[0]: 
+          best_sol.updateBaseline( [best_sol.sumOfObjs(), best_sol.getCurrentBaseline()[1]])
+        if best_sol.sumOfObjs() > best_sol.getCurrentBaseline()[1]: 
+          best_sol.updateBaseline([best_sol.getCurrentBaseline()[0], best_sol.sumOfObjs()])          
         counter = counter - 1    
         #counter= counter + 1   
 
     _printSolution(best_sol.decisionVec, best_sol.sumOfObjs(), best_sol.getobj(), printCounter)
     _printEndMsg(SimulatedAnnealing.__name__)
+    print("Era dictionary ... ", eraDict)
     return best_sol.decisionVec
 
 def MaxWalkSat(model, maxTries=100, maxChanges=10, threshold=0, p=0.5, step=10):

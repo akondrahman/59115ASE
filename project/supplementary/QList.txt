@@ -1,0 +1,30 @@
+Q-1: 
+After running the modeling ISEE Player we see the following auxiliaries to be in between 0 & 1, so should we go ahead and assume that these auxiliaries are between 0 and 1? 
+
+(1) Software_Development_Productivity
+(2) Nominal_Errors_Committed_per_Task
+(3) Average_#_Errors_per_Task 
+(4) QA_Rate 
+(5) Potential_Error_Detection_Rate 
+(6) Actual_Rework_Manpower_Needed_per_Error 
+(7) Daily_MP_for_Rework 
+(8) Bad_Fix_Gen_Rate 
+(9) Active_Error_Density 
+(10) Testing_Rate 
+(11) Passive_Error_Density  
+
+
+
+
+
+Q-2: For the following  auxiliaries we did curve fitting based on some values provided by the model. Will that be okay? I have listed the names of the auxiliaries and their corresponding fitting functions below: 
+(1) Multiplier_Due_To_Workforce_Mix : y = -x + 2 , R-Square = 1 
+(2) Multiplier_Due_to_Schedule_Pressure : y = 0.2128x2 + 0.2955x + 0.9888, R-Square = 0.99933
+(3) Fraction_Escaping_Errors_that_will_be_Active : y = -1.0286x2 - 0.2283x + 1.0719, R-Square = 0.91849
+(4) Multiplier_to_Regen_Due_to_Error_Density : y = 0.828e0.0173x , R-Square = 0.9374
+(5) Active_Errors_Retiring_Fraction : y = 0.0004e7.2984x , R-Square = 0.94991, if x >= 0.4, else 0 
+
+Q-3: As part of the project we would like to minimize the following two objectives: 
+a. Undetected active errors 
+b. Undetected passive errors   
+
