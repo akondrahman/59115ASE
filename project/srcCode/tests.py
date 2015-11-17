@@ -64,3 +64,19 @@ def testAll(showFlows):
     key_ = "Day-"+ str(i_) 
     assert testDictSyn[key_][0]== testDictMod[key_][0]          
     
+    
+    
+    
+def testDummyIntegration():
+ import integrator    
+ testDictSyn = utility.createTestStock_All()  
+ testDictMod = integrator.integrateWithDummies()
+ @ok
+ def _test_all_stocks_for_integration_with_dummy_values():
+  auxDictLen = len(utility.createAuxiliaries_All())
+  for i_ in xrange(auxDictLen):
+    key_ = "Day-"+ str(i_) 
+    lenOfList = min(len(testDictSyn[key_]), len(testDictMod[key_]))
+    for cnt in xrange(lenOfList):
+      assert testDictSyn[key_][cnt]== testDictMod[key_][cnt]              
+    

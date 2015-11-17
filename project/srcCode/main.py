@@ -7,7 +7,7 @@ Created on Thu Oct 29 10:07:08 2015
 
 
 
-import ModelExec, tests
+import tests, ModelExecAll
 ########### Obsolete ########
 #def execBottom(showFlows):
 #  print "############# BOTTOM #########"
@@ -27,7 +27,7 @@ import ModelExec, tests
 
 
 def execAll(showFlows):
-  import ModelExecAll
+
   print "############# ALL #########"
   print "Executing test cases for whole model ... no fail means passing !"
   tests.testAll(showFlows)
@@ -35,8 +35,15 @@ def execAll(showFlows):
   ModelExecAll.executeModelAll(showFlows) 
 
 
-showFlows=False
-execAll(showFlows)
 
+
+def runIntegrator():
+  print "############# Dummy Integration #########"
+  print "Executing test cases for whole model with dummy integration ... no fail means passing !"
+  tests.testDummyIntegration()
+
+showFlows=False
+#execAll(showFlows)
+runIntegrator()
 
    

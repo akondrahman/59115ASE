@@ -12,7 +12,7 @@ import utility
 
 def executeModelAll(showFlows):
 
-  ##Auxiliaries
+  ##Nine Unique Auxiliaries : Top 
   MultiplierSchedPressure = Auxiliary("MultiplierSchedPressure")
   MultiplierWorkforce = Auxiliary("MultiplierWorkforce")
   NominalErr = Auxiliary("NominalErr")
@@ -34,7 +34,7 @@ def executeModelAll(showFlows):
   ActiveErrorsRetiringFraction = Auxiliary("ActiveErrorsRetiringFraction")
   BadFixGenRate = Auxiliary("BadFixGenRate")
 
-  ### Flows
+  ### Four Flows from Top
   ErrGenRate = Flow("ErrGenRate")
   ErrDetRate = Flow("ErrDetRate")
   ErrEscapeRate = Flow("ErrEscapeRate")
@@ -136,3 +136,115 @@ def executeModelAll(showFlows):
    prev = curr.copyAll("prev") 
    print "###################"
   return stockDict
+
+def executeModelForDE(auxListParam, currStateParam, prevStateParam, dt):
+   ##Nine Unique Auxiliaries : Top 
+   MultiplierSchedPressure = Auxiliary("MultiplierSchedPressure")
+   MultiplierWorkforce = Auxiliary("MultiplierWorkforce")
+   NominalErr = Auxiliary("NominalErr")
+   SWDevelopmentRate = Auxiliary("SWDevelopmentRate")
+   PotErrDetectRate = Auxiliary("PotErrDetectRate")
+   QARate = Auxiliary("QARate")
+   AvgErrPerTask = Auxiliary("AvgErrPerTask")
+   ActualReworkMP = Auxiliary("ActualReworkMP")
+   DailyMPRework = Auxiliary("DailyMPRework")
+
+
+   ## Eight Unique Auxiliaries :Bottom
+   TimeToSmooth = Auxiliary("TimeToSmooth")
+   MultiplierToRegen = Auxiliary("MultiplierToRegen")
+   ActiveErrorDensity = Auxiliary("ActiveErrorDensity")
+   TestingRate = Auxiliary("TestingRate")
+   PassiveErrorDensity = Auxiliary("PassiveErrorDensity")
+   FractionEscapingErrors = Auxiliary("FractionEscapingErrors")
+   ActiveErrorsRetiringFraction = Auxiliary("ActiveErrorsRetiringFraction")
+   BadFixGenRate = Auxiliary("BadFixGenRate")
+
+   ### Four Flows from Top
+   ErrGenRate = Flow("ErrGenRate")
+   ErrDetRate = Flow("ErrDetRate")
+   ErrEscapeRate = Flow("ErrEscapeRate")
+   ReworkRate = Flow("ReworkRate")
+
+
+   ## Six Flows from Bottom
+   ActiveErrorRegenRate = Flow("ActiveErrorRegenRate")
+   ActiveErrorDetectAndCorrectRate = Flow("ActiveErrorDetectAndCorrectRate")
+   ActiveErrorRetirementRate = Flow("ActiveErrorRetirementRate")
+   PassiveErrorDetectAndCorrectRate = Flow("PassiveErrorDetectAndCorrectRate")
+   PassiveErrorGenRate = Flow("PassiveErrorGenRate")
+   ActiveErrorGenRate = Flow("ActiveErrorGenRate")    
+    
+   # current state's stocks are dependent on prev. state's flows
+   # some have in and out flows
+   currStateParam.PotentiallyDetectableError_.setInput(dt * (prevStateParam.ErrGenRate_.curr - prevStateParam.ErrDetRate_.curr - prevStateParam.ErrEscapeRate_.curr ))
+   currStateParam.DetectedError_.setInput( dt*( prevStateParam.ErrDetRate_.curr - prevStateParam.ReworkRate_.curr  ))
+
+   # some only have in flows from top
+   currStateParam.EscapedError_.setInput( dt*(prevStateParam.ErrEscapeRate_.curr))
+   currStateParam.ReworkedError_.setInput(dt*(prevStateParam.ReworkRate_.curr))
+
+   # Update stock from inflows and outflows from Bottom
+   currStateParam.UndetectedActiveErrors_.setInput(dt * (prevStateParam.ActiveErrorRegenRate_.curr + prevStateParam.ActiveErrorGenRate_.curr) - (prevStateParam.ActiveErrorRetirementRate_.curr + prevStateParam.ActiveErrorDetectAndCorrectRate_.curr) )
+   currStateParam.UndetectedPassiveErrors_.setInput(dt * (prevStateParam.ActiveErrorRetirementRate_.curr + prevStateParam.PassiveErrorGenRate_.curr)- prevStateParam.PassiveErrorDetectAndCorrectRate_.curr) 
+   
+   print "---------------"
+   #setting up auxiliaries
+   MultiplierSchedPressure.setInput(auxListParam[0])
+   MultiplierWorkforce.setInput(auxListParam[1])
+   NominalErr.setInput(auxListParam[2])
+   SWDevelopmentRate.setInput(auxListParam[3])
+   PotErrDetectRate.setInput(auxListParam[4])
+   AvgErrPerTask.setInput(auxListParam[5])
+   QARate.setInput(auxListParam[6])
+   ActualReworkMP.setInput(auxListParam[7])
+   DailyMPRework.setInput(auxListParam[8])
+
+   #Setting up eight Auxiliaries from Bottom
+   TimeToSmooth.setInput(auxListParam[9])
+   MultiplierToRegen.setInput(auxListParam[10])
+   ActiveErrorDensity.setInput(auxListParam[11])
+   TestingRate.setInput(auxListParam[12])
+   ActiveErrorsRetiringFraction.setInput(auxListParam[13])
+   PassiveErrorDensity.setInput(auxListParam[16] + currStateParam.UndetectedPassiveErrors_.curr)
+
+   #filling flows on the top
+   ErrGenRate.fillFlowsByAuxs(MultiplierSchedPressure, MultiplierWorkforce, NominalErr, SWDevelopmentRate)
+   ErrDetRate.fillFlowsByAuxs(PotErrDetectRate)
+   ErrEscapeRate.fillFlowsByAuxs(AvgErrPerTask, QARate)
+   ReworkRate.fillFlowsByAuxs(ActualReworkMP, DailyMPRework)
+   
+   # updating current state's flows
+   currStateParam.updateErrGenRate(ErrGenRate)
+   currStateParam.updateErrDetRate(ErrDetRate)
+   currStateParam.updateErrEscapeRate(ErrEscapeRate)
+   currStateParam.updateReworkRate(ReworkRate)   
+
+   # Connecting top to the bottom 
+   # Error Escape Rate -> Fraction Escaping Errors
+   # Rework Rate -> Bad Fix Generation Rate   
+   FractionEscapingErrors.setInput(auxListParam[14] + ErrEscapeRate.curr) 
+   BadFixGenRate.setInput(auxListParam[15] + ReworkRate.curr)
+   
+   # Filling Flows : six flows from Bottom
+   ActiveErrorRegenRate.fillFlowsByAuxs(TimeToSmooth, MultiplierToRegen, ActiveErrorDensity)
+   ActiveErrorDetectAndCorrectRate.fillFlowsByAuxs(ActiveErrorDensity)
+   ActiveErrorRetirementRate.fillFlowsByAuxs(TestingRate, ActiveErrorsRetiringFraction)
+   ActiveErrorGenRate.fillFlowsByAuxs(FractionEscapingErrors, BadFixGenRate)
+   PassiveErrorGenRate.fillFlowsByAuxs(BadFixGenRate, FractionEscapingErrors)
+   PassiveErrorDetectAndCorrectRate.fillFlowsByAuxs(PassiveErrorDensity, TestingRate)
+
+
+   # updating current state's flows: six flows from bottom
+   currStateParam.updateActiveErrorRegenRate(ActiveErrorRegenRate)
+   currStateParam.updateActiveErrorDetectAndCorrectRate(ActiveErrorDetectAndCorrectRate)
+   currStateParam.updateActiveErrorRetirementRate(ActiveErrorRetirementRate)
+   currStateParam.updateActiveErrorGenRate(ActiveErrorGenRate)
+   currStateParam.updatePassiveErrorGenRate(PassiveErrorGenRate)
+   currStateParam.updatePassiveErrorDetectAndCorrectRate(PassiveErrorDetectAndCorrectRate)
+
+
+   ## copying current to prev. 
+   prevStateParam = currStateParam.copyAll("prev") 
+   print "###################"
+   return prevStateParam, currStateParam   
