@@ -61,7 +61,10 @@ runCount = 10000
 dirToWriteP="/Users/akond/Documents/Fall_2015/ase/59115ASE/project/supplementary/"
 fileNameToWriteP = "baseline_" + str(runCount)
 #print "And the baseline is (min, max format, UAE first) \n", getBaselineForModel(runCount, dirToWriteP, fileNameToWriteP)
+
 ## testing 'Integrated Defect Model Object' 
-defectModelObj = IntegratedDefectModel()
-print "Objective scores ... ", defectModelObj.getobj(runCount)
+#constraintFileNameParam="/Users/akond/Documents/Fall_2015/ase/59115ASE/project/supplementary/constraints.csv"
+#defectModelObj = IntegratedDefectModel(constraintFileNameParam)
+#print "Objective scores ... ", defectModelObj.getobj(runCount)
+
    

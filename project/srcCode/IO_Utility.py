@@ -27,5 +27,19 @@ def writeDictToFile(dirParam, fileParam, dictP):
   fileToWrite.close()
   return "DONE !"
 
+def getConstraintFromCSV(fileNameParam): 
+    import csv   
+    _vector_Lower_Range = [] 
+    _vector_Upper_Range = []   
 
-  
+    fileToRead = open(fileNameParam, "rU") 
+    try:
+        fileReader = csv.reader(fileToRead, delimiter =',', dialect=csv.excel_tab)
+        next(fileReader, None)
+        for rowVar in fileReader: 
+           _vector_Lower_Range.append(float(rowVar[1]))
+           _vector_Upper_Range.append(float(rowVar[2]))
+    finally: 
+        fileToRead.close()
+        
+    return _vector_Lower_Range, _vector_Upper_Range

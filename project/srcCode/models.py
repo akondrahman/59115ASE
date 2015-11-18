@@ -8,6 +8,7 @@ Created on Wed Nov 18 09:57:12 2015
 
 
 from random import uniform
+import IO_Utility 
 class Model(object):
   def __init__(self):
       self.decisionVec=[0]        
@@ -38,12 +39,15 @@ class Model(object):
         
         
 class IntegratedDefectModel(Model): 
-  def __init__(self):
+  def __init__(self, constraintFile):
     self.decisionVec=[0,0,0, 0,0,0, 0,0,0, 0,0,0, 0,0,0, 0,0 ] 
-    self.lowerRange= [0,0,0, 0,0,0, 0,0,0, 40,0,0, 0,0,0, 0,0 ] 
+    
+    #self.lowerRange= [0,0,0, 0,0,0, 0,0,0, 40,0,0, 0,0,0, 0,0 ] 
+    self.lowerRange = IO_Utility.getConstraintFromCSV(constraintFile)[0]    
     self.numOfDec = 17 
     self.numOfObjs = 2
-    self.upperRange= [1,1,1, 1,1,1, 1,1,1, 40,1,1, 1,1,1, 1,1 ]
+    #self.upperRange= [1,1,1, 1,1,1, 1,1,1, 40,1,1, 1,1,1, 1,1 ]
+    self.upperRange = IO_Utility.getConstraintFromCSV(constraintFile)[1]
     self.generateInitialVector()     
     
   def check(self):
