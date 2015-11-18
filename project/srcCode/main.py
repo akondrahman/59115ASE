@@ -7,7 +7,7 @@ Created on Thu Oct 29 10:07:08 2015
 
 
 
-import tests, ModelExecAll
+import tests, ModelExecAll, integrator, utility, IO_Utility 
 ########### Obsolete ########
 #def execBottom(showFlows):
 #  print "############# BOTTOM #########"
@@ -41,9 +41,23 @@ def runIntegrator():
   print "############# Dummy Integration #########"
   print "Executing test cases for whole model with dummy integration ... no fail means passing !"
   tests.testDummyIntegration()
+  
+def getBaselineForModel(cntParam, dirToWriteP, fileNameToWriteP):
+  print "Getting baseline for {} times".format(cntParam) 
+  baselineDict = integrator.runModelForBaseline(cntParam)  
+  print "Writing dictionary to file ... ",   IO_Utility.writeDictToFile(dirToWriteP, fileNameToWriteP, baselineDict)
+  minOfBaseline_uae = utility.getFeatureFromDict(baselineDict, 0, "min") 
+  maxOfBaseline_uae = utility.getFeatureFromDict(baselineDict, 0, "max")  
+  minOfBaseline_upe = utility.getFeatureFromDict(baselineDict, 1, "min")  
+  maxOfBaseline_upe = utility.getFeatureFromDict(baselineDict, 1, "max")   
+  return minOfBaseline_uae, maxOfBaseline_uae, minOfBaseline_upe, maxOfBaseline_upe
 
 showFlows=False
 #execAll(showFlows)
-runIntegrator()
+#runIntegrator()
+runCount = 1000000
+dirToWriteP="/Users/akond/Documents/Fall_2015/ase/59115ASE/project/supplementary/"
+fileNameToWriteP = "baseline_" + str(runCount)
+print "And the baseline is (min, max format, UAE first) \n", getBaselineForModel(runCount, dirToWriteP, fileNameToWriteP)
 
    

@@ -26,3 +26,17 @@ def integrateWithDummies():
   return testStockToRet  
 
            
+           
+def runModelForBaseline(runCountParam):
+  import  ModelExecAll, utility 
+  from StateAll import StateAll
+  stockToRet={}
+  ##States
+  curr = StateAll("CurrentState_inte")
+  prev = StateAll("PrevState_inte")
+  dt = 1
+  for cnt in xrange(runCountParam):
+    val_ = utility.giveAuxiliariesForBaseline()  
+    prev, curr = ModelExecAll.executeModelForBaseline(val_, curr, prev, dt)
+    stockToRet[cnt]=[ curr.UndetectedActiveErrors_.curr, curr.UndetectedPassiveErrors_.curr]
+  return stockToRet             

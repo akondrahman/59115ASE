@@ -1,0 +1,29 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Nov 17 19:25:44 2015
+
+@author: akond
+"""
+
+
+
+def writeDictToFile(dirParam, fileParam, dictP):
+  import os   
+  completeStrToWrite=""
+  if not os.path.exists(dirParam):
+    os.makedirs(dirParam)  
+  fileParam = dirParam + "/" + fileParam + ".csv"
+  fileToWrite = open( fileParam, 'w');
+  lineStr =  "Index|Stock>" +","  + "Undetected Active Errors" + ","  + "Undetected Passive Errors" +","  
+  fileToWrite.write(lineStr + "\n");  
+  for key, values in dictP.items():
+    lineStr = str(key) + ","  
+    for item in values:    
+        lineStr = lineStr + str(item) + ","
+    lineStr = lineStr + "\n"  
+    completeStrToWrite = completeStrToWrite + lineStr  
+    lineStr="";
+  fileToWrite.write(completeStrToWrite );
+  fileToWrite.close()
+  return "DONE !"
+  
