@@ -26,4 +26,6 @@ def writeDictToFile(dirParam, fileParam, dictP):
   fileToWrite.write(completeStrToWrite );
   fileToWrite.close()
   return "DONE !"
+
+
   

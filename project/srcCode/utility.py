@@ -144,7 +144,7 @@ def giveAuxiliariesForBaseline():
  listToret.append(a10_TimeToSmooth)  
  
  if len(listToret) != 17: 
-   print "Somethign is wrong "   
+   print "Something is wrong "   
    exit()
  return listToret   
 def getFeatureFromDict(dictParam, indexP, opType): 

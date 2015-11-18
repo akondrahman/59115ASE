@@ -8,7 +8,7 @@ Created on Mon Nov  2 10:10:56 2015
 
 
 from ok import * 
-import utility , ModelExec
+import utility 
 ### test cases for top part ... obsolete 
 #def testTop(showFlows):
 # testDictSyn = utility.createTestStock_Top()  

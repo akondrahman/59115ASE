@@ -7,6 +7,7 @@ Created on Thu Oct 29 10:07:08 2015
 
 
 
+from models import IntegratedDefectModel
 import tests, ModelExecAll, integrator, utility, IO_Utility 
 ########### Obsolete ########
 #def execBottom(showFlows):
@@ -55,9 +56,12 @@ def getBaselineForModel(cntParam, dirToWriteP, fileNameToWriteP):
 showFlows=False
 #execAll(showFlows)
 #runIntegrator()
-runCount = 1000000
+runCount = 10000
+# gettting baseline 
 dirToWriteP="/Users/akond/Documents/Fall_2015/ase/59115ASE/project/supplementary/"
 fileNameToWriteP = "baseline_" + str(runCount)
-print "And the baseline is (min, max format, UAE first) \n", getBaselineForModel(runCount, dirToWriteP, fileNameToWriteP)
-
+#print "And the baseline is (min, max format, UAE first) \n", getBaselineForModel(runCount, dirToWriteP, fileNameToWriteP)
+## testing 'Integrated Defect Model Object' 
+defectModelObj = IntegratedDefectModel()
+print "Objective scores ... ", defectModelObj.getobj(runCount)
    
