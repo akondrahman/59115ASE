@@ -19,10 +19,11 @@
  * Refactored and re-arranged to facilitate top and bottom parts of the model to
  run them at the same time automatically  
  
-#### Updates (Nov 17, 2015)
+#### Updates (Nov 18, 2015)
  * Refactored and re-arranged code to facilitate model integration with D.E. 
  * Finished setting up code for baseline 
  * Got baseline for the model for different runs: 1000, 10000, 100000, and 1000000 
+ * Coded up model.py , now the model can be run as an object  
    
 #### Output
 * Model Output 
@@ -30,6 +31,7 @@
 ![output](output/update_nov_17.png?raw=true=150x100)
 
 * Baseline Output 
+
 ![output](output/baseline_nov_17.png?raw=true=150x100)
 
 
