@@ -39,13 +39,14 @@ class Model(object):
         
         
 class IntegratedDefectModel(Model): 
-  def __init__(self, constraintFile):
+  def __init__(self, constraintFile, runCountParam):
     self.decisionVec=[0,0,0, 0,0,0, 0,0,0, 0,0,0, 0,0,0, 0,0 ] 
     
     #self.lowerRange= [0,0,0, 0,0,0, 0,0,0, 40,0,0, 0,0,0, 0,0 ] 
     self.lowerRange = IO_Utility.getConstraintFromCSV(constraintFile)[0]    
     self.numOfDec = 17 
     self.numOfObjs = 2
+    self.runCount = runCountParam
     #self.upperRange= [1,1,1, 1,1,1, 1,1,1, 40,1,1, 1,1,1, 1,1 ]
     self.upperRange = IO_Utility.getConstraintFromCSV(constraintFile)[1]
     self.generateInitialVector()     
@@ -56,7 +57,7 @@ class IntegratedDefectModel(Model):
          return False
     return True  
     
-  def getobj(self, runCountParam):
+  def getobj(self):
      from StateAll import StateAll
      import ModelExecAll
      ##States
@@ -64,8 +65,8 @@ class IntegratedDefectModel(Model):
      prev = StateAll("PrevState_inte")
      dt = 1
      stockToRet ={}
-     for cnt in xrange(runCountParam):
+     for cnt in xrange(self.runCount):
         val_ = self.decisionVec
         prev, curr = ModelExecAll.executeModelForBaseline(val_, curr, prev, dt)
         stockToRet[cnt]=[ curr.UndetectedActiveErrors_.curr, curr.UndetectedPassiveErrors_.curr]
-     return stockToRet[runCountParam -  1]             
+     return stockToRet[self.runCount -  1]             

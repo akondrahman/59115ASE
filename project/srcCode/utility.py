@@ -6,6 +6,8 @@ Created on Fri Oct 30 19:44:38 2015
 """
 
 
+
+from contextlib import contextmanager
 ########## Top Part Obsolete#############
 #def createAuxiliaries_Top():
 #  dict_={}
@@ -87,16 +89,23 @@ def createTestStock_All():
   dict_['Day-5'] = [5, 10, -5, 10, 30, 6]
   dict_['Day-6'] = [15, 30, -15, 30, 90, 60]
   return dict_
-def giveAuxiliariesForBaseline():
+def giveAuxiliariesForBaseline(constFlagParam):
  import random    , math
  listToret= [] 
  
  ##for setting up auxiliaries that need regression equation 
- a01_equation = lambda x : 0.2128 * math.pow(x, 2) + 0.2955 * x + 0.9888
- a02_equation = lambda x : -x + 2 
- a11_equation = lambda x : 0.828 * math.exp(0.0173 * x)
- a14_equation = lambda x : 0.0004 * math.exp(7.2984 * x) 
- a15_equation = lambda x : -1.0286 * math.pow(x,2)  - 0.2283 * x + 1.0719 if x>= 0.4 else 0
+ if constFlagParam:
+   a01_equation = lambda x : 0.2128 * math.pow(x, 2) + 0.2955 * x + 0.9888
+   a02_equation = lambda x : -x + 2 
+   a11_equation = lambda x : 0.828 * math.exp(0.0173 * x)
+   a14_equation = lambda x : 0.0004 * math.exp(7.2984 * x) 
+   a15_equation = lambda x : -1.0286 * math.pow(x,2)  - 0.2283 * x + 1.0719 if x>= 0.4 else 0
+ else:
+   a01_equation = lambda x : random.uniform(0, 1)
+   a02_equation = lambda x : random.uniform(0, 1) 
+   a11_equation = lambda x : random.uniform(0, 1)
+   a14_equation = lambda x : random.uniform(0, 1)
+   a15_equation = lambda x : random.uniform(0, 1)    
  
  ## some auxiliaries need equations 
  a01_MultiplierSchedPressure = a01_equation(random.uniform(0, 1))
@@ -147,11 +156,11 @@ def giveAuxiliariesForBaseline():
    print "Something is wrong "   
    exit()
  return listToret   
-def getFeatureFromDict(dictParam, indexP, opType): 
+def getFeatureFromDict(dictParam, opType): 
   temp_ = []  
   valToRet = 0 
   for  key_, val_ in dictParam.items():   
-    temp_.append(val_[indexP])
+    temp_.append(val_[0] + val_[1])
   if opType=="min":
     valToRet = min(temp_) 
   elif opType=="max": 
@@ -159,4 +168,12 @@ def getFeatureFromDict(dictParam, indexP, opType):
   else: 
     print "operation not recongized ... provided operation type: ", opType
   return   valToRet  
- 
+
+@contextmanager
+def duration():
+  import time  
+  t1 = time.time()
+  yield
+  t2 = time.time()
+  print("\n" + "-" * 72)
+  print("# Runtime: %.3f secs" % (t2-t1)) 

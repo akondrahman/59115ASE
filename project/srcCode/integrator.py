@@ -7,6 +7,7 @@ Created on Tue Nov 17 11:13:00 2015
 
 
 
+from de import *
 def integrateWithDummies():
   import utility , ModelExecAll
   from StateAll import StateAll
@@ -27,7 +28,7 @@ def integrateWithDummies():
 
            
            
-def runModelForBaseline(runCountParam):
+def runModelForBaseline(runCountParam, constFlagForBaselineP):
   import  ModelExecAll, utility 
   from StateAll import StateAll
   stockToRet={}
@@ -36,9 +37,14 @@ def runModelForBaseline(runCountParam):
   prev = StateAll("PrevState_inte")
   dt = 1
   for cnt in xrange(runCountParam):
-    val_ = utility.giveAuxiliariesForBaseline()  
+    val_ = utility.giveAuxiliariesForBaseline(constFlagForBaselineP)  
     prev, curr = ModelExecAll.executeModelForBaseline(val_, curr, prev, dt)
     stockToRet[cnt]=[ curr.UndetectedActiveErrors_.curr, curr.UndetectedPassiveErrors_.curr]
   return stockToRet             
   
-  
+
+def runDE(baselineMin, baselineMax, modelObj, deRunCountParam, runCountParam, constraintFileNameParam):
+   
+  #print "### Executing D.E. "
+  de(runCountParam, constraintFileNameParam, modelObj,baselineMin,baselineMax,deRunCountParam)    
+    

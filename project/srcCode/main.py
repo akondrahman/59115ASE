@@ -43,28 +43,35 @@ def runIntegrator():
   print "Executing test cases for whole model with dummy integration ... no fail means passing !"
   tests.testDummyIntegration()
   
-def getBaselineForModel(cntParam, dirToWriteP, fileNameToWriteP):
+def getBaselineForModel(cntParam, dirToWriteP, fileNameToWriteP, constFlagForBaselineP):
   print "Getting baseline for {} times".format(cntParam) 
-  baselineDict = integrator.runModelForBaseline(cntParam)  
+  baselineDict = integrator.runModelForBaseline(cntParam, constFlagForBaselineP)  
   print "Writing dictionary to file ... ",   IO_Utility.writeDictToFile(dirToWriteP, fileNameToWriteP, baselineDict)
-  minOfBaseline_uae = utility.getFeatureFromDict(baselineDict, 0, "min") 
-  maxOfBaseline_uae = utility.getFeatureFromDict(baselineDict, 0, "max")  
-  minOfBaseline_upe = utility.getFeatureFromDict(baselineDict, 1, "min")  
-  maxOfBaseline_upe = utility.getFeatureFromDict(baselineDict, 1, "max")   
-  return minOfBaseline_uae, maxOfBaseline_uae, minOfBaseline_upe, maxOfBaseline_upe
+  minOfBaseline_ = utility.getFeatureFromDict(baselineDict,  "min") 
+  maxOfBaseline_ = utility.getFeatureFromDict(baselineDict,  "max")  
+
+  return minOfBaseline_, maxOfBaseline_
 
 showFlows=False
 #execAll(showFlows)
 #runIntegrator()
-runCount = 10000
+runCount = 365
+constFlagForBaseline = False
+deRunCount=10
+constraintFileNameParam="/Users/akond/Documents/Fall_2015/ase/59115ASE/project/supplementary/constraints.csv"
 # gettting baseline 
 dirToWriteP="/Users/akond/Documents/Fall_2015/ase/59115ASE/project/supplementary/"
 fileNameToWriteP = "baseline_" + str(runCount)
-#print "And the baseline is (min, max format, UAE first) \n", getBaselineForModel(runCount, dirToWriteP, fileNameToWriteP)
+minB, maxB = getBaselineForModel(runCount, dirToWriteP, fileNameToWriteP, constFlagForBaseline)
+print "And the baseline is (min, max format) \n", minB, maxB
 
 ## testing 'Integrated Defect Model Object' 
-#constraintFileNameParam="/Users/akond/Documents/Fall_2015/ase/59115ASE/project/supplementary/constraints.csv"
+
 #defectModelObj = IntegratedDefectModel(constraintFileNameParam)
 #print "Objective scores ... ", defectModelObj.getobj(runCount)
+print "Executing D.E ... for {} D.E. runs and {} model runs".format(deRunCount, runCount)
+print "================================================"
+with  utility.duration(): 
+  integrator.runDE(minB, maxB, IntegratedDefectModel, deRunCount, runCount, constraintFileNameParam)
 
    
