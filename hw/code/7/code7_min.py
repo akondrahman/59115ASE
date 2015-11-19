@@ -1,13 +1,4 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Wed Nov 18 19:51:57 2015
-
-@author: akond
-"""
-
-
-
-from models import *
+from model import *
 import math
 import random
 import copy
@@ -29,6 +20,8 @@ def trim(curr_candidate_sol,x,d):
 	# print "curr_candidate_sol:", curr_candidate_sol
 	return max(lo(curr_candidate_sol,d), min(x,hi(curr_candidate_sol,d)))
 
+	# max(7.3,min(7.3,8.3))
+
 
 def n(max):
 	return (random.uniform(0,max))
@@ -44,17 +37,17 @@ def score(curr_candidate_sol):
 	return dist_from_hell
 
 
-#def get_min_max(model):
-#	min = 999999
-#	max = -999999
-#	for x in xrange(2000):
-#		temp_candidate_sol = model()
-#		temp_score = score(temp_candidate_sol)
-#		if(temp_score > max):
-#			max = temp_score
-#		if(temp_score < min):
-#			min = temp_score
-#	return (min,max)
+def get_min_max(model):
+	min = 999999
+	max = -999999
+	for x in xrange(2000):
+		temp_candidate_sol = model()
+		temp_score = score(temp_candidate_sol)
+		if(temp_score > max):
+			max = temp_score
+		if(temp_score < min):
+			min = temp_score
+	return (min,max)
 
 class BaseLine():
 	baseline_min=0
@@ -67,7 +60,7 @@ class Thing():
 		self.__dict__.update(entries)
 
 def candidate(curr_candidate_sol):
-
+	# curr_candidate_sol = model()
 	curr_candidate_sol.decisionVec = [lo(curr_candidate_sol,d) + n(hi(curr_candidate_sol,d) - lo(curr_candidate_sol,d)) for d in decisions(curr_candidate_sol)]
 	
 	while (not curr_candidate_sol.check()):
@@ -79,13 +72,18 @@ def candidate(curr_candidate_sol):
 	return new
 
 
-def de(runCountParam, constraintFileNameParam, model, baseline_min,baseline_max, max = 100, f = 0.75, cf = 0.3, epsilon = 0.01):
-	curr_candidate_sol = model(constraintFileNameParam, runCountParam)
+def de(model, baseline_min,baseline_max, max = 100, f = 0.75, cf = 0.3, epsilon = 0.01):
+	curr_candidate_sol = model()
 	# print "FROM DE-->", curr_candidate_sol
 	np = curr_candidate_sol.numOfDec * 10
 	frontier = [candidate(curr_candidate_sol) for _ in xrange(np)]
 
+	# for x in frontier:
+	# 	print "id:", x.id, " have:", x.have, " score:", x.score
 
+	# print "length of frontier:", len(frontier)
+
+	# Pending : should you use else if here?
 
 	for each_thing in frontier:
 		if(each_thing.score < 0):
@@ -97,30 +95,38 @@ def de(runCountParam, constraintFileNameParam, model, baseline_min,baseline_max,
 		if(each_thing.score > BaseLine.baseline_max):
 			BaseLine.baseline_max = each_thing.score
 			print "---------"
-           
+
+
+
+	#Normalize the scores of each thing now
+
+	# for each_thing in frontier:
+	# 	prev_each_thing_score = each_thing.score
+	# 	each_thing.score = float(each_thing.score - BaseLine.baseline_min)/(BaseLine.baseline_max - BaseLine.baseline_min)
 	
 	#total = total score of all the candidates found so far
 	for k in xrange(max):
 		total,n = update(f,cf,frontier,curr_candidate_sol,BaseLine.baseline_min,BaseLine.baseline_max)
-
+		# print "BASELINE: MIN=", BaseLine.baseline_min," MAX=", BaseLine.baseline_max
+		# if total/n > (1 - epsilon):
+		# 	print "break: value of k=", k, " total=",total, "n=",n 
+		# 	break
+	# for x in frontier:
+	# 	print "print --x:",x.id," ",x.have, x.score
 
 	#Now baseline everything again 
 
 	for each_thing in frontier:
-         #print "size of frontier ... ", len(frontier)
-         each_thing.score = (each_thing.score - BaseLine.baseline_min) / ( BaseLine.baseline_max - BaseLine.baseline_min + 0.001)
-         #print "inside the frontier # ", each_thing.id
-        
+		each_thing.score = (each_thing.score - BaseLine.baseline_min) / ( BaseLine.baseline_max - BaseLine.baseline_min + 0.001)
 
 	score_have_dict = { obj.score:obj.have for obj in frontier}
 	print "==================="
- 
-	#for key in sorted(score_have_dict.keys(),reverse = True):
-     #        print "%s: %s" % (key, score_have_dict[key])
+	# for key in sorted(score_have_dict.keys(),reverse = True):
+ #  		print "%s: %s" % (key, score_have_dict[key])
 
 	print "BASELINE: MIN=", BaseLine.baseline_min," MAX=", BaseLine.baseline_max
   	sorted_keys = sorted(score_have_dict.keys(),reverse = True)
-  	print "Doing maximization: %s: %s" % (sorted_keys[0], score_have_dict[sorted_keys[0]])
+  	print "%s: %s" % (sorted_keys[0], score_have_dict[sorted_keys[0]])
 	
 	return frontier
 
@@ -187,7 +193,7 @@ def extrapolate(frontier, one, f, cf,curr_candidate_sol,baseline_min,baseline_ma
 		BaseLine.baseline_min = current_score
 		print "------"
 
-
+	# out.score = (score(curr_candidate_sol) - BaseLine.baseline_min)/(BaseLine.baseline_max - BaseLine.baseline_min)
 	out.score = score(curr_candidate_sol) 
 	return out
 
@@ -208,3 +214,57 @@ def threeOthers(lst, avoid):
 
 def a(lst):
 	return lst[int(n(len(lst)))]
+
+
+if __name__ == "__main__":
+	print "Starting Differential Evolution. Hold on tight."
+	print "================================================"
+	model=Golinski
+	# model=Osyczka2
+	# model=Schaffer
+	# obj = BaseLine()
+
+	baseline_min,baseline_max = get_min_max(model)
+	# print "BASELINE: MIN=", baseline_min, " MAX=", baseline_max 
+	BaseLine.baseline_min = baseline_min
+	BaseLine.baseline_max = baseline_max
+	print "baseline_min,baseline_max ", baseline_min," ",baseline_max
+	de(model,baseline_min,baseline_max,1000)
+
+# if __name__ == "__main__":
+# 	model=Golinski
+# 	curr_candidate_sol = model()
+# 	# curr_candidate_sol.decisionVec = [lo(curr_candidate_sol,d) + n(hi(curr_candidate_sol,d) - lo(curr_candidate_sol,d)) for d in decisions(curr_candidate_sol)]
+
+# 	for d in decisions(curr_candidate_sol):
+# 		print "d:", d, "low value:", lo(curr_candidate_sol,d)
+# 		print "d:", d, "high value:", hi(curr_candidate_sol,d)
+# 		print "difference:", hi(curr_candidate_sol,d) - lo(curr_candidate_sol,d), " N->", n(hi(curr_candidate_sol,d) - lo(curr_candidate_sol,d))
+# 		print "output:", lo(curr_candidate_sol,d) + n(hi(curr_candidate_sol,d) - lo(curr_candidate_sol,d))
+
+
+# 	# val=n(11.0)
+# 	# print val
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
