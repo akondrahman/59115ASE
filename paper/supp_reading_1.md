@@ -29,8 +29,11 @@ http://dl.acm.org/citation.cfm?id=1595713
 * iv2: Consider other factors related to software projects namely, developer dependency in a project, fan-in, fan-out, C&K metrics etc.    
 
 #### Connection to the Initial Paper
-Our selected initial paper titled *Ecological Inference in Empirical Software Engineering [2]* provided a conceptual framework on how prediction models can vary if metrics that are collected at aggregated with that of metrics collected at non-aggregated level. This paper does not address the findings achieved at local and global level of software projects.
+Our selected initial paper titled *Ecological Inference in Empirical Software Engineering [3]* provided a conceptual framework on how prediction models can vary if metrics that are collected at aggregated with that of metrics collected at non-aggregated level. This paper does not address the findings achieved at local and global level of software projects.
 
 #### Reference
 [1] T. Zimmermann, N. Nagappan, H. Gall, E. Giger, and B. Murphy,  Cross-project defect prediction: a large scale experiment on data vs. domain vs. process. In Proceedings of the the 7th joint meeting of the European software engineering conference and the ACM SIGSOFT symposium on The foundations of software engineering (ESEC/FSE '09). ACM, New York, NY, USA 
+
 [2] B. Turhan, T. Menzies, A. B. Bener, and J. Stefano, On the relative value of cross-company and within-company data for defect prediction. Empirical Softw. Engg. 14, 5 (October 2009), 540-578
+
+[3] D. Posnett, V. Filkov, and P. Devanbu. 2011. Ecological inference in empirical software engineering. In Proceedings of the 2011 26th IEEE/ACM International Conference on Automated Software Engineering (ASE '11). IEEE Computer Society, Washington, DC, USA, 362-371.

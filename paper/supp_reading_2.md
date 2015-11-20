@@ -26,9 +26,11 @@ http://dl.acm.org/citation.cfm?id=1913303
 
 
 #### Connection to the Initial Paper
-Our selected initial paper titled *Ecological Inference in Empirical Software Engineering [2]* provided a conceptual framework on how prediction models can vary if metrics that are collected at aggregated with that of metrics collected at non-aggregated level. This paper analyzed social network analysis on two levels namely local, and global which were labeled as _ego_, and _global_, respectively.
+Our selected initial paper titled *Ecological Inference in Empirical Software Engineering [3]* provided a conceptual framework on how prediction models can vary if metrics that are collected at aggregated with that of metrics collected at non-aggregated level. This paper analyzed social network analysis on two levels namely local, and global which were labeled as _ego_, and _global_, respectively.
 
 #### Reference
 [1] Thanh H. D. Nguyen, Bram Adams, and Ahmed E. Hassan. 2010. Studying the impact of dependency network measures on software quality. In Proceedings of the 2010 IEEE International Conference on Software Maintenance (ICSM '10). IEEE Computer Society, Washington, DC, USA, 1-10.
 
 [2] Timo Wolf, Adrian Schroter, Daniela Damian, and Thanh Nguyen. 2009. Predicting build failures using social network analysis on developer communication. In Proceedings of the 31st International Conference on Software Engineering (ICSE '09). IEEE Computer Society, Washington, DC, USA, 1-11.
+
+[3] D. Posnett, V. Filkov, and P. Devanbu. 2011. Ecological inference in empirical software engineering. In Proceedings of the 2011 26th IEEE/ACM International Conference on Automated Software Engineering (ASE '11). IEEE Computer Society, Washington, DC, USA, 362-371.
