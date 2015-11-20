@@ -57,7 +57,7 @@ showFlows=False
 #runIntegrator()
 runCount = 365
 constFlagForBaseline = False
-deRunCount=10
+deRunCount=1000
 constraintFileNameParam="/Users/akond/Documents/Fall_2015/ase/59115ASE/project/supplementary/constraints.csv"
 # gettting baseline 
 dirToWriteP="/Users/akond/Documents/Fall_2015/ase/59115ASE/project/supplementary/"
@@ -69,7 +69,7 @@ print "And the baseline is (min, max format) \n", minB, maxB
 
 #defectModelObj = IntegratedDefectModel(constraintFileNameParam)
 #print "Objective scores ... ", defectModelObj.getobj(runCount)
-print "Executing D.E ... for {} D.E. runs and {} model runs".format(deRunCount, runCount)
+print "Executing D.E (minimized version) ... for {} D.E. runs and {} model runs".format(deRunCount, runCount)
 print "================================================"
 with  utility.duration(): 
   integrator.runDE(minB, maxB, IntegratedDefectModel, deRunCount, runCount, constraintFileNameParam)
