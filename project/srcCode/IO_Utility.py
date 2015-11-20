@@ -52,11 +52,12 @@ def createConstraintFiles(dirParam, fileParam, auxParam, lowListParam, highListP
   completeStrToWrite = ""
   if not os.path.exists(dirParam):
     os.makedirs(dirParam)  
-  fileParam = dirParam + "/" + fileParam + ".csv"
+  fileParam = dirParam + "/" + fileParam 
   fileToWrite = open( fileParam, 'w')
   lineStr =  "AuxNames>" +","  + "Low" + ","  + "High" +","  
   fileToWrite.write(lineStr + "\n")  
   if(len(lowListParam)==len(auxParam)) and (len(lowListParam)==len(highListParam)):
+      lineStr =""
       for cnt in xrange(len(auxParam)):
           lineStr = lineStr + str(auxParam[cnt]) + "," + str(lowListParam[cnt]) + "," + str(highListParam[cnt]) + ","
           lineStr = lineStr + "\n"  

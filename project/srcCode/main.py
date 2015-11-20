@@ -62,21 +62,22 @@ showFlows=False
 #execAll(showFlows)
 #runIntegrator()
 runCount = 365
-constFlagForBaseline = False
-deRunCount=100
+constFlagForBaseline = True
+deRunCount=10
 dirToWriteP="/Users/akond/Documents/Fall_2015/ase/59115ASE/project/supplementary/"
-constraintFileNameParam= dirToWriteP +  "0_1_constraints.csv"
+constraintFileNameParam=   "constraints.csv"
 # gettting baseline 
 
-fileNameToWriteP = "baseline_" + str(runCount)
+baseline_fileNameToWriteP = "baseline_" + str(runCount)
 #print createConstraintFile(dirToWriteP, constraintFileNameParam)
-minB, maxB = getBaselineForModel(runCount, dirToWriteP, fileNameToWriteP, constFlagForBaseline)
+minB, maxB = getBaselineForModel(runCount, dirToWriteP, baseline_fileNameToWriteP, constFlagForBaseline)
 print "And the baseline is (min, max format) \n", minB, maxB
 
 
 print "Executing D.E (minimized version) ... for {} D.E. runs and {} model runs".format(deRunCount, runCount)
 print "================================================"
+constraintFile = dirToWriteP + constraintFileNameParam 
 with  utility.duration(): 
-  integrator.runDE(minB, maxB, IntegratedDefectModel, deRunCount, runCount, constraintFileNameParam)
+  integrator.runDE(minB, maxB, IntegratedDefectModel, deRunCount, runCount, constraintFile)
 
    
