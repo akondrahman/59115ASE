@@ -37,7 +37,6 @@ def execAll(showFlows):
 
 
 
-
 def runIntegrator():
   print "############# Dummy Integration #########"
   print "Executing test cases for whole model with dummy integration ... no fail means passing !"
@@ -51,24 +50,30 @@ def getBaselineForModel(cntParam, dirToWriteP, fileNameToWriteP, constFlagForBas
   maxOfBaseline_ = utility.getFeatureFromDict(baselineDict,  "max")  
 
   return minOfBaseline_, maxOfBaseline_
+  
+def createConstraintFile(dirP, fileP): 
+  auxNames= utility.getAuxNameList()     
+  lowerRange = utility.createAuxList()[0]
+  upperRange = utility.createAuxList()[1]
+  IO_Utility.createConstraintFiles(dirP, fileP, auxNames, lowerRange, upperRange)
+  return "Created  file " + fileP  
 
 showFlows=False
 #execAll(showFlows)
 #runIntegrator()
 runCount = 365
 constFlagForBaseline = False
-deRunCount=1000
-constraintFileNameParam="/Users/akond/Documents/Fall_2015/ase/59115ASE/project/supplementary/constraints.csv"
-# gettting baseline 
+deRunCount=100
 dirToWriteP="/Users/akond/Documents/Fall_2015/ase/59115ASE/project/supplementary/"
+constraintFileNameParam= dirToWriteP +  "0_1_constraints.csv"
+# gettting baseline 
+
 fileNameToWriteP = "baseline_" + str(runCount)
+#print createConstraintFile(dirToWriteP, constraintFileNameParam)
 minB, maxB = getBaselineForModel(runCount, dirToWriteP, fileNameToWriteP, constFlagForBaseline)
 print "And the baseline is (min, max format) \n", minB, maxB
 
-## testing 'Integrated Defect Model Object' 
 
-#defectModelObj = IntegratedDefectModel(constraintFileNameParam)
-#print "Objective scores ... ", defectModelObj.getobj(runCount)
 print "Executing D.E (minimized version) ... for {} D.E. runs and {} model runs".format(deRunCount, runCount)
 print "================================================"
 with  utility.duration(): 

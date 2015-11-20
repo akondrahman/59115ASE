@@ -177,3 +177,120 @@ def duration():
   t2 = time.time()
   print("\n" + "-" * 72)
   print("# Runtime: %.3f secs" % (t2-t1)) 
+def getAuxNameList():
+  auxNameList = []      
+  auxNameList.append("a01_MultiplierSchedPressure")
+  auxNameList.append("a02_MultiplierWorkforce")
+  auxNameList.append("a03_NominalErr")
+  auxNameList.append("a04_SWDevelopmentRate")
+  auxNameList.append("a05_PotErrDetectRate")
+  auxNameList.append("a06_AvgErrPerTask")
+  auxNameList.append("a07_QARate")
+  auxNameList.append("a08_ActualReworkMP")
+  auxNameList.append("a09_DailyMPRework")
+  auxNameList.append("a10_TimeToSmooth")
+  auxNameList.append("a11_MultiplierToRegen")
+  auxNameList.append("a12_ActiveErrorDensity")
+  auxNameList.append("a13_TestingRate")
+  auxNameList.append("a14_ActiveErrorsRetiringFraction")
+  auxNameList.append("a15_FractionEscapingErrors")
+  auxNameList.append("a16_BadFixGenRate")
+  auxNameList.append("a17_PassiveErrorDensity")    
+  return auxNameList
+  
+def createAuxList(): 
+  import random   
+
+  lowRangeList = []
+  upperRangeList = []
+
+  ## fixing low range 
+
+  ## some auxilairies can fit in an equation   
+  a01_equation = lambda x : random.uniform(0, 1)
+  a02_equation = lambda x : random.uniform(0, 1) 
+  a11_equation = lambda x : random.uniform(0, 1)
+  a14_equation = lambda x : random.uniform(0, 1)
+  a15_equation = lambda x : random.uniform(0, 1)    
+ 
+  ## some auxiliaries need equations 
+  temprand1 = random.uniform(0, 1)
+  a01_MultiplierSchedPressure = a01_equation(temprand1)
+  upperRangeList.append(a01_MultiplierSchedPressure)
+  lowRangeList.append(temprand1)
+
+  temprand2 = random.uniform(0, 1)  
+  a02_MultiplierWorkforce = a02_equation(temprand2)
+  upperRangeList.append(a02_MultiplierWorkforce) 
+  lowRangeList.append(temprand2) 
+  
+  
+  ## most auxiliaries are assumed to be between 0 & 1 
+  a03_NominalErr = random.uniform(0, 1)
+  upperRangeList.append(a03_NominalErr) 
+  lowRangeList.append(0)
+  
+  a04_SWDevelopmentRate = random.uniform(0, 1)
+  lowRangeList.append(0)
+  upperRangeList.append(a04_SWDevelopmentRate) 
+  
+  a05_PotErrDetectRate = random.uniform(0, 1)
+  upperRangeList.append(a05_PotErrDetectRate) 
+  lowRangeList.append(0)
+  
+  a06_AvgErrPerTask = random.uniform(0, 1)
+  upperRangeList.append(a06_AvgErrPerTask) 
+  lowRangeList.append(0)
+  
+  a07_QARate = random.uniform(0, 1)
+  upperRangeList.append(a07_QARate) 
+  lowRangeList.append(0)
+  
+  a08_ActualReworkMP = random.uniform(0, 1)
+  upperRangeList.append(a08_ActualReworkMP) 
+  lowRangeList.append(0)
+  
+  a09_DailyMPRework = random.uniform(0, 1)
+  upperRangeList.append(a09_DailyMPRework) 
+  lowRangeList.append(0)
+
+  ## Only oen auxiliary has a direct value  
+  a10_TimeToSmooth = 40 
+  upperRangeList.append(a10_TimeToSmooth)   
+  lowRangeList.append(40)
+
+  temprand3 = random.uniform(0, 1)    
+  a11_MultiplierToRegen = a11_equation(temprand3)
+  upperRangeList.append(a11_MultiplierToRegen)  
+  lowRangeList.append(temprand3)
+
+  a12_ActiveErrorDensity = random.uniform(0, 1)
+  upperRangeList.append(a12_ActiveErrorDensity) 
+  lowRangeList.append(0)
+  
+  a13_TestingRate = random.uniform(0, 1)
+  upperRangeList.append(a13_TestingRate) 
+  lowRangeList.append(0)
+  
+  temprand4 = random.uniform(0, 1)    
+  a14_ActiveErrorsRetiringFraction = a14_equation(temprand4)
+  upperRangeList.append(a14_ActiveErrorsRetiringFraction) 
+  lowRangeList.append(temprand4)  
+  
+  temprand5 = random.uniform(0, 1)      
+  a15_FractionEscapingErrors = a15_equation(temprand5)
+  upperRangeList.append(a15_FractionEscapingErrors)  
+  lowRangeList.append(temprand5)     
+
+  a16_BadFixGenRate = random.uniform(0, 1)
+  upperRangeList.append(a16_BadFixGenRate) 
+  lowRangeList.append(0)
+  
+  a17_PassiveErrorDensity = random.uniform(0, 1)
+  upperRangeList.append(a17_PassiveErrorDensity) 
+  lowRangeList.append(0)
+  
+  
+  
+  return lowRangeList, upperRangeList
+ 

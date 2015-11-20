@@ -15,7 +15,7 @@ def writeDictToFile(dirParam, fileParam, dictP):
   fileParam = dirParam + "/" + fileParam + ".csv"
   fileToWrite = open( fileParam, 'w');
   lineStr =  "Index|Stock>" +","  + "Undetected Active Errors" + ","  + "Undetected Passive Errors" +","  
-  fileToWrite.write(lineStr + "\n");  
+  fileToWrite.write(lineStr + "\n") 
   for key, values in dictP.items():
     lineStr = str(key) + ","  
     for item in values:    
@@ -43,3 +43,26 @@ def getConstraintFromCSV(fileNameParam):
         fileToRead.close()
         
     return _vector_Lower_Range, _vector_Upper_Range
+    
+    
+    
+    
+def createConstraintFiles(dirParam, fileParam, auxParam, lowListParam, highListParam):
+  import os   
+  completeStrToWrite = ""
+  if not os.path.exists(dirParam):
+    os.makedirs(dirParam)  
+  fileParam = dirParam + "/" + fileParam + ".csv"
+  fileToWrite = open( fileParam, 'w')
+  lineStr =  "AuxNames>" +","  + "Low" + ","  + "High" +","  
+  fileToWrite.write(lineStr + "\n")  
+  if(len(lowListParam)==len(auxParam)) and (len(lowListParam)==len(highListParam)):
+      for cnt in xrange(len(auxParam)):
+          lineStr = lineStr + str(auxParam[cnt]) + "," + str(lowListParam[cnt]) + "," + str(highListParam[cnt]) + ","
+          lineStr = lineStr + "\n"  
+          completeStrToWrite = completeStrToWrite + lineStr  
+          lineStr="";
+      fileToWrite.write(completeStrToWrite )
+      fileToWrite.close()
+  return "DONE !"      
+        
