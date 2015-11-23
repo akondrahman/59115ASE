@@ -35,13 +35,18 @@
 
 ![output](output/baseline_nov_17.png?raw=true=100x80)
 
-* Output : D.E min (all auxilairies are between 0 & 1 )
+* Output : D.E min (all auxiliaries are between 0 & 1 )
 
 ![output](output/de_min.png?raw=true=100x80)
 
-* Output : D.E max (all auxilairies are between 0 & 1 )
+* Output : D.E max (all auxiliaries are between 0 & 1 )
 
 ![output](output/de_max.png?raw=true=100x80)
+
+
+* Output : D.E min (11 auxiliairies are between 0 & 1, five use equations with three heuristics to handle infinite loop )
+
+**see `output/0_1_heuristic_de_min_output.txt`** 
 
 
 #### References

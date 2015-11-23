@@ -90,18 +90,20 @@ def de(runCountParam, constraintFileNameParam, model, baseline_min,baseline_max,
 	for each_thing in frontier:
 		if(each_thing.score < 0):
 			BaseLine.baseline_min = 0
-			print "--------"
+			#print "--------"
 		if(each_thing.score < BaseLine.baseline_min):
 			BaseLine.baseline_min = each_thing.score
-			print "--------------"
+			#print "--------------"
 		if(each_thing.score > BaseLine.baseline_max):
 			BaseLine.baseline_max = each_thing.score
-			print "---------"
+			#print "---------"
            
 	
 	#total = total score of all the candidates found so far
 	for k in xrange(max):
-		total,n = update(f,cf,frontier,curr_candidate_sol,BaseLine.baseline_min,BaseLine.baseline_max)
+         #print "Performing iteration index# ", k
+         #print "*****************"
+         total,n = update(f,cf,frontier,curr_candidate_sol,BaseLine.baseline_min,BaseLine.baseline_max)
 
 
 	#Now baseline everything again 
@@ -120,7 +122,7 @@ def de(runCountParam, constraintFileNameParam, model, baseline_min,baseline_max,
 
 	print "BASELINE: MIN=", BaseLine.baseline_min," MAX=", BaseLine.baseline_max
   	sorted_keys = sorted(score_have_dict.keys(),reverse = True)
-  	print "Doing maximization: %s: %s" % (sorted_keys[0], score_have_dict[sorted_keys[0]])
+  	print "Doing minimization: %s: %s" % (sorted_keys[0], score_have_dict[sorted_keys[0]])
 	
 	return frontier
 

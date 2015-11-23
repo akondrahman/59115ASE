@@ -51,31 +51,34 @@ def getBaselineForModel(cntParam, dirToWriteP, fileNameToWriteP, constFlagForBas
 
   return minOfBaseline_, maxOfBaseline_
   
-def createConstraintFile(dirP, fileP): 
+def createConstraintFile(dirP, fileP, lowerRangeP, upperRangeP, constFlagParam): 
   auxNames= utility.getAuxNameList()     
-  lowerRange = utility.createAuxList()[0]
-  upperRange = utility.createAuxList()[1]
+  lowerRange, upperRange = utility.createAuxList(lowerRangeP, upperRangeP, constFlagParam)
   IO_Utility.createConstraintFiles(dirP, fileP, auxNames, lowerRange, upperRange)
   return "Created  file " + fileP  
 
-showFlows=False
+showFlows=False  # to show flow values while executing the model 
 #execAll(showFlows)
 #runIntegrator()
-runCount = 365
-constFlagForBaseline = True
-deRunCount=10
-dirToWriteP="/Users/akond/Documents/Fall_2015/ase/59115ASE/project/supplementary/"
-constraintFileNameParam=   "constraints.csv"
-# gettting baseline 
+runCount = 365  ## how many time the model will run 
+constFlagForBaseline = True ## th flag detrmines whether or not hte five equations will be used to geenrate constaints 
+deRunCount=1  ## howmany times DE will run? 
+dirToWriteP="/Users/akond/Documents/Fall_2015/ase/59115ASE/project/supplementary/" ## directory to store baseline and constraint files  
+lowerRange = 0  ## settign the lower range for axuiliries of the model 
+upperRange = 10  ## settign the upper range for axuiliries of the model 
+constraintFileNameParam=  str(lowerRange) + "_" + str(upperRange) + "_mod_equ_constraints.csv" ## file to store baseline and constraint files
 
+
+
+print "### creating constraints file ###" 
+print createConstraintFile(dirToWriteP, constraintFileNameParam, lowerRange, upperRange, constFlagForBaseline)
+print "### gettting baseline ###" 
 baseline_fileNameToWriteP = "baseline_" + str(runCount)
-#print createConstraintFile(dirToWriteP, constraintFileNameParam)
 minB, maxB = getBaselineForModel(runCount, dirToWriteP, baseline_fileNameToWriteP, constFlagForBaseline)
 print "And the baseline is (min, max format) \n", minB, maxB
 
-
 print "Executing D.E (minimized version) ... for {} D.E. runs and {} model runs".format(deRunCount, runCount)
-print "================================================"
+print "========================================================================="
 constraintFile = dirToWriteP + constraintFileNameParam 
 with  utility.duration(): 
   integrator.runDE(minB, maxB, IntegratedDefectModel, deRunCount, runCount, constraintFile)

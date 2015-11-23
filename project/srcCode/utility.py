@@ -198,97 +198,121 @@ def getAuxNameList():
   auxNameList.append("a17_PassiveErrorDensity")    
   return auxNameList
   
-def createAuxList(): 
-  import random   
+def createAuxList(lowerRange, upperRange, constFlagParam): 
+  import random   , math
 
   lowRangeList = []
   upperRangeList = []
 
   ## fixing low range 
 
-  ## some auxilairies can fit in an equation   
-  a01_equation = lambda x : random.uniform(0, 1)
-  a02_equation = lambda x : random.uniform(0, 1) 
-  a11_equation = lambda x : random.uniform(0, 1)
-  a14_equation = lambda x : random.uniform(0, 1)
-  a15_equation = lambda x : random.uniform(0, 1)    
+  ##for setting up auxiliaries that need regression equation 
+  if constFlagParam:
+   a01_equation = lambda x : 0.2128 * math.pow(x, 2) + 0.2955 * x + 0.9888
+   a02_equation = lambda x : -x + 2 
+   a11_equation = lambda x : 0.828 * math.exp(0.0173 * x)
+   a14_equation = lambda x : 0.0004 * math.exp(7.2984 * x) 
+   a15_equation = lambda x : -1.0286 * math.pow(x,2)  - 0.2283 * x + 1.0719 if x>= 0.4 else 0
+  else:
+   a01_equation = lambda x : random.uniform(0, 1)
+   a02_equation = lambda x : random.uniform(0, 1) 
+   a11_equation = lambda x : random.uniform(0, 1)
+   a14_equation = lambda x : random.uniform(0, 1)
+   a15_equation = lambda x : random.uniform(0, 1)    
  
   ## some auxiliaries need equations 
-  temprand1 = random.uniform(0, 1)
+  temprand1 = random.uniform(lowerRange, upperRange)
   a01_MultiplierSchedPressure = a01_equation(temprand1)
+  #print "Aux # 1: low: {} & high: {}".format(temprand1, a01_MultiplierSchedPressure)
   upperRangeList.append(a01_MultiplierSchedPressure)
   lowRangeList.append(temprand1)
+  #temprand1 = 0 
+  #a01_MultiplierSchedPressure = 0 
 
-  temprand2 = random.uniform(0, 1)  
+  temprand2 = random.uniform(lowerRange, upperRange)  
   a02_MultiplierWorkforce = a02_equation(temprand2)
+  #print "Aux # 2: low: {} & high: {}".format(temprand2, a02_MultiplierWorkforce)  
   upperRangeList.append(a02_MultiplierWorkforce) 
   lowRangeList.append(temprand2) 
   
   
   ## most auxiliaries are assumed to be between 0 & 1 
-  a03_NominalErr = random.uniform(0, 1)
+  a03_NominalErr = random.uniform(lowerRange, upperRange)
   upperRangeList.append(a03_NominalErr) 
-  lowRangeList.append(0)
+  lowRangeList.append(lowerRange)
   
-  a04_SWDevelopmentRate = random.uniform(0, 1)
-  lowRangeList.append(0)
+  a04_SWDevelopmentRate = random.uniform(lowerRange, upperRange)
+  lowRangeList.append(lowerRange)
   upperRangeList.append(a04_SWDevelopmentRate) 
   
-  a05_PotErrDetectRate = random.uniform(0, 1)
+  a05_PotErrDetectRate = random.uniform(lowerRange, upperRange)
   upperRangeList.append(a05_PotErrDetectRate) 
-  lowRangeList.append(0)
+  lowRangeList.append(lowerRange)
   
-  a06_AvgErrPerTask = random.uniform(0, 1)
+  a06_AvgErrPerTask = random.uniform(lowerRange, upperRange)
   upperRangeList.append(a06_AvgErrPerTask) 
-  lowRangeList.append(0)
+  lowRangeList.append(lowerRange)
   
-  a07_QARate = random.uniform(0, 1)
+  a07_QARate = random.uniform(lowerRange, upperRange)
   upperRangeList.append(a07_QARate) 
-  lowRangeList.append(0)
+  lowRangeList.append(lowerRange)
   
-  a08_ActualReworkMP = random.uniform(0, 1)
+  a08_ActualReworkMP = random.uniform(lowerRange, upperRange)
   upperRangeList.append(a08_ActualReworkMP) 
-  lowRangeList.append(0)
+  lowRangeList.append(lowerRange)
   
-  a09_DailyMPRework = random.uniform(0, 1)
+  a09_DailyMPRework = random.uniform(lowerRange, upperRange)
   upperRangeList.append(a09_DailyMPRework) 
-  lowRangeList.append(0)
+  lowRangeList.append(lowerRange)
 
   ## Only oen auxiliary has a direct value  
   a10_TimeToSmooth = 40 
   upperRangeList.append(a10_TimeToSmooth)   
   lowRangeList.append(40)
 
-  temprand3 = random.uniform(0, 1)    
+  ## the equations of auxiary 11 is  weird in the sense that as x increases, y decreases. 
+  ## as a result we get a range that is impossible to satisfy. Therefore we use the follwoing heuristic: 
+  ## to get y plug in any random value btween 0 & 1,but the corresponding lower range will be parameter lowerRange 
+  ##for A11 
+
+  temprand3 = random.uniform(lowerRange, upperRange)    
   a11_MultiplierToRegen = a11_equation(temprand3)
+  #print "Aux # 11: low: {} & high: {}".format(temprand3, a11_MultiplierToRegen)    
   upperRangeList.append(a11_MultiplierToRegen)  
-  lowRangeList.append(temprand3)
+  lowRangeList.append(lowerRange)
 
-  a12_ActiveErrorDensity = random.uniform(0, 1)
+  a12_ActiveErrorDensity = random.uniform(lowerRange, upperRange)
   upperRangeList.append(a12_ActiveErrorDensity) 
-  lowRangeList.append(0)
+  lowRangeList.append(lowerRange)
   
-  a13_TestingRate = random.uniform(0, 1)
+  a13_TestingRate = random.uniform(lowerRange, upperRange)
   upperRangeList.append(a13_TestingRate) 
-  lowRangeList.append(0)
+  lowRangeList.append(lowerRange)
   
-  temprand4 = random.uniform(0, 1)    
+  ## teh quations of auxiary 14 and 15 are weird in the sense that as x increases,y decreases. 
+  ## as a result we get a range that is impossible to satisfy. Therefore we use teh follwoing heuristic: 
+  ## to get y plugin ina ny random value btween 0 & 1,but the corresponding lower range will be parameter lowerRange 
+  ##for both A14 & A15 
+  
+  temprand4 = random.uniform(lowerRange, upperRange)    
   a14_ActiveErrorsRetiringFraction = a14_equation(temprand4)
+  #print "Aux # 14: low: {} & high: {}".format(temprand4, a14_ActiveErrorsRetiringFraction)      
   upperRangeList.append(a14_ActiveErrorsRetiringFraction) 
-  lowRangeList.append(temprand4)  
+  lowRangeList.append(lowerRange)  
   
-  temprand5 = random.uniform(0, 1)      
+  temprand5 = random.uniform(lowerRange, upperRange)      
   a15_FractionEscapingErrors = a15_equation(temprand5)
+  #print "Aux # 15: low : {} & high: {}".format(temprand5, a15_FractionEscapingErrors)        
   upperRangeList.append(a15_FractionEscapingErrors)  
-  lowRangeList.append(temprand5)     
+  lowRangeList.append(lowerRange)     
 
-  a16_BadFixGenRate = random.uniform(0, 1)
+  a16_BadFixGenRate = random.uniform(lowerRange, upperRange)
   upperRangeList.append(a16_BadFixGenRate) 
-  lowRangeList.append(0)
+  lowRangeList.append(lowerRange)
   
-  a17_PassiveErrorDensity = random.uniform(0, 1)
+  a17_PassiveErrorDensity = random.uniform(lowerRange, upperRange)
   upperRangeList.append(a17_PassiveErrorDensity) 
-  lowRangeList.append(0)
+  lowRangeList.append(lowerRange)
   
   
   
