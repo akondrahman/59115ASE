@@ -116,7 +116,19 @@ def MaxWalkSat(model, maxTries=100, maxChanges=10, threshold=0, p=0.5, step=10):
     cnt_Exc = 0
     cnt_Que = 0
     cnt_Dot = 0
-    cnt_Pls = 0    
+    cnt_Pls = 0
+    ## to keep track of eras
+    eraDict = {}
+    eraCount = 0
+    eraTracker = 50
+    temporary_sol= model()   # Just for getting the object
+    crr_era, prev_era = [], [0 for _ in xrange(temporary_sol.numOfDec)]   
+    terminateCount = 0
+    terminator = 10
+    eraList = []
+    a12Factor = 0.56
+    eraDictCount = 0
+
     for cntTry in range(maxTries):
         curr_solve_for_model = model()
         if cntTry==0:
@@ -162,7 +174,8 @@ def MaxWalkSat(model, maxTries=100, maxChanges=10, threshold=0, p=0.5, step=10):
             else: 
                 output = output + "."
                 cnt_Dot = cnt_Dot + 1
-            if printCounter % 40 == 0:
+            # if printCounter % 40 == 0:
+            if printCounter % eraTracker == 0:
                 print("itrations so far={} '?'={}, '!'={}, '+'={}, '.'={}, output={} ".format(printCounter, cnt_Que, cnt_Exc, cnt_Pls, cnt_Dot,output))
                 #print(output + '\n')
                 output = ""
@@ -170,8 +183,34 @@ def MaxWalkSat(model, maxTries=100, maxChanges=10, threshold=0, p=0.5, step=10):
                 cnt_Que = 0
                 cnt_Exc = 0
                 cnt_Pls = 0
-                cnt_Dot = 0    
+                cnt_Dot = 0 
 
+            ## era purpose
+
+            if eraCount >=20:
+                ## comparing prev and current
+                crr_era = sorted(eraList, reverse=True)
+                #print("Current era:", curr_era)
+                eraDictCount = eraDictCount + 1
+                eraDict[eraDictCount] = crr_era
+                a12Output = utilities.a12(crr_era, prev_era)
+
+                if a12Output <= a12Factor:
+                    terminateCount = terminateCount + 1
+                eraList = []
+                eraCount = 0
+                prev_era = crr_era
+                #print("era count ={}, era dict= {}, a12={}, terminator={}".format(eraCount, prev_era, crr_era, a12Output, terminateCount))
+            else:
+                eraList.append(sbest.getobj())
+                eraCount += 1
+
+
+    print("Era Dict Count :", eraDictCount)
+    print("Era Dictionary First:", eraDict[1])
+    print("-------------------------------------------------------------------------------------")     
+    print("Era Dictionary Last:", eraDict[eraDictCount])
+    print("-------------------------------------------------------------------------------------")     
     
     _printSolution(sbest.decisionVec, sbest.sumOfObjs() , sbest.getobj(), printCounter)    
     _printEndMsg(MaxWalkSat.__name__)

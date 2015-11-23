@@ -19,7 +19,7 @@ from optimizers import SimulatedAnnealing, MaxWalkSat
 
 seed(time())
 for model in [dtlz7 ]:
-  for optimizer in [SimulatedAnnealing]:
+  for optimizer in [MaxWalkSat]:
      print "Optimizer '{}' will now work on Model '{}'".format(optimizer.__name__, model.__name__)
      print "-------------------------------------------------------------------------------------"
      optimizer(model)
