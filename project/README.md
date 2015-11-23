@@ -46,8 +46,14 @@
 
 * Output : D.E min (11 auxiliairies are between 0 & 1, five use equations with three heuristics to handle infinite loop )
 
-**see `output/0_1_heuristic_de_min_output.txt`** 
+**For output, see `output/0_1_heuristic_de_min_output.txt`** 
 
+* Output : D.E min (11 auxiliairies are between 0 & 2, five use equations with four heuristics to handle infinite loop )
+_When we increase upper range from 0 to 2, we might get stuck in an infntie loop to satisfy all constraints. For example, the following text file shows how D.E. got stuck while running 100 times. An impossible to satisfy constraint was generated_
+
+**For output, see `output/0_2_heuristic_de_min_output.txt`** 
+
+**For corresponding constraints see `supplementary/0_2_mod_equ_constraints.csv`**
 
 #### References
 [1] Raymond J. Madachy. "Software Process Dynamics",  Wiley Interscience, 2007	

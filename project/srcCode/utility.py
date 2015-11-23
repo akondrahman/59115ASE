@@ -229,11 +229,16 @@ def createAuxList(lowerRange, upperRange, constFlagParam):
   #temprand1 = 0 
   #a01_MultiplierSchedPressure = 0 
 
+  ## the equations of auxiary 2 is  weird in the sense that as x increases, y decreases, for x >=1 as the equation is -x+2 . 
+  ## as a result we get a range that is impossible to satisfy. Therefore we use the follwoing heuristic: 
+  ## to get y plug in any random value between 0 & 1 or 0 & 10,but the corresponding lower range will be parameter lowerRange 
+  ##for A11 
+
   temprand2 = random.uniform(lowerRange, upperRange)  
   a02_MultiplierWorkforce = a02_equation(temprand2)
   #print "Aux # 2: low: {} & high: {}".format(temprand2, a02_MultiplierWorkforce)  
   upperRangeList.append(a02_MultiplierWorkforce) 
-  lowRangeList.append(temprand2) 
+  lowRangeList.append(lowerRange) 
   
   
   ## most auxiliaries are assumed to be between 0 & 1 

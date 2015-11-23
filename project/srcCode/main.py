@@ -62,10 +62,10 @@ showFlows=False  # to show flow values while executing the model
 #runIntegrator()
 runCount = 365  ## how many time the model will run 
 constFlagForBaseline = True ## th flag detrmines whether or not hte five equations will be used to geenrate constaints 
-deRunCount=1  ## howmany times DE will run? 
+deRunCount=100  ## howmany times DE will run? 
 dirToWriteP="/Users/akond/Documents/Fall_2015/ase/59115ASE/project/supplementary/" ## directory to store baseline and constraint files  
 lowerRange = 0  ## settign the lower range for axuiliries of the model 
-upperRange = 10  ## settign the upper range for axuiliries of the model 
+upperRange = 2  ## settign the upper range for axuiliries of the model 
 constraintFileNameParam=  str(lowerRange) + "_" + str(upperRange) + "_mod_equ_constraints.csv" ## file to store baseline and constraint files
 
 

@@ -1,0 +1,56 @@
+Last login: Sun Nov 22 17:42:15 on ttys002
+eb2-2206-mac03-4:srcCode akond$ python main.py 
+### creating constraints file ###
+Created  file 0_2_mod_equ_constraints.csv
+### gettting baseline ###
+Getting baseline for 365 times
+Writing dictionary to file ...  DONE !
+And the baseline is (min, max format) 
+-33.9196987333 1051.59502842
+Executing D.E (minimized version) ... for 1 D.E. runs and 365 model runs
+=========================================================================
+===================
+BASELINE: MIN= 0  MAX= 15997.1062602
+Doing minimization: 0.999999937489: [2.121028867447212, 0.03275557078783914, 0.13535033820504788, 0.7101198545601325, 0.11540124561523116, 1.3441195417259206, 0.548505313723208, 0.24710332148064287, 1.3754709744796902, 40.0, 0.5787927873323224, 0.003057023244860016, 1.1477783012130107, 0.6096114869321065, 0.0, 1.611489941638601, 0.8748878967192858]
+
+------------------------------------------------------------------------
+# Runtime: 8.855 secs
+eb2-2206-mac03-4:srcCode akond$ python main.py 
+### creating constraints file ###
+Created  file 0_2_mod_equ_constraints.csv
+### gettting baseline ###
+Getting baseline for 365 times
+Writing dictionary to file ...  DONE !
+And the baseline is (min, max format) 
+-33.9343869607 1061.61422725
+Executing D.E (minimized version) ... for 10 D.E. runs and 365 model runs
+=========================================================================
+===================
+BASELINE: MIN= 0  MAX= 25190.8641917
+Doing minimization: 0.999999960303: [1.634005909591964, 1.064717465578255, 0.36977067113273443, 0.12980342619896362, 0.8789565009558268, 0.5686683256121673, 0.0400362160551335, 0.07541869799475368, 0.2806492651817871, 40.0, 0.46767202873861813, 1.0994942230052618, 1.565680745382744, 109.76183662504934, 0.0, 0.6900786004970737, 0.023524141769732762]
+
+------------------------------------------------------------------------
+# Runtime: 62.295 secs
+eb2-2206-mac03-4:srcCode akond$ python main.py 
+### creating constraints file ###
+Created  file 0_2_mod_equ_constraints.csv
+### gettting baseline ###
+Getting baseline for 365 times
+Writing dictionary to file ...  DONE !
+And the baseline is (min, max format) 
+-35.6517999154 1040.01886563
+Executing D.E (minimized version) ... for 100 D.E. runs and 365 model runs
+=========================================================================
+
+
+
+
+
+
+<DID NOT COMPLETE>
+
+
+
+
+
+
