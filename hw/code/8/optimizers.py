@@ -13,6 +13,7 @@ from random import uniform,randint,random
 import utilities 
 #from time import time
 #import numpy as np
+#Currently Minimizing
 def SimulatedAnnealing(modelParam):
     ###print purpose
     output = ""
@@ -104,9 +105,14 @@ def SimulatedAnnealing(modelParam):
 
     _printSolution(best_sol.decisionVec, best_sol.sumOfObjs(), best_sol.getobj(), printCounter)
     _printEndMsg(SimulatedAnnealing.__name__)
-    print("Era dictionary ... ", eraDict)
+    print("------------------------------------------------------------------------------------------------")
+    print("Era dictionary First:=", eraDict[1])
+    print("Era dictionary Last:=", eraDict[eraDictCount])
+    print("------------------------------------------------------------------------------------------------")
     return best_sol.decisionVec
 
+
+#Currently Minimizing
 def MaxWalkSat(model, maxTries=100, maxChanges=10, threshold=0, p=0.5, step=10):
     printCounter = 0
     ####
