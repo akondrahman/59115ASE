@@ -10,7 +10,8 @@ Created on Fri Oct  2 11:25:29 2015
 from __future__ import print_function, unicode_literals
 from __future__ import absolute_import, division
 from random import uniform,randint,random
-import utilities 
+import utilities
+from model import BaseLine
 #from time import time
 #import numpy as np
 #Currently Minimizing
@@ -29,8 +30,17 @@ def SimulatedAnnealing(modelParam):
     best_sol =modelParam()
     best_sol.copy(curr_sol)
     #print("Before ... ", curr_sol.getCurrentBaseline()) 
+
+    print("isBaseLineSet:", BaseLine.is_baseline_set)
     
-    curr_sol.updateBaseline(curr_sol.getIntialBaseline())
+    if BaseLine.is_baseline_set == False:
+        curr_sol.updateBaseline(curr_sol.getIntialBaseline())
+    else:
+        print("HO GAYA TRUE")
+        newBaseLine = [BaseLine.baseline_min, BaseLine.baseline_max]
+        curr_sol.updateBaseline(newBaseLine)
+        print("newBaseLine:", newBaseLine)
+
     #print( "After ... ",    curr_sol.getCurrentBaseline())  
     #exit 
     ## kMaxVal is always fixed to 1000 !
@@ -96,19 +106,38 @@ def SimulatedAnnealing(modelParam):
           eraCount +=  1
         #if terminateCount >= terminator: 
         #     break 
-        if best_sol.sumOfObjs() < best_sol.getCurrentBaseline()[0]: 
-          best_sol.updateBaseline( [best_sol.sumOfObjs(), best_sol.getCurrentBaseline()[1]])
-        if best_sol.sumOfObjs() > best_sol.getCurrentBaseline()[1]: 
-          best_sol.updateBaseline([best_sol.getCurrentBaseline()[0], best_sol.sumOfObjs()])          
+        if curr_sol.sumOfObjs() < curr_sol.getCurrentBaseline()[0]: 
+          curr_sol.updateBaseline( [curr_sol.sumOfObjs(), curr_sol.getCurrentBaseline()[1]])
+          # print("+++++^^BASELINE UPDATED")
+        if curr_sol.sumOfObjs() > curr_sol.getCurrentBaseline()[1]: 
+          curr_sol.updateBaseline([curr_sol.getCurrentBaseline()[0], curr_sol.sumOfObjs()])       
+          print("+++++^^BASELINE UPDATED MILA MAX")
+          exit()
+
+        #DOUBT
+        if curr_sol.sumOfObjs() > 12.7814799596:
+            print("GREATER THAN 13")
+            exit()
+
         counter = counter - 1    
         #counter= counter + 1   
 
+    #Update Global Baseline :
+    print(curr_sol.getCurrentBaseline());
+
+    BaseLine.baseline_min = curr_sol.getCurrentBaseline()[0]
+    BaseLine.baseline_max = curr_sol.getCurrentBaseline()[1]
+    BaseLine.is_baseline_set = True
+
+    print("BaseLine Min:", BaseLine.baseline_min)
+    print("BaseLine Max:", BaseLine.baseline_max)
+
     _printSolution(best_sol.decisionVec, best_sol.sumOfObjs(), best_sol.getobj(), printCounter)
     _printEndMsg(SimulatedAnnealing.__name__)
-    print("------------------------------------------------------------------------------------------------")
-    print("Era dictionary First:=", eraDict[1])
-    print("Era dictionary Last:=", eraDict[eraDictCount])
-    print("------------------------------------------------------------------------------------------------")
+    # print("------------------------------------------------------------------------------------------------")
+    # print("Era dictionary First:=", eraDict[1])
+    # print("Era dictionary Last:=", eraDict[eraDictCount])
+    # print("------------------------------------------------------------------------------------------------")
     return best_sol.decisionVec
 
 
@@ -135,8 +164,22 @@ def MaxWalkSat(model, maxTries=100, maxChanges=10, threshold=0, p=0.5, step=10):
     a12Factor = 0.56
     eraDictCount = 0
 
+    print("isBaseLineSet:", BaseLine.is_baseline_set)
+    
     for cntTry in range(maxTries):
+
         curr_solve_for_model = model()
+
+        if BaseLine.is_baseline_set == False:
+            curr_solve_for_model.updateBaseline(curr_solve_for_model.getIntialBaseline())
+            print("curr_solve_for_model baseline_min:",curr_solve_for_model.getCurrentBaseline())
+            # exit()
+        else:
+            # print("HO GAYA TRUE")
+            newBaseLine = [BaseLine.baseline_min, BaseLine.baseline_max]
+            curr_solve_for_model.updateBaseline(newBaseLine)
+            # print("newBaseLine:", newBaseLine)
+
         if cntTry==0:
             sbest=model()
             sbest.copy(curr_solve_for_model)
@@ -211,7 +254,23 @@ def MaxWalkSat(model, maxTries=100, maxChanges=10, threshold=0, p=0.5, step=10):
                 eraList.append(sbest.getobj())
                 eraCount += 1
 
+            if curr_solve_for_model.sumOfObjs() < curr_solve_for_model.getCurrentBaseline()[0]: 
+                curr_solve_for_model.updateBaseline( [curr_solve_for_model.sumOfObjs(), curr_solve_for_model.getCurrentBaseline()[1]])
+                # print("+++++^^BASELINE UPDATED")
+            if curr_solve_for_model.sumOfObjs() > curr_solve_for_model.getCurrentBaseline()[1]: 
+                curr_solve_for_model.updateBaseline([curr_solve_for_model.getCurrentBaseline()[0], curr_solve_for_model.sumOfObjs()])       
+                print("+++++^^BASELINE UPDATED MILA MAX")
+                exit()
 
+        #Update Global Baseline :
+        print(curr_solve_for_model.getCurrentBaseline());
+
+        BaseLine.baseline_min = curr_solve_for_model.getCurrentBaseline()[0]
+        BaseLine.baseline_max = curr_solve_for_model.getCurrentBaseline()[1]
+        BaseLine.is_baseline_set = True
+
+    print("BaseLine Min:", BaseLine.baseline_min)
+    print("BaseLine Max:", BaseLine.baseline_max) 
     print("Era Dict Count :", eraDictCount)
     print("Era Dictionary First:", eraDict[1])
     print("-------------------------------------------------------------------------------------")     

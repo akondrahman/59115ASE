@@ -172,14 +172,18 @@ class dtlz7(Model):
         self.baseline = [_ for _ in other.baseline]
     def getIntialBaseline(self):
       tries=1000000
+      # tries=1
       minEnergy = 9999999
       maxEnergy = 0
       for cnt in range(tries): 
-       energyToCheck = self.sumOfObjsInit( )  
-      if energyToCheck < minEnergy: 
-         minEnergy = energyToCheck
-      if maxEnergy < energyToCheck: 
-         maxEnergy = energyToCheck 
+        energyToCheck = self.sumOfObjsInit()  
+        if energyToCheck < minEnergy: 
+          minEnergy = energyToCheck
+        if maxEnergy < energyToCheck: 
+          maxEnergy = energyToCheck
+      print "maxEnergy:", maxEnergy
+      print "minEnergy:", minEnergy
+      exit()
       return [minEnergy , maxEnergy]  
     def updateBaseline(self, baselineParam):
       self.baseline =   [_ for _ in   baselineParam ]
@@ -188,5 +192,16 @@ class dtlz7(Model):
     def sumOfObjsInit(self):
         return float(sum(self.getobj()))             
     def sumOfObjs(self):
+        # print "GET OBJECTIVES:",self.getobj()
+        # exit()
         return float(sum(self.getobj())  / sum(self.getCurrentBaseline()))       
-        
+       
+
+class BaseLine():
+  baseline_min=0
+  baseline_max=0
+  is_baseline_set=False 
+
+
+
+
