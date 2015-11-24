@@ -11,7 +11,7 @@ from __future__ import absolute_import, division
 from random import uniform,randint,random
 import utilities
 from model import BaseLine
-import DifferentialEvolution
+from DifferentialEvolution import *
 #from time import time import de
 #import numpy as np
 #Currently Minimizing

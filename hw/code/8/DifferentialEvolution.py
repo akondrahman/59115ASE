@@ -72,7 +72,14 @@ def candidate(curr_candidate_sol):
 	return new
 
 
-def de(model, baseline_min,baseline_max, max = 100, f = 0.75, cf = 0.3, epsilon = 0.01):
+def de(model, max = 100, f = 0.75, cf = 0.3, epsilon = 0.01):
+
+	baseline_min,baseline_max = get_min_max(model)
+	# print "BASELINE: MIN=", baseline_min, " MAX=", baseline_max 
+	BaseLine.baseline_min = baseline_min
+	BaseLine.baseline_max = baseline_max
+	print "baseline_min,baseline_max ", baseline_min," ",baseline_max
+	
 	curr_candidate_sol = model()
 	# print "FROM DE-->", curr_candidate_sol
 	np = curr_candidate_sol.numOfDec * 10
@@ -216,20 +223,14 @@ def a(lst):
 	return lst[int(n(len(lst)))]
 
 
-if __name__ == "__main__":
-	print "Starting Differential Evolution. Hold on tight."
-	print "================================================"
-	model=Golinski
+# if __name__ == "__main__":
+# 	print "Starting Differential Evolution. Hold on tight."
+# 	print "================================================"
+# 	model=Golinski
 	# model=Osyczka2
 	# model=Schaffer
 	# obj = BaseLine()
-
-	baseline_min,baseline_max = get_min_max(model)
-	# print "BASELINE: MIN=", baseline_min, " MAX=", baseline_max 
-	BaseLine.baseline_min = baseline_min
-	BaseLine.baseline_max = baseline_max
-	print "baseline_min,baseline_max ", baseline_min," ",baseline_max
-	de(model,baseline_min,baseline_max,1000)
+	# de(model,baseline_min,baseline_max,1000)
 
 # if __name__ == "__main__":
 # 	model=Golinski

@@ -13,7 +13,7 @@ import random
 #import numpy as np
 #from pdb import set_trace
 from model import  dtlz7, BaseLine, Schaffer
-from optimizers import SimulatedAnnealing, MaxWalkSat 
+from optimizers import de 
 
 
 baselineDict={}
@@ -34,8 +34,9 @@ runs=20
 #modelList=[Schaffer]
 
 for model in [dtlz7]:
-       runOptimizer(SimulatedAnnealing, model, runs) 
-       runOptimizer(MaxWalkSat, model, runs) 
+       # runOptimizer(SimulatedAnnealing, model, runs) 
+       # runOptimizer(MaxWalkSat, model, runs) 
+       runOptimizer(de, model, runs) 
 
 
 #print("Note-1(a): For MaxWlakSat, '?' means *mutated solution* is better than *best solution* ")
