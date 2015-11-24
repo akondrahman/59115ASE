@@ -15,6 +15,7 @@ class Model(object):
         self.numOfDec=0
         self.numOfObjs=0        
         self.upperRange=[0]
+        self.baseline=[999999, 0]
 
 
 
@@ -42,7 +43,19 @@ class Model(object):
         return []
 
     def sumOfObjs(self):
-        return sum(self.getobj())
+        # print "GET OBJECTIVES:",self.getobj()
+        # exit()
+        #print "obj:{}, currBaseline:{}".format(self.getobj(), self.getCurrentBaseline())
+        #exit()
+        return float(sum(self.getobj())  / sum(self.getCurrentBaseline()))                       
+
+    def updateBaseline(self, baselineParam):
+      self.baseline =   [_ for _ in   baselineParam ]
+    def getCurrentBaseline(self):
+      return self.baseline     
+    def sumOfObjsInit(self):
+        return float(sum(self.getobj()))             
+
 
 
 class Osyczka2(Model):
@@ -104,12 +117,20 @@ class Schaffer(Model):
         self.upperRange=[100000]
         ## then create the initialization 
         self.generateInitialVector()
+        self.baseline = [999999, 0]
 
     def getobj(self):
         f1=math.pow(self.decisionVec[0], 2)
         f2=math.pow((self.decisionVec[0]-2), 2)
         return [f1,f2] 
 
+        
+#    def updateBaseline(self, baselineParam):
+#      self.baseline =   [_ for _ in   baselineParam ]
+#    def getCurrentBaseline(self):
+#      return self.baseline     
+#    def sumOfObjsInit(self):
+#        return float(sum(self.getobj()))             
 
 
 class Kursawe(Model):
@@ -170,38 +191,30 @@ class dtlz7(Model):
         self.numOfObjs = other.numOfObjs        
         self.upperRange = [_ for _ in other.upperRange]   
         self.baseline = [_ for _ in other.baseline]
-    def getIntialBaseline(self):
-      tries=1000000
-      # tries=1
-      minEnergy = 9999999
-      maxEnergy = 0
-      for cnt in range(tries): 
-        energyToCheck = self.sumOfObjsInit()  
-        if energyToCheck < minEnergy: 
-          minEnergy = energyToCheck
-        if maxEnergy < energyToCheck: 
-          maxEnergy = energyToCheck
-      print "maxEnergy:", maxEnergy
-      print "minEnergy:", minEnergy
-      exit()
-      return [minEnergy , maxEnergy]  
-    def updateBaseline(self, baselineParam):
-      self.baseline =   [_ for _ in   baselineParam ]
-    def getCurrentBaseline(self):
-      return self.baseline     
-    def sumOfObjsInit(self):
-        return float(sum(self.getobj()))             
-    def sumOfObjs(self):
-        # print "GET OBJECTIVES:",self.getobj()
-        # exit()
-        return float(sum(self.getobj())  / sum(self.getCurrentBaseline()))       
+   
        
 
 class BaseLine():
   baseline_min=0
   baseline_max=0
   is_baseline_set=False 
-
+  @staticmethod
+  def getInitialBaseline(modelParam):
+      tries=1000
+      # tries=1
+      minEnergy = 9999999
+      maxEnergy = 0
+      modelObj = modelParam()  
+      for cnt in range(tries):
+        modelObj.generateInitialVector()  
+        energyToCheck = modelObj.sumOfObjs()
+        if energyToCheck < minEnergy: 
+          minEnergy = energyToCheck
+        if maxEnergy < energyToCheck: 
+          maxEnergy = energyToCheck
+      #print "min : {}, max: {} in Baseline.getInitialBaseline()".format(minEnergy, maxEnergy)  
+      
+      return [minEnergy, maxEnergy]
 
 
 

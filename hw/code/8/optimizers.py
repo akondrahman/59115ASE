@@ -34,7 +34,7 @@ def SimulatedAnnealing(modelParam):
     print("isBaseLineSet:", BaseLine.is_baseline_set)
     
     if BaseLine.is_baseline_set == False:
-        curr_sol.updateBaseline(curr_sol.getIntialBaseline())
+        curr_sol.updateBaseline(BaseLine.getInitialBaseline(modelParam))
     else:
         print("HO GAYA TRUE")
         newBaseLine = [BaseLine.baseline_min, BaseLine.baseline_max]
@@ -45,8 +45,8 @@ def SimulatedAnnealing(modelParam):
     #exit 
     ## kMaxVal is always fixed to 1000 !
     kMaxVal=1000
-    counter = 0 
-    counter = 1000
+    #counter = 0 
+    counter = 10000
     ## to keep track of eras 
     eraDict = {}
     eraCount  = 0
@@ -57,6 +57,7 @@ def SimulatedAnnealing(modelParam):
     eraList = []
     a12Factor = 0.56
     eraDictCount  = 0
+
     while (counter > 0) and (curr_sol.sumOfObjs() > eMaxVal):
         printCounter = printCounter + 1
 
@@ -112,12 +113,12 @@ def SimulatedAnnealing(modelParam):
         if curr_sol.sumOfObjs() > curr_sol.getCurrentBaseline()[1]: 
           curr_sol.updateBaseline([curr_sol.getCurrentBaseline()[0], curr_sol.sumOfObjs()])       
           print("+++++^^BASELINE UPDATED MILA MAX")
-          exit()
+          #exit()
 
-        #DOUBT
-        if curr_sol.sumOfObjs() > 12.7814799596:
-            print("GREATER THAN 13")
-            exit()
+#        #DOUBT
+#        if curr_sol.sumOfObjs() > 12.7814799596:
+#            print("GREATER THAN 13")
+#            #exit()
 
         counter = counter - 1    
         #counter= counter + 1   
@@ -129,8 +130,14 @@ def SimulatedAnnealing(modelParam):
     BaseLine.baseline_max = curr_sol.getCurrentBaseline()[1]
     BaseLine.is_baseline_set = True
 
+
     print("BaseLine Min:", BaseLine.baseline_min)
-    print("BaseLine Max:", BaseLine.baseline_max)
+    print("BaseLine Max:", BaseLine.baseline_max) 
+    print("Era Dict Count :", eraDictCount)
+    print("Era Dictionary First:", eraDict[1])
+    print("-------------------------------------------------------------------------------------")     
+    print("Era Dictionary Last:", eraDict[eraDictCount])
+    print("-------------------------------------------------------------------------------------")         
 
     _printSolution(best_sol.decisionVec, best_sol.sumOfObjs(), best_sol.getobj(), printCounter)
     _printEndMsg(SimulatedAnnealing.__name__)
@@ -171,7 +178,7 @@ def MaxWalkSat(model, maxTries=100, maxChanges=10, threshold=0, p=0.5, step=10):
         curr_solve_for_model = model()
 
         if BaseLine.is_baseline_set == False:
-            curr_solve_for_model.updateBaseline(curr_solve_for_model.getIntialBaseline())
+            curr_solve_for_model.updateBaseline(BaseLine.getInitialBaseline(model))
             print("curr_solve_for_model baseline_min:",curr_solve_for_model.getCurrentBaseline())
             # exit()
         else:
@@ -260,7 +267,7 @@ def MaxWalkSat(model, maxTries=100, maxChanges=10, threshold=0, p=0.5, step=10):
             if curr_solve_for_model.sumOfObjs() > curr_solve_for_model.getCurrentBaseline()[1]: 
                 curr_solve_for_model.updateBaseline([curr_solve_for_model.getCurrentBaseline()[0], curr_solve_for_model.sumOfObjs()])       
                 print("+++++^^BASELINE UPDATED MILA MAX")
-                exit()
+                #exit()
 
         #Update Global Baseline :
         print(curr_solve_for_model.getCurrentBaseline());

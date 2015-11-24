@@ -456,14 +456,4 @@ if __name__ == '__main__':
 
 
 
-  def get_min_max(model):
-  min = 999999
-  max = -999999
-  for x in xrange(2000):
-    temp_candidate_sol = model()
-    temp_score = temp_candidate_sol.sumOfObjsInit()
-    if(temp_score > max):
-      max = temp_score
-    if(temp_score < min):
-      min = temp_score
-  return (min,max)
+  
