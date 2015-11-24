@@ -6,13 +6,13 @@ Created on Fri Oct  2 11:25:29 2015
 """
 
 
-
 from __future__ import print_function, unicode_literals
 from __future__ import absolute_import, division
 from random import uniform,randint,random
 import utilities
 from model import BaseLine
-#from time import time
+import DifferentialEvolution
+#from time import time import de
 #import numpy as np
 #Currently Minimizing
 def SimulatedAnnealing(modelParam):

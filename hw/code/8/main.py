@@ -16,7 +16,6 @@ from model import  dtlz7, BaseLine, Schaffer
 from optimizers import SimulatedAnnealing, MaxWalkSat 
 
 
-
 baselineDict={}
 def runOptimizer(optimizerNameP, modelNameP, runP):
  for i in xrange(runP):
