@@ -3,3 +3,4 @@ hw/.DS_Store
 hw/code/.DS_Store
 hw/code/.idea
 
+*.pyc

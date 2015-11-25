@@ -62,7 +62,7 @@ class Thing():
 def candidate(curr_candidate_sol):
 	# curr_candidate_sol = model()
 	curr_candidate_sol.decisionVec = [lo(curr_candidate_sol,d) + n(hi(curr_candidate_sol,d) - lo(curr_candidate_sol,d)) for d in decisions(curr_candidate_sol)]
-	
+
 	while (not curr_candidate_sol.check()):
 		curr_candidate_sol.decisionVec = [lo(curr_candidate_sol,d) + n(hi(curr_candidate_sol,d) - lo(curr_candidate_sol,d)) for d in decisions(curr_candidate_sol)]
 
@@ -73,23 +73,23 @@ def candidate(curr_candidate_sol):
 
 
 def de(model, max = 100, f = 0.75, cf = 0.3, epsilon = 0.01):
-	
+
 	eraDict = {}
     eraCount  = 0
     eraTracker = 50
     crr_era, prev_era = [], [0 for _ in range(curr_sol.numOfDec)]
-    terminateCount = 0 
-    terminator = 10 
+    terminateCount = 0
+    terminator = 10
     eraList = []
     a12Factor = 0.56
     eraDictCount  = 0
 
 	baseline_min,baseline_max = get_min_max(model)
-	# print "BASELINE: MIN=", baseline_min, " MAX=", baseline_max 
+	# print "BASELINE: MIN=", baseline_min, " MAX=", baseline_max
 	BaseLine.baseline_min = baseline_min
 	BaseLine.baseline_max = baseline_max
 	print "baseline_min,baseline_max ", baseline_min," ",baseline_max
-	
+
 	curr_candidate_sol = model()
 	# print "FROM DE-->", curr_candidate_sol
 	np = curr_candidate_sol.numOfDec * 10
@@ -120,37 +120,37 @@ def de(model, max = 100, f = 0.75, cf = 0.3, epsilon = 0.01):
 	# for each_thing in frontier:
 	# 	prev_each_thing_score = each_thing.score
 	# 	each_thing.score = float(each_thing.score - BaseLine.baseline_min)/(BaseLine.baseline_max - BaseLine.baseline_min)
-	
+
 	#total = total score of all the candidates found so far
 	for k in xrange(max):
 		total,n = update(f,cf,frontier,curr_candidate_sol,BaseLine.baseline_min,BaseLine.baseline_max)
 
 		if eraCount >=20:
-			## comparing prev and current 
+			## comparing prev and current
           crr_era = sorted(eraList, reverse=True)
           #print("Current era: ", crr_era)
           eraDictCount = eraDictCount + 1
           eraDict[eraDictCount] = crr_era
-          a12Output =  utilities.a12(crr_era, prev_era) 
+          a12Output =  utilities.a12(crr_era, prev_era)
 
           if a12Output <= a12Factor:
-             terminateCount = terminateCount + 1 
+             terminateCount = terminateCount + 1
           eraList = []
           eraCount = 0
           prev_era = crr_era
           #print("era count ={}, era dict= {}, a12={}, terminator={}".format(eraCount, prev_era, crr_era, a12Output, terminateCount))
         # else:
-        #   eraList.append(best_sol.getobj()) 
-        #   eraCount +=  1	
+        #   eraList.append(best_sol.getobj())
+        #   eraCount +=  1
 
 		# print "BASELINE: MIN=", BaseLine.baseline_min," MAX=", BaseLine.baseline_max
 		# if total/n > (1 - epsilon):
-		# 	print "break: value of k=", k, " total=",total, "n=",n 
+		# 	print "break: value of k=", k, " total=",total, "n=",n
 		# 	break
 	# for x in frontier:
 	# 	print "print --x:",x.id," ",x.have, x.score
 
-	#Now baseline everything again 
+	#Now baseline everything again
 
 	for each_thing in frontier:
 		each_thing.score = (each_thing.score - BaseLine.baseline_min) / ( BaseLine.baseline_max - BaseLine.baseline_min + 0.001)
@@ -163,7 +163,7 @@ def de(model, max = 100, f = 0.75, cf = 0.3, epsilon = 0.01):
 	print "BASELINE: MIN=", BaseLine.baseline_min," MAX=", BaseLine.baseline_max
   	sorted_keys = sorted(score_have_dict.keys(),reverse = True)
   	print "%s: %s" % (sorted_keys[0], score_have_dict[sorted_keys[0]])
-	
+
 	return frontier
 
 def update(f,cf, frontier, curr_candidate_sol,baseline_min,baseline_max,total=0.0, n=0):
@@ -174,10 +174,10 @@ def update(f,cf, frontier, curr_candidate_sol,baseline_min,baseline_max,total=0.
 		new = extrapolate(frontier,x,f,cf,curr_candidate_sol,baseline_min,baseline_max)
 		# new_normalized_score = (new.score - BaseLine.baseline_min) / ( BaseLine.baseline_max - BaseLine.baseline_min + 0.001)
 		new_normalized_score = (new.score - BaseLine.baseline_min) / ( BaseLine.baseline_max - BaseLine.baseline_min)
-		eraList.append(new_normalized_score) 
-		eraCount +=  1	
+		eraList.append(new_normalized_score)
+		eraCount +=  1
 		# print "new_score:", new.score
-		# print "extrapolated vector:", new.have	
+		# print "extrapolated vector:", new.have
 		# print "parent :", s
 		if new.score > s:
 			# print "+++++++++++++++++++++++++++++++++++++++"
@@ -187,7 +187,7 @@ def update(f,cf, frontier, curr_candidate_sol,baseline_min,baseline_max,total=0.
 			# print "s=", s
 			x.score = new.score
 			x.have = new.have
-		
+
 		total +=x.score
 		# print "x.score:", x.score
 		# print "total:", total
@@ -222,7 +222,7 @@ def extrapolate(frontier, one, f, cf,curr_candidate_sol,baseline_min,baseline_ma
 		out.have[d] = two.have[d]
 		curr_candidate_sol.decisionVec = out.have
 
-	current_score = score(curr_candidate_sol)	
+	current_score = score(curr_candidate_sol)
 	if (current_score > BaseLine.baseline_max):
 		BaseLine.baseline_max = current_score
 		print "------"
@@ -234,7 +234,7 @@ def extrapolate(frontier, one, f, cf,curr_candidate_sol,baseline_min,baseline_ma
 		print "------"
 
 	# out.score = (score(curr_candidate_sol) - BaseLine.baseline_min)/(BaseLine.baseline_max - BaseLine.baseline_min)
-	out.score = score(curr_candidate_sol) 
+	out.score = score(curr_candidate_sol)
 	return out
 
 

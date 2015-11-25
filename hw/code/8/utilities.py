@@ -1,4 +1,5 @@
 import random
+import math
 rand = random.random
 any  = random.choice
 seed = random.seed
@@ -20,17 +21,17 @@ g    = lambda n: round(n,2)
 
 class o():
   "Anonymous container"
-  def __init__(i,**fields) : 
+  def __init__(i,**fields) :
     i.override(fields)
   def override(i,d): i.__dict__.update(d); return i
 
   def __repr__(i):
     d = i.__dict__
     name = i.__class__.__name__
-    return name+'{'+' '.join([':%s %s' % (k,pretty(d[k])) 
+    return name+'{'+' '.join([':%s %s' % (k,pretty(d[k]))
                      for k in i.show()])+ '}'
   def show(i):
-    return [k for k in sorted(i.__dict__.keys()) 
+    return [k for k in sorted(i.__dict__.keys())
             if not "_" in k]
 
 
@@ -39,14 +40,14 @@ def a12(lst1,lst2):
   """how often is lst1 often more than y in lst2?
   assumes lst1 nums are meant to be greater than lst2"""
 
-  def loop(t,t1,t2): 
+  def loop(t,t1,t2):
     while t1.m < t1.n and t2.m < t2.n:
       h1 = t1.l[t1.m] #mth element of list 1
       h2 = t2.l[t2.m] #mth element of list 2
       h3 = t2.l[t2.m+1] if t2.m+1 < t2.n else None # next element if it is not end of list else None
       # print "h1:", h1, ""
       if h1 > h2:
-        t1.m  += 1; t1.gt += t2.n - t2.m  
+        t1.m  += 1; t1.gt += t2.n - t2.m
       elif h1 == h2:
         # if h3 and gt(h1,h3) < 0:
         if h3 and h1 > h3:
@@ -62,7 +63,7 @@ def a12(lst1,lst2):
   n2   = len(lst2)
   t1   = o(l=lst1,m=0,eq=0,gt=0,n=n1)
   t2   = o(l=lst2,m=0,eq=0,gt=0,n=n2)
-  # print t1 
+  # print t1
   gt,eq= loop(t1, t1, t2)
   a12_value=gt/(n1*n2) + eq/2/(n1*n2)
   return a12_value
@@ -76,11 +77,11 @@ def sampleWithReplacement(lst):
   return [one(lst) for _ in lst]
 
 
-def testStatistic(y,z): 
+def testStatistic(y,z):
     """Checks if two means are different, tempered
      by the sample size of 'y' and 'z'"""
     tmp1 = tmp2 = 0
-    for y1 in y.all: tmp1 += (y1 - y.mu)**2 
+    for y1 in y.all: tmp1 += (y1 - y.mu)**2
     for z1 in z.all: tmp2 += (z1 - z.mu)**2
     s1    = (float(tmp1)/(y.n - 1))**0.5
     s2    = (float(tmp2)/(z.n - 1))**0.5
@@ -116,7 +117,7 @@ def bootstrap(y0,z0,conf=0.01,b=1000):
   return bigger / b < conf
 
 
-def _bootstraped(): 
+def _bootstraped():
   def worker(n=1000,
              mu1=10,  sigma1=1,
              mu2=10.2, sigma2=1):
@@ -126,16 +127,16 @@ def _bootstraped():
     return n,mu1,sigma1,mu2,sigma2,\
         'different' if bootstrap(x,y) else 'same'
   # very different means, same std
-  print worker(mu1=10, sigma1=10, 
+  print worker(mu1=10, sigma1=10,
                mu2=100, sigma2=10)
   # similar means and std
-  print worker(mu1= 10.1, sigma1=1, 
+  print worker(mu1= 10.1, sigma1=1,
                mu2= 10.2, sigma2=1)
   # slightly different means, same std
-  print worker(mu1= 10.1, sigma1= 1, 
+  print worker(mu1= 10.1, sigma1= 1,
                mu2= 10.8, sigma2= 1)
   # different in mu eater by large std
-  print worker(mu1= 10.1, sigma1= 10, 
+  print worker(mu1= 10.1, sigma1= 10,
                mu2= 10.8, sigma2= 1)
 
 
@@ -148,14 +149,14 @@ def different(l1,l2):
 
 def scottknott(data,cohen=0.3,small=3, useA12=False,epsilon=0.01):
   """Recursively split data, maximizing delta of
-  the expected value of the mean before and 
-  after the splits. 
+  the expected value of the mean before and
+  after the splits.
   Reject splits with under 3 items"""
   all  = reduce(lambda x,y:x+y,data)
   same = lambda l,r: abs(l.median() - r.median()) <= all.s()*cohen
-  if useA12: 
-    same = lambda l, r:   not different(l.all,r.all) 
-  big  = lambda    n: n > small    
+  if useA12:
+    same = lambda l, r:   not different(l.all,r.all)
+  big  = lambda    n: n > small
   return rdiv(data,all,minMu,big,same,epsilon)
 
 def rdiv(data,  # a list of class Nums
@@ -164,21 +165,21 @@ def rdiv(data,  # a list of class Nums
          big,   # function: rejects small splits
          same, # function: rejects similar splits
          epsilon): # small enough to split two parts
-  """Looks for ways to split sorted data, 
+  """Looks for ways to split sorted data,
   Recurses into each split. Assigns a 'rank' number
-  to all the leaf splits found in this way. 
+  to all the leaf splits found in this way.
   """
   def recurse(parts,all,rank=0):
     "Split, then recurse on each part."
     cut,left,right = maybeIgnore(div(parts,all,big,epsilon),
                                  same,parts)
-    if cut: 
+    if cut:
       # if cut, rank "right" higher than "left"
       rank = recurse(parts[:cut],left,rank) + 1
       rank = recurse(parts[cut:],right,rank)
-    else: 
+    else:
       # if no cut, then all get same rank
-      for part in parts: 
+      for part in parts:
         part.rank = rank
     return rank
   recurse(sorted(data),all)
@@ -187,7 +188,7 @@ def rdiv(data,  # a list of class Nums
 def maybeIgnore((cut,left,right), same,parts):
   if cut:
     if same(sum(parts[:cut],Num('upto')),
-            sum(parts[cut:],Num('above'))):    
+            sum(parts[cut:],Num('above'))):
       cut = left = right = None
   return cut,left,right
 
@@ -203,7 +204,7 @@ def minMu(parts,all,big,epsilon):
   for i,l,r in leftRight(parts,epsilon):
     if big(l.n) and big(r.n):
       n   = all.n * 1.0
-      now = l.n/n*(mu- l.mu)**2 + r.n/n*(mu- r.mu)**2  
+      now = l.n/n*(mu- l.mu)**2 + r.n/n*(mu- r.mu)**2
       if now > before:
         before,cut,left,right = now,i,l,r
   return cut,left,right
@@ -223,7 +224,7 @@ def leftRight(parts,epsilon=0.01):
     j -=1
   left = parts[0]
   for i,one in enumerate(parts):
-    if i> 0: 
+    if i> 0:
       if parts[i]._median - parts[i-1]._median > epsilon:
         yield i,left,rights[i]
       left += one
@@ -250,7 +251,7 @@ def rdivDemo(data):
     print  ('%4s , %12s ,    %4s  ,  %4s ' % \
                  (x.rank+1, x.name, q2, q3 - q1))  + \
               xtile(x.all,lo=lo,hi=hi,width=30,show="%5.2f")
-    last = x.rank 
+    last = x.rank
 
 def rdiv0():
   rdivDemo([
@@ -338,15 +339,15 @@ def xtile(lst,lo=0,hi=100,width=50,
              bar="|",star="*",show=" %3.0f"):
   """The function _xtile_ takes a list of (possibly)
   unsorted numbers and presents them as a horizontal
-  xtile chart (in ascii format). The default is a 
-  contracted _quintile_ that shows the 
-  10,30,50,70,90 breaks in the data (but this can be 
+  xtile chart (in ascii format). The default is a
+  contracted _quintile_ that shows the
+  10,30,50,70,90 breaks in the data (but this can be
   changed- see the optional flags of the function).
   """
   def pos(p)   : return ordered[int(len(lst)*p)]
-  def place(x) : 
+  def place(x) :
     return int(width*float((x - lo))/(hi - lo+0.00001))
-  def pretty(lst) : 
+  def pretty(lst) :
     return ', '.join([show % x for x in lst])
   ordered = sorted(lst)
   lo      = min(lo,ordered[0])
@@ -355,11 +356,11 @@ def xtile(lst,lo=0,hi=100,width=50,
   where   = [place(n) for n in  what]
   out     = [" "] * width
   for one,two in pairs(where):
-    for i in range(one,two): 
+    for i in range(one,two):
       out[i] = marks[0]
     marks = marks[1:]
   out[int(width/2)]    = bar
-  out[place(pos(0.5))] = star 
+  out[place(pos(0.5))] = star
   return '('+''.join(out) +  ")," +  pretty(what)
 
 def _tileX() :
@@ -370,7 +371,7 @@ def _tileX() :
 
 class Num:
   "An Accumulator for numbers"
-  def __init__(i,name,inits=[]): 
+  def __init__(i,name,inits=[]):
     i.n = i.m2 = i.mu = 0.0
     i.all=[]
     i._median=None
@@ -380,7 +381,7 @@ class Num:
   def s(i)       : return (i.m2/(i.n - 1))**0.5
   def add(i,x):
     i._median=None
-    i.n   += 1   
+    i.n   += 1
     i.all += [x]
     delta  = x - i.mu
     i.mu  += delta*1.0/i.n
@@ -399,7 +400,7 @@ class Num:
       i._median=median(i.all)
     return i._median
   def __lt__(i,j):
-    return i.median() < j.median() 
+    return i.median() < j.median()
   def spread(i):
     i.all=sorted(i.all)
     n1=i.n*0.25
@@ -410,25 +411,25 @@ class Num:
       return i.all[1] - i.all[0]
     else:
       return i.all[int(n2)] - i.all[int(n1)]
-      
+
 
 #def doLoss():
-#      
-#def computeLoss(era0List, eraNList): 
+#
+#def computeLoss(era0List, eraNList):
 #  for it_ in era0List:
 #    for ite_ in eraNList:
-#      doLoss(ite_, it_) 
-      
+#      doLoss(ite_, it_)
+
 
 def _rdivs():
   seed(1)
-  rdiv0() 
+  rdiv0()
   print "+++++++++++++++++++++++++"
   rdiv1()
   print "+++++++++++++++++++++++++"
   rdiv2()
   print "+++++++++++++++++++++++++"
-  rdiv3() 
+  rdiv3()
   print "+++++++++++++++++++++++++"
   rdiv5()
   print "+++++++++++++++++++++++++"
@@ -453,7 +454,34 @@ if __name__ == '__main__':
 	_bootstraped()
 	_rdivs()
 
+def gt(x,y): return x > y
+
+def lt(x,y): return x < y
+
+def better(i):  return lt
+
+def loss1(i,x,y):
+    return (x - y) if better(i) == lt else (y - x)
+
+def expLoss(i,x,y,n):
+    return math.exp( loss1(i,x,y) / n)
+
+def loss(x, y):
+    # x,y    = objs(x), objs(y)
+    n      = min(len(x), len(y)) #lengths should be equal
+    losses = [ expLoss(i,xi,yi,n)
+                 for i, (xi, yi)
+                   in enumerate(zip(x,y)) ]
+    return sum(losses) / n
+
+def compute_loss(first_era, last_era):
+  total_loss = 0
+  for i in first_era:
+    for j in last_era:
+      total_loss += loss(i, j)
+
+  return total_loss
 
 
 
-  
+
