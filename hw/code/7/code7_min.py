@@ -76,6 +76,7 @@ def de(model, baseline_min,baseline_max, max = 100, f = 0.75, cf = 0.3, epsilon 
 	curr_candidate_sol = model()
 	# print "FROM DE-->", curr_candidate_sol
 	np = curr_candidate_sol.numOfDec * 10
+	print "np:", np
 	frontier = [candidate(curr_candidate_sol) for _ in xrange(np)]
 
 	# for x in frontier:
@@ -107,6 +108,12 @@ def de(model, baseline_min,baseline_max, max = 100, f = 0.75, cf = 0.3, epsilon 
 	#total = total score of all the candidates found so far
 	for k in xrange(max):
 		total,n = update(f,cf,frontier,curr_candidate_sol,BaseLine.baseline_min,BaseLine.baseline_max)
+		print "-------------------------------------**----------------------------------------"
+		for each_thing in frontier:
+			print "%s" % (each_thing.score)
+
+		print "-------------------------------------**----------------------------------------"
+		# exit()
 		# print "BASELINE: MIN=", BaseLine.baseline_min," MAX=", BaseLine.baseline_max
 		# if total/n > (1 - epsilon):
 		# 	print "break: value of k=", k, " total=",total, "n=",n 
@@ -121,11 +128,15 @@ def de(model, baseline_min,baseline_max, max = 100, f = 0.75, cf = 0.3, epsilon 
 
 	score_have_dict = { obj.score:obj.have for obj in frontier}
 	print "==================="
-	# for key in sorted(score_have_dict.keys(),reverse = True):
+
+	for each_thing in frontier:
+		print "%s" % (each_thing.score)
+	# for key in sorted(score_have_dict.keys(),reverse = False):
  #  		print "%s: %s" % (key, score_have_dict[key])
 
 	print "BASELINE: MIN=", BaseLine.baseline_min," MAX=", BaseLine.baseline_max
   	sorted_keys = sorted(score_have_dict.keys(),reverse = True)
+  	print " ---- FINAL ---"
   	print "%s: %s" % (sorted_keys[0], score_have_dict[sorted_keys[0]])
 	
 	return frontier
@@ -219,9 +230,9 @@ def a(lst):
 if __name__ == "__main__":
 	print "Starting Differential Evolution. Hold on tight."
 	print "================================================"
-	model=Golinski
+	# model=Golinski
 	# model=Osyczka2
-	# model=Schaffer
+	model=Schaffer
 	# obj = BaseLine()
 
 	baseline_min,baseline_max = get_min_max(model)
