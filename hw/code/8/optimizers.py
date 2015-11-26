@@ -146,7 +146,7 @@ def SimulatedAnnealing(modelParam):
     # print("Era dictionary First:=", eraDict[1])
     # print("Era dictionary Last:=", eraDict[eraDictCount])
     # print("------------------------------------------------------------------------------------------------")
-    return best_sol.decisionVec, eraDict
+    return eraDict
 
 
 #Currently Minimizing
@@ -287,7 +287,7 @@ def MaxWalkSat(model, maxTries=100, maxChanges=10, threshold=0, p=0.5, step=10):
 
     _printSolution(sbest.decisionVec, sbest.sumOfObjs() , sbest.getobj(), printCounter)
     _printEndMsg(MaxWalkSat.__name__)
-    return sbest.decisionVec, eraDict
+    return  eraDict
 
 
 
