@@ -29,8 +29,8 @@ def runOptimizer(optimizerNameP, modelNameP, runP):
    print "-------------------------------------------------------------------------------------"
 
    eraDict = optimizerNameP(modelNameP)
-   # print "main first_era: %s" %(eraDict[1])
-   # print "main last_era: %s" %(eraDict[len(eraDict)])
+   print "main first_era: %s" %(eraDict[1])
+   print "main last_era: %s" %(eraDict[len(eraDict)])
    first_era = eraDict[1]
    last_era = eraDict[len(eraDict) ]
    total_loss = compute_loss(first_era, last_era)
@@ -42,13 +42,13 @@ def runOptimizer(optimizerNameP, modelNameP, runP):
 
  return loss_list
 
-runs=2
+runs=20
 #modelList=[Schaffer]
 
 for model in [dtlz7]:
        scottknott_list["SimulatedAnnealing"] = runOptimizer(SimulatedAnnealing, model, runs)
        scottknott_list["MaxWalkSat"] = runOptimizer(MaxWalkSat, model, runs)
-       runOptimizer(de, model, runs)
+       scottknott_list["DifferentialEvolution"] = runOptimizer(de, model, runs)
 
 all_loss = []
 for key, item in scottknott_list.items():

@@ -29,13 +29,14 @@ def n(max):
 
 def score(curr_candidate_sol):
   objective_list = curr_candidate_sol.getobj()
-  square = lambda val: math.pow(val,2)
-  sq_root = lambda val: math.sqrt(val)
-  dist_from_hell =0
-  for f in objective_list:
-    dist_from_hell += square(f)
-  dist_from_hell = sq_root(dist_from_hell)
-  return dist_from_hell
+  return sum(objective_list)
+  # square = lambda val: math.pow(val,2)
+  # sq_root = lambda val: math.sqrt(val)
+  # dist_from_hell =0
+  # for f in objective_list:
+  #   dist_from_hell += square(f)
+  # dist_from_hell = sq_root(dist_from_hell)
+  # return dist_from_hell
 
 
 def get_min_max(model):
@@ -188,7 +189,12 @@ def update(f,cf, frontier, curr_candidate_sol,baseline_min,baseline_max,total=0.
     new = extrapolate(frontier,x,f,cf,curr_candidate_sol,baseline_min,baseline_max)
     # new_normalized_score = (new.score - BaseLine.baseline_min) / ( BaseLine.baseline_max - BaseLine.baseline_min + 0.001)
     new_normalized_score = (new.score - BaseLine.baseline_min) / ( BaseLine.baseline_max - BaseLine.baseline_min)
-    eraList.append(new_normalized_score)
+
+    obj_list = []
+    for objective in new.objectives:
+      obj_list.append(objective)
+
+    eraList.append(obj_list)
 
     if eraCount ==19:
       ## comparing prev and current
@@ -212,7 +218,7 @@ def update(f,cf, frontier, curr_candidate_sol,baseline_min,baseline_max,total=0.
     # print "new_score:", new.score
     # print "extrapolated vector:", new.have
     # print "parent :", s
-    if new.score > s:
+    if new.score < s:
       # print "+++++++++++++++++++++++++++++++++++++++"
       # print "new.have=", new.have
       # print "x.have=", x.have
@@ -231,7 +237,8 @@ def update(f,cf, frontier, curr_candidate_sol,baseline_min,baseline_max,total=0.
 
 def extrapolate(frontier, one, f, cf,curr_candidate_sol,baseline_min,baseline_max):
   # print "FROM EXTRAPOLATE -->", curr_candidate_sol
-  out = Thing(id = one.id, have = copy.deepcopy(one.have))
+  out = Thing(id = one.id, have = copy.deepcopy(one.have), objectives=list())
+
   two, three, four = threeOthers(frontier, one)
   changed = False
   numOfDecisions = len(out.have)
@@ -268,6 +275,7 @@ def extrapolate(frontier, one, f, cf,curr_candidate_sol,baseline_min,baseline_ma
 
   # out.score = (score(curr_candidate_sol) - BaseLine.baseline_min)/(BaseLine.baseline_max - BaseLine.baseline_min)
   out.score = score(curr_candidate_sol)
+  out.objectives = curr_candidate_sol.getobj()
   return out
 
 
