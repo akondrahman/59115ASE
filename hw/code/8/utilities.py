@@ -177,6 +177,7 @@ def rdiv(data,  # a list of class Nums
       # if cut, rank "right" higher than "left"
       rank = recurse(parts[:cut],left,rank) + 1
       rank = recurse(parts[cut:],right,rank)
+
     else:
       # if no cut, then all get same rank
       for part in parts:
@@ -279,7 +280,7 @@ def rdiv2():
       ["x2",101, 100, 99,   101],
       ["x3",0.15, 0.22, 0.4, 0.3],
       ["x4",0.6, 0.7, 0.8,   0.9],
-      ["x5", 0.1,0.2,0.3,0.4] ])
+      ["x5", 100, 100, 100, 100] ])
 
 def rdiv3():
   rdivDemo([

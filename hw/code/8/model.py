@@ -45,7 +45,12 @@ class Model(object):
         # exit()
         #print "obj:{}, currBaseline:{}".format(self.getobj(), self.getCurrentBaseline())
         #exit()
-        return float(sum(self.getobj())  / sum(self.getCurrentBaseline()))
+        ## old formula 
+        # float(sum(self.getobj())  / sum(self.getCurrentBaseline())) 
+        objs= sum(self.getobj())  
+        #print "*** objs {} **** baseline_min {} *** baseline_max{} ".format(objs, BaseLine.baseline_min, BaseLine.baseline_max)
+        normalizedScore = (objs- BaseLine.baseline_min) / float(BaseLine.baseline_max - BaseLine.baseline_min) 
+        return normalizedScore 
 
     def updateBaseline(self, baselineParam):
       self.baseline =   [_ for _ in   baselineParam ]
@@ -196,7 +201,7 @@ class dtlz7(Model):
 
 
 class BaseLine():
-  baseline_min=0
+  baseline_min=9999999
   baseline_max=0
   is_baseline_set=False
 

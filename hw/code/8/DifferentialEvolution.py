@@ -29,7 +29,11 @@ def n(max):
 
 def score(curr_candidate_sol):
   objective_list = curr_candidate_sol.getobj()
-  return sum(objective_list)
+  objs = sum(objective_list)
+  #print "*** objs {} **** baseline_min {} *** baseline_max{} ".format(objs, BaseLine.baseline_min, BaseLine.baseline_max)
+  normalizedScore = (objs- BaseLine.baseline_min) / float(BaseLine.baseline_max - BaseLine.baseline_min) 
+  return normalizedScore 
+  
   # square = lambda val: math.pow(val,2)
   # sq_root = lambda val: math.sqrt(val)
   # dist_from_hell =0
@@ -39,21 +43,21 @@ def score(curr_candidate_sol):
   # return dist_from_hell
 
 
-def get_min_max(model):
-  min = 999999
-  max = -999999
-  for x in xrange(2000):
-    temp_candidate_sol = model()
-    temp_score = score(temp_candidate_sol)
-    if(temp_score > max):
-      max = temp_score
-    if(temp_score < min):
-      min = temp_score
-  return (min,max)
+#def get_min_max(model):
+#  min = 999999
+#  max = -999999
+#  for x in xrange(2000):
+#    temp_candidate_sol = model()
+#    temp_score = score(temp_candidate_sol)
+#    if(temp_score > max):
+#      max = temp_score
+#    if(temp_score < min):
+#      min = temp_score
+#  return (min,max)
 
-class BaseLine():
-  baseline_min=0
-  baseline_max=0
+#class BaseLine():
+#  baseline_min=0
+#  baseline_max=0
 
 class Thing():
   id = 0
@@ -77,8 +81,8 @@ def candidate(curr_candidate_sol):
 
 
 
-def de(model, max = 100, f = 0.75, cf = 0.3, epsilon = 0.01):
-
+def de(model, max = 1000, f = 0.75, cf = 0.3, epsilon = 0.01):
+  from model import BaseLine 
   global eraDict, eraCount , eraTracker, crr_era, prev_era, terminateCount, terminator, eraList, a12Factor, eraDictCount
 
   eraDict = {}
@@ -92,12 +96,19 @@ def de(model, max = 100, f = 0.75, cf = 0.3, epsilon = 0.01):
   eraDictCount = 0
 
 
-  baseline_min,baseline_max = get_min_max(model)
-  # print "BASELINE: MIN=", baseline_min, " MAX=", baseline_max
-  BaseLine.baseline_min = baseline_min
-  BaseLine.baseline_max = baseline_max
-  print "baseline_min,baseline_max ", baseline_min," ",baseline_max
-
+  #baseline_min,baseline_max = get_min_max(model)
+  if BaseLine.is_baseline_set == False:
+    #print "flag value: ", BaseLine.is_baseline_set  
+    #print "Baseline value ... max, min {}, {}".format(BaseLine.baseline_max, BaseLine.baseline_min)
+    
+    baseline_min,baseline_max = BaseLine.getInitialBaseline(model) 
+    #print "Baseline value ... max, min {}, {}".format(BaseLine.baseline_max, BaseLine.baseline_min) 
+    #exit()    
+    #print "BASELINE: MIN=", baseline_min, " MAX=", baseline_max
+    BaseLine.baseline_min = baseline_min
+    BaseLine.baseline_max = baseline_max
+    #print "baseline_min,baseline_max ", baseline_min," ",baseline_max
+    BaseLine.is_baseline_set = True 
   curr_candidate_sol = model()
   prev_era = [0 for _ in range(curr_candidate_sol.numOfDec)]
   # print "FROM DE-->", curr_candidate_sol
@@ -114,13 +125,13 @@ def de(model, max = 100, f = 0.75, cf = 0.3, epsilon = 0.01):
   for each_thing in frontier:
     if(each_thing.score < 0):
       BaseLine.baseline_min = 0
-      print "--------"
+      #print "--------"
     if(each_thing.score < BaseLine.baseline_min):
       BaseLine.baseline_min = each_thing.score
-      print "--------------"
+      #print "--------------"
     if(each_thing.score > BaseLine.baseline_max):
       BaseLine.baseline_max = each_thing.score
-      print "---------"
+      #print "---------"
 
 
 
@@ -169,13 +180,14 @@ def de(model, max = 100, f = 0.75, cf = 0.3, epsilon = 0.01):
 
   score_have_dict = { obj.score:obj.have for obj in frontier}
   print "==================="
-  # for key in sorted(score_have_dict.keys(),reverse = True):
- #      print "%s: %s" % (key, score_have_dict[key])
+  #for key in sorted(score_have_dict.keys(),reverse = True):
+  #   print "%s: %s" % (key, score_have_dict[key])
 
-  print "BASELINE: MIN=", BaseLine.baseline_min," MAX=", BaseLine.baseline_max
+  #print "BASELINE: MIN=", BaseLine.baseline_min," MAX=", BaseLine.baseline_max
   sorted_keys = sorted(score_have_dict.keys(),reverse = True)
-  print "%s: %s" % (sorted_keys[0], score_have_dict[sorted_keys[0]])
-
+  print "Energy .... %s: %s" % (sorted_keys[0], score_have_dict[sorted_keys[0]])
+  #print("era dict ", len(eraDict[1]))
+  #exit()
   return eraDict
 
 def update(f,cf, frontier, curr_candidate_sol,baseline_min,baseline_max,total=0.0, n=0):
@@ -214,6 +226,8 @@ def update(f,cf, frontier, curr_candidate_sol,baseline_min,baseline_max,total=0.
       # print "eraDictCount: %s" %(eraDictCount)
       # print "eraCount: %s" %(eraCount)
       eraCount +=  1
+    if terminateCount >= terminator:
+       break  
 
     # print "new_score:", new.score
     # print "extrapolated vector:", new.have

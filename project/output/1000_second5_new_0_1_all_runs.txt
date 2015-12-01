@@ -1,0 +1,117 @@
+Last login: Sat Nov 28 10:59:28 on console
+eb2-2206-mac03-4:~ akond$ cd Documents/Fall_2015/ase/59115ASE/project/srcCode/
+eb2-2206-mac03-4:srcCode akond$ ls -al 
+total 376
+drwxr-xr-x  33 akond  staff   1122 Nov 27 11:03 .
+drwxr-xr-x   7 akond  staff    238 Nov 25 23:26 ..
+-rw-r--r--@  1 akond  staff   6148 Nov 17 19:34 .DS_Store
+-rw-r--r--   1 akond  staff    219 Oct 30 23:02 Auxiliary.py
+-rw-r--r--   1 akond  staff    719 Nov 26 10:31 Auxiliary.pyc
+-rw-r--r--   1 akond  staff    440 Oct 31 20:14 Flow.py
+-rw-r--r--   1 akond  staff   1155 Nov 26 10:31 Flow.pyc
+-rw-r--r--   1 akond  staff   2210 Nov 20 12:59 IO_Utility.py
+-rw-r--r--   1 akond  staff   2519 Nov 26 10:31 IO_Utility.pyc
+-rw-r--r--   1 akond  staff    306 Oct 31 10:57 ModelComponent.py
+-rw-r--r--   1 akond  staff    992 Nov 26 10:31 ModelComponent.pyc
+-rw-r--r--   1 akond  staff   6065 Nov  9 22:36 ModelExec.py
+-rw-r--r--   1 akond  staff  17013 Nov 17 19:04 ModelExecAll.py
+-rw-r--r--   1 akond  staff   8204 Nov 26 10:31 ModelExecAll.pyc
+-rw-r--r--   1 akond  staff   5627 Nov  9 22:36 State.py
+-rw-r--r--   1 akond  staff   5026 Nov 10 17:59 StateAll.py
+-rw-r--r--   1 akond  staff   5869 Nov 26 10:31 StateAll.pyc
+-rw-r--r--   1 akond  staff    239 Oct 30 13:31 Stock.py
+-rw-r--r--   1 akond  staff    710 Nov 26 10:31 Stock.pyc
+-rw-r--r--   1 akond  staff   6024 Nov 25 18:15 de.py
+-rw-r--r--   1 akond  staff   6654 Nov 26 10:31 de.pyc
+-rw-r--r--   1 akond  staff   1862 Nov 18 21:06 integrator.py
+-rw-r--r--   1 akond  staff   2041 Nov 26 10:31 integrator.pyc
+-rw-r--r--   1 akond  staff   3943 Nov 27 15:22 main.py
+-rw-r--r--   1 akond  staff   2218 Nov 18 20:29 models.py
+-rw-r--r--   1 akond  staff   3274 Nov 26 10:31 models.pyc
+-rw-r--r--   1 akond  staff   1126 Nov  4 21:58 ok.py
+-rw-r--r--   1 akond  staff   2115 Nov 26 10:31 ok.pyc
+drwxr-xr-x   8 akond  staff    272 Oct 30 18:12 oldie
+-rw-r--r--   1 akond  staff   2485 Nov 18 10:31 tests.py
+-rw-r--r--   1 akond  staff   1820 Nov 26 10:31 tests.pyc
+-rw-r--r--   1 akond  staff  11614 Nov 26 23:38 utility.py
+-rw-r--r--   1 akond  staff  10076 Nov 27 11:03 utility.pyc
+eb2-2206-mac03-4:srcCode akond$ python main.py 
+ ************ Iteration # 0 ***************  
+### gettting baseline ###
+Getting baseline for 365 times
+Writing dictionary to file ...  DONE !
+And the baseline is (min, max format) 
+0 1167.59682576
+Executing D.E (minimized version) ... for 1000 D.E. runs and 365 model runs
+=========================================================================
+------
+===================
+BASELINE: MIN= 0  MAX= 949.171116589
+Doing minimization: 0.0848843488242: [0.8398687393540941, 0.9158355287713774, 0.5857845124955128, 0.06996945789405555, 0.09314316782763064, 0.2576099350678751, 0.009923540933358331, 0.014874128131398984, 0.2669513185459275, 0.11501797645669676, 0.4556741534815944, 0.6906812114278852, 0.049153382583830015, 0.9217941490773004, 0.0664260078150889, 0.005786975883544182, 0.2334351634946118]
+
+------------------------------------------------------------------------
+# Runtime: 5229.102 secs
+------------------------------------------ END ----------------------------------------------------------
+ ************ Iteration # 1 ***************  
+### gettting baseline ###
+Getting baseline for 365 times
+Writing dictionary to file ...  DONE !
+And the baseline is (min, max format) 
+0 1194.49843792
+Executing D.E (minimized version) ... for 1000 D.E. runs and 365 model runs
+=========================================================================
+------
+===================
+BASELINE: MIN= 0  MAX= 998.29954855
+Doing minimization: 0.00112177809597: [0.8389420569929894, 0.9422426939630965, 0.20287158212811288, 0.34777480604657135, 0.2839328917861597, 0.15396684261135235, 0.03687166252913458, 0.00896695211394403, 0.005345603252705033, 0.07773700951659124, 0.45894647352197515, 0.6045211532121674, 0.06296815744709446, 0.9898777409421697, 0.3040399425148424, 0.006586509690196293, 0.3945822088051079]
+
+------------------------------------------------------------------------
+# Runtime: 5212.257 secs
+------------------------------------------ END ----------------------------------------------------------
+ ************ Iteration # 2 ***************  
+### gettting baseline ###
+Getting baseline for 365 times
+Writing dictionary to file ...  DONE !
+And the baseline is (min, max format) 
+0 1179.67701179
+Executing D.E (minimized version) ... for 1000 D.E. runs and 365 model runs
+=========================================================================
+===================
+BASELINE: MIN= 0  MAX= 1013.99117246
+Doing minimization: 0.0264039523365: [0.8373091440335811, 0.9422229694426426, 0.6017865331842784, 0.26195755808598337, 0.025458571796662253, 0.04777656188387143, 0.030337106206079174, 0.00010850213106379376, 0.28955293986065644, 0.0985445907677418, 0.48244147168501733, 0.5160074512735316, 0.0004146214480359771, 0.9185382584274192, 0.040239242394755105, 0.003445838024823994, 0.24946581203444562]
+
+------------------------------------------------------------------------
+# Runtime: 5225.583 secs
+------------------------------------------ END ----------------------------------------------------------
+ ************ Iteration # 3 ***************  
+### gettting baseline ###
+Getting baseline for 365 times
+Writing dictionary to file ...  DONE !
+And the baseline is (min, max format) 
+0 1205.00344914
+Executing D.E (minimized version) ... for 1000 D.E. runs and 365 model runs
+=========================================================================
+------
+===================
+BASELINE: MIN= 0  MAX= 1105.36084936
+Doing minimization: 0.00566915285208: [0.8389449708852024, 0.9217993154968619, 0.44681576417172203, 0.08959940266799879, 0.08858554055810096, 0.09310889312691376, 0.01411357479462256, 0.0011698453936810746, 0.030591596385915364, 0.3312902948431986, 0.4419778471360661, 0.7261711663344335, 0.022487048929233748, 0.9869090763304427, 0.07167789296150438, 0.0083542938180966, 0.519230460043922]
+
+------------------------------------------------------------------------
+# Runtime: 5219.132 secs
+------------------------------------------ END ----------------------------------------------------------
+ ************ Iteration # 4 ***************  
+### gettting baseline ###
+Getting baseline for 365 times
+Writing dictionary to file ...  DONE !
+And the baseline is (min, max format) 
+0 1202.09550843
+Executing D.E (minimized version) ... for 1000 D.E. runs and 365 model runs
+=========================================================================
+===================
+BASELINE: MIN= 0  MAX= 1105.36084936
+Doing minimization: 0.08290479377: [0.8398322293841799, 0.9430869050054989, 0.06163394937913827, 0.6403041959857336, 0.22571615117558855, 0.011108443478229282, 0.003914383392754759, 0.1895880505004616, 0.2679295092485811, 0.09707680381070793, 0.4911535448259664, 0.21587330971758828, 0.010304558240893023, 0.9369334978106748, 0.08520528575010684, 0.052998839756838764, 0.36753854890589355]
+
+------------------------------------------------------------------------
+# Runtime: 5570.655 secs
+------------------------------------------ END ----------------------------------------------------------
+eb2-2206-mac03-4:srcCode akond$ 

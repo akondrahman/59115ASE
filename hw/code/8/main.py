@@ -14,7 +14,7 @@ import random
 #from pdb import set_trace
 from model import  dtlz7, BaseLine, Schaffer
 from DifferentialEvolution import de
-from optimizers import *
+from optimizers import SimulatedAnnealing, MaxWalkSat 
 from utilities import compute_loss, rdivDemo
 
 scottknott_list = {}
@@ -29,8 +29,9 @@ def runOptimizer(optimizerNameP, modelNameP, runP):
    print "-------------------------------------------------------------------------------------"
 
    eraDict = optimizerNameP(modelNameP)
-   print "main first_era: %s" %(eraDict[1])
-   print "main last_era: %s" %(eraDict[len(eraDict)])
+   print "After running the optimizer ... BASELINE: MIN=", BaseLine.baseline_min," MAX=", BaseLine.baseline_max
+   #print "main first_era: %s" %(eraDict[1])
+   #print "main last_era: %s" %(eraDict[len(eraDict)])
    first_era = eraDict[1]
    last_era = eraDict[len(eraDict) ]
    total_loss = compute_loss(first_era, last_era)
@@ -43,13 +44,26 @@ def runOptimizer(optimizerNameP, modelNameP, runP):
  return loss_list
 
 runs=20
+baselineType = False ## True means baseline from one optimizer will be used on another  
 #modelList=[Schaffer]
 
-for model in [dtlz7]:
+if baselineType:
+  #### stacking baselines   
+  for model in [dtlz7]:
        scottknott_list["SimulatedAnnealing"] = runOptimizer(SimulatedAnnealing, model, runs)
        scottknott_list["MaxWalkSat"] = runOptimizer(MaxWalkSat, model, runs)
        scottknott_list["DifferentialEvolution"] = runOptimizer(de, model, runs)
 
+else: 
+  ## no stacking of baselines   
+  for model in [dtlz7]:
+       BaseLine.is_baseline_set = False 
+       scottknott_list["SimulatedAnnealing"] = runOptimizer(SimulatedAnnealing, model, runs)
+       BaseLine.is_baseline_set = False 
+       scottknott_list["MaxWalkSat"] = runOptimizer(MaxWalkSat, model, runs)
+       BaseLine.is_baseline_set = False 
+       scottknott_list["DifferentialEvolution"] = runOptimizer(de, model, runs)
+       
 all_loss = []
 for key, item in scottknott_list.items():
   item.insert(0,key)

@@ -32,22 +32,29 @@ def SimulatedAnnealing(modelParam):
     best_sol.copy(curr_sol)
     #print("Before ... ", curr_sol.getCurrentBaseline())
 
-    print("isBaseLineSet:", BaseLine.is_baseline_set)
+    #print("isBaseLineSet:", BaseLine.is_baseline_set)
 
     if BaseLine.is_baseline_set == False:
-        curr_sol.updateBaseline(BaseLine.getInitialBaseline(modelParam))
+        #curr_sol.updateBaseline(BaseLine.getInitialBaseline(modelParam))
+        initialBaseline = BaseLine.getInitialBaseline(modelParam)
+        #print("Output of initial baseline ", initialBaseline)
+        BaseLine.baseline_min = initialBaseline[0]
+        BaseLine.baseline_max = initialBaseline[1]
+        newBaseLine = [BaseLine.baseline_min, BaseLine.baseline_max]
+        curr_sol.updateBaseline(newBaseLine)        
     else:
-        print("HO GAYA TRUE")
+        #print("HO GAYA TRUE")
         newBaseLine = [BaseLine.baseline_min, BaseLine.baseline_max]
         curr_sol.updateBaseline(newBaseLine)
-        print("newBaseLine:", newBaseLine)
-
+        #print("newBaseLine:", newBaseLine)
+    #print("BaseLine Min:", BaseLine.baseline_min)
+    #print("BaseLine Max:", BaseLine.baseline_max)
     #print( "After ... ",    curr_sol.getCurrentBaseline())
     #exit
     ## kMaxVal is always fixed to 1000 !
     kMaxVal=1000
     #counter = 0
-    counter = 10000
+    counter = 1000
     ## to keep track of eras
     eraDict = {}
     eraCount  = 0
@@ -60,6 +67,7 @@ def SimulatedAnnealing(modelParam):
     eraDictCount  = 0
 
     while (counter > 0) and (curr_sol.sumOfObjs() > eMaxVal):
+
         printCounter = printCounter + 1
 
         neighbor_sol=generateNeighbor(curr_sol, randint(0, curr_sol.numOfDec-1), modelParam)
@@ -82,19 +90,28 @@ def SimulatedAnnealing(modelParam):
            output = output + "."
            cntForDot = cntForDot  + 1
         if printCounter % eraTracker == 0:
-           print("\ncounter={}, best energy seen so far={}, '?'={}, '!'={}, '+'={}, '.'={}, output={}".format(printCounter, best_sol.sumOfObjs(), cntForQ, cntForExcl, cntForPlus, cntForDot, output))
+           #print("\ncounter={}, best energy seen so far={}, '?'={}, '!'={}, '+'={}, '.'={}, output={}".format(printCounter, best_sol.sumOfObjs(), cntForQ, cntForExcl, cntForPlus, cntForDot, output))
            cntForQ = 0
            cntForExcl = 0
            cntForPlus = 0
            cntForDot = 0
            output = ""
            ## era purpose
+        if BaseLine.baseline_min > best_sol.sumOfObjs():
+           BaseLine.baseline_min = best_sol.sumOfObjs()    
+        if BaseLine.baseline_max < best_sol.sumOfObjs():
+           BaseLine.baseline_max = best_sol.sumOfObjs()   
+        newBaseLine = [BaseLine.baseline_min, BaseLine.baseline_max]
+        curr_sol.updateBaseline(newBaseLine)                   
         if eraCount >=20:
           ## comparing prev and current
           crr_era = sorted(eraList, reverse=True)
           #print("Current era: ", crr_era)
           eraDictCount = eraDictCount + 1
+          #print ("era dict count ", eraDictCount)
+          
           eraDict[eraDictCount] = crr_era
+          #print ("Contents of the dictionary ", eraDict[eraDictCount])          
           a12Output =  utilities.a12(crr_era, prev_era)
 
           if a12Output <= a12Factor:
@@ -106,39 +123,40 @@ def SimulatedAnnealing(modelParam):
         else:
           eraList.append(best_sol.getobj())
           eraCount +=  1
-        #if terminateCount >= terminator:
-        #     break
-        if curr_sol.sumOfObjs() < curr_sol.getCurrentBaseline()[0]:
-          curr_sol.updateBaseline( [curr_sol.sumOfObjs(), curr_sol.getCurrentBaseline()[1]])
-          # print("+++++^^BASELINE UPDATED")
-        if curr_sol.sumOfObjs() > curr_sol.getCurrentBaseline()[1]:
-          curr_sol.updateBaseline([curr_sol.getCurrentBaseline()[0], curr_sol.sumOfObjs()])
-          print("+++++^^BASELINE UPDATED MILA MAX")
+          #print("era count ... ", eraCount)
+        if terminateCount >= terminator:
+             break
+#        if curr_sol.sumOfObjs() < curr_sol.getCurrentBaseline()[0]:
+#          curr_sol.updateBaseline( [curr_sol.sumOfObjs(), curr_sol.getCurrentBaseline()[1]])
+#          # print("+++++^^BASELINE UPDATED")
+#        if curr_sol.sumOfObjs() > curr_sol.getCurrentBaseline()[1]:
+#          curr_sol.updateBaseline([curr_sol.getCurrentBaseline()[0], curr_sol.sumOfObjs()])
+          #print("+++++^^BASELINE UPDATED MILA MAX")
           #exit()
 
 #        #DOUBT
 #        if curr_sol.sumOfObjs() > 12.7814799596:
 #            print("GREATER THAN 13")
 #            #exit()
-
+        #print("current energy ", curr_sol.sumOfObjs())
         counter = counter - 1
         #counter= counter + 1
 
     #Update Global Baseline :
-    print(curr_sol.getCurrentBaseline());
+    #print(curr_sol.getCurrentBaseline());
 
     BaseLine.baseline_min = curr_sol.getCurrentBaseline()[0]
     BaseLine.baseline_max = curr_sol.getCurrentBaseline()[1]
     BaseLine.is_baseline_set = True
 
 
-    print("BaseLine Min:", BaseLine.baseline_min)
-    print("BaseLine Max:", BaseLine.baseline_max)
-    print("Era Dict Count :", eraDictCount)
-    print("Era Dictionary First:", eraDict[1])
-    print("-------------------------------------------------------------------------------------")
-    print("Era Dictionary Last:", eraDict[eraDictCount])
-    print("-------------------------------------------------------------------------------------")
+    #print("BaseLine Min:", BaseLine.baseline_min)
+    #print("BaseLine Max:", BaseLine.baseline_max)
+    #print("Era Dict Count :", eraDictCount)
+    #print("Era Dictionary First:", eraDict[1])
+    #print("-------------------------------------------------------------------------------------")
+    #print("Era Dictionary Last:", eraDict[eraDictCount])
+    #print("-------------------------------------------------------------------------------------")
 
     _printSolution(best_sol.decisionVec, best_sol.sumOfObjs(), best_sol.getobj(), printCounter)
     _printEndMsg(SimulatedAnnealing.__name__)
@@ -146,6 +164,8 @@ def SimulatedAnnealing(modelParam):
     # print("Era dictionary First:=", eraDict[1])
     # print("Era dictionary Last:=", eraDict[eraDictCount])
     # print("------------------------------------------------------------------------------------------------")
+    #print("era dict ", len(eraDict[1]))
+    #exit()    
     return eraDict
 
 
@@ -172,21 +192,25 @@ def MaxWalkSat(model, maxTries=100, maxChanges=10, threshold=0, p=0.5, step=10):
     a12Factor = 0.56
     eraDictCount = 0
 
-    print("isBaseLineSet:", BaseLine.is_baseline_set)
+    #print("isBaseLineSet:", BaseLine.is_baseline_set)
 
     for cntTry in range(maxTries):
 
         curr_solve_for_model = model()
 
         if BaseLine.is_baseline_set == False:
-            curr_solve_for_model.updateBaseline(BaseLine.getInitialBaseline(model))
-            print("curr_solve_for_model baseline_min:",curr_solve_for_model.getCurrentBaseline())
-            # exit()
+          #curr_sol.updateBaseline(BaseLine.getInitialBaseline(modelParam))
+          initialBaseline = BaseLine.getInitialBaseline(model)
+          #print("Output of initial baseline ", initialBaseline)
+          BaseLine.baseline_min = initialBaseline[0]
+          BaseLine.baseline_max = initialBaseline[1]
+          newBaseLine = [BaseLine.baseline_min, BaseLine.baseline_max]
+          curr_solve_for_model.updateBaseline(newBaseLine)        
         else:
-            # print("HO GAYA TRUE")
-            newBaseLine = [BaseLine.baseline_min, BaseLine.baseline_max]
-            curr_solve_for_model.updateBaseline(newBaseLine)
-            # print("newBaseLine:", newBaseLine)
+          #print("HO GAYA TRUE")
+          newBaseLine = [BaseLine.baseline_min, BaseLine.baseline_max]
+          curr_solve_for_model.updateBaseline(newBaseLine)
+          # print("newBaseLine:", newBaseLine)
 
         if cntTry==0:
             sbest=model()
@@ -213,8 +237,10 @@ def MaxWalkSat(model, maxTries=100, maxChanges=10, threshold=0, p=0.5, step=10):
                 #curr_solve_for_model=_mutateSelectivelyWithModifiedRange(model, curr_solve_for_model, decToMutate, step)
                 curr_solve_for_model=_mutateSelectively(model, curr_solve_for_model, decToMutate, step)
             ## lets heck teh ebhavior !
+                
             if curr_solve_for_model.sumOfObjs() < sbest.sumOfObjs():
                 sbest.copy(curr_solve_for_model)
+                    
                 #'?' means muatted solution  is better than best soultuion
                 # btw, we are only interested in the best and we keep that
                 output = output + "?"
@@ -233,7 +259,7 @@ def MaxWalkSat(model, maxTries=100, maxChanges=10, threshold=0, p=0.5, step=10):
                 cnt_Dot = cnt_Dot + 1
             # if printCounter % 40 == 0:
             if printCounter % eraTracker == 0:
-                print("itrations so far={} '?'={}, '!'={}, '+'={}, '.'={}, output={} ".format(printCounter, cnt_Que, cnt_Exc, cnt_Pls, cnt_Dot,output))
+                #print("itrations so far={} '?'={}, '!'={}, '+'={}, '.'={}, output={} ".format(printCounter, cnt_Que, cnt_Exc, cnt_Pls, cnt_Dot,output))
                 #print(output + '\n')
                 output = ""
 
@@ -243,7 +269,12 @@ def MaxWalkSat(model, maxTries=100, maxChanges=10, threshold=0, p=0.5, step=10):
                 cnt_Dot = 0
 
             ## era purpose
-
+            if BaseLine.baseline_min > sbest.sumOfObjs():
+                  BaseLine.baseline_min = sbest.sumOfObjs()    
+            if BaseLine.baseline_max < sbest.sumOfObjs():
+                  BaseLine.baseline_max = sbest.sumOfObjs() 
+            newBaseLine = [BaseLine.baseline_min, BaseLine.baseline_max]
+            curr_solve_for_model.updateBaseline(newBaseLine)                          
             if eraCount >=20:
                 ## comparing prev and current
                 crr_era = sorted(eraList, reverse=True)
@@ -262,31 +293,36 @@ def MaxWalkSat(model, maxTries=100, maxChanges=10, threshold=0, p=0.5, step=10):
                 eraList.append(sbest.getobj())
                 eraCount += 1
 
-            if curr_solve_for_model.sumOfObjs() < curr_solve_for_model.getCurrentBaseline()[0]:
-                curr_solve_for_model.updateBaseline( [curr_solve_for_model.sumOfObjs(), curr_solve_for_model.getCurrentBaseline()[1]])
-                # print("+++++^^BASELINE UPDATED")
-            if curr_solve_for_model.sumOfObjs() > curr_solve_for_model.getCurrentBaseline()[1]:
-                curr_solve_for_model.updateBaseline([curr_solve_for_model.getCurrentBaseline()[0], curr_solve_for_model.sumOfObjs()])
-                print("+++++^^BASELINE UPDATED MILA MAX")
+            if terminateCount >= terminator:
+                break            
+
+            
+#            if curr_solve_for_model.sumOfObjs() < curr_solve_for_model.getCurrentBaseline()[0]:
+#                curr_solve_for_model.updateBaseline( [curr_solve_for_model.sumOfObjs(), curr_solve_for_model.getCurrentBaseline()[1]])
+#                # print("+++++^^BASELINE UPDATED")
+#            if curr_solve_for_model.sumOfObjs() > curr_solve_for_model.getCurrentBaseline()[1]:
+#                curr_solve_for_model.updateBaseline([curr_solve_for_model.getCurrentBaseline()[0], curr_solve_for_model.sumOfObjs()])
+                #print("+++++^^BASELINE UPDATED MILA MAX")
                 #exit()
 
         #Update Global Baseline :
-        print(curr_solve_for_model.getCurrentBaseline());
+        #print(curr_solve_for_model.getCurrentBaseline());
 
         BaseLine.baseline_min = curr_solve_for_model.getCurrentBaseline()[0]
         BaseLine.baseline_max = curr_solve_for_model.getCurrentBaseline()[1]
         BaseLine.is_baseline_set = True
 
-    print("BaseLine Min:", BaseLine.baseline_min)
-    print("BaseLine Max:", BaseLine.baseline_max)
-    print("Era Dict Count :", eraDictCount)
-    print("Era Dictionary First:", eraDict[1])
-    print("-------------------------------------------------------------------------------------")
-    print("Era Dictionary Last:", eraDict[eraDictCount])
-    print("-------------------------------------------------------------------------------------")
+    #print("BaseLine Min:", BaseLine.baseline_min)
+    #print("BaseLine Max:", BaseLine.baseline_max)
+    #print("Era Dict Count :", eraDictCount)
+    #print("Era Dictionary First:", eraDict[1])
+    #print("-------------------------------------------------------------------------------------")
+    #print("Era Dictionary Last:", eraDict[eraDictCount])
+    #print("-------------------------------------------------------------------------------------")
 
     _printSolution(sbest.decisionVec, sbest.sumOfObjs() , sbest.getobj(), printCounter)
     _printEndMsg(MaxWalkSat.__name__)
+
     return  eraDict
 
 

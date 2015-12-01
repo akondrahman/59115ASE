@@ -121,7 +121,7 @@ def de(runCountParam, constraintFileNameParam, model, baseline_min,baseline_max,
      #        print "%s: %s" % (key, score_have_dict[key])
 
 	print "BASELINE: MIN=", BaseLine.baseline_min," MAX=", BaseLine.baseline_max
-  	sorted_keys = sorted(score_have_dict.keys(),reverse = True)
+  	sorted_keys = sorted(score_have_dict.keys(),reverse = False)
   	print "Doing minimization: %s: %s" % (sorted_keys[0], score_have_dict[sorted_keys[0]])
 	
 	return frontier

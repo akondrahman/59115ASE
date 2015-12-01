@@ -101,26 +101,18 @@ def giveAuxiliariesForBaseline(constFlagParam):
    a14_equation = lambda x : 0.0004 * math.exp(7.2984 * x) 
    a15_equation = lambda x : -1.0286 * math.pow(x,2)  - 0.2283 * x + 1.0719 if x>= 0.4 else 0
  else:
-   a01_equation = lambda x : random.uniform(0, 1)
-   a02_equation = lambda x : random.uniform(0, 1) 
-   a11_equation = lambda x : random.uniform(0, 1)
-   a14_equation = lambda x : random.uniform(0, 1)
-   a15_equation = lambda x : random.uniform(0, 1)    
+   a01_equation = lambda x : random.uniform(x, 1)
+   a02_equation = lambda x : random.uniform(x, 1) 
+   a11_equation = lambda x : random.uniform(x, 1)
+   a14_equation = lambda x : random.uniform(x, 1)
+   a15_equation = lambda x : random.uniform(x, 1)    
  
  ## some auxiliaries need equations 
  a01_MultiplierSchedPressure = a01_equation(random.uniform(0, 1))
  listToret.append(a01_MultiplierSchedPressure)
  a02_MultiplierWorkforce = a02_equation(random.uniform(0, 1))
  listToret.append(a02_MultiplierWorkforce) 
- 
- a11_MultiplierToRegen = a11_equation(random.uniform(0, 1))
- listToret.append(a11_MultiplierToRegen)  
 
- a14_ActiveErrorsRetiringFraction = a14_equation(random.uniform(0, 1))
- listToret.append(a14_ActiveErrorsRetiringFraction) 
- a15_FractionEscapingErrors = a15_equation(random.uniform(0, 1))
- listToret.append(a15_FractionEscapingErrors)  
- 
  ## most aixiliaries are assumed to be between 0 & 1 
  a03_NominalErr = random.uniform(0, 1)
  listToret.append(a03_NominalErr) 
@@ -136,21 +128,34 @@ def giveAuxiliariesForBaseline(constFlagParam):
  listToret.append(a08_ActualReworkMP) 
  a09_DailyMPRework = random.uniform(0, 1)
  listToret.append(a09_DailyMPRework) 
+
+
+ ## Only oen auxiliary has a direct value  
+ a10_TimeToSmooth = random.uniform(0, 1)
+ listToret.append(a10_TimeToSmooth)  
  
+ a11_MultiplierToRegen = a11_equation(random.uniform(0, 1))
+ listToret.append(a11_MultiplierToRegen)  
+
 
  a12_ActiveErrorDensity = random.uniform(0, 1)
  listToret.append(a12_ActiveErrorDensity) 
  a13_TestingRate = random.uniform(0, 1)
  listToret.append(a13_TestingRate) 
 
+
+ a14_ActiveErrorsRetiringFraction = a14_equation(random.uniform(0, 1))
+ listToret.append(a14_ActiveErrorsRetiringFraction) 
+ a15_FractionEscapingErrors = a15_equation(random.uniform(0, 1))
+ listToret.append(a15_FractionEscapingErrors)  
+ 
+
  a16_BadFixGenRate = random.uniform(0, 1)
  listToret.append(a16_BadFixGenRate) 
  a17_PassiveErrorDensity = random.uniform(0, 1)
  listToret.append(a17_PassiveErrorDensity) 
  
- ## Only oen auxiliary has a direct value  
- a10_TimeToSmooth = 40 
- listToret.append(a10_TimeToSmooth)  
+
  
  if len(listToret) != 17: 
    print "Something is wrong "   
@@ -214,18 +219,18 @@ def createAuxList(lowerRange, upperRange, constFlagParam):
    a14_equation = lambda x : 0.0004 * math.exp(7.2984 * x) 
    a15_equation = lambda x : -1.0286 * math.pow(x,2)  - 0.2283 * x + 1.0719 if x>= 0.4 else 0
   else:
-   a01_equation = lambda x : random.uniform(0, 1)
-   a02_equation = lambda x : random.uniform(0, 1) 
-   a11_equation = lambda x : random.uniform(0, 1)
-   a14_equation = lambda x : random.uniform(0, 1)
-   a15_equation = lambda x : random.uniform(0, 1)    
+   a01_equation = lambda x : random.uniform(x, 1)
+   a02_equation = lambda x : random.uniform(x, 1) 
+   a11_equation = lambda x : random.uniform(x, 1)
+   a14_equation = lambda x : random.uniform(x, 1)
+   a15_equation = lambda x : random.uniform(x, 1)    
  
   ## some auxiliaries need equations 
   temprand1 = random.uniform(lowerRange, upperRange)
   a01_MultiplierSchedPressure = a01_equation(temprand1)
   #print "Aux # 1: low: {} & high: {}".format(temprand1, a01_MultiplierSchedPressure)
   upperRangeList.append(a01_MultiplierSchedPressure)
-  lowRangeList.append(temprand1)
+  lowRangeList.append(lowerRange)
   #temprand1 = 0 
   #a01_MultiplierSchedPressure = 0 
 
@@ -271,9 +276,9 @@ def createAuxList(lowerRange, upperRange, constFlagParam):
   lowRangeList.append(lowerRange)
 
   ## Only oen auxiliary has a direct value  
-  a10_TimeToSmooth = 40 
+  a10_TimeToSmooth = random.uniform(lowerRange, upperRange) 
   upperRangeList.append(a10_TimeToSmooth)   
-  lowRangeList.append(40)
+  lowRangeList.append(lowerRange)
 
   ## the equations of auxiary 11 is  weird in the sense that as x increases, y decreases. 
   ## as a result we get a range that is impossible to satisfy. Therefore we use the follwoing heuristic: 

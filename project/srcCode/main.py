@@ -61,26 +61,34 @@ showFlows=False  # to show flow values while executing the model
 #execAll(showFlows)
 #runIntegrator()
 runCount = 365  ## how many time the model will run 
-constFlagForBaseline = True ## th flag detrmines whether or not hte five equations will be used to geenrate constaints 
-deRunCount=100  ## howmany times DE will run? 
+constFlag = False ## th flag detrmines whether or not hte five equations will be used to geenrate constaints 
+deRunList=[1000 ]  ## howmany times DE will run? 
 dirToWriteP="/Users/akond/Documents/Fall_2015/ase/59115ASE/project/supplementary/" ## directory to store baseline and constraint files  
 lowerRange = 0  ## settign the lower range for axuiliries of the model 
-upperRange = 2  ## settign the upper range for axuiliries of the model 
-constraintFileNameParam=  str(lowerRange) + "_" + str(upperRange) + "_mod_equ_constraints.csv" ## file to store baseline and constraint files
+upperRange = 1  ## settign the upper range for axuiliries of the model 
+iterations = 3
+
+###   creatiing constraint file ######
+#constraintFileNameParam=  "all_0_1_equ.csv" ## file to store baseline and constraint files
+#print "### creating constraints file ###" 
+#print createConstraintFile(dirToWriteP, constraintFileNameParam, lowerRange, upperRange, constFlag)
 
 
+## important part: execution #####
+for cnt in xrange(iterations):
+  print " ************ Iteration # {} ***************  ".format(cnt)  
+  for deRunCount in deRunList:
+    print "### gettting baseline ###" 
+    baseline_fileNameToWriteP = "baseline_" + str(runCount)
+    minB, maxB = getBaselineForModel(runCount, dirToWriteP, baseline_fileNameToWriteP, constFlag)
+    print "And the baseline is (min, max format) \n", minB, maxB
 
-print "### creating constraints file ###" 
-print createConstraintFile(dirToWriteP, constraintFileNameParam, lowerRange, upperRange, constFlagForBaseline)
-print "### gettting baseline ###" 
-baseline_fileNameToWriteP = "baseline_" + str(runCount)
-minB, maxB = getBaselineForModel(runCount, dirToWriteP, baseline_fileNameToWriteP, constFlagForBaseline)
-print "And the baseline is (min, max format) \n", minB, maxB
-
-print "Executing D.E (minimized version) ... for {} D.E. runs and {} model runs".format(deRunCount, runCount)
-print "========================================================================="
-constraintFile = dirToWriteP + constraintFileNameParam 
-with  utility.duration(): 
-  integrator.runDE(minB, maxB, IntegratedDefectModel, deRunCount, runCount, constraintFile)
+    print "Executing D.E (minimized version) ... for {} D.E. runs and {} model runs".format(deRunCount, runCount)
+    print "========================================================================="
+    constraintFileNameParam = "all_0_1_equ.csv"
+    constraintFile = dirToWriteP + constraintFileNameParam 
+    with  utility.duration(): 
+      integrator.runDE(minB, maxB, IntegratedDefectModel, deRunCount, runCount, constraintFile)
+  print "------------------------------------------ END ----------------------------------------------------------"    
 
    
