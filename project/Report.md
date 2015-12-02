@@ -51,6 +51,8 @@ To implement the model we use the concepts of ‘stock’, ‘flow’, and ‘au
 
 We implemented IPDMC using the concepts of domain specific language. We used the object-oriented features of Python. We created classes for Auxiliary, Flow, and Stock that inherit from the base class ‘ModelComponent’. ‘ModelComponent’ has two properties namely ‘curr’, and ‘name’. Auxiliary, Flow, and Stock classes have setInput methods to set the values for the created objects. 
 
+In our implementation Auxiliary objects are treated as inputs and contribute to the flows directly. Each Stock has filled by Flows and depleted by outflows. To determine the current value of state, the inflows, and state values from the previous step.  The above-mentioned policy was used to fill up the stocks and flows in our implementation. Our implementation is provided in ‘ModelExecAll.py’. This file has three methods namely ‘executeModelForBaseline’, ‘executeModelForDE’,and ‘executeModelAll’. 
+
 
 ## Methodology 
 ## Results 
