@@ -16,7 +16,7 @@ Software teams spend a lot of effort in reducing errors, and fixing the errors t
 
 ## Introduction 
 
-The impact of software defects on software product delivery is significant and a well-studied topic amongst software practitioners and academicians. According to a study conducted by NASA Johnson Space Center, the cost of fixing software defects increases exponentially in the latter stages of the project . Jones in his book [] showed that cost of fixing a defect increases significantly during testing, and maintenance phase of the project.
+The impact of software defects on software product delivery is significant and a well-studied topic amongst software practitioners and academicians. According to a study conducted by NASA Johnson Space Center, the cost of fixing software defects increases exponentially in the latter stages of the project . Jones in his book [] showed that cost of fixing a defect increases significantly during testing, and maintenance phase of the project. To help software practitioners in assessing the costs of software defects and optimizing allocation of resources, Hamid and Madnick proposed several models that can integrates different sectors of the software team such as manpower allocation, testing, and coding. These models illustrated different aspects of software engineering such as reducing defects and errors in software development, importance of early detection errors in a software project, and optimizing allocation of resources. Madachy in his book provided simplified versions of these models in his book []. 
 
 ## Background and Related Work 
 ## Assumptions 
