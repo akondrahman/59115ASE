@@ -44,6 +44,8 @@ Nasar and Johri used differential evolution to find optimal values for software 
 Liao analyzed how hybrid approaches of compare to that of classical version of DE in the context of an engineering design problem. In his work Liao analyzed two hybrid approaches: in the first hybrid approach random walk is incorporated the classical version of DE. Secondly, Liao included harmony search to the basic differential algorithm to generate the second hybrid approach. Liao studied 14 engineering design problems such as non-linear programming problems, manufacturing design problem, and non-linear chemical engineering problems. For all the 14 engineering design problems the two hybrid approaches outperformed the classical DE in terms of convergence rate. 
 
 ## Assumptions 
+
+To implement the model we use the concepts of ‘stock’, ‘flow’, and ‘auxiliary’ that are defined below: A flow is an entity that contributes to a stock over time. There are two types of flows namely inflows, and outflows. Inflows work as an aggregator to a stock, whereas, outflows work as a depletory for a stock. Usually, flows are measured for a certain period of time. A stock is the entity that aggregates flows over time. Stocks are made larger over time by inflows and decreased by outflows. An auxiliary is an entity that is used to hold input values or intermediates. In our implementation we use auxiliaries as input to flows. We list the list of auxiliaries, flows, and stocks in presented in Table P. For the rest of the report we will refer to the auxiliaries, and flows by their acronym, and stocks by their full name.  
 ## Implementation 
 ## Methodology 
 ## Results 
