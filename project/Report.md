@@ -76,7 +76,7 @@ Before explaining the results we first provide the experiment configurations. In
 
 ![scores](output/scores.png?raw=true=100x80)
 
-
+In the second experiment configuration that we label as Exp-2, we set deRunCount for 1, 10, 100, and 1000, and set ‘constFlagForBaseline’ as False. Setting ‘constFlagForBaseline’ as False that enables the four auxiliaries ‘MultiplierSchedPressure’, ‘MultiplierWorkforce’, ‘ActiveErrorsRetiringFraction’, and ‘FractionEscapingErrors’ to use regression equations instead of any random number between 0 & 1. 
 
 ![time](output/time.png?raw=true=100x80)
  
