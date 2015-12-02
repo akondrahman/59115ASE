@@ -327,4 +327,7 @@ def createAuxList(lowerRange, upperRange, constFlagParam):
   
   
   return lowRangeList, upperRangeList
- 
+#### normalized score with respect to baseline for gale  
+def getNormalizedScoreForGale(minBP, maxBP, scoreParam ):
+  score = (scoreParam - minBP) / ( maxBP - minBP + 0.001)  
+  return score   
