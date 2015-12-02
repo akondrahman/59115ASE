@@ -62,6 +62,8 @@ The method ‘executeModelForBaseline’ is used to run the model separately to 
 ## Results
 
 ![scores](output/scores.png?raw=true=100x80)
+
+![scores](output/time.png?raw=true=100x80)
  
 ## Threats to Validity
 
