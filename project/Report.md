@@ -12,7 +12,8 @@
 
 ## Abstract 
 
-Software teams spend a lot of effort in reducing errors, and fixing the errors that have been generated as part of the development process. Software models that illustrate and predict the resources needed to reduce development errors, and predict estimation rate to reduce development errors can be of great help to software practitioners. The goal of this project is to help software teams in allocating their development resources by optimizing a software model related to software defects with a genetic algorithm.
+Software teams spend a lot of effort in reducing errors, and fixing the errors that have been generated as part of the development process. Software models that illustrate and predict the resources needed to reduce development errors, and predict estimation rate to reduce development errors can be of great help to software practitioners. The goal of this project is to help software teams in allocating their development resources by optimizing a software model related to software defects with a genetic algorithm. In this project we implemented a standard software model that takes development effort into account and calculates the amount of development errors with certain assumptions, and considering a subset of the full development resource inputs. To optimize the development resources needed to reduce development errors we use differential algorithm (DE). We observe that a subset of the complete list of development resource inputs is required to provide an optimal solution for reducing errors for this software model of interest. We also observe real world software project resource inputs for optimal output.  
+
 ## Introduction 
 ## Background and Related Work 
 ## Assumptions 
