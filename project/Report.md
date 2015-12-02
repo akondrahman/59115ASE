@@ -21,7 +21,8 @@ The impact of software defects on software product delivery is significant and a
 _The goal of this project is to help software engineering researchers to analyze the Integrated Project Model Defect Flow Chain proposed by Abdel-Hamid and Madnick, by implementing the model, and optimizing the model using a standard optimizer_.  
 
 We state our contributions as following: 
-* A modular, extendible implementation of the Integrated Project Model Defect Flow Chain * An implementation that integrates a standard optimizer with the Integrated Project Model Defect Chain to facilitate further analysis  
+* A modular, extendible implementation of the Integrated Project Model Defect Flow Chain * An implementation that integrates a standard optimizer with the Integrated Project Model Defect Chain to facilitate further analysis 
+Rest of the report is organized as follows Section II describes necessary background information, and related work. In Section III we state the assumptions of our project. Section IV illustrates our implementation of the model, and the optimizer. Section V describes the methodology of the project. In Section VI we explain our findings. Section VII discusses the threats to validity for the project. In Section VIII we state the future directions of the project. Finally we conclude our report in Section IX.     
 
 ## Background and Related Work 
 ## Assumptions 
