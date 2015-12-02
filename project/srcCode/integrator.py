@@ -47,4 +47,20 @@ def runDE(baselineMin, baselineMax, modelObj, deRunCountParam, runCountParam, co
    
   #print "### Executing D.E. "
   de(runCountParam, constraintFileNameParam, modelObj,baselineMin,baselineMax,deRunCountParam)    
-    
+def runGALE(iterationsP, minBP, maxBP):
+  from galeForModel import GALE  
+  from galeForModel import distFromHellScore
+  from modelForGALE import IPMDFC
+  import utility 
+  modelObj=IPMDFC()
+  galeOutput = GALE(modelObj, iterationsP)
+  #print("Final gale out put ", galeOutput) 
+  for item in galeOutput: 
+    print("item length is " , len(item))   
+    print("item is ", item)
+    objectivevals = modelObj.solve(item)
+    print("objective values are ", objectivevals)
+    fromHellScore = distFromHellScore(objectivevals)
+    print("Distance from hell score is: ", fromHellScore)
+    finalScore = utility.getNormalizedScoreForGale(minBP, maxBP, fromHellScore)
+    print("Final score (after normalization ...)", finalScore)
