@@ -31,6 +31,8 @@ Storn and Price invented differential evolution (DE) to generate optimal solutio
 
 Abdel-Hamid and Madnick proposed the integrated defect model that illustrates the interaction between different teams inside a software organization team namely the QA team, testing team, and the personnel allocation sector. Madachy in his book proposed a simplified version of Abdel-Hamid and Madnick’s proposed model and termed it as the ‘Integrated Project Model Defect Flow Chains (IPMDFC)’. Figure X shows IPMDFC. According to Figure X, flow that leads to error generation, detection, and correction. In contrast to the model proposed by Abdel-Hamid and Madnick, the flow chains are simplified. The model considers two types of errors namely active, and passive. According to Madachy, active errors can contribute to other errors, but passive errors do not contribute to other errors. Madachy considers all design errors to be active errors, and coding errors may be either active or passive. 
 
+As shown in Figure X, there are two parts of the whole model. The ‘top’ part has four stocks namely, ‘Potentially Detectable Errors’, ‘Escaped Errors’, ‘Detected Errors’, and ‘Reworked Errors’. The ‘bottom’ part has two stocks namely ‘Undetected Active Errors’, and ‘Undetected Passive Errors’. Madachy does not show any connection between the ‘top’ and the ‘bottom’ part, and thus we had to assume the connection as described in the next section. 
+
 ## Assumptions 
 ## Implementation 
 ## Methodology 
