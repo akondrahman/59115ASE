@@ -50,7 +50,10 @@ To implement the model we use the concepts of ‘stock’, ‘flow’, and ‘au
 ## Implementation 
 ## Methodology 
 ## Results 
-## Threats to Validity 
+## Threats to Validity
+
+We discuss the limitations of our study as following: 
+* Use of synthetic values for auxiliaries * We did not consider all auxiliaries * We did not consider the complete model * The equations used for auxiliaries are generated from regression using a sample of values that are less than 10 in size. * We ran the integrated model for 365 days that is equivalent to one year. In real world software projects tend to vary in duration usually in months, or years.  
 ## Future Work 
 ## Conclusion 
 
