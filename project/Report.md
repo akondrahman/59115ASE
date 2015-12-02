@@ -33,6 +33,9 @@ Abdel-Hamid and Madnick proposed the integrated defect model that illustrates th
 
 As shown in Figure X, there are two parts of the whole model. The ‘top’ part has four stocks namely, ‘Potentially Detectable Errors’, ‘Escaped Errors’, ‘Detected Errors’, and ‘Reworked Errors’. The ‘bottom’ part has two stocks namely ‘Undetected Active Errors’, and ‘Undetected Passive Errors’. Madachy does not show any connection between the ‘top’ and the ‘bottom’ part, and thus we had to assume the connection as described in the next section. 
 
+![IPMDFC](output/IPMDFC.png?raw=true=100x80)
+
+
 ### Related Work 
 
 Our project is closely related to applications of DE is different domains of science and engineering, as well as research studies that have investigated software quality and software defects. 
@@ -63,7 +66,7 @@ The method ‘executeModelForBaseline’ is used to run the model separately to 
 
 ![scores](output/scores.png?raw=true=100x80)
 
-![scores](output/time.png?raw=true=100x80)
+![time](output/time.png?raw=true=100x80)
  
 ## Threats to Validity
 
