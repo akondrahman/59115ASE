@@ -37,6 +37,7 @@ As shown in Figure X, there are two parts of the whole model. The ‘top’ part
 
 Our project is closely related to applications of DE is different domains of science and engineering, as well as research studies that have investigated software quality and software defects. 
 
+Nasar and Johri used differential evolution to find optimal values for software testing effort allocation. The authors focused their analysis on  resources  for  testing and  debugging  that involved three variables namely, failure detection professionals, failure rectification professionals, and computer time used to measure cost for testing effort. 
 ## Assumptions 
 ## Implementation 
 ## Methodology 
