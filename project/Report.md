@@ -57,7 +57,9 @@ We discuss the limitations of our study as following:
 ## Future Work 
 We leave the following actions as scope for future work: * Future work can consider all auxiliaries in the model   * Future work can implement the complete model that includes all the sectors of interest  * Future work can verify the equations used for auxiliaries ‘’ for real world values. 
 * Future work can run the complete model, and the optimizer for real world software project duration and contextual factors. * Future work can perform analysis of the complete model and compare the findings with that of Madachy’s implementation available on Internet [Software Process Dynamics: footnote]. * Future work can include other genetic algorithms such as simulated annealing, max walk sat or NSGA II.
-## Conclusion 
+## Conclusion
+
+IPMDFC is a software model that illustrates the flow chains of different software development factors namely software development rate, bad fix generation rate, and testing rate on different types of errors. In this project we implemented IPMDFC as a domain specific language using Python. Then we applied DE to find an optimized solution that will return the a set of values for the 17 auxiliaries when we are minimizing two stocks namely Undetected Active Errors, and Undetected Passive Errors. We suggest that our implementation can be used as a starting point for implementation of the complete model, as our implementation is modular, and extensible. 
 
 ## References 
 [1] T. Abdel-Hamid, and S. Madnick, "Software Project Dynamics: An Integrated Approach", Prentice Hall, NJ, USA, 1990 
