@@ -72,7 +72,11 @@ To observe how DE performs on optimizing two objectives for our model of interes
 
 ## Results
 
+Before explaining the results we first provide the experiment configurations. In the first experiment configuration that we label as Exp-1, we set deRunCount for 1, 10, 100, and 1000, and set ‘constFlagForBaseline’ as False. Setting deRunCount to 1 will allow DE to run on the model for one iteration. In the same manner, setting deRunCount to 1000 will allow DE to run 1000 times. Setting ‘constFlagForBaseline’ as False that enables the four auxiliaries ‘MultiplierSchedPressure’, ‘MultiplierWorkforce’, ‘ActiveErrorsRetiringFraction’, and ‘FractionEscapingErrors’ to set between any random number 0 & 1. This experiment was run 10 times to see if there is any noticeable difference for each experiment run.  
+
 ![scores](output/scores.png?raw=true=100x80)
+
+
 
 ![time](output/time.png?raw=true=100x80)
  
