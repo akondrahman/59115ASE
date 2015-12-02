@@ -53,6 +53,8 @@ We implemented IPDMC using the concepts of domain specific language. We used the
 
 In our implementation Auxiliary objects are treated as inputs and contribute to the flows directly. Each Stock has filled by Flows and depleted by outflows. To determine the current value of state, the inflows, and state values from the previous step.  The above-mentioned policy was used to fill up the stocks and flows in our implementation. Our implementation is provided in ‘ModelExecAll.py’. This file has three methods namely ‘executeModelForBaseline’, ‘executeModelForDE’,and ‘executeModelAll’. 
 
+The method ‘executeModelAll’ is used to run the model separately for snthtic values; these synthetic values are provided as a dictionary for seven days. The implementation of the dictionary can be found in ‘createAuxiliaries_All()’ in utilities.py.               
+
 
 ## Methodology 
 ## Results 
