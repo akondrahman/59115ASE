@@ -48,6 +48,10 @@ Nasar and Johri used differential evolution to find optimal values for software 
 To implement the model we use the concepts of ‘stock’, ‘flow’, and ‘auxiliary’ that are defined below: A flow is an entity that contributes to a stock over time. There are two types of flows namely inflows, and outflows. Inflows work as an aggregator to a stock, whereas, outflows work as a depletory for a stock. Usually, flows are measured for a certain period of time. A stock is the entity that aggregates flows over time. Stocks are made larger over time by inflows and decreased by outflows. An auxiliary is an entity that is used to hold input values or intermediates. In our implementation we use auxiliaries as input to flows. We list the list of auxiliaries, flows, and stocks in presented in Table P. For the rest of the report we will refer to the auxiliaries, and flows by their acronym, and stocks by their full name.  * We only considered the auxiliaries that were mentioned in Madachy’s book, the model itself is part of a larger model that included models for different sectors namely, testing, personnel allocation, and coding.  * We assumed the connection between the detected part and the undetected part based on notations from Abdel-Hamid and Madnick. We assume that flow ErrorEscapeRate contributes to the auxiliary ‘FractionEscapingErrors’, and flow ReworkRate contributes to auxiliary ‘BadFixGenRate’. 
 
 ## Implementation 
+
+We implemented IPDMC using the concepts of domain specific language. We used the object-oriented features of Python. We created classes for Auxiliary, Flow, and Stock that inherit from the base class ‘ModelComponent’. ‘ModelComponent’ has two properties namely ‘curr’, and ‘name’. Auxiliary, Flow, and Stock classes have setInput methods to set the values for the created objects. 
+
+
 ## Methodology 
 ## Results 
 ## Threats to Validity
