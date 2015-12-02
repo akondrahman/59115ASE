@@ -28,6 +28,9 @@ We state our contributions as following:
 ### Background 
 
 Storn and Price invented differential evolution (DE) to generate optimal solutions without making any assumption about the problem space. DE does not guarantee that it will always find an optimal solution. Researchers have successfully used different variants of DE to solve optimization problems in different domains such as, grid computing[], computational electro magnetics [], and software engineering []. 
+
+Abdel-Hamid and Madnick proposed the integrated defect model that illustrates the interaction between different teams inside a software organization team namely the QA team, testing team, and the personnel allocation sector. Madachy in his book proposed a simplified version of Abdel-Hamid and Madnick’s proposed model and termed it as the ‘Integrated Project Model Defect Flow Chains (IPMDFC)’. Figure X shows IPMDFC. According to Figure X, flow that leads to error generation, detection, and correction. In contrast to the model proposed by Abdel-Hamid and Madnick, the flow chains are simplified. The model considers two types of errors namely active, and passive. According to Madachy, active errors can contribute to other errors, but passive errors do not contribute to other errors. Madachy considers all design errors to be active errors, and coding errors may be either active or passive. 
+
 ## Assumptions 
 ## Implementation 
 ## Methodology 
