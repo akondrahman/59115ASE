@@ -38,6 +38,8 @@ As shown in Figure X, there are two parts of the whole model. The ‘top’ part
 Our project is closely related to applications of DE is different domains of science and engineering, as well as research studies that have investigated software quality and software defects. 
 
 Nasar and Johri used differential evolution to find optimal values for software testing effort allocation. The authors focused their analysis on  resources  for  testing and  debugging  that involved three variables namely, failure detection professionals, failure rectification professionals, and computer time used to measure cost for testing effort. 
+Becerra et al. applied DE to automatically generating a test suite that consists a set of test inputs in order to achieve 100% branch coverage. The authors also compared the performance empirically with Breeder Genetic Algorithm (BGA) that also has been used in real world applications such as optimizing parcel distribution, and impulse filtering. The authors suggested that DE is sensitive to the cross over factor labeled as ‘differential constant for mutation’. 
+
 ## Assumptions 
 ## Implementation 
 ## Methodology 
