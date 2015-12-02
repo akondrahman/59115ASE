@@ -39,6 +39,7 @@ Our project is closely related to applications of DE is different domains of sci
 
 Nasar and Johri used differential evolution to find optimal values for software testing effort allocation. The authors focused their analysis on  resources  for  testing and  debugging  that involved three variables namely, failure detection professionals, failure rectification professionals, and computer time used to measure cost for testing effort. 
 Becerra et al. applied DE to automatically generating a test suite that consists a set of test inputs in order to achieve 100% branch coverage. The authors also compared the performance empirically with Breeder Genetic Algorithm (BGA) that also has been used in real world applications such as optimizing parcel distribution, and impulse filtering. The authors suggested that DE is sensitive to the cross over factor labeled as ‘differential constant for mutation’. 
+Rocca et al. conducted a survey on use of different variants of DE in computational electro magnetics. They studied 70 academic papers that were published from 2000 till October 2009. They found that ‘DE/best/1/bin’ was the most used variant of DE used in the domain of computational electro magnetics. 
 
 ## Assumptions 
 ## Implementation 
