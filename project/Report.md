@@ -11,6 +11,8 @@
 
 
 ## Abstract 
+
+Software teams spend a lot of effort in reducing errors, and fixing the errors that have been generated as part of the development process. Software models that illustrate and predict the resources needed to reduce development errors, and predict estimation rate to reduce development errors can be of great help to software practitioners. The goal of this project is to help software teams in allocating their development resources by optimizing a software model related to software defects with a genetic algorithm.
 ## Introduction 
 ## Background and Related Work 
 ## Assumptions 
