@@ -66,16 +66,19 @@ deRunList=[1000 ]  ## howmany times DE will run?
 dirToWriteP="/Users/akond/Documents/Fall_2015/ase/59115ASE/project/supplementary/" ## directory to store baseline and constraint files  
 lowerRange = 0  ## settign the lower range for axuiliries of the model 
 upperRange = 1  ## settign the upper range for axuiliries of the model 
-iterations = 3
+iterations = 3  ## settign how many times we will do the experiemnts 
+deExp=False  
+galeExp=True 
 
 ###   creatiing constraint file ######
 #constraintFileNameParam=  "all_0_1_equ.csv" ## file to store baseline and constraint files
 #print "### creating constraints file ###" 
 #print createConstraintFile(dirToWriteP, constraintFileNameParam, lowerRange, upperRange, constFlag)
 
-
-## important part: execution #####
-for cnt in xrange(iterations):
+#### DE ZONE STARTS ! #########
+if deExp:
+# important part: execution od DE for multiple iterations , for n number of times #####
+ for cnt in xrange(iterations):
   print " ************ Iteration # {} ***************  ".format(cnt)  
   for deRunCount in deRunList:
     print "### gettting baseline ###" 
@@ -90,5 +93,18 @@ for cnt in xrange(iterations):
     with  utility.duration(): 
       integrator.runDE(minB, maxB, IntegratedDefectModel, deRunCount, runCount, constraintFile)
   print "------------------------------------------ END ----------------------------------------------------------"    
+####  DE ZONE ENDS! #########
+#### GALE ZONE STARTS ! #########
+if galeExp:
+ for cnt in xrange(iterations):
+  galeRunCount = 10 
+  print "### gettting baseline ###" 
+  baseline_fileNameToWriteP = "baseline_" + str(runCount)
+  minB, maxB = getBaselineForModel(runCount, dirToWriteP, baseline_fileNameToWriteP, constFlag)
+  print "And the baseline is (min, max format) \n", minB, maxB
 
-   
+  print "Executing GALE (minimized version) ... for {} GALE runs and {} model runs".format(galeRunCount, runCount)
+  print "========================================================================="   
+  with utility.duration():
+    integrator.runGALE(galeRunCount, minB, maxB)    
+#### GALE ZONE STARTS ! #########  
