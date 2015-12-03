@@ -103,15 +103,16 @@ def SimulatedAnnealing(modelParam):
            BaseLine.baseline_max = best_sol.sumOfObjs()   
         newBaseLine = [BaseLine.baseline_min, BaseLine.baseline_max]
         curr_sol.updateBaseline(newBaseLine)                   
-        if eraCount >=20:
+        if eraCount ==19:
           ## comparing prev and current
           crr_era = sorted(eraList, reverse=True)
           #print("Current era: ", crr_era)
+
+          eraDict[eraDictCount] = crr_era
+          #print ("Contents of the dictionary ", eraDict[eraDictCount])          
           eraDictCount = eraDictCount + 1
           #print ("era dict count ", eraDictCount)
           
-          eraDict[eraDictCount] = crr_era
-          #print ("Contents of the dictionary ", eraDict[eraDictCount])          
           a12Output =  utilities.a12(crr_era, prev_era)
 
           if a12Output <= a12Factor:
@@ -275,12 +276,13 @@ def MaxWalkSat(model, maxTries=100, maxChanges=10, threshold=0, p=0.5, step=10):
                   BaseLine.baseline_max = sbest.sumOfObjs() 
             newBaseLine = [BaseLine.baseline_min, BaseLine.baseline_max]
             curr_solve_for_model.updateBaseline(newBaseLine)                          
-            if eraCount >=20:
+            if eraCount ==19:
                 ## comparing prev and current
                 crr_era = sorted(eraList, reverse=True)
                 #print("Current era:", curr_era)
-                eraDictCount = eraDictCount + 1
+
                 eraDict[eraDictCount] = crr_era
+                eraDictCount = eraDictCount + 1
                 a12Output = utilities.a12(crr_era, prev_era)
 
                 if a12Output <= a12Factor:

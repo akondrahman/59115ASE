@@ -212,8 +212,9 @@ def update(f,cf, frontier, curr_candidate_sol,baseline_min,baseline_max,total=0.
       ## comparing prev and current
       crr_era = sorted(eraList, reverse=True)
       #print("Current era: ", crr_era)
-      eraDictCount = eraDictCount + 1
+
       eraDict[eraDictCount] = crr_era
+      eraDictCount = eraDictCount + 1
       a12Output =  utilities.a12(crr_era, prev_era)
 
       if a12Output <= a12Factor:

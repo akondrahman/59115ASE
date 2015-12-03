@@ -32,8 +32,8 @@ def runOptimizer(optimizerNameP, modelNameP, runP):
    print "After running the optimizer ... BASELINE: MIN=", BaseLine.baseline_min," MAX=", BaseLine.baseline_max
    #print "main first_era: %s" %(eraDict[1])
    #print "main last_era: %s" %(eraDict[len(eraDict)])
-   first_era = eraDict[1]
-   last_era = eraDict[len(eraDict) ]
+   first_era = eraDict[0]
+   last_era = eraDict[len(eraDict) - 1 ]
    total_loss = compute_loss(first_era, last_era)
    loss_list.append(total_loss)
 
