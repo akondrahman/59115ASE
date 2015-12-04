@@ -75,7 +75,8 @@ The method ‘executeModelForBaseline’ is used to run the model separately to 
 
 To implement DE we use the concept called _normalized score_ that aggregates 
 the objective scores and normalizes with respect to a baseline score. To obtain the 
-baseline we run IPMDFC for a fixed number of iterations.     
+baseline we run IPMDFC for a fixed number of iterations. The obtained baseline scores is passed to our implementation of the DE algorithm. Our DE algorithm updates the scores of baseline by the score obtained from each candidate solution. Our implementation of DE 
+performs minimization on the normalized scores.     
 
 ### Integrating DE with IPMDFCFinally, main.py acts as a placeholder to put all the pieces together and perform all experiments. To perform a sample run a set of synthetic values we use the ‘runIntegrator’ method in main.py. To get baseline for IntegratedDefectModel we use ‘getBaselineForModel’ method in main.py. Finally, to use DE on InteratedDefectModel we set the following parameters: runCount, constFlagForBaseline, deRunCount, and dirToWriteP. Parameter ‘runCount’ specifies the number of times the model will run. This is set to 365 to imitate 365 days for running the model. If ‘constFlagForBaseline’ is set to True, then regression equations will be used to run the model. ‘dirToWriteP’ specifies the directory name where the constraint file resides. ‘constraintFileNameParam’ is used to set the name of the constraint file. Please note that ‘createConstraintFile’ is an optional method to create constraint files based to set different ranges for the auxiliaries. In our implementation we have not used this method. 
 
