@@ -6,7 +6,7 @@
 * ### Manish Singh (mrsingh@ncsu.edu)
 
 
-## Date: Dec 02, 2015
+## Date: Dec 04, 2015
 
 
 
@@ -25,9 +25,14 @@ We state our contributions as following:
 Rest of the report is organized as follows Section II describes necessary background information, and related work. In Section III we state the assumptions of our project. Section IV illustrates our implementation of the model, and the optimizer. Section V describes the methodology of the project. In Section VI we explain our findings. Section VII discusses the threats to validity for the project. In Section VIII we state the future directions of the project. Finally we conclude our report in Section IX.     
 
 ## Background and Related Work 
+
+In this section we provide background information and prior academic work related to our project. 
 ### Background 
 
 Storn and Price invented differential evolution (DE) to generate optimal solutions without making any assumption about the problem space. DE does not guarantee that it will always find an optimal solution. Researchers have successfully used different variants of DE to solve optimization problems in different domains such as, grid computing[], computational electro magnetics [], and software engineering []. 
+
+Differential evolution solves the problem of over population in the forntier by replacing the worse solutions by beter solutions. For generating new candidate solutions it does extrapolation by picking three members from the frontier. At some probability the extrapolation was performed. 
+
 
 Abdel-Hamid and Madnick proposed the integrated defect model that illustrates the interaction between different teams inside a software organization team namely the QA team, testing team, and the personnel allocation sector. Madachy in his book proposed a simplified version of Abdel-Hamid and Madnick’s proposed model and termed it as the ‘Integrated Project Model Defect Flow Chains (IPMDFC)’. Figure X shows IPMDFC. According to Figure X, flow that leads to error generation, detection, and correction. In contrast to the model proposed by Abdel-Hamid and Madnick, the flow chains are simplified. The model considers two types of errors namely active, and passive. According to Madachy, active errors can contribute to other errors, but passive errors do not contribute to other errors. Madachy considers all design errors to be active errors, and coding errors may be either active or passive. 
 
@@ -55,7 +60,9 @@ To implement the model we use the concepts of ‘stock’, ‘flow’, and ‘au
 * We only considered the auxiliaries that were mentioned in Madachy’s book, the model itself is part of a larger model that included models for different sectors namely, testing, personnel allocation, and coding.  * We assumed the connection between the detected part and the undetected part based on notations from Abdel-Hamid and Madnick. We assume that flow ErrorEscapeRate contributes to the auxiliary ‘FractionEscapingErrors’, and flow ReworkRate contributes to auxiliary ‘BadFixGenRate’. 
 
 ## Implementation 
+We conduct the discussion of this section in two sub-sections. The first sub-section provides the details on implementation of the IPMDFC. the next sub-section describes the implementation of DE, and how DE is integrated to the model. 
 
+### Implementation of IPMDFC
 We implemented IPDMC using the concepts of domain specific language. We used the object-oriented features of Python. We created classes for Auxiliary, Flow, and Stock that inherit from the base class ‘ModelComponent’. ‘ModelComponent’ has two properties namely ‘curr’, and ‘name’. Auxiliary, Flow, and Stock classes have setInput methods to set the values for the created objects. 
 
 In our implementation Auxiliary objects are treated as inputs and contribute to the flows directly. Each Stock has filled by Flows and depleted by outflows. To determine the current value of state, the inflows, and state values from the previous step.  The above-mentioned policy was used to fill up the stocks and flows in our implementation. Our implementation is provided in ‘ModelExecAll.py’. This file has three methods namely ‘executeModelForBaseline’, ‘executeModelForDE’,and ‘executeModelAll’. 
@@ -63,7 +70,8 @@ In our implementation Auxiliary objects are treated as inputs and contribute to 
 The method ‘executeModelAll’ is used to run the model separately for snthtic values; these synthetic values are provided as a dictionary for seven days. The implementation of the dictionary can be found in ‘createAuxiliaries_All()’ in utilities.py.               
 
 The method ‘executeModelForBaseline’ is used to run the model separately to get baseline values to run DE on IPDMF. All the auxiliaries are provided by the ‘giveAuxiliariesForBaseline’ method in utility.py.                The method ‘executeModelForDE’ is used to run the model separately to run DE on IPDMF. The method takes four parameters namely auxListParam, currStateParam, prevStateParam, and dt. In our implementation dt is always set 1. ‘currStateParam’, and ‘prevStateParam’ are two state objects that keeps tarck of the current state and previous state.  To facilitate the integration of DE on IPDMF we used another file called integrator.py, and models.py. The purpose of models.py was to implement IPDMF as an object that has a lowerRange, upperRange, objectives, and decisions. In this model we had 17 auxiliaries, so the number of decisions were 17. The number of objectives was two as we asked DE to minimize ‘Undetected Active Errors’, and ‘Undetected Passive Errors’.  This class is called ‘IntegratedDefectModel’, and inherits from ‘Model’. The method ‘runDE()’ in integrator.py passes the object ‘IntegratedDefectModel’. DE later creates the necessary objects for ‘IntegratedDefectModel’. Our implementation of DE can be found in de.py. Our implementation can be used to maximize and minimize objectives. In our implementation we use DE to minimize the two objectives ‘Undetected Active Errors’, and ‘Undetected Passive Errors’.     The class IntegratedDefectModel also has two important methods: ‘check’, and ‘getobj’. The method ‘check’ makes sure that the decision vector created by DE satisfies the constraints of IntegratedDefectModel. In our implementation the lower and upper range of all the 17 auxiliaries lie between 0 & 1. The purpose of getobj is to run the model for n number of times and calculate the values of the two stocks of interest. In our experiments we fix n=365 mimicking 365 days of one year. The constraints for IntegratedDefectModel are provided in a CSV file. The name of the constraints file, and the directory where it resides must be provided while running DE on IntegratedDefectModel.    
-Finally, main.py acts as a placeholder to put all the pieces together and perform all experiments. To perform a sample run a set of synthetic values we use the ‘runIntegrator’ method in main.py. To get baseline for IntegratedDefectModel we use ‘getBaselineForModel’ method in main.py. Finally, to use DE on InteratedDefectModel we set the following parameters: runCount, constFlagForBaseline, deRunCount, and dirToWriteP. Parameter ‘runCount’ specifies the number of times the model will run. This is set to 365 to imitate 365 days for running the model. If ‘constFlagForBaseline’ is set to True, then regression equations will be used to run the model. ‘dirToWriteP’ specifies the directory name where the constraint file resides. ‘constraintFileNameParam’ is used to set the name of the constraint file. Please note that ‘createConstraintFile’ is an optional method to create constraint files based to set different ranges for the auxiliaries. In our implementation we have not used this method. 
+
+### Integrating DE with IPMDFCFinally, main.py acts as a placeholder to put all the pieces together and perform all experiments. To perform a sample run a set of synthetic values we use the ‘runIntegrator’ method in main.py. To get baseline for IntegratedDefectModel we use ‘getBaselineForModel’ method in main.py. Finally, to use DE on InteratedDefectModel we set the following parameters: runCount, constFlagForBaseline, deRunCount, and dirToWriteP. Parameter ‘runCount’ specifies the number of times the model will run. This is set to 365 to imitate 365 days for running the model. If ‘constFlagForBaseline’ is set to True, then regression equations will be used to run the model. ‘dirToWriteP’ specifies the directory name where the constraint file resides. ‘constraintFileNameParam’ is used to set the name of the constraint file. Please note that ‘createConstraintFile’ is an optional method to create constraint files based to set different ranges for the auxiliaries. In our implementation we have not used this method. 
 
 ## Methodology 
 
@@ -71,6 +79,12 @@ To observe how DE performs on optimizing two objectives for our model of interes
 
 
 ## Results
+
+We conduct our discussion in two categories: first we provide empirical evidence on how the mode behaves, and whether or not DE is providing better results in terms of optimization. Then we provide our findings for the two experiemnts that we used. 
+
+### Improvement by DE 
+
+### Experiemnts  
 
 Before explaining the results we first provide the experiment configurations. In the first experiment configuration that we label as Exp-1, we set deRunCount for 1, 10, 100, and 1000, and set ‘constFlagForBaseline’ as False. Setting deRunCount to 1 will allow DE to run on the model for one iteration. In the same manner, setting deRunCount to 1000 will allow DE to run 1000 times. Setting ‘constFlagForBaseline’ as False that enables the four auxiliaries ‘MultiplierSchedPressure’, ‘MultiplierWorkforce’, ‘ActiveErrorsRetiringFraction’, and ‘FractionEscapingErrors’ to set between any random number 0 & 1. This experiment was run 10 times to see if there is any noticeable difference for each experiment run.  
 
@@ -90,6 +104,10 @@ We leave the following actions as scope for future work: * Future work can con
 ## Conclusion
 
 IPMDFC is a software model that illustrates the flow chains of different software development factors namely software development rate, bad fix generation rate, and testing rate on different types of errors. In this project we implemented IPMDFC as a domain specific language using Python. Then we applied DE to find an optimized solution that will return the a set of values for the 17 auxiliaries when we are minimizing two stocks namely Undetected Active Errors, and Undetected Passive Errors. We suggest that our implementation can be used as a starting point for implementation of the complete model, as our implementation is modular, and extensible. The organization of the project also facilitates the scope of adding other genetic algorithms namely simulated annealing, max walk sat, and NSGAII. We observe that to make our implementation applicable to real-world software projects, future work should include all necessary auxiliaries, complete implementation of all relevant models, and real world project values for the auxiliaries. 
+
+## Acknowledgement 
+
+We earnestly thank Dr. Tim Menzies, and Rahul Krishna for giving us advice in implementing the project.
 
 ## References 
 [1] T. Abdel-Hamid, and S. Madnick, "Software Project Dynamics: An Integrated Approach", Prentice Hall, NJ, USA, 1990 
