@@ -37,10 +37,10 @@ def execAll(showFlows):
 
 
 
-def runIntegrator():
-  print "############# Dummy Integration #########"
-  print "Executing test cases for whole model with dummy integration ... no fail means passing !"
-  tests.testDummyIntegration()
+#def runIntegrator():
+#  print "############# Dummy Integration #########"
+#  print "Executing test cases for whole model with dummy integration ... no fail means passing !"
+#  tests.testDummyIntegration()
   
 def getBaselineForModel(cntParam, dirToWriteP, fileNameToWriteP, constFlagForBaselineP):
   print "Getting baseline for {} times".format(cntParam) 
@@ -59,16 +59,16 @@ def createConstraintFile(dirP, fileP, lowerRangeP, upperRangeP, constFlagParam):
 
 showFlows=False  # to show flow values while executing the model 
 #execAll(showFlows)
-#runIntegrator()
+
 runCount = 365  ## how many time the model will run 
 constFlag = False ## th flag detrmines whether or not hte five equations will be used to geenrate constaints 
-deRunList=[1000 ]  ## howmany times DE will run? 
+deRunList=[1 ]  ## howmany times DE will run? 
 dirToWriteP="/Users/akond/Documents/Fall_2015/ase/59115ASE/project/supplementary/" ## directory to store baseline and constraint files  
 lowerRange = 0  ## settign the lower range for axuiliries of the model 
 upperRange = 1  ## settign the upper range for axuiliries of the model 
 iterations = 3  ## settign how many times we will do the experiemnts 
-deExp=False  
-galeExp=True 
+deExp=True  
+#galeExp=False 
 
 ###   creatiing constraint file ######
 #constraintFileNameParam=  "all_0_1_equ.csv" ## file to store baseline and constraint files
@@ -82,29 +82,30 @@ if deExp:
   print " ************ Iteration # {} ***************  ".format(cnt)  
   for deRunCount in deRunList:
     print "### gettting baseline ###" 
-    baseline_fileNameToWriteP = "baseline_" + str(runCount)
+    baseline_fileNameToWriteP = "baseline_" + str(runCount) + "_" + str(deRunCount) + "_" + str("cnt")
     minB, maxB = getBaselineForModel(runCount, dirToWriteP, baseline_fileNameToWriteP, constFlag)
-    print "And the baseline is (min, max format) \n", minB, maxB
+    #print "And the baseline is (min, max format) \n", minB, maxB
 
     print "Executing D.E (minimized version) ... for {} D.E. runs and {} model runs".format(deRunCount, runCount)
     print "========================================================================="
-    constraintFileNameParam = "all_0_1_equ.csv"
+    #constraintFileNameParam = "all_0_1_equ.csv"
+    constraintFileNameParam = "all_0_1_no_equ.csv"
     constraintFile = dirToWriteP + constraintFileNameParam 
     with  utility.duration(): 
       integrator.runDE(minB, maxB, IntegratedDefectModel, deRunCount, runCount, constraintFile)
   print "------------------------------------------ END ----------------------------------------------------------"    
 ####  DE ZONE ENDS! #########
-#### GALE ZONE STARTS ! #########
-if galeExp:
- for cnt in xrange(iterations):
-  galeRunCount = 10 
-  print "### gettting baseline ###" 
-  baseline_fileNameToWriteP = "baseline_" + str(runCount)
-  minB, maxB = getBaselineForModel(runCount, dirToWriteP, baseline_fileNameToWriteP, constFlag)
-  print "And the baseline is (min, max format) \n", minB, maxB
-
-  print "Executing GALE (minimized version) ... for {} GALE runs and {} model runs".format(galeRunCount, runCount)
-  print "========================================================================="   
-  with utility.duration():
-    integrator.runGALE(galeRunCount, minB, maxB)    
-#### GALE ZONE STARTS ! #########  
+##### GALE ZONE STARTS ! #########
+#if galeExp:
+# for cnt in xrange(iterations):
+#  galeRunCount = 10 
+#  print "### gettting baseline ###" 
+#  baseline_fileNameToWriteP = "baseline_" + str(runCount)
+#  minB, maxB = getBaselineForModel(runCount, dirToWriteP, baseline_fileNameToWriteP, constFlag)
+#  print "And the baseline is (min, max format) \n", minB, maxB
+#
+#  print "Executing GALE (minimized version) ... for {} GALE runs and {} model runs".format(galeRunCount, runCount)
+#  print "========================================================================="   
+#  with utility.duration():
+#    integrator.runGALE(galeRunCount, minB, maxB)    
+##### GALE ZONE STARTS ! #########  

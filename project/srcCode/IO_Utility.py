@@ -67,3 +67,22 @@ def createConstraintFiles(dirParam, fileParam, auxParam, lowListParam, highListP
       fileToWrite.close()
   return "DONE !"      
         
+def writeObjListToFile(dirParam, fileParam, listP):
+  import os   
+  completeStrToWrite=""
+  if not os.path.exists(dirParam):
+    os.makedirs(dirParam)  
+  fileParam = dirParam + "/" + fileParam + ".csv"
+  fileToWrite = open( fileParam, 'w')
+  lineStr =  "Undetected Active Errors" + ","  + "Undetected Passive Errors" +","  
+  fileToWrite.write(lineStr + "\n") 
+  for it_ in listP:
+    for item in it_:    
+        lineStr = lineStr + str(item) + ","
+    lineStr = lineStr + "\n"  
+    completeStrToWrite = completeStrToWrite + lineStr  
+    lineStr="";
+  fileToWrite.write(completeStrToWrite );
+  fileToWrite.close()
+  return " Writing ObjectList to File .... DONE !"        
+        

@@ -69,4 +69,20 @@ class IntegratedDefectModel(Model):
         val_ = self.decisionVec
         prev, curr = ModelExecAll.executeModelForBaseline(val_, curr, prev, dt)
         stockToRet[cnt]=[ curr.UndetectedActiveErrors_.curr, curr.UndetectedPassiveErrors_.curr]
-     return stockToRet[self.runCount -  1]             
+     return stockToRet[self.runCount -  1]            
+     
+ 
+  def getobjfromdecision(self,decVecP):
+     from StateAll import StateAll
+     import ModelExecAll
+     ##States
+     curr = StateAll("CurrentState_inte")
+     prev = StateAll("PrevState_inte")
+     dt = 1
+     stockToRet ={}
+     for cnt in xrange(self.runCount):
+        val_ = decVecP
+        prev, curr = ModelExecAll.executeModelForBaseline(val_, curr, prev, dt)
+        stockToRet[cnt]=[ curr.UndetectedActiveErrors_.curr, curr.UndetectedPassiveErrors_.curr]
+     return stockToRet[self.runCount -  1]            
+    

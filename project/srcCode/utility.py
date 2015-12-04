@@ -161,6 +161,12 @@ def giveAuxiliariesForBaseline(constFlagParam):
    print "Something is wrong "   
    exit()
  return listToret   
+
+def getStockOnInterestBasedOnValue(dictP, valP, temp_):
+    indexOfInterest = temp_.index(valP)
+    stock_1= dictP[indexOfInterest][0]
+    stock_2= dictP[indexOfInterest][1]    
+    return stock_1, stock_2    
 def getFeatureFromDict(dictParam, opType): 
   temp_ = []  
   valToRet = 0 
@@ -168,8 +174,12 @@ def getFeatureFromDict(dictParam, opType):
     temp_.append(val_[0] + val_[1])
   if opType=="min":
     valToRet = min(temp_) 
+    stock_1, stock_2 =getStockOnInterestBasedOnValue(dictParam, valToRet, temp_)
+    print "Corresponding index item for baseline min: UndetectedActiveErrors= {}, UndetectedPassiveErrors={}".format(stock_1, stock_2)
   elif opType=="max": 
     valToRet = max(temp_)
+    stock_1, stock_2 =getStockOnInterestBasedOnValue(dictParam, valToRet, temp_)
+    print "Corresponding index item for baseline max: UndetectedActiveErrors= {}, UndetectedPassiveErrors={}".format(stock_1, stock_2)    
   else: 
     print "operation not recongized ... provided operation type: ", opType
   return   valToRet  

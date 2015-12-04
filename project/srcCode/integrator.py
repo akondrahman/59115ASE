@@ -44,9 +44,18 @@ def runModelForBaseline(runCountParam, constFlagForBaselineP):
   
 
 def runDE(baselineMin, baselineMax, modelObj, deRunCountParam, runCountParam, constraintFileNameParam):
-   
+  #import IO_Utility 
   #print "### Executing D.E. "
-  de(runCountParam, constraintFileNameParam, modelObj,baselineMin,baselineMax,deRunCountParam)    
+  out_normscore, out_decVec = de(runCountParam, constraintFileNameParam, modelObj,baselineMin,baselineMax,deRunCountParam)    
+  tempObj = modelObj(constraintFileNameParam, runCountParam)  
+  objByDecVec  = tempObj.getobjfromdecision(out_decVec)
+  
+  print "Normalized Score ...", out_normscore
+  print "The objective scores after all minimization ....UnAc={}, UnPass={}".format(objByDecVec[0], objByDecVec[1])
+  #print "Total Score after all ...", out_toScore
+  #print "Size of frontier  ", out_n
+  #print "Size of objlist: ", len(out_ObjList)
+  #IO_Utility.writeObjListToFile("output", "obj_score"+ "_" +str(deRunCountParam)+ "_" +str(runCountParam), out_ObjList)
 def runGALE(iterationsP, minBP, maxBP):
   from galeForModel import GALE  
   from galeForModel import distFromHellScore

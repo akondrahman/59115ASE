@@ -12,6 +12,7 @@ import math
 import random
 import copy
 
+listToLogScores=[]
 
 def lo(curr_candidate_sol,d):
 	return curr_candidate_sol.lowerRange[d]
@@ -34,14 +35,16 @@ def n(max):
 	return (random.uniform(0,max))
 
 def score(curr_candidate_sol):
-	objective_list = curr_candidate_sol.getobj()
-	square = lambda val: math.pow(val,2)
-	sq_root = lambda val: math.sqrt(val)
-	dist_from_hell =0
-	for f in objective_list:
+  objective_list = curr_candidate_sol.getobj()
+  #countToLogScores = countToLogScores + 1
+  listToLogScores.append( objective_list )
+  square = lambda val: math.pow(val,2)
+  sq_root = lambda val: math.sqrt(val)
+  dist_from_hell =0
+  for f in objective_list:
 		dist_from_hell += square(f)
-	dist_from_hell = sq_root(dist_from_hell)
-	return dist_from_hell
+  dist_from_hell = sq_root(dist_from_hell)
+  return dist_from_hell
 
 
 #def get_min_max(model):
@@ -116,15 +119,19 @@ def de(runCountParam, constraintFileNameParam, model, baseline_min,baseline_max,
 
 	score_have_dict = { obj.score:obj.have for obj in frontier}
 	print "==================="
+      
  
 	#for key in sorted(score_have_dict.keys(),reverse = True):
      #        print "%s: %s" % (key, score_have_dict[key])
 
-	print "BASELINE: MIN=", BaseLine.baseline_min," MAX=", BaseLine.baseline_max
+	#print "BASELINE: MIN=", BaseLine.baseline_min," MAX=", BaseLine.baseline_max
   	sorted_keys = sorted(score_have_dict.keys(),reverse = False)
-  	print "Doing minimization: %s: %s" % (sorted_keys[0], score_have_dict[sorted_keys[0]])
-	
-	return frontier
+      
+  	#print "Doing minimization: %s: %s" % (sorted_keys[0], score_have_dict[sorted_keys[0]])
+     
+      
+      
+	return  sorted_keys[0], score_have_dict[sorted_keys[0]]
 
 def update(f,cf, frontier, curr_candidate_sol,baseline_min,baseline_max,total=0.0, n=0):
 	# print "FROM UPDATE -->", curr_candidate_sol
