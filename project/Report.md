@@ -69,12 +69,12 @@ We conduct the discussion of this section in two sub-sections. The first sub-sec
 ### Implementation of IPMDFC
 We implemented IPMDFC using the concepts of domain specific language. We used the object-oriented features of Python. We created classes for _Auxiliary_, _Flow_, and _Stock_ that inherit from the base class _ModelComponent_. _ModelComponent_ has two properties namely _curr_, and _name_. _Auxiliary_, _Flow_, and _Stock_ classes have setInput methods to set the values for the created objects. 
 
-In our implementation Auxiliary objects are treated as inputs and contribute to the flows directly. Each Stock has filled by Flows and depleted by outflows. To determine the current value of state, the inflows, and state values from the previous step.  The above-mentioned policy was used to fill up the stocks and flows in our implementation. Our implementation is provided in _ModelExecAll.py_. This file has three methods namely _executeModelForBaseline_, _executeModelForDE_,and _executeModelAll_. 
+In our implementation auxiliary objects are treated as inputs and contribute to the flows directly. Each stock is filled by inflows and depleted by outflows. To determine the current value of state, the inflows, and state values from the previous step were added, and the outflaws were subtracted.  Our implementation is provided in _ModelExecAll.py_. This file has three methods namely _executeModelForBaseline_, _executeModelForDE_,and _executeModelAll_. 
 
-* The method _executeModelAll_ is used to run the model separately for synthetic values; these synthetic values are provided as a dictionary for seven days. The implementation of the dictionary can be found in _createAuxiliaries_All()_ in _utility.py_.               
+* The method _executeModelAll_ is used to run the model separately for synthetic values; these synthetic values are provided as a dictionary for seven days. The implementation of the dictionary can be found in method _createAuxiliaries_All_ in _utility.py_.               
 
 * The method _executeModelForBaseline_ is used to run the model separately to get baseline values to run DE on IPMDFC. All the auxiliaries are provided by the _giveAuxiliariesForBaseline_ method in utility.py.                * The method _executeModelForDE_ is used to run the model separately to run DE on IPMDFC. The method takes four parameters namely _auxListParam_, _currStateParam_, _prevStateParam_, and _dt_. In our implementation dt is always set 1. _currStateParam_, and _prevStateParam_ are two state objects that keeps tarck of the current state and previous state.  To facilitate the integration of DE on IPMDFC we used another file called _integrator.py_, and _models.py_. The purpose of models.py was to implement IPMDFC as an object that has a _lowerRange_, _upperRange_, _objectives_, and _decisions_. In this model we had 17 auxiliaries, so the number of decisions were 17. The number of objectives was two as we wanted DE to minimize on two stocks namely _Undetected Active Errors_, and _Undetected Passive Errors_.  
-The method _runDE()_ in integrator.py passes the object _IntegratedDefectModel_. DE later creates the necessary objects for _IntegratedDefectModel_. Our implementation of DE can be found in _de.py_. Our implementation can be used to maximize and minimize objectives. In our implementation we use DE to minimize the two objectives _Undetected Active Errors_, and _Undetected Passive Errors_.     The class IntegratedDefectModel also has two methods: _check_, and _getobj_. 
+The method _runDE_ in integrator.py passes the object _IntegratedDefectModel_. DE later creates the necessary objects for _IntegratedDefectModel_. Our implementation of DE can be found in _de.py_. Our implementation can be used to maximize and minimize objectives. In our implementation we use DE to minimize the two objectives _Undetected Active Errors_, and _Undetected Passive Errors_.     The class IntegratedDefectModel also has two methods: _check_, and _getobj_. 
 * The method ‘check’ makes sure that the decision vector created by DE satisfies the constraints of IntegratedDefectModel. 
 * The purpose of getobj is to run the model for certain number of times and calculate the values of the two stocks of interest. In our experiments we fix n=365 mimicking 365 days of one year. The constraints for IntegratedDefectModel are provided in a CSV file. The name of the constraints file, and the directory where it resides must be provided while running DE on IntegratedDefectModel.    
 
@@ -97,7 +97,33 @@ To observe how DE performs on optimizing two objectives for our model of interes
 
 ## Results
 
-We conduct our discussion in two categories: first we provide empirical evidence on how the mode behaves, and whether or not DE is providing better results in terms of optimization. Then we provide our findings for the two experiemnts that we used. 
+We conduct our discussion in three categories: first we show the values of all the stocks for a sample run of IPMDFC. Then we provide empirical eveidence stating whether or not DE is providing better results in terms of optimization. Finally we provide our findings for the two experiemnts that we used. 
+
+### Sample Run of IPMDFC 
+
+To test our implemention of IPMDFC we created a set of auxiliaries and observed the values of all the stocks. In Table II we list the values of all auxiliaries that we used. Please note that all the following values are for test purpose. 
+  
+Table II: Values of Auxiliaries Used 
+
+|Auxiliary Name   | Day-1   |  Day-2 | Day-3  | Day-4  | Day-5  | Day-6  | Day-7  |
+|------------------------------|-----|-----|-----|-----|-----|-----|-----|
+| MultiplierSchedPressure      | 0  | 1  | 1 | 2  | 1  | 10 | -1 |
+| MultiplierWorkforce          | 0  | 1  | 1 | 2  | 1  | 10 | -1 | 
+| NominalErr                   | 0  | 1  | 1 | 2  | 1  | 10 | -1 |
+| SoftwareDevelopmentRate      | 0  | 1  | 1 | 2  | 1  | 10 | -1 |
+| PotentialErrorDetectRate     | 0  | 1  | 1 | 2  | 1  | 10 | -1 |
+| AvgErrorPerTask              | 0  | 1  | 1 | 2  | 1  | 10 | -1 |
+| QARate                       | 0  | 1  | 1 | 2  | 1  | 10 | -1 |
+| ActualReworkMP               | 0  | 1  | 1 | 2  | 1  | 10 | -1 |
+| DailyMPRework                | 0  | 1  | 1 | 2  | 1  | 10 | -1 |
+| FractionEscapingErrors	    | 0  | 3  | 3 | 6  | 3  | 30 | -3 |
+| BadFixGenRate                | 0  | 3  | 3 | 6  | 3  | 30 | -3 |
+| TimeToSmooth	                | 0  | 1  | 1 | 2  | 1  | 10 | -1 |
+| MPRegen	                    |   0  | 1  | 1 | 2  | 1  | 10 | -1 |
+| ActiveErrorDensity            |   0  | 1  | 1 | 2  | 1  | 10 | -1 |
+| ActiveErrorsRetiringFraction  | 0  | 1  | 1 | 2  | 1  | 10 | -1 |
+| TestingRate                   |  0  | 1  | 1 | 2  | 1  | 10 | -1 |
+| PassiveErrorDensity           |  0  | 1  | 7 | 8  | 13  | 16 | 59 |
 
 ### Improvement by DE 
 
@@ -130,7 +156,7 @@ IPMDFC is a software model that illustrates the flow chains of different softwar
 
 ## Acknowledgement 
 
-We earnestly thank Dr. Tim Menzies, and Rahul Krishna for giving us advice in implementing the project.
+We earnestly thank course instructor Dr. Tim Menzies, and teaching assistant Rahul Krishna for giving us valuable advice in implementing the project.
 
 ## References 
 [1] T. Abdel-Hamid, and S. Madnick, "Software Project Dynamics: An Integrated Approach", Prentice Hall, NJ, USA, 1990 
@@ -139,7 +165,7 @@ We earnestly thank Dr. Tim Menzies, and Rahul Krishna for giving us advice in im
 
 [3] C. Jones, "Software Assessments, Benchmarks, and Best Practices", 1st Edition, Addison-Wesley Professional, MA, USA, 2000
 
-[4] T. Liao, "Two Hybrid Differential Evolution Algorithms for Engineering Design Optimization", in Applied Soft Computing, vol. 10, no. 4, pages 1188-1199, September 2010
+[4] T. Liao, "Two Hybrid Differential Evolution Algorithms for Engineering Design Optimization", in Applied Soft Computing, vol. 10, no. 4, pages 1188-1199, September, 2010
 
 [5] R. Madachy, "Software Process Dynamics", Wiley Interscience, Wiley & Sons, NJ, USA, 2008
 
@@ -150,8 +176,8 @@ We earnestly thank Dr. Tim Menzies, and Rahul Krishna for giving us advice in im
 [8] M. Nasar, and P. Johri, "A Differential Evolution Approach for Software Testing Effort Allocation", in Journal of Industrial 
 and Intelligent Information vol. 1, no. 2, June, 2013 
 
-[9] Rocca, P.; Oliveri, G.; Massa, A., "Differential Evolution as Applied to Electromagnetics," in Antennas and Propagation Magazine, IEEE , vol.53, no.1, pp.38-49, Feb. 2011
+[9] P. Rocca, G. Oliveri, and A. Massa, "Differential Evolution as Applied to Electromagnetics," in IEEE Antennas and Propagation Magazine, vol.53, no.1, pages 38-49, February, 2011
 
-[10] R. Storn, and K. Price, "Differential Evolution: A Simple and Efficient Heuristic for global Optimization over Continuous Spaces", in Journal of Global Optimization, vol. 11, no. 4, pages 341-359, December, 1997 
+[10] R. Storn, and K. Price, "Differential Evolution: A Simple and Efficient Heuristic for Global Optimization Over Continuous Spaces", in Journal of Global Optimization, vol. 11, no. 4, pages 341-359, December, 1997 
 
 [11] A. Talukder, M. Kirley, and R. Buyya, "Multiobjective Differential Evolution for Scheduling Workflow Applications on Global Grids", in Journal of Conncurrency & Computation, pages 1742-1756 vol. 21 no. 13, September 2009  
