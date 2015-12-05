@@ -91,18 +91,21 @@ We conduct our discussion in two categories: first we provide empirical evidence
 
 ### Improvement by DE 
 
-### Experiemnts  
+### Experiments  
 
 Before explaining the results we first provide the experiment configurations. In the first experiment configuration that we label as Exp-1, we set deRunCount for 1, 10, 100, and 1000, and set ‘constFlagForBaseline’ as False. Please note that _deRunCount_ refrs to number fo iterations DE eill be running. Setting deRunCount to 1 will allow DE to run on the model for one iteration. In the same manner, setting deRunCount to 1000 will allow DE to run for 1000 iterations. Setting _constFlagForBaseline_ as False that enables the four auxiliaries ‘MultiplierSchedPressure’, ‘MultiplierWorkforce’, ‘ActiveErrorsRetiringFraction’, and ‘FractionEscapingErrors’ to set between any random number 0 & 1. This experiment was run 10 times to see if there is any noticeable difference for different iterations.  
+
+In the second experiment configuration that we label as Exp-2, we set deRunCount for 1, 10, 100, and 1000, and set ‘constFlagForBaseline’ as False. Setting ‘constFlagForBaseline’ as False that enables the four auxiliaries ‘MultiplierSchedPressure’, ‘MultiplierWorkforce’, ‘ActiveErrorsRetiringFraction’, and ‘FractionEscapingErrors’ to use regression equations instead of any random number between 0 & 1. 
 
 ![scores](output/scores.png?raw=true=100x80)
 Figure 2: Median of Normalized Scores Obtained for Exp-1, and Exp-2.  
 
 As we obeserve in Figure 2, with respect to normalized score, the median normalized scores are lower for Exp-1, than that for Exp-2. We do not observe a lot of variation with respect to the median of normalized values for Exp-1, and Exp-2 individually. We also observe the median of the normalized scores are different between the two experiemnts, and use of regression equations has an effect.     
 
-In the second experiment configuration that we label as Exp-2, we set deRunCount for 1, 10, 100, and 1000, and set ‘constFlagForBaseline’ as False. Setting ‘constFlagForBaseline’ as False that enables the four auxiliaries ‘MultiplierSchedPressure’, ‘MultiplierWorkforce’, ‘ActiveErrorsRetiringFraction’, and ‘FractionEscapingErrors’ to use regression equations instead of any random number between 0 & 1. 
-
 ![time](output/time.png?raw=true=100x80)
+Figure 3: Median of Experiment Duration Obtained for Exp-1, and Exp-2.  
+
+From Figure 3 we observe that the experiment duration followed the same trend for both experiemnts. For both experiemnts the time to complete each experiment increases with the increase of iterations. The highest median experiment duration was recorded for 1000 iterations as expected. We also observe that Exp-2 is not strict enough to increase computation time compared to that of Exp-1.
  
 ## Threats to Validity
 
