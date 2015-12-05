@@ -125,6 +125,19 @@ Table II: Values of Auxiliaries Used
 | TestingRate                   |  0  | 1  | 1 | 2  | 1  | 10 | -1 |
 | PassiveErrorDensity           |  0  | 1  | 7 | 8  | 13  | 16 | 59 |
 
+The output that we get for stocks are shown in Table III. 
+
+Table III: Values of Stocks  
+
+|Auxiliary Name   | Day-1   |  Day-2 | Day-3  | Day-4  | Day-5  | Day-6  | Day-7  |
+|------------------------------|-----|-----|-----|-----|-----|-----|-----|
+| PotentiallyDetectableError | 0  | 0  | 1 | 2  | 4  | 5 | 15 |
+| EscapedError               | 0  | 0  | 2 | 4  | 8  | 10 | 30 | 
+| DetectedErrors             | 0  | 0  | -1 | -2  | -4  | -5 | 15 |
+| ReworkedErrors             | 0  | 0  | 2 | 4  | 8  | 10 | 30 |
+| UndetectedActiveError      | 0  | 0  | 6 | 12 | 24 | 30 | 90 |
+| UndetectedPassiveError     | 0  | 0  | 6 | 6  | 12  | 6 | 60 |
+
 ### Improvement by DE 
 
 ### Experiments  
