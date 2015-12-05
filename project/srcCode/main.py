@@ -62,11 +62,11 @@ showFlows=False  # to show flow values while executing the model
 
 runCount = 365  ## how many time the model will run 
 constFlag = False ## th flag detrmines whether or not hte five equations will be used to geenrate constaints 
-deRunList=[1 ]  ## howmany times DE will run? 
+deRunList=[1000]  ## howmany times DE will run? 
 dirToWriteP="/Users/akond/Documents/Fall_2015/ase/59115ASE/project/supplementary/" ## directory to store baseline and constraint files  
 lowerRange = 0  ## settign the lower range for axuiliries of the model 
 upperRange = 1  ## settign the upper range for axuiliries of the model 
-iterations = 3  ## settign how many times we will do the experiemnts 
+iterations = 10  ## settign how many times we will do the experiemnts 
 deExp=True  
 #galeExp=False 
 
