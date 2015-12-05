@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  5 DEC 2015 17:39
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  5 DEC 2015 17:50
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -325,7 +325,7 @@ No file literature-review.bbl.
 Here is how much of TeX's memory you used:
  3147 strings out of 493089
  40725 string characters out of 6134842
- 108353 words of memory out of 5000000
+ 109353 words of memory out of 5000000
  6546 multiletter control sequences out of 15000+600000
  48205 words of font info for 67 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -337,7 +337,7 @@ cmr8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
 /usr/local/texlive/2015/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/lo
 cal/texlive/2015/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texliv
 e/2015/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on literature-review.pdf (1 page, 54701 bytes).
+Output written on literature-review.pdf (1 page, 58338 bytes).
 PDF statistics:
  33 PDF objects out of 1000 (max. 8388607)
  23 compressed objects within 1 object stream
