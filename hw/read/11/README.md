@@ -7,10 +7,9 @@ http://dl.acm.org/citation.cfm?id=2372285
 
 #### Keywords	 
 * ii1: Bug Prediction : This term refers to the ability to predict a future bug by building a model using the historical metrics, which are mined from version histories of software modules.
-* ii2: Fine-grained Prediction: This term refers to the use of method-level details while using historical metrics, mined from version histories of software modules, to build a model for predicting bugs.
-* ii3: Fine-grained Histories: It refers to the use of fine-grained metrics, by creating metadata or a structure which will store the history or change information at very fine grained level , for example, capturing details of a method level change instead of package level or file level change alone.
-* ii4: Historical Metrics:They are metrics coming from various categories such as code-related metrics, process-related metrics, organizational metrics and geographical metrics for capturing version history in different categories.
-
+* ii2: Fine-grained Prediction: This term refers to the use of method-level details. Here, the author computes source code metrics at the method level along with change metrics to do fine-grained prediction
+* ii3: Fine-grained source code changes: It refers to the code changes happening in the source code at the fine-grained level of methods as compared to changes observed at the file-level or the package-level.
+* ii4: Code Metrics:They are metrics which are directly computed from the source code itself. There are two traditional suites of code metrics : CK metrics and a SCM, which is a set of metrics directly computed at the method level. They are used by author to generate bug prediction models.
 
 #### Key Points
 * iii1: Related Work: The paper says that bug prediction has been widely studied and recent findings show the usefulness of collecting historical metrics from software repositories for bug prediction models. Prediction models have been build using bug-fix information. Bug prediction has been done using file-level and package-level historical metrics and it has been observed that results from file-level metrics are more interesting. Fine-grained prediction has been a challenge because obtaining method histories from existing version control systems is a difficult problem.
