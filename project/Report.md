@@ -55,6 +55,8 @@ Nagappan et al. [8] mined different file level metrics such as module metrics, p
 Rocca et al. [10] conducted a survey on use of different variants of DE in computational electro magnetics. They studied 70 academic papers that were published from 2000 till October 2009. They found that _DE/best/1/bin_ was the most used variant of DE used in the domain of computational electro magnetics. 
 Talukder et al. [12] used DE to optimize schedulers in grid computing. The authors studied two parameters _execution time_, and _data transmission time_ through simulation. The authors claimed DE performs better that the _Pareto-archived Evolutionary Strategy (PAES)_ algorithm for this particular problem. 
 Liao [4] analyzed how hybrid approaches of compare to that of classical version of DE in the context of an engineering design problem. He analyzed two hybrid approaches: in the first hybrid approach random walk is incorporated the classical version of DE. Secondly, he included harmony search to the basic differential algorithm to generate the second hybrid approach. Liao studied 14 engineering design problems such as non-linear programming problems, manufacturing design problem, and non-linear chemical engineering problems. For all the 14 engineering design problems the two hybrid approaches outperformed the classical DE in terms of convergence rate. 
+Our work focuses on implementing IPMDFC proposed by Madachy, and run an optimizer to optimize two objectives related to the mdoel.
+  
 
 ## Assumptions 
 
