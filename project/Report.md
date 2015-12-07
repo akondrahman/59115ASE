@@ -145,7 +145,8 @@ implementation. We observed whether DE is minimizing the two objectives for our 
 ![scores](output/compare_with_baseline.jpg?raw=true=50x40)
 Figure 2: Comparing Objective Scores with Baseline.  
 
-
+As we observe in Figure 2, the optimized value of the two objectives are lesser than the baseline values. We observe that the median value of UndetectedActiveErrors
+remain less than 200 for different iterations. The median value for UndetectedPassiveErrors remain less than 2 for different iterations of DE. 
 ### Experiments  
 
 Before explaining the results we first provide the experiment configurations. In the first experiment configuration that we label as Exp-1, we set deRunCount for 1, 10, 100, and 1000, and set ‘constFlagForBaseline’ as False. Please note that _deRunCount_ refrs to number fo iterations DE eill be running. Setting deRunCount to 1 will allow DE to run on the model for one iteration. In the same manner, setting deRunCount to 1000 will allow DE to run for 1000 iterations. Setting _constFlagForBaseline_ as False that enables the four auxiliaries ‘MultiplierSchedPressure’, ‘MultiplierWorkforce’, ‘ActiveErrorsRetiringFraction’, and ‘FractionEscapingErrors’ to set between any random number 0 & 1. This experiment was run 10 times to see if there is any noticeable difference for different iterations.  
