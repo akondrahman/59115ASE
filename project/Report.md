@@ -158,6 +158,13 @@ In the second experiment configuration that we label as Exp-2, we set deRunCount
 
 Table III: Regression Equations Used in Exp-2  
 
+|Auxiliary Name                 | Regression Equation Used            |  
+|-------------------------------|-------------------------------------|
+| MultiplierWorkforce           | y = -x + 2                          | 
+| FractionEscapingErrors        | y = -1.0286x^{2} -0.2283x + 1.0719  |   
+| MPRegen                       | y = 0.0007x^{2} - 0.031x + 1.3099   | 
+| ActiveErrorsRetiringFraction  | y = 0.0004e^{7.2984x}               | 
+| MultiplierSchedPressure       | y = 0.2128x^{2} + 0.2955x + 0.9888  | 
 
 
 
