@@ -12,17 +12,20 @@
 
 ## Abstract 
 
-Software teams spend a lot of effort in reducing errors, and fixing the errors that have been generated as part of the development process. Software models that illustrate and predict the resources needed to reduce development errors, and predict estimation rate to reduce development errors can be of great help to software practitioners. _The goal of this project is to help software engineering researchers to analyze the Integrated Project Model Defect Flow Chain proposed by Abdel-Hamid and Madnick, by implementing the model, and optimizing the model using a standard optimizer_. In this project we implemented a standard software model that takes software development effort into account and calculates the amount of development errors with certain assumptions, and considering a subset of the full development resource inputs. To optimize the development resources needed to reduce development errors we use the Differential Evoluion Algorithm (DE). We find that DE can minimize on the Integrated Project Model Defect Flow Chain. We observe that a subset of the complete list of development resource inputs is required to provide an optimal solution for reducing errors for this software model of interest. We also observe the necessity of real world software project resource inputs for optimal output.  
+Software teams spend a lot of effort in preemptively reducing errors and fixing the errors that have been generated as part of the development process. Software models that illustrate and predict the resources needed to reduce development errors and predict estimation rate to reduce development errors can be of great help to software practitioners. _The goal of this project is to help software engineering researchers to analyze the Integrated Project Model Defect Flow Chain proposed by Abdel-Hamid and Madnick, by implementing the model, and optimizing the model using a standard optimizer_. In this project we implemented a standard software model that accounts for software development and calculates the amount of development errors with certain assumptions, and considering a subset of the full development resource inputs. To optimize the development resources needed to reduce development errors we use the Differential Evoluion Algorithm (DE). We find that DE can minimize on the Integrated Project Model Defect Flow Chain. We observe that a subset of the complete list of development resource inputs is required to provide an optimal solution for reducing errors for this software model of interest. We also observe the necessity of real world software project resource inputs for optimal output.  
 
 ## Introduction 
 
-The impact of software defects on software product delivery is significant and a well-studied topic amongst software practitioners and academicians. According to a study conducted by NASA Johnson Space Center, the cost of fixing software defects increases exponentially in the latter stages of the project . Jones in his book [3] showed that cost of fixing a defect increases significantly during testing, and maintenance phase of the project. To help software practitioners in assessing the costs of software defects and optimizing allocation of resources, Hamid and Madnick [1] proposed several models that can integrates different sectors of the software team such as manpower allocation, testing, and coding. These models illustrated different aspects of software engineering such as reducing defects and errors in software development, importance of early detection errors in a software project, and optimizing allocation of resources. Madachy in his book provided simplified versions of these models in his book [5]. 
+The impact of software defects on software product delivery is significant and a well-studied topic amongst software practitioners and academicians. According to a study conducted by NASA Johnson Space Center, the cost of fixing software defects increases exponentially in the latter stages of the project . Jones, in his book [3], showed that cost of fixing a defect increases significantly during testing and again during the maintenance phase of the project. To help software practitioners in assessing the costs of software defects and optimizing allocation of resources, Hamid and Madnick [1] proposed several models that can integrates different sectors of the software team such as manpower allocation, testing, and coding. These models illustrated different aspects of software engineering such as reducing defects and errors in software development, importance of early detection errors in a software project, and optimizing allocation of resources. Madachy in his book provided simplified versions of these models in his book [5]. 
 
 _The goal of this project is to help software engineering researchers to analyze the Integrated Project Model Defect Flow Chain proposed by Abdel-Hamid and Madnick, by implementing the model, and optimizing the model using a standard optimizer_.  
 
 We state our contributions as following: 
-* A modular, extendible implementation of the Integrated Project Model Defect Flow Chain * An implementation that integrates a standard optimizer with the Integrated Project Model Defect Chain to facilitate further analysis 
-Rest of the report is organized as follows Section II describes necessary background information, and related work. In Section III we state the assumptions of our project. Section IV illustrates our implementation of the model, and the optimizer. Section V describes the methodology of the project. In Section VI we explain our findings. Section VII discusses the threats to validity for the project. In Section VIII we state the future directions of the project. Finally we conclude our report in Section IX.     
+
+* A modular, extendible implementation of the Integrated Project Model Defect Flow Chain 
+* An implementation that integrates a standard optimizer with the Integrated Project Model Defect Chain to facilitate further analysis 
+
+The rest of the report is organized as follows: Section II describes necessary background information, and related work; Section III states the assumptions of our project; Section IV illustrates our implementation of the model, and the optimizer; Section V describes the methodology of the project; Section VI reports our findings; Section VII discusses threats to validity for the project; Section VIII states future directions of the project. Finally, we conclude our report in Section IX.     
 
 ## Background and Related Work 
 
@@ -51,24 +54,43 @@ Meneely et al. [7] inferred developer dependencies from a software repository
 and created a social network analysis to predict software failures. The authors of this paper performed a holistic approach where social network analysis was performed on one level.     
 
 Nagappan et al. [8] mined different file level metrics such as module metrics, per-function metrics, and per-class metrics to predict software failures for five software project repositories. Their work however did not include contextual factors such as software development rate, different multipliers, and error generation rate for predicting software failures.  
-Becerra et al. [2] applied DE to automatically generating a test suite that consists a set of test inputs in order to achieve 100% branch coverage. The authors also compared the performance empirically with _Breeder Genetic Algorithm (BGA)_ that also has been used in real world applications such as optimizing parcel distribution, and impulse filtering. The authors suggested that DE is sensitive to the cross over factor that they referred to _differential constant for mutation_. 
-Rocca et al. [10] conducted a survey on use of different variants of DE in computational electro magnetics. They studied 70 academic papers that were published from 2000 till October 2009. They found that _DE/best/1/bin_ was the most used variant of DE used in the domain of computational electro magnetics. 
-Talukder et al. [12] used DE to optimize schedulers in grid computing. The authors studied two parameters _execution time_, and _data transmission time_ through simulation. The authors claimed DE performs better that the _Pareto-archived Evolutionary Strategy (PAES)_ algorithm for this particular problem. 
-Liao [4] analyzed how hybrid approaches of compare to that of classical version of DE in the context of an engineering design problem. He analyzed two hybrid approaches: in the first hybrid approach random walk is incorporated the classical version of DE. Secondly, he included harmony search to the basic differential algorithm to generate the second hybrid approach. Liao studied 14 engineering design problems such as non-linear programming problems, manufacturing design problem, and non-linear chemical engineering problems. For all the 14 engineering design problems the two hybrid approaches outperformed the classical DE in terms of convergence rate. 
-Our work focuses on implementing IPMDFC proposed by Madachy, and run an optimizer to optimize two objectives related to the mdoel.
-  
-
+
+Becerra et al. [2] applied DE to automatically generating a test suite that consists a set of test inputs in order to achieve 100% branch coverage. The authors also compared the performance empirically with _Breeder Genetic Algorithm (BGA)_ that also has been used in real world applications such as optimizing parcel distribution, and impulse filtering. The authors suggested that DE is sensitive to the cross over factor that they referred to _differential constant for mutation_. 
+
+Rocca et al. [10] conducted a survey on use of different variants of DE in computational electro magnetics. They studied 70 academic papers that were published from 2000 till October 2009. They found that _DE/best/1/bin_ was the most used variant of DE used in the domain of computational electro magnetics. 
+
+Talukder et al. [12] used DE to optimize schedulers in grid computing. The authors studied two parameters _execution time_, and _data transmission time_ through simulation. The authors claimed DE performs better that the _Pareto-archived Evolutionary Strategy (PAES)_ algorithm for this particular problem. 
+
+Liao [4] analyzed how hybrid approaches of compare to that of classical version of DE in the context of an engineering design problem. He analyzed two hybrid approaches: in the first hybrid approach random walk is incorporated the classical version of DE. Secondly, he included harmony search to the basic differential algorithm to generate the second hybrid approach. Liao studied 14 engineering design problems such as non-linear programming problems, manufacturing design problem, and non-linear chemical engineering problems. For all the 14 engineering design problems the two hybrid approaches outperformed the classical DE in terms of convergence rate. 
+
+
+Our work focuses on implementing IPMDFC proposed by Madachy, and run an optimizer to optimize two objectives related to the mdoel.
+
+  
+
+
 ## Assumptions 
 
 To implement the model we use the concepts of _stock_, _flow_, and _auxiliary_ that are defined below: 
-* A flow is an entity that contributes to a stock over time. There are two types of flows namely inflows, and outflows. Inflows work as an aggregator to a stock, whereas, outflows work as a depletory for a stock. Usually, flows are measured for a certain period of time. * A stock is the entity that aggregates flows over time. Stocks are made larger over time by inflows and decreased by outflows. * An auxiliary is an entity that is used to hold input values or intermediates. In our implementation we use auxiliaries as input to flows. We list the list of auxiliaries, flows, and stocks in presented in Table I. For the rest of the report we will refer to the auxiliaries, and flows by their acronym, and stocks by their full name. 
- Table I: List of Auxiliaries, Flows, and Stocks in IPMDFC
-|Auxiliaries   | Flows   | Stocks   | 
+
+* A flow is an entity that contributes to a stock over time. There are two types of flows namely inflows, and outflows. Inflows work as an aggregator to a stock, whereas, outflows work as a depletory for a stock. Usually, flows are measured for a certain period of time. 
+* A stock is the entity that aggregates flows over time. Stocks are made larger over time by inflows and decreased by outflows. 
+* An auxiliary is an entity that is used to hold input values or intermediates. In our implementation we use auxiliaries as input to flows. We list the list of auxiliaries, flows, and stocks in presented in Table I. For the rest of the report we will refer to the auxiliaries, and flows by their acronym, and stocks by their full name. 
+
+ 
+Table I: List of Auxiliaries, Flows, and Stocks in IPMDFC
+
+
+|Auxiliaries   | Flows   | Stocks   | 
 |-----|-----|-----|
 |MultiplierSchedulePressure, MultiplierWorkforce, NominalError, SoftwareDevelopmentRate, PotentialErrorDetectRate, QARate, AverageErrorPerTask, ActualReworkMP, DailyMPRework, TimeToSmooth, MultiplierToRegeneration, ActiveErrorDensity, TestingRate, PassiveErrorDensity, FractionEscapingErrors, ActiveErrorsRetiringFraction, BadFixGenerationRate    |  ErrorGenerationRate, ErrorDetectionRate, ErrorEscapeRate, ReworkRate, ActiveErrorRegenerationRate, ActiveErrorDetectAndCorrectRate, ActiveErrorRetirementRate, PassiveErrorDetectAndCorrectRate, PassiveErrorGenerationRate, ActiveErrorGenerationRate |   PotentiallyDetectableError, DetectedError, EscapedError, ReworkedError, UndetectedActiveErrors, UndetectedPassiveErrors|
 
-* We only considered the auxiliaries that were mentioned in Madachy’s book. The model itself is part of a larger model that included models for different sectors namely, testing, personnel allocation, and coding.  * We assumed the connection between the detected part and the undetected part based on notations from Abdel-Hamid and Madnick [1]. We assume that flow _ErrorEscapeRate_ contributes to the auxiliary _FractionEscapingErrors_, and flow _ReworkRate_ contributes to auxiliary _BadFixGenRate_. 
-
+
+
+* We only considered the auxiliaries that were mentioned in Madachy’s book. The model itself is part of a larger model that included models for different sectors namely, testing, personnel allocation, and coding.  
+* We assumed the connection between the detected part and the undetected part based on notations from Abdel-Hamid and Madnick [1]. We assume that flow _ErrorEscapeRate_ contributes to the auxiliary _FractionEscapingErrors_, and flow _ReworkRate_ contributes to auxiliary _BadFixGenRate_. 
+
+
 ## Implementation 
 We conduct the discussion of this section in two sub-sections. The first sub-section provides the details on implementation of the IPMDFC. the next sub-section describes the implementation of DE, and how DE is integrated to the model. 
 
@@ -79,20 +101,34 @@ In our implementation auxiliary objects are treated as inputs and contribute to 
 
 * The method _executeModelAll_ is used to run the model separately for synthetic values; these synthetic values are provided as a dictionary for seven days. The implementation of the dictionary can be found in method _createAuxiliaries_All_ in _utility.py_.               
 
-* The method _executeModelForBaseline_ is used to run the model separately to get baseline values to run DE on IPMDFC. All the auxiliaries are provided by the _giveAuxiliariesForBaseline_ method in utility.py.                * The method _executeModelForDE_ is used to run the model separately to run DE on IPMDFC. The method takes four parameters namely _auxListParam_, _currStateParam_, _prevStateParam_, and _dt_. In our implementation dt is always set 1. _currStateParam_, and _prevStateParam_ are two state objects that keeps tarck of the current state and previous state.  To facilitate the integration of DE on IPMDFC we used another file called _integrator.py_, and _models.py_. The purpose of models.py was to implement IPMDFC as an object that has a _lowerRange_, _upperRange_, _objectives_, and _decisions_. In this model we had 17 auxiliaries, so the number of decisions were 17. The number of objectives was two as we wanted DE to minimize on two stocks namely _Undetected Active Errors_, and _Undetected Passive Errors_.  
-The method _runDE_ in integrator.py passes the object _IntegratedDefectModel_. DE later creates the necessary objects for _IntegratedDefectModel_. Our implementation of DE can be found in _de.py_. Our implementation can be used to maximize and minimize objectives. In our implementation we use DE to minimize the two objectives _Undetected Active Errors_, and _Undetected Passive Errors_.     The class IntegratedDefectModel also has two methods: _check_, and _getobj_. 
-* The method ‘check’ makes sure that the decision vector created by DE satisfies the constraints of IntegratedDefectModel. 
-* The purpose of getobj is to run the model for certain number of times and calculate the values of the two stocks of interest. In our experiments we fix n=365 mimicking 365 days of one year. The constraints for IntegratedDefectModel are provided in a CSV file. The name of the constraints file, and the directory where it resides must be provided while running DE on IntegratedDefectModel.    
+* The method _executeModelForBaseline_ is used to run the model separately to get baseline values to run DE on IPMDFC. All the auxiliaries are provided by the _giveAuxiliariesForBaseline_ method in utility.py.                
+* The method _executeModelForDE_ is used to run the model separately to run DE on IPMDFC. The method takes four parameters namely _auxListParam_, _currStateParam_, _prevStateParam_, and _dt_. In our implementation dt is always set 1. _currStateParam_, and _prevStateParam_ are two state objects that keeps tarck of the current state and previous state.  
+
+To facilitate the integration of DE on IPMDFC we used another file called _integrator.py_, and _models.py_. The purpose of models.py was to implement IPMDFC as an object that has a _lowerRange_, _upperRange_, _objectives_, and _decisions_. In this model we had 17 auxiliaries, so the number of decisions were 17. The number of objectives was two as we wanted DE to minimize on two stocks namely _Undetected Active Errors_, and _Undetected Passive Errors_.  
+
+The method _runDE_ in integrator.py passes the object _IntegratedDefectModel_. DE later creates the necessary objects for _IntegratedDefectModel_. Our implementation of DE can be found in _de.py_. Our implementation can be used to maximize and minimize objectives. In our implementation we use DE to minimize the two objectives _Undetected Active Errors_, and _Undetected Passive Errors_.     
+
+
+The class IntegratedDefectModel also has two methods: _check_, and _getobj_. 
+
+* The method ‘check’ makes sure that the decision vector created by DE satisfies the constraints of IntegratedDefectModel. 
+
+* The purpose of getobj is to run the model for certain number of times and calculate the values of the two stocks of interest. In our experiments we fix n=365 mimicking 365 days of one year. The constraints for IntegratedDefectModel are provided in a CSV file. The name of the constraints file, and the directory where it resides must be provided while running DE on IntegratedDefectModel.    
 
 ### Implementing DE 
 
 To implement DE we use the concept called _normalized score_ that aggregates 
 the objective scores and normalizes with respect to a baseline score. Our DE implementation generates solutions based on this normalized score for each candidates. To obtain the baseline we run IPMDFC for a fixed number of iterations. The obtained baseline scores is passed to our implementation of the DE algorithm. Our DE algorithm updates the scores of baseline by the score obtained from each candidate solution. Our implementation of DE performs minimization on the normalized scores. We followed Storn and Price's recommendation for frontier size (`18 * number of decisons`).     
 
-### Integrating DE with IPMDFCFinally, _main.py_ acts as a placeholder to put all the pieces together and perform all experiments. To perform a sample run a set of synthetic values we use the _runIntegrator_ method in main.py. To get baseline for IntegratedDefectModel we use _getBaselineForModel_ method in main.py. Finally, to use DE on InteratedDefectModel we set the following parameters: _runCount_, _constFlagForBaseline_, _deRunCount_, and _dirToWriteP_. 
-* Parameter _runCount_ specifies the number of times the model will run. This is set to 365 to imitate 365 days for running the model. 
-* If _constFlagForBaseline_ is set to True, then regression equations will be used to run the model. ‘dirToWriteP’ specifies the directory name where the constraint file resides.
-* _constraintFileNameParam_ is used to set the name of the constraint file. Please note that _createConstraintFile_ is an optional method to create constraint files based to set different ranges for the auxiliaries. In our implementation we have not used this method. 
+### Integrating DE with IPMDFC
+
+Finally, _main.py_ acts as a placeholder to put all the pieces together and perform all experiments. To perform a sample run a set of synthetic values we use the _runIntegrator_ method in main.py. To get baseline for IntegratedDefectModel we use _getBaselineForModel_ method in main.py. Finally, to use DE on InteratedDefectModel we set the following parameters: _runCount_, _constFlagForBaseline_, _deRunCount_, and _dirToWriteP_. 
+
+* Parameter _runCount_ specifies the number of times the model will run. This is set to 365 to imitate 365 days for running the model. 
+
+* If _constFlagForBaseline_ is set to True, then regression equations will be used to run the model. ‘dirToWriteP’ specifies the directory name where the constraint file resides.
+
+* _constraintFileNameParam_ is used to set the name of the constraint file. Please note that _createConstraintFile_ is an optional method to create constraint files based to set different ranges for the auxiliaries. In our implementation we have not used this method. 
 
 ## Methodology 
 
@@ -187,10 +223,25 @@ Figure 4: Median of Experiment Duration Obtained for Exp-1, and Exp-2.
 ## Threats to Validity
 
 We discuss the limitations of our study as following: 
-* Use of synthetic values for the used auxiliaries * We did not consider all auxiliaries that are part of a bigger model * We did not consider the complete model * The equations used for auxiliaries are generated from regression using a sample of values that are less than 10 in size. * We ran the integrated model for 365 days that is equivalent to one year. In real world software projects tend to vary in duration usually in months, or years. * The base of our assumption that connects the top and bottom part of the model is based on the notations of Abdel-Hamid and Madnick’s book. We have not thoroughly verified this assumption.  * In our project we considered only one differential algorithm that is DE. We did not include other genetic algorithms such as GALE, max walk sat or NSGA II.    
+
+* Use of synthetic values for the used auxiliaries 
+* We did not consider all auxiliaries that are part of a bigger model 
+* We did not consider the complete model 
+* The equations used for auxiliaries are generated from regression using a sample of values that are less than 10 in size. 
+* We ran the integrated model for 365 days that is equivalent to one year. In real world software projects tend to vary in duration usually in months, or years. 
+* The base of our assumption that connects the top and bottom part of the model is based on the notations of Abdel-Hamid and Madnick’s book. We have not thoroughly verified this assumption.  
+* In our project we considered only one differential algorithm that is DE. We did not include other genetic algorithms such as GALE, max walk sat or NSGA II.   
+ 
 ## Future Work 
-We leave the following actions as scope for future work: * Future work can consider all auxiliaries in the model   * Future work can implement the complete model that includes all the sectors of interest  * Future work can verify the equations used for auxiliaries _MultiplierWorkforce_, _FractionEscapingErrors_, _MultiplierToRegeneration_, _MultiplierSchedulePressure_, and _ActiveErrorsRetiringFractions_ for real world values. 
-* Future work can run the complete model, and the optimizer for real world software project duration and contextual factors. * Future work can perform analysis of the complete model and compare the findings with that of Madachy’s implementation available on Internet [6]. * Future work can include other genetic algorithms such as simulated annealing, max walk sat or NSGA II.
+We leave the following actions as scope for future work: 
+
+* Future work can consider all auxiliaries in the model   
+* Future work can implement the complete model that includes all the sectors of interest  
+* Future work can verify the equations used for auxiliaries _MultiplierWorkforce_, _FractionEscapingErrors_, _MultiplierToRegeneration_, _MultiplierSchedulePressure_, and _ActiveErrorsRetiringFractions_ for real world values. 
+* Future work can run the complete model, and the optimizer for real world software project duration and contextual factors. 
+* Future work can perform analysis of the complete model and compare the findings with that of Madachy’s implementation available on Internet [6]. 
+* Future work can include other genetic algorithms such as simulated annealing, max walk sat or NSGA II.
+
 ## Conclusion
 
 IPMDFC is a software model that illustrates the flow chains of different software development factors namely software development rate, bad fix generation rate, and testing rate on different types of errors. In this project we implemented IPMDFC as a domain specific language using Python. Then we applied DE to find an optimized solution that will return the a set of values for the 17 auxiliaries when we are minimizing two stocks namely Undetected Active Errors, and Undetected Passive Errors. We suggest that our implementation can be used as a starting point for implementation of the complete model, as our implementation is modular, and extensible. The organization of the project also facilitates the scope of adding other genetic algorithms namely simulated annealing, max walk sat, and NSGAII. We observe that to make our implementation applicable to real-world software projects, future work should include all necessary auxiliaries, complete implementation of all relevant models, and real world project values for the auxiliaries. 
