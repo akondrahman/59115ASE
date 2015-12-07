@@ -29,7 +29,7 @@ We state our contributions as following:
 In this section we provide background information and prior academic work related to our project. 
 ### Background 
 
-Storn and Price [10] invented differential evolution (DE) to generate optimal solutions without making any assumption about the problem space. DE does not guarantee that it will always find an optimal solution. Researchers have successfully used different variants of DE to solve optimization problems in different domains such as, grid computing [11], computational electro-magnetics [9], and software engineering [2, 8]. 
+Storn and Price [11] invented differential evolution (DE) to generate optimal solutions without making any assumption about the problem space. DE does not guarantee that it will always find an optimal solution. Researchers have successfully used different variants of DE to solve optimization problems in different domains such as, grid computing [12], computational electro-magnetics [10], and software engineering [2, 9]. 
 
 Differential Evolution solves the problem of over population in the forntier by replacing the worse solutions by beter solutions. For generating new candidate solutions it does extrapolation by picking three members from the frontier. At some probability the extrapolation was performed. Storn and Price's recommended size for a frontier was `number of objectives * 10`, however researchers have proposed and used different enginering decisions that led to different variants of DE. In our project we followed Storn and Price's recommendation for frontier size.  
 
@@ -147,14 +147,14 @@ As we observe in Figure 2, the optimized value of the two objectives are lesser 
 remain less than 200 for different iterations. The median value for UndetectedPassiveErrors remain less than 2 for different iterations of DE. 
 ### Experiments  
 
-Before explaining the results we first provide the experiment configurations. In the first experiment configuration that we label as Exp-1, we set deRunCount for 1, 10, 100, and 1000, and set ‘constFlagForBaseline’ as False. Please note that _deRunCount_ refrs to number fo iterations DE eill be running. Setting deRunCount to 1 will allow DE to run on the model for one iteration. In the same manner, setting deRunCount to 1000 will allow DE to run for 1000 iterations. Setting _constFlagForBaseline_ as False that enables the four auxiliaries ‘MultiplierSchedPressure’, ‘MultiplierWorkforce’, ‘ActiveErrorsRetiringFraction’, and ‘FractionEscapingErrors’ to set between any random number 0 & 1. This experiment was run 10 times to see if there is any noticeable difference for different iterations.  
+Before explaining the results we first provide the experiment configurations. In the first experiment configuration that we label as Exp-1, we set deRunCount for 1, 10, 100, and 1000, and set _constFlagForBaseline_ as False. Please note that _deRunCount_ refrs to number fo iterations DE eill be running. Setting deRunCount to 1 will allow DE to run on the model for one iteration. In the same manner, setting deRunCount to 1000 will allow DE to run for 1000 iterations. Setting _constFlagForBaseline_ as False that enables the four auxiliaries _MultiplierSchedPressure_, _MultiplierWorkforce_, _ActiveErrorsRetiringFraction_, and _FractionEscapingErrors_ to set between any random number 0 & 1. This experiment was run 10 times to see if there is any noticeable difference for different iterations.  
 
-In the second experiment configuration that we label as Exp-2, we set deRunCount for 1, 10, 100, and 1000, and set ‘constFlagForBaseline’ as False. Setting ‘constFlagForBaseline’ as False that enables the four auxiliaries ‘MultiplierSchedPressure’, ‘MultiplierWorkforce’, ‘ActiveErrorsRetiringFraction’, and ‘FractionEscapingErrors’ to use regression equations instead of any random number between 0 & 1. 
+In the second experiment configuration that we label as Exp-2, we set deRunCount for 1, 10, 100, and 1000, and set _constFlagForBaseline_ as False. Setting constFlagForBaseline as False that enables the four auxiliaries MultiplierSchedPressure, MultiplierWorkforce, ActiveErrorsRetiringFraction, and FractionEscapingErrors to use regression equations instead of any random number between 0 & 1. 
 
 ![scores](output/scores.png?raw=true=100x80)
 Figure 3: Median of Normalized Scores Obtained for Exp-1, and Exp-2.  
 
-As we obeserve in Figure 2, with respect to normalized score, the median normalized scores are lower for Exp-1, than that for Exp-2. We do not observe a lot of variation with respect to the median of normalized values for Exp-1, and Exp-2 individually. We also observe the median of the normalized scores are different between the two experiemnts, and use of regression equations has an effect.     
+As we obeserve in Figure 3, with respect to normalized score, the median normalized scores are lower for Exp-1, than that for Exp-2. We do not observe a lot of variation with respect to the median of normalized values for Exp-1, and Exp-2 individually. We also observe the median of the normalized scores are different between the two experiemnts, and use of regression equations has an effect.     
 
 ![time](output/time.png?raw=true=100x80)
 Figure 4: Median of Experiment Duration Obtained for Exp-1, and Exp-2.  
@@ -164,10 +164,10 @@ From Figure 3 we observe that the experiment duration followed the same trend fo
 ## Threats to Validity
 
 We discuss the limitations of our study as following: 
-* Use of synthetic values for auxiliaries * We did not consider all auxiliaries * We did not consider the complete model * The equations used for auxiliaries are generated from regression using a sample of values that are less than 10 in size. * We ran the integrated model for 365 days that is equivalent to one year. In real world software projects tend to vary in duration usually in months, or years. * The base of our assumption that connects the top and bottom part of the model is based on the notations of Abdel-Hamid and Madnick’s book. We have not thoroughly verified this assumption.  * In our project we considered only one differential algorithm that is DE. We did not include other genetic algorithms such as simulated annealing, max walk sat or NSGA II.    
+* Use of synthetic values for the used auxiliaries * We did not consider all auxiliaries that are part of a bigger model * We did not consider the complete model * The equations used for auxiliaries are generated from regression using a sample of values that are less than 10 in size. * We ran the integrated model for 365 days that is equivalent to one year. In real world software projects tend to vary in duration usually in months, or years. * The base of our assumption that connects the top and bottom part of the model is based on the notations of Abdel-Hamid and Madnick’s book. We have not thoroughly verified this assumption.  * In our project we considered only one differential algorithm that is DE. We did not include other genetic algorithms such as GALE, max walk sat or NSGA II.    
 ## Future Work 
-We leave the following actions as scope for future work: * Future work can consider all auxiliaries in the model   * Future work can implement the complete model that includes all the sectors of interest  * Future work can verify the equations used for auxiliaries ‘’ for real world values. 
-* Future work can run the complete model, and the optimizer for real world software project duration and contextual factors. * Future work can perform analysis of the complete model and compare the findings with that of Madachy’s implementation available on Internet [Software Process Dynamics: footnote]. * Future work can include other genetic algorithms such as simulated annealing, max walk sat or NSGA II.
+We leave the following actions as scope for future work: * Future work can consider all auxiliaries in the model   * Future work can implement the complete model that includes all the sectors of interest  * Future work can verify the equations used for auxiliaries _MultiplierWorkforce_, _FractionEscapingErrors_, _MultiplierToRegeneration_, _MultiplierSchedulePressure_, and _ActiveErrorsRetiringFractions_ for real world values. 
+* Future work can run the complete model, and the optimizer for real world software project duration and contextual factors. * Future work can perform analysis of the complete model and compare the findings with that of Madachy’s implementation available on Internet [^1]. * Future work can include other genetic algorithms such as simulated annealing, max walk sat or NSGA II.
 ## Conclusion
 
 IPMDFC is a software model that illustrates the flow chains of different software development factors namely software development rate, bad fix generation rate, and testing rate on different types of errors. In this project we implemented IPMDFC as a domain specific language using Python. Then we applied DE to find an optimized solution that will return the a set of values for the 17 auxiliaries when we are minimizing two stocks namely Undetected Active Errors, and Undetected Passive Errors. We suggest that our implementation can be used as a starting point for implementation of the complete model, as our implementation is modular, and extensible. The organization of the project also facilitates the scope of adding other genetic algorithms namely simulated annealing, max walk sat, and NSGAII. We observe that to make our implementation applicable to real-world software projects, future work should include all necessary auxiliaries, complete implementation of all relevant models, and real world project values for the auxiliaries. 
@@ -187,15 +187,18 @@ We earnestly thank course instructor Dr. Tim Menzies, and teaching assistant Rah
 
 [5] R. Madachy, "Software Process Dynamics", Wiley Interscience, Wiley & Sons, NJ, USA, 2008
 
-[6] A. Meneely, L., W. Snipes, and J. Osborne, "Predicting Failures With Developer Networks and Social Network Analysis", in Proceedings of the 16th ACM SIGSOFT International Symposium on Foundations of Software Engineering, 2008. 
+[6] R. Madachy (2010, August), Software Process Dynamics [Online]. Available: http://csse.usc.edu/softwareprocessdynamics/models/integrated%20project.itm
 
-[7] N. Nagappan, T. Ball, and A. Zeller, "Mining Metrics to Predict Component Failures", in Proceedings of the 28th international conference on Software engineering (ICSE '06), pages 452-461, 2006. 
+[7] A. Meneely, L., W. Snipes, and J. Osborne, "Predicting Failures With Developer Networks and Social Network Analysis", in Proceedings of the 16th ACM SIGSOFT International Symposium on Foundations of Software Engineering, 2008. 
 
-[8] M. Nasar, and P. Johri, "A Differential Evolution Approach for Software Testing Effort Allocation", in Journal of Industrial 
+[8] N. Nagappan, T. Ball, and A. Zeller, "Mining Metrics to Predict Component Failures", in Proceedings of the 28th international conference on Software engineering (ICSE '06), pages 452-461, 2006. 
+
+[9] M. Nasar, and P. Johri, "A Differential Evolution Approach for Software Testing Effort Allocation", in Journal of Industrial 
 and Intelligent Information vol. 1, no. 2, June, 2013 
 
-[9] P. Rocca, G. Oliveri, and A. Massa, "Differential Evolution as Applied to Electromagnetics," in IEEE Antennas and Propagation Magazine, vol.53, no.1, pages 38-49, February, 2011
+[10] P. Rocca, G. Oliveri, and A. Massa, "Differential Evolution as Applied to Electromagnetics," in IEEE Antennas and Propagation Magazine, vol.53, no.1, pages 38-49, February, 2011
 
-[10] R. Storn, and K. Price, "Differential Evolution: A Simple and Efficient Heuristic for Global Optimization Over Continuous Spaces", in Journal of Global Optimization, vol. 11, no. 4, pages 341-359, December, 1997 
+[11] R. Storn, and K. Price, "Differential Evolution: A Simple and Efficient Heuristic for Global Optimization Over Continuous Spaces", in Journal of Global Optimization, vol. 11, no. 4, pages 341-359, December, 1997 
 
-[11] A. Talukder, M. Kirley, and R. Buyya, "Multiobjective Differential Evolution for Scheduling Workflow Applications on Global Grids", in Journal of Conncurrency & Computation, pages 1742-1756 vol. 21 no. 13, September 2009  
+[12] A. Talukder, M. Kirley, and R. Buyya, "Multiobjective Differential Evolution for Scheduling Workflow Applications on Global Grids", in Journal of Conncurrency & Computation, pages 1742-1756 vol. 21 no. 13, September 2009  
+
