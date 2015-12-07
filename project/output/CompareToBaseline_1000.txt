@@ -1,0 +1,154 @@
+Last login: Sat Dec  5 09:05:45 on console
+eb2-2206-mac03-4:~ akond$ cd Documents/Fall_2015/ase/59115ASE/project/srcCode/
+eb2-2206-mac03-4:srcCode akond$ python main.py 
+ ************ Iteration # 0 ***************  
+### gettting baseline ###
+Getting baseline for 365 times
+Writing dictionary to file ...  DONE !
+Corresponding index item for baseline min: UndetectedActiveErrors= 0, UndetectedPassiveErrors=0
+Corresponding index item for baseline max: UndetectedActiveErrors= 1183.12042028, UndetectedPassiveErrors=3.49522778804
+Executing D.E (minimized version) ... for 1000 D.E. runs and 365 model runs
+=========================================================================
+===================
+Normalized Score ... 0.00113084381715
+The objective scores after all minimization ....UnAc=0.542183212874, UnPass=1.09498464049
+
+------------------------------------------------------------------------
+# Runtime: 5321.889 secs
+------------------------------------------ END ----------------------------------------------------------
+ ************ Iteration # 1 ***************  
+### gettting baseline ###
+Getting baseline for 365 times
+Writing dictionary to file ...  DONE !
+Corresponding index item for baseline min: UndetectedActiveErrors= 0, UndetectedPassiveErrors=0
+Corresponding index item for baseline max: UndetectedActiveErrors= 1172.48487155, UndetectedPassiveErrors=3.59838986113
+Executing D.E (minimized version) ... for 1000 D.E. runs and 365 model runs
+=========================================================================
+===================
+Normalized Score ... 0.0232711905908
+The objective scores after all minimization ....UnAc=-25.1042955585, UnPass=1.41743259756
+
+------------------------------------------------------------------------
+# Runtime: 5277.401 secs
+------------------------------------------ END ----------------------------------------------------------
+ ************ Iteration # 2 ***************  
+### gettting baseline ###
+Getting baseline for 365 times
+Writing dictionary to file ...  DONE !
+Corresponding index item for baseline min: UndetectedActiveErrors= 0, UndetectedPassiveErrors=0
+Corresponding index item for baseline max: UndetectedActiveErrors= 1159.75935834, UndetectedPassiveErrors=3.37438034885
+Executing D.E (minimized version) ... for 1000 D.E. runs and 365 model runs
+=========================================================================
+===================
+Normalized Score ... 0.0664147437425
+The objective scores after all minimization ....UnAc=71.7513741922, UnPass=1.14057070918
+
+------------------------------------------------------------------------
+# Runtime: 5420.816 secs
+------------------------------------------ END ----------------------------------------------------------
+ ************ Iteration # 3 ***************  
+### gettting baseline ###
+Getting baseline for 365 times
+Writing dictionary to file ...  DONE !
+Corresponding index item for baseline min: UndetectedActiveErrors= 0, UndetectedPassiveErrors=0
+Corresponding index item for baseline max: UndetectedActiveErrors= 1155.18739498, UndetectedPassiveErrors=4.10694347524
+Executing D.E (minimized version) ... for 1000 D.E. runs and 365 model runs
+=========================================================================
+===================
+Normalized Score ... 0.065641038058
+The objective scores after all minimization ....UnAc=70.9084464527, UnPass=1.5069731686
+
+------------------------------------------------------------------------
+# Runtime: 5773.591 secs
+------------------------------------------ END ----------------------------------------------------------
+ ************ Iteration # 4 ***************  
+### gettting baseline ###
+Getting baseline for 365 times
+Writing dictionary to file ...  DONE !
+Corresponding index item for baseline min: UndetectedActiveErrors= 0, UndetectedPassiveErrors=0
+Corresponding index item for baseline max: UndetectedActiveErrors= 1180.04281494, UndetectedPassiveErrors=2.72690003739
+Executing D.E (minimized version) ... for 1000 D.E. runs and 365 model runs
+=========================================================================
+===================
+Normalized Score ... 0.0876600589468
+The objective scores after all minimization ....UnAc=94.7086039402, UnPass=1.1659631639
+
+------------------------------------------------------------------------
+# Runtime: 5922.488 secs
+------------------------------------------ END ----------------------------------------------------------
+ ************ Iteration # 5 ***************  
+### gettting baseline ###
+Getting baseline for 365 times
+Writing dictionary to file ...  DONE !
+Corresponding index item for baseline min: UndetectedActiveErrors= 0, UndetectedPassiveErrors=0
+Corresponding index item for baseline max: UndetectedActiveErrors= 1171.69199217, UndetectedPassiveErrors=3.26682828946
+Executing D.E (minimized version) ... for 1000 D.E. runs and 365 model runs
+=========================================================================
+===================
+Normalized Score ... 0.0112940203238
+The objective scores after all minimization ....UnAc=12.1130877677, UnPass=1.47920753141
+
+------------------------------------------------------------------------
+# Runtime: 5915.344 secs
+------------------------------------------ END ----------------------------------------------------------
+ ************ Iteration # 6 ***************  
+### gettting baseline ###
+Getting baseline for 365 times
+Writing dictionary to file ...  DONE !
+Corresponding index item for baseline min: UndetectedActiveErrors= 0, UndetectedPassiveErrors=0
+Corresponding index item for baseline max: UndetectedActiveErrors= 1195.20749468, UndetectedPassiveErrors=2.22956441022
+Executing D.E (minimized version) ... for 1000 D.E. runs and 365 model runs
+=========================================================================
+===================
+Normalized Score ... 0.027920926351
+The objective scores after all minimization ....UnAc=30.1484160363, UnPass=1.09431912636
+
+------------------------------------------------------------------------
+# Runtime: 5923.938 secs
+------------------------------------------ END ----------------------------------------------------------
+ ************ Iteration # 7 ***************  
+### gettting baseline ###
+Getting baseline for 365 times
+Writing dictionary to file ...  DONE !
+Corresponding index item for baseline min: UndetectedActiveErrors= 0, UndetectedPassiveErrors=0
+Corresponding index item for baseline max: UndetectedActiveErrors= 1165.24161061, UndetectedPassiveErrors=3.92352424868
+Executing D.E (minimized version) ... for 1000 D.E. runs and 365 model runs
+=========================================================================
+===================
+Normalized Score ... 0.00249766736133
+The objective scores after all minimization ....UnAc=-2.50337391767, UnPass=1.0080277787
+
+------------------------------------------------------------------------
+# Runtime: 5842.710 secs
+------------------------------------------ END ----------------------------------------------------------
+ ************ Iteration # 8 ***************  
+### gettting baseline ###
+Getting baseline for 365 times
+Writing dictionary to file ...  DONE !
+Corresponding index item for baseline min: UndetectedActiveErrors= 0, UndetectedPassiveErrors=0
+Corresponding index item for baseline max: UndetectedActiveErrors= 1169.00960027, UndetectedPassiveErrors=3.80211749732
+Executing D.E (minimized version) ... for 1000 D.E. runs and 365 model runs
+=========================================================================
+===================
+Normalized Score ... 0.0188467032442
+The objective scores after all minimization ....UnAc=-20.3500958896, UnPass=0.743312856153
+
+------------------------------------------------------------------------
+# Runtime: 5823.866 secs
+------------------------------------------ END ----------------------------------------------------------
+ ************ Iteration # 9 ***************  
+### gettting baseline ###
+Getting baseline for 365 times
+Writing dictionary to file ...  DONE !
+Corresponding index item for baseline min: UndetectedActiveErrors= 0, UndetectedPassiveErrors=0
+Corresponding index item for baseline max: UndetectedActiveErrors= 1199.63428921, UndetectedPassiveErrors=3.82654782492
+Executing D.E (minimized version) ... for 1000 D.E. runs and 365 model runs
+=========================================================================
+===================
+Normalized Score ... 0.0522047362237
+The objective scores after all minimization ....UnAc=56.3905774838, UnPass=1.34745047831
+
+------------------------------------------------------------------------
+# Runtime: 5746.481 secs
+------------------------------------------ END ----------------------------------------------------------
+eb2-2206-mac03-4:srcCode akond$ 
