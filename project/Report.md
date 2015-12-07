@@ -45,7 +45,9 @@ Figure 1: Integrated Project Model Defect Flow Chains
 
 Our project is closely related to applications of DE is different domains of science and engineering, as well as research studies that have investigated software quality and software defects. 
 
-Nasar and Johri [9] used differential evolution to find optimal values for software testing effort allocation. The authors focused their analysis on resources  for  testing and  debugging  that involved three variables namely, failure detection professionals, failure rectification professionals, and computer time used to measure cost for testing effort. 
+Nasar and Johri [9] used differential evolution to find optimal values for software testing effort allocation. The authors focused their analysis on resources  for  testing and  debugging  that involved three variables namely, failure detection professionals, failure rectification professionals, and computer time used to measure cost for testing effort.
+
+
 Becerra et al. [2] applied DE to automatically generating a test suite that consists a set of test inputs in order to achieve 100% branch coverage. The authors also compared the performance empirically with _Breeder Genetic Algorithm (BGA)_ that also has been used in real world applications such as optimizing parcel distribution, and impulse filtering. The authors suggested that DE is sensitive to the cross over factor that they referred to _differential constant for mutation_. 
 Rocca et al. [10] conducted a survey on use of different variants of DE in computational electro magnetics. They studied 70 academic papers that were published from 2000 till October 2009. They found that _DE/best/1/bin_ was the most used variant of DE used in the domain of computational electro magnetics. 
 Talukder et al. [12] used DE to optimize schedulers in grid computing. The authors studied two parameters _execution time_, and _data transmission time_ through simulation. The authors claimed DE performs better that the _Pareto-archived Evolutionary Strategy (PAES)_ algorithm for this particular problem. 
@@ -193,8 +195,7 @@ We earnestly thank course instructor Dr. Tim Menzies, and teaching assistant Rah
 
 [8] N. Nagappan, T. Ball, and A. Zeller, "Mining Metrics to Predict Component Failures", in Proceedings of the 28th international conference on Software engineering (ICSE '06), pages 452-461, 2006. 
 
-[9] M. Nasar, and P. Johri, "A Differential Evolution Approach for Software Testing Effort Allocation", in Journal of Industrial 
-and Intelligent Information vol. 1, no. 2, June, 2013 
+[9] M. Nasar, and P. Johri, "A Differential Evolution Approach for Software Testing Effort Allocation", in Journal of Industrial and Intelligent Information vol. 1, no. 2, June, 2013 
 
 [10] P. Rocca, G. Oliveri, and A. Massa, "Differential Evolution as Applied to Electromagnetics," in IEEE Antennas and Propagation Magazine, vol.53, no.1, pages 38-49, February, 2011
 
