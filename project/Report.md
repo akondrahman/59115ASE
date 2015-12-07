@@ -12,7 +12,7 @@
 
 ## Abstract 
 
-Software teams spend a lot of effort in preemptively reducing errors and fixing the errors that have been generated as part of the development process. Software models that illustrate and predict the resources needed to reduce development errors and predict estimation rate to reduce development errors can be of great help to software practitioners. _The goal of this project is to help software engineering researchers to analyze the Integrated Project Model Defect Flow Chain proposed by Abdel-Hamid and Madnick, by implementing the model, and optimizing the model using a standard optimizer_. In this project we implemented a standard software model that accounts for software development and calculates the amount of development errors with certain assumptions, and considering a subset of the full development resource inputs. To optimize the development resources needed to reduce development errors we use the Differential Evoluion Algorithm (DE). We find that DE can minimize on the Integrated Project Model Defect Flow Chain. We observe that a subset of the complete list of development resource inputs is required to provide an optimal solution for reducing errors for this software model of interest. We also observe the necessity of real world software project resource inputs for optimal output.  
+Software teams spend a lot of effort to reduce errors and fix the errors that have been generated as part of the development process. Software models that illustrate and predict the resources needed to reduce development errors and predict estimation rate to reduce development errors can be of great help to software practitioners. _The goal of this project is to help software engineering researchers to analyze the Integrated Project Model Defect Flow Chain proposed by Abdel-Hamid and Madnick, by implementing the model, and optimizing the model using a standard optimizer_. In this project we implemented a standard software model that accounts for software development and calculates the amount of development errors with certain assumptions, and considering a subset of the full development resource inputs. To optimize the development resources needed to reduce development errors we use the Differential Evoluion Algorithm (DE). We find that DE can minimize on the Integrated Project Model Defect Flow Chain. We observe that a subset of the complete list of development resource inputs is required to provide an optimal solution for reducing errors for this software model of interest. We also observe the necessity of real world software project resource inputs for optimal output.  
 
 ## Introduction 
 
@@ -96,16 +96,16 @@ We conduct the discussion of this section in two sub-sections. The first subsect
 ### Implementation of IPMDFC
 We implemented IPMDFC using the concepts of domain specific language. We used the object-oriented features of Python. We created classes for _Auxiliary_, _Flow_, and _Stock_ that inherit from the base class _ModelComponent_. _ModelComponent_ has two properties namely _curr_, and _name_. _Auxiliary_, _Flow_, and _Stock_ classes have setInput methods to set the values for the created objects. 
 
-In our implementation auxiliary objects are treated as inputs and contribute to the flows directly. Each stock is filled by inflows and depleted by outflows. To determine the current value of state, the inflows, and state values from the previous step were added, and the outflaws were subtracted.  Our implementation is provided in _ModelExecAll.py_. This file has three methods namely _executeModelForBaseline_, _executeModelForDE_,and _executeModelAll_. 
+In our implementation auxiliary objects are treated as inputs and contribute to the flows directly. Each stock is filled by inflows and depleted by outflows. To determine the value of the current state, the inflows and state values from the previous step were summed, and the outflows were subtracted.  Our implementation is provided in _ModelExecAll.py_. This file has three methods, _executeModelForBaseline_, _executeModelForDE_, and _executeModelAll_. 
 
 * The method _executeModelAll_ is used to run the model separately for synthetic values; these synthetic values are provided as a dictionary for seven days. The implementation of the dictionary can be found in method _createAuxiliaries_All_ in _utility.py_.               
 
 * The method _executeModelForBaseline_ is used to run the model separately to get baseline values to run DE on IPMDFC. All the auxiliaries are provided by the _giveAuxiliariesForBaseline_ method in utility.py.                
 * The method _executeModelForDE_ is used to run the model separately to run DE on IPMDFC. The method takes four parameters namely _auxListParam_, _currStateParam_, _prevStateParam_, and _dt_. In our implementation dt is always set 1. _currStateParam_, and _prevStateParam_ are two state objects that keeps tarck of the current state and previous state.  
 
-To facilitate the integration of DE on IPMDFC we used another file called _integrator.py_, and _models.py_. The purpose of models.py was to implement IPMDFC as an object that has a _lowerRange_, _upperRange_, _objectives_, and _decisions_. In this model we had 17 auxiliaries, so the number of decisions were 17. The number of objectives was two as we wanted DE to minimize on two stocks namely _Undetected Active Errors_, and _Undetected Passive Errors_.  
+To facilitate the integration of DE on IPMDFC we created the files _integrator.py_ and _models.py_. The purpose of models.py was to implement IPMDFC as an object that has a _lowerRange_, _upperRange_, _objectives_, and _decisions_. In this model we had 17 auxiliaries, so the number of decisions were 17. The number of objectives was two, as we wanted DE to minimize on two stocks, namely _Undetected Active Errors_, and _Undetected Passive Errors_.  
 
-The method _runDE_ in integrator.py passes the object _IntegratedDefectModel_. DE later creates the necessary objects for _IntegratedDefectModel_. Our implementation of DE can be found in _de.py_. Our implementation can be used to maximize and minimize objectives. In our implementation we use DE to minimize the two objectives _Undetected Active Errors_, and _Undetected Passive Errors_.     
+The method _runDE_ in integrator.py passes the object _IntegratedDefectModel_. DE later creates the necessary objects for _IntegratedDefectModel_. Our implementation of DE can be found in _de.py_. Our implementation can be used to maximize and minimize objectives. In our implementation we use DE to minimize two objectives, total _Undetected Active Errors_ and total _Undetected Passive Errors_.
 
 
 The class IntegratedDefectModel also has two methods: _check_, and _getobj_. 
@@ -117,30 +117,30 @@ The class IntegratedDefectModel also has two methods: _check_, and _getobj_.
 ### Implementing DE 
 
 To implement DE we use the concept called _normalized score_ that aggregates 
-the objective scores and normalizes with respect to a baseline score. Our DE implementation generates solutions based on this normalized score for each candidates. To obtain the baseline we run IPMDFC for a fixed number of iterations. The obtained baseline scores is passed to our implementation of the DE algorithm. Our DE algorithm updates the scores of baseline by the score obtained from each candidate solution. Our implementation of DE performs minimization on the normalized scores. We followed Storn and Price's recommendation for frontier size (`18 * number of decisons`).     
+the objective scores and normalizes with respect to a baseline score. Our DE implementation generates solutions based on this normalized score for each candidate. To obtain the baseline, we run IPMDFC for a fixed number of iterations. The generated baseline scores (low, high) are passed to our implementation of the DE algorithm. Our DE algorithm updates the scores of baseline by the score obtained from each candidate solution. Our implementation of DE performs minimization on the normalized scores. We followed Storn and Price's recommendation for frontier size (`18 * number of decisons`).     
 
 ### Integrating DE with IPMDFC
 
-Finally, _main.py_ acts as a placeholder to put all the pieces together and perform all experiments. To perform a sample run a set of synthetic values we use the _runIntegrator_ method in main.py. To get baseline for IntegratedDefectModel we use _getBaselineForModel_ method in main.py. Finally, to use DE on InteratedDefectModel we set the following parameters: _runCount_, _constFlagForBaseline_, _deRunCount_, and _dirToWriteP_. 
+Finally, _main.py_ acts as a placeholder to put all the pieces together and perform all experiments. To perform a sample run on a set of synthetic values, we use the _runIntegrator_ method in main.py. To get baseline for IntegratedDefectModel, we use _getBaselineForModel_ method in main.py. Finally, to use DE on InteratedDefectModel, we set the following parameters: _runCount_, _constFlagForBaseline_, _deRunCount_, and _dirToWriteP_. 
 
-* Parameter _runCount_ specifies the number of times the model will run. This is set to 365 to imitate 365 days for running the model. 
+* Parameter _runCount_ specifies the number of times the model will run. This is set to 365 to simulate 365 days over which the models runs. 
 
 * If _constFlagForBaseline_ is set to True, then regression equations will be used to run the model. ‘dirToWriteP’ specifies the directory name where the constraint file resides.
 
-* _constraintFileNameParam_ is used to set the name of the constraint file. Please note that _createConstraintFile_ is an optional method to create constraint files based to set different ranges for the auxiliaries. In our implementation we have not used this method. 
+* _constraintFileNameParam_ is used to set the name of the constraint file. Please note that _createConstraintFile_ is an optional method to create constraint files for setting different ranges for the auxiliaries. In our implementation, we did not used this method. 
 
 ## Methodology 
 
-To observe how DE performs on optimizing two objectives for our model of interest namely, _Undetected Active Errors_, and _Undetected Passive Errors_. To run the experiment we provide the following parameters: _constraintFileNameParam_, _constFlagForBaseline_, _dirToWriteP_, _runCount_, and _deRunCount_. For different experiments we use different configurations of the five parameters. In our experiment runCount was set to 365 for all our experiments. The parameters constraintFileNameParam, and dirToWriteP were used to set a file name, and directory that used to read the constraints for the model. In our experiments we wanted to minimize the two objectives. For each configuration of the experiment, we recorded the output values and recorded the duration time of the time taken to perform the experiment. We present our findings in the next section.       
+We observed how DE performed on optimizing two objectives,_Undetected Active Errors_ and _Undetected Passive Errors_, for our model of interest. To run the experiment, we provided values for the following parameters: _constraintFileNameParam_, _constFlagForBaseline_, _dirToWriteP_, _runCount_, and _deRunCount_. To conduct different experiments, we used different configurations of the five parameters. For all experiements, _runCount_ was held constant at 365 (days). The parameters _constraintFileNameParam_ and _dirToWriteP_ were used to set the file name and the directory that was used to read the constraints for the model. In our experiments, we wanted to minimize the two objectives. For each configuration of the experiment, we recorded the output values and recorded the duration time of the time taken to perform the experiment. We present our findings in the next section.       
 
 
 ## Results
 
-We conduct our discussion in three categories: first we show the values of all the stocks for a sample run of IPMDFC. Then we provide empirical eveidence stating whether or not DE is providing better results in terms of optimization. Finally we provide our findings for the two experiemnts that we used. 
+We conduct our discussion in three categories: (1) We show the values of all the stocks for a sample run of IPMDFC; (2) we provide empirical evidence stating whether or not DE is providing better results in terms of optimization; and (3) we provide our findings for the two experimental configurations that we used. 
 
 ### Sample Run of IPMDFC 
 
-To test our implemention of IPMDFC we created a set of auxiliaries and observed the values of all the stocks. In Table II we list the values of all auxiliaries that we used. Please note that all the following values are for test purpose. 
+To test our implemention of IPMDFC we created a set of auxiliaries and observed the values of all the stocks. In Table II, we list the values of all auxiliaries that we used. Please note that all the following values are for test purpose. 
   
 Table II: Values of Auxiliaries Used 
 
@@ -179,8 +179,8 @@ Table III: Values of Stocks
 
 ### Improvement by DE 
 
-After verifying that our implementaion was correct we integrated IPMDFC with our DE 
-implementation. We observed whether DE is minimizing the two objectives for our project. To observe that we logged the baseline maximum value for the two objectives along with the objective values after DE optimization. Figure 2 presents how the baseline values for the stock UndetectedActiveErrors compare with that of the optimized candidate generated by DE.   
+After verifying that our implementaion was correct, we integrated IPMDFC with our DE 
+implementation. We wanted to observe whether DE was, in fact, minimizing the two objectives for our project. To capture this observation, we logged the baseline maximum value for the two objectives along with the objective values after DE optimization. Figure 2 presents how the baseline values for the stock UndetectedActiveErrors compare with that of the optimized candidate generated by DE.   
 
 ![scores](output/compare_with_baseline.jpg?raw=true=50x40)
 Figure 2: Comparing Objective Scores with Baseline.  
@@ -189,7 +189,7 @@ As we observe in Figure 2, the optimized value of the two objectives are lesser 
 remain less than 200 for different iterations. The median value for UndetectedPassiveErrors remain less than 2 for different iterations of DE. 
 ### Experiments  
 
-Before explaining the results we first provide the experiment configurations. In the first experiment configuration that we label as Exp-1, we set deRunCount for 1, 10, 100, and 1000, and set _constFlagForBaseline_ as False. Please note that _deRunCount_ refrs to number fo iterations DE eill be running. Setting deRunCount to 1 will allow DE to run on the model for one iteration. In the same manner, setting deRunCount to 1000 will allow DE to run for 1000 iterations. Setting _constFlagForBaseline_ as False that enables the four auxiliaries _MultiplierSchedPressure_, _MultiplierWorkforce_, _ActiveErrorsRetiringFraction_, and _FractionEscapingErrors_ to set between any random number 0 & 1. This experiment was run 10 times to see if there is any noticeable difference for different iterations.  
+Before explaining the results, we first provide the experiment configurations. In the first experiment configuration that we label as Exp-1, we set deRunCount for 1, 10, 100, and 1000, and set _constFlagForBaseline_ as False. Please note that _deRunCount_ refrs to number fo iterations DE eill be running. Setting deRunCount to 1 will allow DE to run on the model for one iteration. In the same manner, setting deRunCount to 1000 will allow DE to run for 1000 iterations. Setting _constFlagForBaseline_ as False that enables the four auxiliaries _MultiplierSchedPressure_, _MultiplierWorkforce_, _ActiveErrorsRetiringFraction_, and _FractionEscapingErrors_ to set between any random number 0 & 1. This experiment was run 10 times to see if there is any noticeable difference for different iterations.  
 
 In the second experiment configuration that we label as Exp-2, we set deRunCount for 1, 10, 100, and 1000, and set _constFlagForBaseline_ as False. Setting constFlagForBaseline as False that enables the five auxiliaries MultiplierSchedPressure, MPRegen, MultiplierWorkforce, ActiveErrorsRetiringFraction, and FractionEscapingErrors to use regression equations instead of any random number between 0 & 1. 
 
@@ -243,7 +243,7 @@ We leave the following actions as scope for future work:
 
 ## Conclusion
 
-IPMDFC is a software model that illustrates the flow chains of different software development factors namely software development rate, bad fix generation rate, and testing rate on different types of errors. In this project we implemented IPMDFC as a domain specific language using Python. Then we applied DE to find an optimized solution that will return the a set of values for the 17 auxiliaries when we are minimizing two stocks namely Undetected Active Errors, and Undetected Passive Errors. We suggest that our implementation can be used as a starting point for implementation of the complete model, as our implementation is modular, and extensible. The organization of the project also facilitates the scope of adding other genetic algorithms namely simulated annealing, max walk sat, and NSGAII. We observe that to make our implementation applicable to real-world software projects, future work should include all necessary auxiliaries, complete implementation of all relevant models, and real world project values for the auxiliaries. 
+IPMDFC is a software model that illustrates the flow chains of different software development factors, namely software development rate, bad fix generation rate, and testing rate on different types of errors. In this project, we implemented IPMDFC as a domain specific language using Python. We then applied DE to find an optimized solution that returned the set of values for the 17 auxiliaries for minimizing the two stocks associated with our objectives, Undetected Active Errors and Undetected Passive Errors. We suggest that our implementation can be used as a starting point for implementation of the complete model, as our implementation is modular and extensible. The organization of the project also facilitates the scope of adding other genetic algorithms, such as simulated annealing, max walk sat, and NSGAII. We observe that to make our implementation applicable to real-world software projects, future work should include all necessary auxiliaries, complete implementation of all relevant models, and real world project values for the auxiliaries. 
 
 ## Acknowledgement 
 
