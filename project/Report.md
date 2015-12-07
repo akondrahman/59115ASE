@@ -57,14 +57,13 @@ Nagappan et al. [8] mined different file level metrics such as module metrics, p
 
 Becerra et al. [2] applied DE to the automated generation of a test suite that consists a set of test inputs in order to achieve 100% branch coverage. The authors also compared the performance empirically with _Breeder Genetic Algorithm (BGA)_, an algorithm that also has been used in real world applications such as optimizing parcel distribution and impulse filtering. The authors suggested that DE is sensitive to the crossover factor that they referred to as the _differential constant for mutation_. 
 
-Rocca et al. [10] conducted a survey on use of different variants of DE in computational electromagnetics. They studied 70 academic papers that were published from 2000 till October 2009. They found that _DE/best/1/bin_ was the most used variant of DE used in the domain of computational electro magnetics. 
+Rocca et al. [10] conducted a survey on use of different variants of DE in computational electromagnetics. They studied 70 academic papers between 2000 and 2009 and found that _DE/best/1/bin_ was the most used variant of DE used in the domain of computational electromagnetics. 
 
 Talukder et al. [12] used DE to optimize schedulers in grid computing. The authors studied two parameters _execution time_, and _data transmission time_ through simulation. The authors claimed DE performs better that the _Pareto-archived Evolutionary Strategy (PAES)_ algorithm for this particular problem. 
 
-Liao [4] analyzed how hybrid approaches of compare to that of classical version of DE in the context of an engineering design problem. He analyzed two hybrid approaches: in the first hybrid approach random walk is incorporated the classical version of DE. Secondly, he included harmony search to the basic differential algorithm to generate the second hybrid approach. Liao studied 14 engineering design problems such as non-linear programming problems, manufacturing design problem, and non-linear chemical engineering problems. For all the 14 engineering design problems the two hybrid approaches outperformed the classical DE in terms of convergence rate. 
+Liao [4] analyzed how two hybrid approaches of DE compare to the classical version of DE in the context of an engineering design problem. In the first hybrid approach, random walk is incorporated the classical version of DE. In the second, he included harmony search to the basic differential algorithm. Liao studied 14 engineering design problems including non-linear programming problems, manufacturing design problem, and non-linear chemical engineering problems. For all the 14 engineering design problems the two hybrid approaches outperformed the classical DE in terms of convergence rate.
 
-
-Our work focuses on implementing IPMDFC proposed by Madachy, and run an optimizer to optimize two objectives related to the mdoel.
+Our work focuses on implementing IPMDFC proposed by Madachy, and running the classical version of Differential Evolution to optimize two objectives related to the model.
 
   
 
@@ -73,9 +72,9 @@ Our work focuses on implementing IPMDFC proposed by Madachy, and run an optimize
 
 To implement the model we use the concepts of _stock_, _flow_, and _auxiliary_ that are defined below: 
 
-* A flow is an entity that contributes to a stock over time. There are two types of flows namely inflows, and outflows. Inflows work as an aggregator to a stock, whereas, outflows work as a depletory for a stock. Usually, flows are measured for a certain period of time. 
+* A flow is an entity that contributes to a stock over time. There are two types of flows, namely inflows and outflows. Inflows work as an aggregator to a stock, whereas outflows work as a depletory for a stock. Usually, flows are measured for a certain period of time.
 * A stock is the entity that aggregates flows over time. Stocks are made larger over time by inflows and decreased by outflows. 
-* An auxiliary is an entity that is used to hold input values or intermediates. In our implementation we use auxiliaries as input to flows. We list the list of auxiliaries, flows, and stocks in presented in Table I. For the rest of the report we will refer to the auxiliaries, and flows by their acronym, and stocks by their full name. 
+* An auxiliary is an entity that is used to hold input values or intermediates. In our implementation, we use auxiliaries as input to flows. The list of auxiliaries, flows, and stocks are present in Table I. For the remainder of the report, we will refer to the auxiliaries and flows by their respective truncated names (see table), and stocks by their full names. 
 
  
 Table I: List of Auxiliaries, Flows, and Stocks in IPMDFC
@@ -87,12 +86,12 @@ Table I: List of Auxiliaries, Flows, and Stocks in IPMDFC
 
 
 
-* We only considered the auxiliaries that were mentioned in Madachy’s book. The model itself is part of a larger model that included models for different sectors namely, testing, personnel allocation, and coding.  
+* We only considered the auxiliaries that were mentioned in Madachy’s book. The model itself is part of a larger model that included models for different sectors, namely testing, personnel allocation, and coding.  
 * We assumed the connection between the detected part and the undetected part based on notations from Abdel-Hamid and Madnick [1]. We assume that flow _ErrorEscapeRate_ contributes to the auxiliary _FractionEscapingErrors_, and flow _ReworkRate_ contributes to auxiliary _BadFixGenRate_. 
 
 
 ## Implementation 
-We conduct the discussion of this section in two sub-sections. The first sub-section provides the details on implementation of the IPMDFC. the next sub-section describes the implementation of DE, and how DE is integrated to the model. 
+We conduct the discussion of this section in two sub-sections. The first subsection provides the details on implementation of the IPMDFC. The next subsection describes the implementation of DE and how it is integrated to the model. 
 
 ### Implementation of IPMDFC
 We implemented IPMDFC using the concepts of domain specific language. We used the object-oriented features of Python. We created classes for _Auxiliary_, _Flow_, and _Stock_ that inherit from the base class _ModelComponent_. _ModelComponent_ has two properties namely _curr_, and _name_. _Auxiliary_, _Flow_, and _Stock_ classes have setInput methods to set the values for the created objects. 
