@@ -117,7 +117,7 @@ The class IntegratedDefectModel also has two methods: _check_, and _getobj_.
 ### Implementing DE 
 
 To implement DE we use the concept called _normalized score_ that aggregates 
-the objective scores and normalizes with respect to a baseline score. Our DE implementation generates solutions based on this normalized score for each candidate. To obtain the baseline, we run IPMDFC for a fixed number of iterations. The generated baseline scores (low, high) are passed to our implementation of the DE algorithm. Our DE algorithm updates the scores of baseline by the score obtained from each candidate solution. Our implementation of DE performs minimization on the normalized scores. We followed Storn and Price's recommendation for frontier size (`18 * number of decisons`).     
+the objective scores and normalizes with respect to a baseline score. Our DE implementation generates solutions based on this normalized score for each candidate. To obtain the baseline, we run IPMDFC for a fixed number of iterations. The generated baseline scores (low, high) are passed to our implementation of the DE algorithm. Our DE algorithm updates the scores of baseline by the score obtained from each candidate solution. Our implementation of DE performs minimization on the normalized scores. We followed Storn and Price's recommendation for frontier size (`10 * number of decisons`).     
 
 ### Integrating DE with IPMDFC
 
