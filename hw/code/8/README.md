@@ -165,11 +165,13 @@ rank ,         name ,    med   ,  iqr
    2 , DifferentialEvolution ,    51339  ,  35550 (      ---   *  | -----------  ),344.92, 428.45, 513.39, 644.65, 960.74
 ```
 
-Detailed Console Output File:[Code8_Output.png]()
+**Detailed Console Output File :** [ConsoleOutput](outputLog.txt)
+
+**Screenshot of Rank Output**:![Screenshot](images/OutputRank.png)
 
 ##IV Conclusions
 
-____ performs well for DTLZ7 when compared to ________ and _____ algorithm.
+We had chosen loss statistic to compare the different algorithms for our experiment. As per this statistical measure, the best algorithm would be the one which maximises the loss between the first era and the final era. As we can see from the population distribution of the above algorithms, Differential Evolution has the maximum loss observed between the first era and the final era. It is ranked three in terms of loss statistic because ScottKnott assumes that smaller it is, the better. The other two algorithms - MaxWalkSat and Simulated Annealing have the same performance on DTLZ7.
 
 ##V. Threats to validity
 
