@@ -164,8 +164,7 @@ rank ,         name ,    med   ,  iqr
    1 , SimulatedAnnealing ,    25206  ,  5801 (-  *-          |              ),190.00, 215.17, 252.06, 271.02, 329.55
    2 , DifferentialEvolution ,    51339  ,  35550 (      ---   *  | -----------  ),344.92, 428.45, 513.39, 644.65, 960.74
 ```
-From the above output, we can see that MWS gave the best results in our experiment.
-For MWS, the rank 1 was given as it had the lowest median of 4.81 while others (DE and SA) were given rank 2 with similar values for median of ~9  
+
 Detailed Console Output File:[Code8_Output.png]()
 
 ##IV Conclusions
