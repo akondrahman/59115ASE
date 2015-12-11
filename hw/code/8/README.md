@@ -167,7 +167,7 @@ rank ,         name ,    med   ,  iqr
 
 **Detailed Console Output File :** [ConsoleOutput](outputLog.txt)
 
-**Screenshot of Rank Output**:![Screenshot](images/OutputRank.png)
+**Screenshot of Rank Output**:![Screenshot](images/outputRank.png)
 
 ##IV Conclusions
 
