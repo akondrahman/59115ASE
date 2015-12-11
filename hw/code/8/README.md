@@ -180,3 +180,14 @@ ____ performs well for DTLZ7 when compared to ________ and _____ algorithm.
 + This experiment provides a ready to use framework for testing and plugging these three algorithms.
 + This framework can be used to compare any algorithm by simply plugging the required algorithms and models respectively into the framework.
 + The current work could be scaled up and optimized further by running the second experiment in parallel to cut down on execution time.
+
+##VII. References
++ [Dr. Tim Menzies Course Website](https://github.com/txt/mase/blob/master/README.md)
++ [DTLZ7 Information](http://www.tik.ee.ethz.ch/~sop/download/supplementary/testproblems/dtlz7/index.php)
++ [DTLZ7 Pareto Frontier Information](http://mcis.jsu.edu/faculty/agarrett/ecspy/reference.html)
+
+
+##VIII. Acknowledgement
+
+We would like to thank [Dr. Tim Menzies](https://github.com/timm) for giving us an opportunity to learn and explore various problems and algorithms in the domain of search-based algorithm. Thank you for guiding us throughout. Further, we would also like to thank the teaching assistant for the course - [Mr.Rahul Krishna](https://github.com/rahlk) for answering all our queries and guiding us throughout. 
+
