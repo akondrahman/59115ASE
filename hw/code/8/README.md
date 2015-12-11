@@ -103,9 +103,9 @@ FOR i = 1 to max-tries DO
 RETURN failure, best solution found
 ```
 
-***DTLZ7 model:***  
+***DTLZ7 Model:***  
 
-![Model](dtlz7.png)
+![Model](images/dtlz7_model.png)
 
 [Steps](https://github.com/txt/mase/blob/master/STATS.md) for comparing the above search-based algorithms:   
 1. Visualize the data.  
@@ -175,6 +175,9 @@ We had chosen loss statistic to compare the different algorithms for our experim
 
 ##V. Threats to validity
 
++ This experiment involved twenty different baseline runs for each optimizer algorithm. We have observed consistent results for the various runs we did for testing the program and hence we believe that twenty runs should be sufficient enough for generating enough population data to do the comparison among the algorithms.
++ We have set the patience value to 10 for early termination. This means that if we do not see any improvement in the new era for ten consecutive eras, then we stop the algorithm. We have also tested this for values greater than 10 and we did not find any deviation from our results.
++ Since our experiment is based on DTLZ7 model, the configurations we used may not be the best ones for models whose degree of complexity is much higher than DTLZ7. The user of this framework would have to tune these values based on the model performance. However, we believe that models which are as complex as DTLZ7 or simpler than that should work fine with this framework.
 
 
 ##VI. Future Work
@@ -182,11 +185,13 @@ We had chosen loss statistic to compare the different algorithms for our experim
 + This experiment provides a ready to use framework for testing and plugging these three algorithms.
 + This framework can be used to compare any algorithm by simply plugging the required algorithms and models respectively into the framework.
 + The current work could be scaled up and optimized further by running the second experiment in parallel to cut down on execution time.
++ In this experiment, we used loss statistic as a measure to compare different optimizers. This work can be extended by using other measures such as ***hypervolume*** and ***spread*** to compare the optimizers. 
 
 ##VII. References
 + [Dr. Tim Menzies Course Website](https://github.com/txt/mase/blob/master/README.md)
 + [DTLZ7 Information](http://www.tik.ee.ethz.ch/~sop/download/supplementary/testproblems/dtlz7/index.php)
 + [DTLZ7 Pareto Frontier Information](http://mcis.jsu.edu/faculty/agarrett/ecspy/reference.html)
++ [DTLZ7 Model Image Source](http://mcis.jsu.edu/faculty/agarrett/ecspy/reference.html)
 
 
 ##VIII. Acknowledgement
