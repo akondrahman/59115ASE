@@ -126,7 +126,7 @@ We used rdiv list to store the final eras and passed it to rdivDemo method.
 
 ##III. Results
 
-Below are the results which were seen on running Simulated Annealing,MaxWalkSat and Differential Evolution algorithms 20 times on DTLZ7 model:
+Below are the results on running Simulated Annealing,MaxWalkSat and Differential Evolution algorithms 20 times on DTLZ7 model:
 
 ####First Era:
 ```
@@ -200,5 +200,5 @@ We had chosen loss statistic to compare the different algorithms for our experim
 
 ##VIII. Acknowledgement
 
-We would like to thank [Dr. Tim Menzies](https://github.com/timm) for giving us an opportunity to learn and explore various problems and algorithms in the domain of search-based algorithm. Thank you for guiding us throughout. Further, we would also like to thank the teaching assistant for the course - [Mr.Rahul Krishna](https://github.com/rahlk) for answering all our queries and guiding us throughout. 
+We would like to thank **[Dr. Tim Menzies](https://github.com/timm)** for giving us an opportunity to learn and explore various problems and algorithms in the domain of search-based algorithm. Further, we would also like to thank the **Teaching Assistant** for the course - **[Mr.Rahul Krishna](https://github.com/rahlk)** for answering all our queries and guiding us throughout. 
 
