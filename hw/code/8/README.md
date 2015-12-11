@@ -103,11 +103,11 @@ FOR i = 1 to max-tries DO
 RETURN failure, best solution found
 ```
 
-***DTLZ7 Model:***  
+***DTLZ7*** **Model:**  
 
 ![Model](images/dtlz7_model.png)
 
-[Steps](https://github.com/txt/mase/blob/master/STATS.md) for comparing the above search-based algorithms:   
+**[Steps](https://github.com/txt/mase/blob/master/STATS.md) for comparing the above search-based algorithms:**  
 1. Visualize the data.  
 2. Check if the central tendency of one distribution is better than the other; e.g. compare their median values.  
 3. Check the different between the central tendencies is not some small effect.  
@@ -125,8 +125,8 @@ The final eras for all three optimizers was stored and passed to scottknott, sk.
 We used rdiv list to store the final eras and passed it to rdivDemo method.
 
 ##III. Results
------------------------------
-Below are the results which were seen on running DE,SA, MWS algorithms 20 times on DTLZ7 model:
+
+Below are the results which were seen on running Simulated Annealing,MaxWalkSat and Differential Evolution algorithms 20 times on DTLZ7 model:
 
 ####First Era:
 ```
@@ -143,6 +143,7 @@ After running the optimizer ... BASELINE: MIN= 3.46428478421e-07  MAX= 24103063.
 
 ```
 ####Last Era:
+
 ```
 ** Simulated Annealing  on  DTLZ_7 **
 Best solution = [0.18028245533354126, 0.4266964503058407, 0.2705332218395994, 0.7157250184464258, 0.27142221746437656, 0.1388584274988236, 0.34611308103136673, 0.21009668401712667, 0.5027872409146945, 0.13578505781379757] ... best energy =8.88841768325e-07, corresponding objectives: first 0.180282455334, second 9.39785719312. Number of steps taken = 220
@@ -157,6 +158,7 @@ Energy .... 1.51520171399e-14: [0.35947347022582565, 0.8563978304639265, 0.68580
 After running the optimizer ... BASELINE: MIN= 3.02711056942e-07  MAX= 24103063.053
 ```
 #### Rank of DE, MWS and SA optimizers
+
 ```
 rank ,         name ,    med   ,  iqr
 ----------------------------------------------------
@@ -181,6 +183,7 @@ We had chosen loss statistic to compare the different algorithms for our experim
 
 
 ##VI. Future Work
+
 + This experiment can be used to test these algorithms for any other model by simply plugging the model in the model class.
 + This experiment provides a ready to use framework for testing and plugging these three algorithms.
 + This framework can be used to compare any algorithm by simply plugging the required algorithms and models respectively into the framework.
@@ -188,6 +191,7 @@ We had chosen loss statistic to compare the different algorithms for our experim
 + In this experiment, we used loss statistic as a measure to compare different optimizers. This work can be extended by using other measures such as ***hypervolume*** and ***spread*** to compare the optimizers. 
 
 ##VII. References
+
 + [Dr. Tim Menzies Course Website](https://github.com/txt/mase/blob/master/README.md)
 + [DTLZ7 Information](http://www.tik.ee.ethz.ch/~sop/download/supplementary/testproblems/dtlz7/index.php)
 + [DTLZ7 Pareto Frontier Information](http://mcis.jsu.edu/faculty/agarrett/ecspy/reference.html)
