@@ -1,9 +1,9 @@
-# Code 8 : Comparing MaxWalkSat, Simulated Annealing and Differential Evolution for DTLZ7 
+## Code 8 : Comparing MaxWalkSat, Simulated Annealing and Differential Evolution for DTLZ7 
 
 ## Team Members 
-* ### Akond Rahman (aarahman@ncsu.edu)
-* ### Bennett Nyarron (bynarron@ncsu.edu) 
-* ### Manish Singh (mrsingh@ncsu.edu)
+*  Akond Rahman (aarahman@ncsu.edu)
+*  Bennett Narron (bynarron@ncsu.edu) 
+*  Manish Singh (mrsingh@ncsu.edu)
  
 
 ##Abstract
