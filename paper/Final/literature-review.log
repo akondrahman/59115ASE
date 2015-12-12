@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  5 DEC 2015 17:50
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  11 DEC 2015 16:57
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -222,34 +222,81 @@ LaTeX Font Info:    Try loading font information for T1+aer on input line 105.
 (/usr/local/texlive/2015/texmf-dist/tex/latex/ae/t1aer.fd
 File: t1aer.fd 1997/11/16 Font definitions for T1/aer.
 )))
+(/usr/local/texlive/2015/texmf-dist/tex/latex/placeins/placeins.sty
+Package: placeins 2005/04/18  v 2.2
+)
+(/usr/local/texlive/2015/texmf-dist/tex/generic/babel/babel.sty
+Package: babel 2014/09/25 3.9l The Babel package
+
+(/usr/local/texlive/2015/texmf-dist/tex/generic/babel-english/english.ldf
+Language: english 2012/08/20 v3.3p English support from the babel system
+
+(/usr/local/texlive/2015/texmf-dist/tex/generic/babel/babel.def
+File: babel.def 2014/09/25 3.9l Babel common definitions
+\babel@savecnt=\count111
+\U@D=\dimen123
+)
+\l@canadian = a dialect from \language\l@american 
+\l@australian = a dialect from \language\l@british 
+\l@newzealand = a dialect from \language\l@british 
+))
+(/usr/local/texlive/2015/texmf-dist/tex/latex/blindtext/blindtext.sty
+Package: blindtext 2012/01/06 V2.0 blindtext-Package
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/tools/xspace.sty
+Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
+)
+\c@blindtext=\count112
+\c@Blindtext=\count113
+\c@blind@countparstart=\count114
+\blind@countxx=\count115
+\blindtext@numBlindtext=\count116
+\blind@countyy=\count117
+\c@blindlist=\count118
+\c@blindlistlevel=\count119
+\c@blindlist@level=\count120
+\blind@listitem=\count121
+\c@blind@listcount=\count122
+\c@blind@levelcount=\count123
+\blind@mathformula=\count124
+\blind@Mathformula=\count125
+\c@blind@randomcount=\count126
+\c@blind@randommax=\count127
+\c@blind@pangramcount=\count128
+\c@blind@pangrammax=\count129
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2015/05/04 v2.2 e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count130
+)
 (./literature-review.aux)
 \openout1 = `literature-review.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
 
 (/usr/local/texlive/2015/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count111
-\scratchdimen=\dimen123
+\scratchcounter=\count131
+\scratchdimen=\dimen124
 \scratchbox=\box30
-\nofMPsegments=\count112
-\nofMParguments=\count113
+\nofMPsegments=\count132
+\nofMParguments=\count133
 \everyMPshowfont=\toks38
-\MPscratchCnt=\count114
-\MPscratchDim=\dimen124
-\MPnumerator=\count115
-\makeMPintoPDFobject=\count116
+\MPscratchCnt=\count134
+\MPscratchDim=\dimen125
+\MPnumerator=\count135
+\makeMPintoPDFobject=\count136
 \everyMPtoPDFconversion=\toks39
 ) (/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
@@ -295,52 +342,125 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-LaTeX Font Info:    Try loading font information for U+msa on input line 77.
+LaTeX Font Info:    Try loading font information for U+msa on input line 41.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 77.
+LaTeX Font Info:    Try loading font information for U+msb on input line 41.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for U+lasy on input line 77.
+LaTeX Font Info:    Try loading font information for U+lasy on input line 41.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/base/ulasy.fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 )
-LaTeX Font Info:    Try loading font information for T1+ptm on input line 77.
+Overfull \hbox (7.52194pt too wide) in paragraph at lines 64--65
+\T1/aer/m/n/9 anal-y-ses suf-fer from the same con-found-ing bi-ases as individ
+ual-
+ []
 
-(/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/t1ptm.fd
-File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
-)
-No file literature-review.bbl.
 [1{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 
-
 ]
-(./literature-review.aux) ) 
+Overfull \hbox (37.05072pt too wide) in paragraph at lines 75--76
+[]\T1/aer/m/n/9 The fol-low-ing pa-pers were com-posed be-fore Pos-nett []publi
+shed
+ []
+
+
+Overfull \hbox (2.97818pt too wide) in paragraph at lines 81--82
+[]\T1/aer/m/it/9 Software met-rics\T1/aer/m/n/9 : Mea-sure-ment tools de-rived 
+from soft-
+ []
+
+
+Overfull \hbox (17.81758pt too wide) in paragraph at lines 91--91
+[]\secfnt Benchmarking Clas-si-fi-ca-tion Mod-els for Soft-
+ []
+
+
+Overfull \hbox (8.7576pt too wide) in paragraph at lines 91--91
+\secfnt ware De-fect Pre-dic-tion: A Pro-posed Frame-
+ []
+
+
+Overfull \hbox (7.24571pt too wide) in paragraph at lines 107--107
+[]\secfnt Predicting fail-ures with de-vel-oper net-works
+ []
+
+
+Overfull \hbox (10.52786pt too wide) in paragraph at lines 126--127
+\T1/aer/m/n/9 that is used to cat-e-go-rize the re-spon-si-bil-i-ties and assig
+ner-
+ []
+
+[2]
+Overfull \hbox (2.19398pt too wide) in paragraph at lines 138--138
+[]\secfnt Does Dis-tributed De-vel-op-ment Af-fect Soft-
+ []
+
+
+Overfull \hbox (12.6457pt too wide) in paragraph at lines 154--154
+[]\secfnt Cross-project de-fect pre-dic-tion: a large scale
+ []
+
+
+Overfull \hbox (2.26456pt too wide) in paragraph at lines 175--176
+\T1/aer/m/n/9 out-come. In the con-text of this pa-per, cost-effectiveness
+ []
+
+[3]
+Overfull \hbox (31.14693pt too wide) in paragraph at lines 222--223
+[]\T1/aer/m/n/9 The fol-low-ing pa-pers were com-posed af-ter Pos-nett []publis
+hed
+ []
+
+
+Overfull \hbox (5.91684pt too wide) in paragraph at lines 245--246
+\T1/aer/m/n/9 depth, mes-sage pass-ing cou-pling, in-for-ma-tion flow-based
+ []
+
+[4]
+Overfull \hbox (2.206pt too wide) in paragraph at lines 256--256
+[]\secfnt Bug pre-dic-tion based on fine-grained mod-
+ []
+
+
+Overfull \hbox (4.08405pt too wide) in paragraph at lines 278--279
+\T1/aer/m/n/9 changes hap-pen-ing in the source code at the fine-grained
+ []
+
+[5] (./literature-review.bbl
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [6])
+[7
+
+] (./literature-review.aux) ) 
 Here is how much of TeX's memory you used:
- 3147 strings out of 493089
- 40725 string characters out of 6134842
- 109353 words of memory out of 5000000
- 6546 multiletter control sequences out of 15000+600000
- 48205 words of font info for 67 fonts, out of 8000000 for 9000
+ 4037 strings out of 493089
+ 52553 string characters out of 6134842
+ 145601 words of memory out of 5000000
+ 7416 multiletter control sequences out of 15000+600000
+ 45303 words of font info for 59 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,10n,35p,265b,463s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/
-base/8r.enc}</usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/
-cmr8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
-9.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb><
-/usr/local/texlive/2015/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/lo
-cal/texlive/2015/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texliv
-e/2015/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on literature-review.pdf (1 page, 58338 bytes).
+ 41i,10n,35p,1327b,252s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvip
+s/base/8r.enc}</usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmr9.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/c
+msy9.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmt
+i9.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb>
+</usr/local/texlive/2015/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/l
+ocal/texlive/2015/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texli
+ve/2015/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on literature-review.pdf (7 pages, 127126 bytes).
 PDF statistics:
- 33 PDF objects out of 1000 (max. 8388607)
- 23 compressed objects within 1 object stream
+ 57 PDF objects out of 1000 (max. 8388607)
+ 40 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

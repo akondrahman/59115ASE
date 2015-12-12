@@ -1,0 +1,130 @@
+\begin{thebibliography}{10}
+
+\bibitem{Arisholm:2010}
+E.~Arisholm, L.~C. Briand, and E.~B. Johannessen.
+\newblock A systematic and comprehensive investigation of methods to build and
+  evaluate fault prediction models.
+\newblock {\em Journal of Systems and Software}, 83(1):2--17, 2010.
+
+\bibitem{Bettenburg:2010}
+N.~Bettenburg and A.~E. Hassan.
+\newblock Studying the impact of social structures on software quality.
+\newblock In {\em Program Comprehension (ICPC), 2010 IEEE 18th International
+  Conference on}, pages 124--133. IEEE, 2010.
+
+\bibitem{Bettenburg:2012}
+N.~Bettenburg, M.~Nagappan, and A.~E. Hassan.
+\newblock Think locally, act globally: Improving defect and effort prediction
+  models.
+\newblock In {\em Proceedings of the 9th IEEE Working Conference on Mining
+  Software Repositories}, pages 60--69. IEEE Press, 2012.
+
+\bibitem{Binkley:2007}
+D.~Binkley, H.~Feild, D.~Lawrie, and M.~Pighin.
+\newblock Software fault prediction using language processing.
+\newblock In {\em Testing: Academic and Industrial Conference Practice and
+  Research Techniques-MUTATION, 2007. TAICPART-MUTATION 2007}, pages 99--110.
+  IEEE, 2007.
+
+\bibitem{Bird:2009}
+C.~Bird, N.~Nagappan, P.~Devanbu, H.~Gall, and B.~Murphy.
+\newblock Does distributed development affect software quality?: an empirical
+  case study of windows vista.
+\newblock {\em Communications of the ACM}, 52(8):85--93, 2009.
+
+\bibitem{Giger:2012}
+E.~Giger, M.~D'Ambros, M.~Pinzger, and H.~C. Gall.
+\newblock Method-level bug prediction.
+\newblock In {\em Proceedings of the ACM-IEEE international symposium on
+  Empirical software engineering and measurement}, pages 171--180. ACM, 2012.
+
+\bibitem{Hata:2012}
+H.~Hata, O.~Mizuno, and T.~Kikuno.
+\newblock Bug prediction based on fine-grained module histories.
+\newblock In {\em Proceedings of the 34th International Conference on Software
+  Engineering}, pages 200--210. IEEE Press, 2012.
+
+\bibitem{Yue:2009}
+Y.~Jiang, J.~Lin, B.~Cukic, and T.~Menzies.
+\newblock Variance analysis in software fault prediction models.
+\newblock In {\em Software Reliability Engineering, 2009. ISSRE'09. 20th
+  International Symposium on}, pages 99--108. IEEE, 2009.
+
+\bibitem{Lessmann:2008}
+S.~Lessmann, B.~Baesens, C.~Mues, and S.~Pietsch.
+\newblock Benchmarking classification models for software defect prediction: A
+  proposed framework and novel findings.
+\newblock {\em Software Engineering, IEEE Transactions on}, 34(4):485--496,
+  2008.
+
+\bibitem{Meneely:2008}
+A.~Meneely, L.~Williams, W.~Snipes, and J.~Osborne.
+\newblock Predicting failures with developer networks and social network
+  analysis.
+\newblock In {\em Proceedings of the 16th ACM SIGSOFT International Symposium
+  on Foundations of software engineering}, pages 13--23. ACM, 2008.
+
+\bibitem{Menzies:2011}
+T.~Menzies, A.~Butcher, A.~Marcus, T.~Zimmermann, and D.~Cok.
+\newblock Local vs. global models for effort estimation and defect prediction.
+\newblock In {\em Proceedings of the 2011 26th IEEE/ACM International
+  Conference on Automated Software Engineering}, pages 343--351. IEEE Computer
+  Society, 2011.
+
+\bibitem{Nagappan:2006}
+N.~Nagappan, T.~Ball, and A.~Zeller.
+\newblock Mining metrics to predict component failures.
+\newblock In {\em Proceedings of the 28th international conference on Software
+  engineering}, pages 452--461. ACM, 2006.
+
+\bibitem{Nagappan:2008}
+N.~Nagappan, B.~Murphy, and V.~Basili.
+\newblock The influence of organizational structure on software quality: an
+  empirical case study.
+\newblock In {\em Proceedings of the 30th international conference on Software
+  engineering}, pages 521--530. ACM, 2008.
+
+\bibitem{Nguyen:2010}
+T.~H. Nguyen, B.~Adams, and A.~E. Hassan.
+\newblock Studying the impact of dependency network measures on software
+  quality.
+\newblock In {\em Software Maintenance (ICSM), 2010 IEEE International
+  Conference on}, pages 1--10. IEEE, 2010.
+
+\bibitem{Piantadosi:1988}
+S.~Piantadosi, D.~P. Byar, and S.~B. Green.
+\newblock The ecological fallacy.
+\newblock {\em American Journal of Epidemiology}, 127(5):893--904, 1988.
+
+\bibitem{Posnett:2011}
+D.~Posnett, V.~Filkov, and P.~Devanbu.
+\newblock Ecological inference in empirical software engineering.
+\newblock In {\em Proceedings of the 2011 26th IEEE/ACM International
+  Conference on Automated Software Engineering}, pages 362--371. IEEE Computer
+  Society, 2011.
+
+\bibitem{Rahman:2013}
+F.~Rahman and P.~Devanbu.
+\newblock How, and why, process metrics are better.
+\newblock In {\em Proceedings of the 2013 International Conference on Software
+  Engineering}, pages 432--441. IEEE Press, 2013.
+
+\bibitem{Rahman:2012}
+F.~Rahman, D.~Posnett, and P.~Devanbu.
+\newblock Recalling the imprecision of cross-project defect prediction.
+\newblock In {\em Proceedings of the ACM SIGSOFT 20th International Symposium
+  on the Foundations of Software Engineering}, page~61. ACM, 2012.
+
+\bibitem{Economist:2007}
+{\emph{The Economist}}.
+\newblock Signs of the times, February 22, 2007.
+
+\bibitem{Zimmerman:2009}
+T.~Zimmermann, N.~Nagappan, H.~Gall, E.~Giger, and B.~Murphy.
+\newblock Cross-project defect prediction: a large scale experiment on data vs.
+  domain vs. process.
+\newblock In {\em Proceedings of the the 7th joint meeting of the European
+  software engineering conference and the ACM SIGSOFT symposium on The
+  foundations of software engineering}, pages 91--100. ACM, 2009.
+
+\end{thebibliography}
