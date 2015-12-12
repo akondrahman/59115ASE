@@ -119,6 +119,19 @@ F.~Rahman, D.~Posnett, and P.~Devanbu.
 {\emph{The Economist}}.
 \newblock Signs of the times, February 22, 2007.
 
+\bibitem{Turhan:2009}
+B.~Turhan, T.~Menzies, A.~B. Bener, and J.~Di~Stefano.
+\newblock On the relative value of cross-company and within-company data for
+  defect prediction.
+\newblock {\em Empirical Software Engineering}, 14(5):540--578, 2009.
+
+\bibitem{Wolf:2009}
+T.~Wolf, A.~Schroter, D.~Damian, and T.~Nguyen.
+\newblock Predicting build failures using social network analysis on developer
+  communication.
+\newblock In {\em Proceedings of the 31st International Conference on Software
+  Engineering}, pages 1--11. IEEE Computer Society, 2009.
+
 \bibitem{Zimmerman:2009}
 T.~Zimmermann, N.~Nagappan, H.~Gall, E.~Giger, and B.~Murphy.
 \newblock Cross-project defect prediction: a large scale experiment on data vs.

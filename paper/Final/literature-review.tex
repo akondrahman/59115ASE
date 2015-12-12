@@ -1,8 +1,11 @@
 \documentclass{sig-alternate-05-2015}
+
 \usepackage[section]{placeins}
 \usepackage[english]{babel}
-\usepackage{blindtext}
-
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[babel=true,strict=true,german=quotes,threshold=1]{csquotes}
 \usepackage{etoolbox}
 \makeatletter
 \patchcmd{\maketitle}{\@copyrightspace}{}{}{}
@@ -10,10 +13,11 @@
 
 % Document Macros
 \newcommand{\etal}{\mbox{\emph{et al.\ }}}
+\renewcommand\mkblockquote[4]{\leavevmode\llap{,,}#1#2#3``#4}
 
 \begin{document}
     
-\title{Risk of the ecological fallacy: the elephant in the empirical software engineering room}
+\title{A review of the risk of the ecological fallacy in empirical software engineering}
 
 \numberofauthors{3} 
 
@@ -41,7 +45,7 @@ Manish Singh\\
 \maketitle
 
 \begin{abstract}
-We will compose the abstract when the paper is finished.
+A software system is a hierarchical structure composed of several layers, including modules, packages, and files.  When designing an experiment, it is important to identify the appropriate layer or layers for gathering data in order to ensure validity in hypothesis testing.  Otherwise, the study is at risk of the ecological fallacy--a logical fallacy that follows from ecological inference.  These ideas were introduced into the field of Empirical Software Engineering (ESE) through a publication by Posnett \etal, titled\emph{Ecological inference in empirical software engineering}, and remain relevant today.  The following review provides a high-level overview ecological inference and the ecological fallacy, explores research methods in ESE before and after the publication by Posnett \etal, and discusses how the field has changed as a result of the publication.
 \end{abstract}
 
 \keywords{Ecological Inference, Ecological Fallacy, Aggregation, Empirical Software Engineering}
@@ -80,11 +84,22 @@ published on the prevalence of the ecological inference in Empirical Software En
 \subsubsection{Keywords:}
 \begin{itemize}
 \item \emph{Software metrics}: Measurement tools derived from software repositories to perform quantitative analysis.
-\item \emph{Fault prediction}:  A methodology to predict failures by minign and analyzing software repositories.
+\item \emph{Fault prediction}:  A methodology to predict failures by mining and analyzing software repositories.
 \end{itemize} 
 
-\subsubsection{Summary:}
-TODO:// A brief summary of the paper.
+\subsubsection{Key Points:}
+\begin{itemize}
+\item \emph{Related Work}: \\
+The authors of have paper cited multiple papers that are related to defects and failures, complexity metrics, and historical data. For example, that authors cited the work of Hudepohl et al. [2] that predicted software failures from software design metrics, and reuse information from software repositories.
+\item \emph{Study Instruments}:
+	\begin{itemize}
+		\item Five project repositories namely, Internet Explorer 6, IIS W3 Server Core, Process Messaging Component, DirectX, and NetMeeting
+		\item File-based metrics: module metrics, per-function metrics, per-class metrics
+		\item logistic regression
+		\item principal component analysis (PCA)
+		\item correlation measures: Pearson, Spearman
+	\end{itemize}
+\end{itemize}
 
 \subsubsection{Use of Ecological Inference}
 Nagappan \etal  took a holistic approach where analysis was performed on one level (did not differentiate between aggregated or dis-aggregated level).
@@ -99,8 +114,17 @@ Nagappan \etal  took a holistic approach where analysis was performed on one lev
 \item \emph{Statistical Methods}: Statistics deals with the collection, interpretation, presentation and analysis of data. It offers various methods to estimate and correct for any bias within a sample and data collection procedures.
 \end{itemize} 
 
-\subsubsection{Summary:}
-TODO:// A brief summary of the paper.
+\subsubsection{Key Points:}
+\begin{itemize}
+\item \emph{Related Work}: \\
+The paper discusses about the previous works which have used various models for software defect prediction. Classification has been a popular approach and various types of classifiers have been applied to predict defects, including statistical procedures, tree-based methods, neural networks and analogy-based approaches.
+\item \emph{Motivational Statements}: \\
+Although a lot of previous work exists where numerous classification models have been used, the results about the superiority of one model or method over another or the usefulness of metric-based classification are not always consistent across different studies. There are various potential sources of bias : comparing classifiers over one or a small number of proprietary data sets, depending on accuracy indicators that are inappropriate for software defect prediction and cross-study comparisons and limited use of statistical testing procedures to secure empirical findings. Thus, there is a need for more reliable research procedures before we conclude the results of the comparative studies of software prediction models.
+\item \emph{Study Instruments}: \\
+The paper proposes a framework for organizing comparative classification experiments in software defect prediction. The authors conduct a large-scale benchmark of 22 different classification models over 10 public-domain data sets from NASA Metrics Data (MDP) repository and the PROMISE repository. Comparisons are based on the area under the receiver operating characteristic curve (AUC). The authors argue that AUC represents the most informative and objective indicator of predictive accuracy within a benchmarking context. The authors then use statistical methods to measure statistical significance of the difference between the performance of the various classification models.
+\item \emph{New Results}: \\
+ The authors have established that AUC is the primary accuracy indicator for comparative studies in software defect prediction as it separates predictive performance from class and cost distributions, which are project-specific characteristics that may be unknown or subject to change. Another contribution was the usage of statistical testing procedures for comparing and contrasting classification models. Further, as per the results obtained, the predictive accuracy of the models did not differ significantly. Thus, the assessment and selection of a classification model should not be based on the predictive accuracy. Instead it should be based on other factors such as computation costs, efficiency, ease of use and comprehensibility.
+\end{itemize}
 
 \subsubsection{Ecological Inference in ESE}
 Posnett \etal provided a conceptual framework on how prediction models can vary if metrics that are collected at aggregated with that of metrics collected at non-aggregated level. The "Ecological Inference in Empirical Software Engineering" paper makes use of the conclusion from "Benchmarking Classification Models.." paper - that simple statistic measures like TPR, FPR do not work well in a software defect prediction context as it is possible for two groups to use the same model on same data set and yet come with different results just because they had different threshold values. So the authors use ROC and statistical testing methods in their experiment to model defects.
@@ -114,8 +138,20 @@ Posnett \etal provided a conceptual framework on how prediction models can vary 
 \item \emph{Failure prediction}: A methodology to predict failures by mining and analyzing software repositories.
 \end{itemize} 
 
-\subsubsection{Summary:}
-TODO:// A brief summary of the paper.
+\subsubsection{Key Points:}
+\begin{itemize}
+\item \emph{Related Work}: \\
+The authors cited multiple papers that are related to failure prediction, and network analysis. For example, that authors cited the work of Arisholm et al. \cite{Arisholm:2010} that examined several data mining techniques for fault prediction for a telecommunications project. Arisholm et al. used multiple techniques such as decision trees, neural networks, and logistic regression.
+\item \emph{Study Instruments}:
+	\begin{itemize}
+		\item Project repository from a telecommunications company called Nortel Networks.
+		\item File-based metrics: updates, code churn, developers, number of hub developers
+	\end{itemize}
+\item \emph{Model selection}: \\
+system testing model, post-release model
+\item \emph{Model validation}: \\
+cross-fold validation
+\end{itemize}
 
 \subsubsection{Use of Ecological Inference}
 Meneely \etal took a holistic approach where social network analysis was performed on one level.
@@ -130,8 +166,18 @@ Meneely \etal took a holistic approach where social network analysis was perform
 \item \emph{Organizational Software Quality Metrics}: Empirical concepts that are derived from organizational aspects of a software organization
 \end{itemize} 
 
-\subsubsection{Summary:}
-TODO:// A brief summary of the paper.
+\subsubsection{Key Points:}
+\begin{itemize}
+\item \emph{Related Work}: \\
+The paper provides a brief, yet comprehensive overview of empirical studies that discuss the implications of software organization, traditional software metrics such as code churn, code coverage, code complexity, and code dependencies.
+\item \emph{Study Instruments}:
+	\begin{itemize}
+	\item Version control of system used during the release point of Windows Vista, a Microsoft product
+ 	\item Step-wise regression, principal component analysis, precision, recall etc.
+	\end{itemize}
+\item \emph{Baseline Results}: \\
+The prediction accuracy can be used as a baseline for empirical studies that addresses the impact of organizational structure for software quality of software binaries
+\end{itemize}
 
 \subsubsection{Use of Ecological Inference}
 Nagappan \etal take a holistic organizational approach, disregarding the difference of aggregated and dis-aggregated levels.
@@ -146,8 +192,17 @@ Nagappan \etal take a holistic organizational approach, disregarding the differe
 \item \emph{Outsourcing}: It is a special case of distributed development model in which different companies work on building a complex software system.
 \end{itemize} 
 
-\subsubsection{Summary:}
-TODO:// A brief summary of the paper.
+\subsubsection{Key Points:}
+\begin{itemize}
+\item \emph{Related Work}: \\
+The paper provides a brief survey of the important work done in the area of globally distributed software development. The authors discuss the effects of distributed development on bug resolution. Some papers conclude that it indirectly introduces delay while some say it does not have a strong effect. Some conclude only feasible decisions should be made in a project. Previous works have also focused on the effects on quality and productivity. It has been found that there is little, if any, correlation between geographic distance of developers and productivity and defect density. Offshoring can lead to several drawbacks such as more documentation needs. Some previous papers also focused on risk factors and categorized them. They found that globally distributed model did not increase defect density and they come up with key actions that make a successful global development model.
+\item \emph{Motivational Statements}: \\
+The term "Distributed Software Development" is a general concept and could be operationalized in various ways. The paper stresses that it is important to consider the way that developers and other entities are distributed. The authors are interested in studying the effect of global distributed software development within the same company. Through this study, they want to confirm or refute whether global distributed software development leads to more failures within the context of this setting. Further, their study is unique since there is no prior work which has done such a large scale study within an organization at multiple levels of separation (building, campus, continent,etc). Further, the authors also want to find out if the binaries that are distributed differ from their collocated counterparts in any significant ways.
+\item \emph{Hypotheses}: \\
+The paper formulates two hypotheses: H1: Binaries that are developed by teams of engineers that are distributed will have more post-release failures than those developed by collocated engineers. H2: Binaries that are distributed will be less complex, experience less code churn, and have fewer dependencies than collocated binaries. The first hypothesis is related to code quality or failures that are detected in post-release of software whereas the second hypothesis focuses on the properties of software binaries that result out of the two systems - distributed and collocated development.
+\item \emph{ Future Work}: \\
+The paper concludes that distributed development has little to no effect. The authors confirm that there are scenarios in which distributed development would work well. They observe that an organizationally compact but geographically distributed project would do well as compared to geographically local and organizationally distributed project. The authors observe a lot of factors and practices that Microsoft followed which played a big role in almost nullifying the negative effects of distributed development as opposed to conventional wisdom and widely held beliefs. The authors mention that as part of future work, they would want to discuss the effects of these practices in detail on the globally distributed software development.
+\end{itemize}
 
 \subsubsection{Use of Ecological Inference}
 Bird \etal take a holistic approach, and discuss the global distributed model of software development, at different levels of separation and its effect on software quality.
@@ -161,11 +216,19 @@ Bird \etal take a holistic approach, and discuss the global distributed model of
 \item \emph{Similarity between Projects}: Metrics that measure the similarity between two projects.
 \end{itemize} 
 
-\subsubsection{Summary:}
-TODO:// A brief summary of the paper
+\subsubsection{Key Points:}
+\begin{itemize}
+\item \emph{Related Work}: \\
+The authors have multiple papers that are related to defect prediction, and cross-project predictions. For example, Turhan et al. \cite{Turhan:2009} analyzed 12 NASA projects which were considered to be cross company. Turhan et al. identified cross-project metrics to be helpful in cross-project defect prediction, along with the increase of false positives.
+\item \emph{Study Instruments}:
+	\begin{itemize}
+	\item Open-source and in-house projects source code repositories.
+	\item Code measures: added line of code (LOC), total LOC, churn, pre-release bugs, and cyclomatic complexity
+	\end{itemize}
+\end{itemize}
 
 \subsubsection{Use of Ecological Inference}
-Posnett \etal provided a conceptual framework on how prediction models can vary if metrics that are collected at aggregated with that of metrics collected at non-aggregated level. This paper does not address the findings achieved at local and global level of software projects.
+Zimmerman \etal do not address nor discuss the findings achieved at different levels of aggregation of the studied software projects.  Without care to mention their methods, it is likely that the authors used ecological inference in the analysis of their hypotheses and are at risk of the ecological fallacy.
 
 \subsection{A systematic and comprehensive investigation of methods to build and evaluate fault prediction models \cite{Arisholm:2010}}
 
@@ -173,15 +236,45 @@ Posnett \etal provided a conceptual framework on how prediction models can vary 
 \begin{itemize}
 \item \emph{Fault Prediction Models}: "binary classifiers typically developed using one of the supervised learning techniques from either a subset of the fault data from the current project or from a similar past project." \cite{Yue:2009}
 \item \emph{Fault Proneness}: the number of defects detected in a software component (e.g., class)
-\item \emph{Cost-Effectiveness}: refers to the return on investment of time and resources expended to acheive a desired outcome. In the context of this paper, cost-effectiveness is measured per model by the ratio of the percentage of the number of lines of code examined (\% NOS) to the percentage of totals faults discovered (\% faults). Cost effectiveness is used as a variable for success criteria.
+\item \emph{Cost-Effectiveness}: refers to the return on investment of time and resources expended to achieve a desired outcome. In the context of this paper, cost-effectiveness is measured per model by the ratio of the percentage of the number of lines of code examined (\% NOS) to the percentage of totals faults discovered (\% faults). Cost effectiveness is used as a variable for success criteria.
 \item \emph{Verification}: in testing, the act of ensuring that a particular software system meets specifications and meets its intended purpose.
 \end{itemize} 
 
-\subsubsection{Summary:}
-TODO:// A brief summary of the paper.
+\subsubsection{Key Points:}
+\begin{itemize}
+\item \emph{Motivational Statements}: \\
+After performing a literature review of select publications within the field of fault-proneness prediction models, the authors found that none addressed the impact of selecting any particular modeling technique for fault prediction. Therefore, the authors focus the paper on the systematic assessment of three aspects on how to build and evaluate fault-proneness models in context of a Java legacy system development project in an industrial setting. These three aspects are:
+	\begin{itemize}
+	\item "compare many data mining and machine learning techniques to build fault-proneness models"
+	\item "assess the impact of using different metric sets" (e.g., source code structural measures, change history)
+	\item "compare several alternative ways of assessing the performance of the models", including:
+		\begin{itemize}
+		\item confusion matrix criteria
+		\item ranking ability
+		\item author-proposed cost-effectiveness measure
+		\end{itemize}
+	\end{itemize}
+\item \emph{ Related Works}: \\
+Gathered in the aforementioned literature review, the authors present accounts of multiple fault prediction models in previous works, which they intend to use in their experiment. The authors note in response to related works that existing studies only considered "code structural metrics", and only a subset of studies included any further measures. The authors note that there exist a few studies which compare a comprehensive set of data mining techniques for building fault prediction models; though, none were performed systematically nor did they attempt to evaluate the benefits of including particular structural measures, such as code churn and process measures. Models gleaned from related works include:
+	\begin{itemize}
+		\item Neural Network
+		\item Decorate C4.5
+		\item SVM
+		\item Logistic Regression
+		\item Boost C4.5
+		\item PART
+		\item C4.5 + Part
+		\item C4.5
+	\end{itemize}
+\item \emph{New Results}: \\
+The authors' defend their research procedures as a way to move forward in fault prediction modeling. Having empirically evaluated "all combinations of three distinct sets of candidate measures (OO structural measures, code churn measures, and process change and fault measures), and eight, carefully selected modeling techniques, using a number of evaluation criteria", they proved (to the community and to themselves) that a gold standard in modeling is unattainable. The confounding effects of the many variables results in the need for ad hoc methods for developing predictive fault models.
+\item \emph{Future Work}: \\
+The authors' cost-effectiveness measure (CE) for the purpose of the paper was a surrogate measure. Since publication, the authors have performed a pilot study to asses real CE and return on investment. The C4.5 prediction model was applied in a new release of the Java legacy software that was studied in this paper. Developers spent one additional week of unit testing with the most fault-prone classes (determined by the authors' fault prediction model), yielding an ROI of about 100\% by preventing these faults from continuing into later phases of the the PLC where they would have been more expensive to fix. In actual future work, the authors intend to extend these positive results to a larger-scale for further testing.
+
+\end{itemize}
 
 \subsubsection{Use of Ecological Inference}
-While it seems that predecessory related works focused on performance metrics and evaluation of various singular or combinatorial data-mining and fault prediction models, this paper had the intension of systematically exploring the space, and the authors were eager for results. The outcome was modest, suggesting that what is best for any given system is highly dependent upon the evaluation criteria applied. The authors conclude that it is important that predictive models are justified in context by any evaluation criteria. These results paved the way for the systematic approach to predictive modeling employed by the authors of the original paper, where evaluation criteria of such models was questioned at different levels of aggregation/disaggregation--a shortcoming of the procedures documented in this paper.
+While it seems that preceding related works focused on performance metrics and evaluation of various singular or combinatorial data-mining and fault prediction models, this paper had the intension of systematically exploring the space, and the authors were eager for results. The outcome was modest, suggesting that what is best for any given system is highly dependent upon the evaluation criteria applied. The authors conclude that it is important that predictive models are justified in context by any evaluation criteria. These results paved the way for the systematic approach to predictive modeling employed by the authors of the original paper, where evaluation criteria of such models was questioned at different levels of aggregation/disaggregation--a shortcoming of the procedures documented in this paper.
 
 \subsection{Studying the impact of social structures on software quality \cite{Bettenburg:2010}}
 
@@ -193,11 +286,21 @@ While it seems that predecessory related works focused on performance metrics an
 \item \emph{Post-Release Defects}: Software defects and failures discovered after deployment or release of software.
 \end{itemize} 
 
-\subsubsection{Summary:}
-TODO:// A brief summary of the paper.
+\subsubsection{Key Points:}
+\begin{itemize}
+\item \emph{Related Work}: \\
+The authors of the paper have cited multiple papers that are related to defects prediction, and social analysis. For example, that authors cited the work of Ahlberg et al. [2] that predicted failure-prone software modules using object-oriented code metrics.
+\item \emph{Study Instruments}:
+	\begin{itemize}
+		\item Six months of data obtained from the release of Ecplise 6.0
+		\item Social interaction measures such as centrality, interestingness, and workflow measures
+		\item pairwise correlation of social interaction measures
+		\item hierarchical analysis of logistic regression model
+	\end{itemize}
+\end{itemize}
 
 \subsubsection{Use of Ecological Inference}
-Posnett \etal provided a conceptual framework on how prediction models can vary if metrics that are collected at aggregated with that of metrics collected at non-aggregated level. This paper performed a holistic approach where analysis was performed on one level (did not differentiate between aggregated or dis-aggregated level).
+Bettenburg \etal took a holistic approach where analysis was performed on one level (did not differentiate between aggregated or dis-aggregated level).
 
 \subsection{Studying the impact of dependency network measures on software quality \cite{Nguyen:2010}}
 
@@ -208,16 +311,81 @@ Posnett \etal provided a conceptual framework on how prediction models can vary 
 \item \emph{Global network}: A network that consists of all the modules and all the other modules each other is dependent on.
 \end{itemize} 
 
-\subsubsection{Summary}
-TODO:// A brief summary of the paper
+\subsubsection{Key Points:}
+\begin{itemize}
+\item \emph{Related Work}: \\
+The authors cited multiple papers that are related to software metrics, code complexity metrics, and dependency network analysis. For example, that authors cited the work of Wolf et al. \cite{Wolf:2009} that analyzed the effect of social developer networks, developer networks on predicting build failures.
+\item \emph{Study Instruments}:
+	\begin{itemize}
+	\item Eclipse project repository.
+	\item Network measures: density, broker, egoBetween, nEgoBetween, hierarchy, power, closeness, information, dwReach
+	\end{itemize}
 
+\item \emph{Analysis tools}: \\
+principal component analysis (PCA), Pearson, Spearman, and Recall
+\end{itemize}
 \subsubsection{Use of Ecological Inference}
 Nguyen \etal analyze social network analysis on two levels namely local, and global which are labeled as ego, and global, respectively.
 
 
 \section{Ecological Inference in ESE}
-Discussion about Posnett, et al paper
+\subsection{Ecological Inference in Empirical Software Engineering \cite{Posnett:2011}}
+\subsubsection{Keywords}
+We identify the following keywords to be the most significant ones.  Each of the keywords 
+are accompanied with definitions. 
 
+\begin{itemize}
+\item \emph{Varying aggregation Levels}:
+A software system that has a hierarchical organization has different layers, where
+each higher layer is comprised of sub-layer components.  The paper defines 
+each of these higher layers as varying aggregation levels. The paper uses Eclipse as a real-life
+example: Eclipse consists of modules, which is a collection of packages. Each package 
+is a collection of files. Here, each package can be labelled as an \textit{aggregated level}, and file can be labelled as  \textit{dis-aggregated level}.   
+\item  \emph{Ecological Inference}:
+Ecological inference is the empirical finding that is evident at aggregated level of 
+software, as well as, dis-aggregated level of software. For example, in case of ecological inference, if an empirical finding that is evident at package level, which is collection of
+files, will also be evident at dis-aggregated levels such as files. 
+\item \emph{Ecological Fallacy}: 
+Ecological fallacy is that particular empirical finding that is evident at aggregated level of software, is \textit{not evident} at dis-aggregated level of software. In case of ecological fallacy, if an empirical finding that is evident at package level, will not be evident at dis-aggregated levels such as files. 
+\item \emph{ Ecological Inference Risk}:
+The paper defines empirical inference risk as generalizing an empirical inference that is 
+evident at aggregated level, to a dis-aggregated level without running 
+the same model with the factors existent at the dis-aggregated level. 
+\end{itemize}
+
+\subsubsection{Key Points}
+
+\begin{itemize}
+\item \emph{Motivational Statement}: \\
+Researchers have mined large scale software repositories at different levels 
+of the software hierarchy and presented their findings. However, what remains 
+unknown is, to what level, a hypotheses that was achieved at aggregated level, is 
+applicable to a dis-aggregated level of the software. This paper presents a conceptual 
+framework that investigates the \textit{ideal} level 
+to look for empirical findings, and whether those findings hold for both: aggregated 
+and dis-aggregated levels of the software.    
+\item \emph{Study Instruments}: \\
+The paper used data extracted from the JIRA tracking system and Github repositories 
+which contained 18 different Apache Software Foundation projects including Cassandra,  
+Lucene, and OpenEJB. 
+
+\item \emph{Statistical Tests}: \\
+The paper uses hypotheses testing to determine if a certain hypotheses 
+holds at aggregated level and disaggregated level. The authors state that  
+they found a number of cases where the null hypotheses is rejected 
+for aggregated level, which however, was not rejected at dis-aggregated level. 
+The opposite observation was also observed and reported in the paper.  $z$-test 
+statistics were used in the paper to determine predictor performance.
+
+\item \emph{Future Work}: \\
+One possible future direction that can work on top of  this 
+paper is replicating the study for other software repositories 
+which follow different hierarchical architectures, and are implemented 
+in different languages. \\ 
+The authors have reported two levels of the hierarchy: files and packages. 
+Another potential extension of this study can look at the effects of looking 
+at modules and observe if the empirical findings hold. \\
+\end{itemize} 
 
 \section{Survey - Forward from 2011}
 The following papers were composed after Posnett \etal \newline published on the prevalence of the ecological inference in Empirical Software Engineering.  For each paper, we will provide a bullet point format, defining keywords described by each author, summarizing select ideas presented in each paper, and finally, describing how the paper addressed ecological inference to perform more informed hypothesis testing and analysis.
@@ -232,8 +400,25 @@ The following papers were composed after Posnett \etal \newline published on the
 \item \emph{Connecting Global and Local Models}: The concept of using results from a local model and use it to build a better predictor at the Global level. Posnett et al. in their work \cite{Posnett:2011} stated that the same prediction model can behave differently at different levels of the same software. Menzies et al. \cite{Menzies:2011} stated that smaller subsets of a typical software engineering dataset can provide better insight with respect to prediction. In this paper, Bettenburg et al. uses these findings to build better global models.
 \end{itemize} 
 
-\subsubsection{Summary:}
-TODO:// A brief summary of the paper.
+\subsubsection{Key Points:}
+\begin{itemize}
+\item \emph{Motivational Statements}: \\
+ Empirical software engineering research has shown evidence that prediction models that work at aggregated and dis-aggregated levels differ in prediction performance. Similar studies have also shown the benefits of using prediction models applied at dis-aggregated levels. Te goal of replicate these findings and use them to create better prediction models that will help software engineering practitioners.
+\item \emph{ Study Instruments}:
+	\begin{itemize}
+		\item PROMISE repository datasets:
+			\begin{itemize}
+				\item Xalan 2.6
+				\item Luecene 2.4
+				\item CHINA
+				\item NasaCoc
+			\end{itemize}
+		\item Correlational Analysis, VIF Analysis, Cross Validation
+	\end{itemize}
+\item \emph{Scripts}: \\
+The complete set of tools, code are available at \\
+http://sailhome.cs.queensu.ca/replication/local-vs-global/
+\end{itemize}
 
 \subsubsection{Acknowledgement of Ecological Inference}
 Bettenburg \etal use the findings Posnett \etal as a motivational aspect and try to discover if the prediction results obtained at a dis-aggregated level can be applied to get better prediction results at the aggregated level.
@@ -243,15 +428,41 @@ Bettenburg \etal use the findings Posnett \etal as a motivational aspect and try
 \subsubsection{Keywords:}
 \begin{itemize}
 \item \emph{Empirical Software Engineering}: Focuses on experiments involving software systems (software products, processes, and resources). The purpose of these experiments is to collect data that can be used to validate theories about the processes involved in software engineering.
-\item \emph{Fault Prediction}: To make "use of a plethora of structural measures in order to predict faults, even in the absence of a fault history... Example structural measures include lines of code, operator counts, nesting depth, message passing coupling, information flow-based cohesion, depth of inheritance tree, number of parents, number of previous releases the module occurred in, and number of faults detected in the module during the previous release \cite{Binkley:2007}." Accurate fault prediction at an early stage of development, despite the lifecyle phase, allow for code to be fixed at a lower cost \cite{Binkley:2007}.
+\item \emph{Fault Prediction}: To make "use of a plethora of structural measures in order to predict faults, even in the absence of a fault history... Example structural measures include lines of code, operator counts, nesting depth, message passing coupling, information flow-based cohesion, depth of inheritance tree, number of parents, number of previous releases the module occurred in, and number of faults detected in the module during the previous release \cite{Binkley:2007}." Accurate fault prediction at an early stage of development, despite the lifecycle phase, allow for code to be fixed at a lower cost \cite{Binkley:2007}.
 \item \emph{Code Inspection}: The practice of reviewing code for any defects or process improvements. May be performed by person, team of people, and/or a model built for fault detection.
 \item \emph{Cross-Project Prediction}: "using data from one project to predict defects in another \cite{Rahman:2012}." As the title of the paper suggests, this is an imprecise practice.
 \end{itemize} 
 
-\subsubsection{Summary:}
-TODO:// A brief summary of the paper.
+\subsubsection{Key Points:}
+\begin{itemize}
+\item \emph{ Motivation Statements}: \\
+Because new projects are slight on historical data, there is growing interest in cross-project prediction--using data from existing projects to predict defects in another. However, to date the results of these studies have been underwhelming. Past projects have used the standard IR-based measures of precision, recall, and f-score, with specific threshold settings determined by methods such as logistic regression. Rahman et al, argue that these are not well suited for cross-project prediction. The authors propose that a variety of tradeoffs (viz, 5\%, 10\%, or 20\% of files tested or inspected) would be more suitable.
+\item \emph{Sampling Procedures}: \\
+The authors "collected defect data and predictive metrics for several projects". They chose data sets and process metrics considering the following features:
+	\begin{itemize}
+		\item Commits - "Number of commits made to this file during release"
+		\item Active Devs - "Number of developers who made changes during this release"
+		\item Added - "LOC during this release normalized by file size"
+		\item Deleted - "Deleted LOC during this release normalized by file size"
+		\item Changed - "Changed LOC during this release normalized by file size"
+		\item Features - "Number of new features in this file during this release"
+		\item Improvements - "Number of improvements in this file during this release"
+		\item Log - "SLOC Log source lines of code"
+	\end{itemize}
+Project List: Axis2, CXF, Camel, Cayenne, Derby, Lucene, OpenEJB, Wicket, XercesJ
+\item \emph{Statistical Tests}: \\
+The authors used Logistic Regression, and extension of Linear Regression, to discretely catorgorreplicateize defects into a binary determination of whether a project is default-prone or not. Logistic Regression was chosen because it simple, widely-applicable, and peer reviewed. The used R to program the model, with standard generalized linear model and the binomial link function. Simple approaches were chosen because:
+	\begin{itemize}
+		\item "to the extend possible, replicate existing work"
+		\item "ensure that our findings do not leverage any exotic, powerful techniques"
+	\end{itemize}
+Because they were measuring performance and not testing any hypotheses, the authors simply used all available variables.
+\item \emph{Results}: \\
+Suspicions were confirmed by the results of the analysis: cross-project fault prediction is significantly worse than prediction based on historical defect data within a project. However, the authors found "that cost-sensitive cross-project prediction is a) as good as within-project prediction, and b) substantially better than what we would expect under a random model." The conclude with the following block statement:
+\blockquote{\enquote{In terms of aucec, cross-project defect prediction performs surprisingly well and may have a comparable performance to that of the within-project models.}}
+\end{itemize}
 
-\subsubsection{Use of Ecological Inference}
+\subsubsection{Acknowledgement of Ecological Inference}
 Rahman \etal demonstrate the consideration of the risk of ecological inference before proceeding, explicitly stating that their choice of file-level analysis was directly motivated by the publication by Posnett \etal.
 
 \subsection{Bug prediction based on fine-grained module histories \cite{Hata:2012}}
@@ -264,10 +475,19 @@ Rahman \etal demonstrate the consideration of the risk of ecological inference b
 \item \emph{Historical Metrics}: They are metrics coming from various categories such as code-related metrics, process-related metrics, organizational metrics and geographical metrics for capturing version history in different categories.
 \end{itemize} 
 
-\subsubsection{Summary:}
-TODO:// A brief summary of the paper.
+\subsubsection{Key Points:}
+\begin{itemize}
+\item \emph{Related Work}: \\
+The paper says that bug prediction has been widely studied and recent findings show the usefulness of collecting historical metrics from software repositories for bug prediction models. Prediction models have been build using bug-fix information. Bug prediction has been done using file-level and package-level historical metrics and it has been observed that results from file-level metrics are more interesting. Fine-grained prediction has been a challenge because obtaining method histories from existing version control systems is a difficult problem.
+\item \emph{Motivational Statements}: \\
+Although a lot of previous work has been done on bug prediction using file-level and package-level historical metrics, there is a need to do bug prediction at a fine-grained level such as method level. In ESEC/FSE 2011 conference, fine-grained prediction was selected as one of the future directions. Studies of fine-grained prediction are necessary because desirable results may be obtained when compared to coarse-grained prediction.
+\item \emph{Study Instruments}: \\
+In order to collect detailed histories, the authors have proposed a fine grained version control system - Historage. Historage was constructed on top of Git and can control method histories of Java. The authors then empirically evaluate the prediction models with eight open source projects written in Java.
+\item \emph{New Results}: \\
+The authors have come up with a new framework to capture fine-grained method-level historical metrics. Using eight open source projects, package level , file-level and method-level prediction models were compared based on effort-based evaluation. They found that method-level prediction is more effective than package-level and file-level prediction when considering efforts. They also observed that past bug information on methods does not correlate with post bugs in methods, and organizational metrics may not contribute to method-level prediction. Code-related metrics have positive correlations and interval-related metrics have negative correlations.
+\end{itemize}
 
-\subsubsection{Use of Ecological Inference}
+\subsubsection{Acknowledgement of Ecological Inference}
 \emph{Ecological Inference in Empirical Software Engineering} makes use of the conclusion from \emph{Benchmarking Classification Models for software defect prediction} - that simple statistic measures like TPR, FPR do not work well in a software defect prediction context as it is possible for two groups to use the same model on same data set and yet come with different results just because they had different threshold values. So the authors use ROC and statistical testing methods in their experiment to model defects. The authors of this paper use this information and argue that method-level fine-grained historical metrics give interesting bug-prediction models which yield better results as compared to file-level or package-level historical metics.
 
 \subsection{Method-level bug prediction \cite{Giger:2012}}
@@ -280,11 +500,20 @@ TODO:// A brief summary of the paper.
 \item \emph{Code Metrics}: They are metrics which are directly computed from the source code itself. There are two traditional suites of code metrics : CK metrics and a SCM, which is a set of metrics directly computed at the method level. They are used by author to generate bug prediction models.
 \end{itemize} 
 
-\subsubsection{Summary:}
-TODO:// A brief summary of the paper.
+\subsubsection{Key Points:}
+\begin{itemize}
+\item \emph{Related Work}: \\
+The paper says that bug prediction has been widely studied and bug prediction models have been built using bug-fix information. Bug prediction has been done using file-level and package-level and researchers have been successful in locating files containing bugs. However, there has been no work on predicting bugs at the method level.
+\item \emph{Motivational Statements}: \\
+Although a lot of previous work has been done on bug prediction using file-level and package-level historical metrics, there is a need to do bug prediction at a fine-grained level such as method level. The authors observe that although it is helpful to locate the file containing the bugs, most of the times such files are huge and complex in size and hence are easily classified as bug-containing file. However, it takes a lot of manual effort for the developer to identify the exact area containing the bug and thus becomes time consuming and cumbersome. Also, there is a risk of inferential fallacy when transferring empirical findings from an aggregated level. This paper hopes to save manual inspection steps and significantly improve testing effort allocation.
+\item \emph{Study Instruments}: \\
+The authors collected the dataset consisting of code, change and bug metrics for 21 software sub-systems. They used source code metrics and change metrics to build bug prediction models.The bug data was obtained from bug tracking systems such as Bugzilla and the code change is linked to bugs through the bug ids found in the commit message of each bug fix.
+\item \emph{New Results}: \\
+The experiments performed on 21 Java open-source systems show that the prediction models reach a precision and recall of 84\% and 88\%, respectively. Furthermore, results indicate that change metrics significantly outperform source code metrics.
+\end{itemize}
 
-\subsubsection{Use of Ecological Inference}
-Posnett \etal provided a conceptual framework on how prediction models can vary if metrics that are collected at aggregated with that of metrics collected at non-aggregated level. The "Ecological Inference in Empirical Software Engineering" paper makes use of the conclusion from "Benchmarking Classification Models.." paper - that simple statistic measures like TPR, FPR do not work well in a software defect prediction context as it is possible for two groups to use the same model on same data set and yet come with different results just because they had different threshold values. So the authors use ROC and statistical testing methods in their experiment to model defects. The authors of this paper use this information and argue that method-level fine-grained changed metrics give interesting bug-prediction models which yield better results as compared to file-level or package-level metrics or method-level source code metrics.
+\subsubsection{Acknowledgement of Ecological Inference}
+\emph{Ecological Inference in Empirical Software Engineering}  makes use of the conclusion from \emph{Benchmarking Classification Models for software defect prediction}  - that simple statistic measures like TPR, FPR do not work well in a software defect prediction context as it is possible for two groups to use the same model on same data set and yet come with different results just because they had different threshold values. So the authors use ROC and statistical testing methods in their experiment to model defects. The authors of this paper use this information and argue that method-level fine-grained changed metrics give interesting bug-prediction models which yield better results as compared to file-level or package-level metrics or method-level source code metrics.
 
 \subsection{How, and why, process metrics are better \cite{Rahman:2013}}
 
@@ -293,22 +522,31 @@ Posnett \etal provided a conceptual framework on how prediction models can vary 
 \item \emph{performance}: The authors "compare the performance of different models in terms of both traditional measures such as AUC and F-score, and the newer cost-effectiveness measures"
 \item \emph{stability}: The authors "compare the stability of prediction performance of the models across time and over multiple releases"
 \item \emph{portability}: The authors "compare the portability of prediction models: how do they perform when trained and evaluated on completely different projects?"
-\item \emph{stasis}: The authors "study stasis, viz.., the degree of change (or lack thereof) in the different metrics, and the corresponding models over time. [They] then releate these changes with their ability to prevent defects."
+\item \emph{stasis}: The authors "study stasis, viz.., the degree of change (or lack thereof) in the different metrics, and the corresponding models over time. [They] then relate these changes with their ability to prevent defects."
 \end{itemize} 
 
-\subsubsection{Summary:}
-TODO:// A brief summary of the paper.
+\subsubsection{Key Points:}
+\begin{itemize}
+\item \emph{ Motivational Statement}: \\
+The literature was divisive on the issues of the quality of process metrics and code metrics for use in defect prediction. The authors cited papers that preferred process metrics over code metrics, papers that preferred code metrics over process metrics, and papers that qualified the use of both. The goal of their research is to understand why and how each metric class (process or code) is effective, and under what conditions.
+\item \emph{Sampling Procedures}: \\
+The authors selected 12 Java-based, Apache Software Foundations (ASF) projects from diverse domains. For each project, they extracted the commit history from each project's GIT repository, while also using GIT BLAME on every file at each release to get detailed contributor information. All 12 projects used JIRA, from which the authors extracted defect information and the defect-correcting commits. The JIRA commits were diffed with the GIT commits to label the modified files as defective.
+\item \emph{Statistical Tests}: \\
+The output of all prediction models was the probability of defect proneness of files. Minimum thresholds for defect classification varied, while the authors recorded the accuracy, precision, recall, f-measure, receiver operating characteristic (ROC), and cost-effectiveness, stating that different thresholds could alter these values. The authors began by "comparing the performance of process and code metrics in release based prediction settings using AUC, AUCEC and F50". And in their own jargon:
+\blockquote{\enquote{We compared the AUC performance for all types of metrics for a given learning technique using Wilcoxon tests and corrected the p-values using Benjamini-Hochberg (BH) correction. We also do the same to compare the performance of different learning techniques for a given set of metrics.}}
+\item \emph{ Anti-Patterns}: \\
+The authors acknowledge the work of Posnett et al. in Threats to Validity for avoiding generalization. They note that in order to avoid risk of the ecological fallacy, they have taken measures to compare their findings in a per project setting, reporting similar results. In a previous paper by Rahman [2], it was noted that the file-level was chosen for analysis in response to the risk of ecological fallacy, while the same decision was made for this work without explicit declaration.
+\end{itemize}
 
-\subsubsection{Use of Ecological Inference}
+\subsubsection{Acknowledgement of Ecological Inference}
 It appears that every paper that follows (chronologically) Posnett \etal's recognition of the risk of ecological fallacy has to, in some way at least once, describe some measure to taken to avoid the risk of it occurring. This paper is not an exception. In threats to validity, as mentioned previously, the authors describe an extra measure taken to cross-compare their results with analyses run per project. It appears that, even today, researchers in defect prediction are still determining what the ecological fallacy means in terms of the organization of their research and their analysis and results.
 
-\section{Discussion}
-Discuss what changed, how did it change, is it sufficient?
+\section{Discussion and Conclusion}
+Posnett \etal raised an issue that the ESE community has not yet fully realized how to sort out.  Prior to the publication of \emph{Ecological Inference in Empirical Software Engineering}, statistical methods performed on software project data paid little attention to the levels of aggregations used to test hypothesis and provided little insight on why particular decisions were made.  Researchers were not privy to the consequences of the confounding biases spread among the software ecosystem, nor were they attune to their complexity.  Thus, the careless use of ecological inference were not an oversight but a result of ignorance of its potential harm.
 
-Posnett \etal raised an issue that the community has not yet fully realized how to sort out.  
+After the risk of the ecological fallacy was made apparent, researchers were dumbfounded.  The incumbent processes for performing an empirical study on software systems were no longer valid, and a new threat to validity had to be addressed in every successive publication.  The same is still true.  Papers leading up to 2015 still don't quite seem to fully address the problem of ecological inference, or at least don't know quite how to deal with it yet.  Current methods tend to stay local to the file level, to possibly avoid inferring across different levels of aggregation altogether.  If any inference is made, then the authors perform their due diligence to address it while citing Posnett \etal.  Today, ecological inference and the risk of ecological fallacy remain the elephant in the empirical software engineering room.  No one seems to know quite yet how to acquaint it with the discipline.
 
-\section{Conclusion}
-text here
+
 
 \bibliographystyle{abbrv}
 \bibliography{literature-review}
