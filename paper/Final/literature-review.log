@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  11 DEC 2015 16:57
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  12 DEC 2015 14:29
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -366,71 +366,71 @@ ual-
 
 
 ]
-Overfull \hbox (37.05072pt too wide) in paragraph at lines 75--76
-[]\T1/aer/m/n/9 The fol-low-ing pa-pers were com-posed be-fore Pos-nett []publi
-shed
- []
-
-
-Overfull \hbox (2.97818pt too wide) in paragraph at lines 81--82
+Overfull \hbox (2.97818pt too wide) in paragraph at lines 82--83
 []\T1/aer/m/it/9 Software met-rics\T1/aer/m/n/9 : Mea-sure-ment tools de-rived 
 from soft-
  []
 
 
-Overfull \hbox (17.81758pt too wide) in paragraph at lines 91--91
+Overfull \hbox (17.81758pt too wide) in paragraph at lines 92--92
 []\secfnt Benchmarking Clas-si-fi-ca-tion Mod-els for Soft-
  []
 
 
-Overfull \hbox (8.7576pt too wide) in paragraph at lines 91--91
+Overfull \hbox (8.7576pt too wide) in paragraph at lines 92--92
 \secfnt ware De-fect Pre-dic-tion: A Pro-posed Frame-
  []
 
 
-Overfull \hbox (7.24571pt too wide) in paragraph at lines 107--107
+Overfull \hbox (7.24571pt too wide) in paragraph at lines 108--108
 []\secfnt Predicting fail-ures with de-vel-oper net-works
  []
 
 
-Overfull \hbox (10.52786pt too wide) in paragraph at lines 126--127
+Overfull \hbox (10.52786pt too wide) in paragraph at lines 127--128
 \T1/aer/m/n/9 that is used to cat-e-go-rize the re-spon-si-bil-i-ties and assig
 ner-
  []
 
 [2]
-Overfull \hbox (2.19398pt too wide) in paragraph at lines 138--138
+Overfull \hbox (2.19398pt too wide) in paragraph at lines 139--139
 []\secfnt Does Dis-tributed De-vel-op-ment Af-fect Soft-
  []
 
 
-Overfull \hbox (12.6457pt too wide) in paragraph at lines 154--154
+Overfull \hbox (12.6457pt too wide) in paragraph at lines 155--155
 []\secfnt Cross-project de-fect pre-dic-tion: a large scale
  []
 
 
-Overfull \hbox (2.26456pt too wide) in paragraph at lines 175--176
+Overfull \hbox (2.26456pt too wide) in paragraph at lines 176--177
 \T1/aer/m/n/9 out-come. In the con-text of this pa-per, cost-effectiveness
  []
 
 [3]
-Overfull \hbox (31.14693pt too wide) in paragraph at lines 222--223
-[]\T1/aer/m/n/9 The fol-low-ing pa-pers were com-posed af-ter Pos-nett []publis
-hed
- []
-
-
-Overfull \hbox (5.91684pt too wide) in paragraph at lines 245--246
+Overfull \hbox (5.91684pt too wide) in paragraph at lines 246--247
 \T1/aer/m/n/9 depth, mes-sage pass-ing cou-pling, in-for-ma-tion flow-based
  []
 
 [4]
-Overfull \hbox (2.206pt too wide) in paragraph at lines 256--256
+Overfull \hbox (2.206pt too wide) in paragraph at lines 257--257
 []\secfnt Bug pre-dic-tion based on fine-grained mod-
  []
 
 
-Overfull \hbox (4.08405pt too wide) in paragraph at lines 278--279
+Overfull \hbox (13.57231pt too wide) in paragraph at lines 271--272
+[]\T1/aer/m/it/9 Ecological In-fer-ence in Em-pir-i-cal Soft-ware En-gi-neer-in
+g \T1/aer/m/n/9 makes
+ []
+
+
+Overfull \hbox (6.90982pt too wide) in paragraph at lines 271--272
+\T1/aer/m/n/9 his-tor-i-cal met-rics give in-ter-est-ing bug-prediction mod-els
+ which
+ []
+
+
+Overfull \hbox (4.08405pt too wide) in paragraph at lines 279--280
 \T1/aer/m/n/9 changes hap-pen-ing in the source code at the fine-grained
  []
 
@@ -457,7 +457,7 @@ i9.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb>
 </usr/local/texlive/2015/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/l
 ocal/texlive/2015/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texli
 ve/2015/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on literature-review.pdf (7 pages, 127126 bytes).
+Output written on literature-review.pdf (7 pages, 127987 bytes).
 PDF statistics:
  57 PDF objects out of 1000 (max. 8388607)
  40 compressed objects within 1 object stream

@@ -52,7 +52,7 @@ Posnett \etal (2011) challenged previous works regarding the empirical study of 
 
 Choosing the correct level of aggregation (e.g., file-level) is critical when testing hypotheses on one or more of these variables \cite{Posnett:2011}.  But where should one start? Top-to-bottom? At file-level?  The authors set forth the understand the intricacies of ecological inference and how well hypotheses hold up across differing levels of aggregation.
 
-This paper is intended to provide an overview of the effect of the risk of the ecological fallacy on empirical software engineering, before and after the publication by Posnett \etal.   We will begin by providing a brief background on ecological inference and the risk of ecological fallacy, and followed by a high-level overview of the study of empirical software engineering.  We will then begin discussing a selection of papers published prior to the presage of the risk of the ecological fallacy in empirical software engineering. We will follow the brief survey by further discussion of the paper by Posnett \etal, and then we will continue with publications that followed and how they attempt address the elephant in the room.  We will conclude with some discussion about the effectiveness of this newfound awareness and how effectively it is being addressed.
+This paper is intended to provide an overview of the effect of the risk of the ecological fallacy on empirical software engineering, before and after the publication by Posnett \etal.   We will begin by providing a brief background on ecological inference and the risk of ecological fallacy, and followed by a high-level overview of the study of empirical software engineering.  We will then begin discussing a selection of papers published prior to the acknowledgement of the risk of the ecological fallacy in empirical software engineering. We will follow the brief survey by further discussion of the paper by Posnett \etal, and then we will continue with publications that followed and how they attempt address the elephant in the room.  We will conclude with some discussion about the effectiveness of this newfound awareness and how effectively it is being addressed.
 
 \section{Background and Concepts}
 
@@ -64,7 +64,7 @@ In criticism of medical statistical methods, \emph{The Economist}, a publication
 Piantadosi \etal, in a publication in the \emph{American Journal of Epidemiology} in 1988, would argue that ecological analyses suffer from the same confounding biases as individual-level analyses, though perhaps more severely \cite{Piantadosi:1988}.  Ecological inference introduces a vast amount of moving parts, as the factors that affect the targeted study group are compounded with those of the aggregation of that group, leading to an abundance of confounding factors and threats to validity to consider. Piantadosi \etal offer no solution beyond an urge to researchers to analyze data sensibly and perform \emph{ad hoc} measures to minimize confounding bias.  Thus, as statistical analyses of the most granular subject comes with its own set of potential biases, ecological inference comes with the risk of the ecological fallacy.  So, Sagittarians need not worry about their brittle arms or Leos about their bloody guts, as "statistically-significant" correlations are easy to spot when due diligence has not been performed to eliminate as much bias as possible.
 
 \subsection{Empirical Software Engineering}
-TODO:// Write this part
+Empirical Software Engineering (ESE) aims for observable outcomes in the study of software systems, including quality and productivity \cite{Posnett:2011}.  Ideally, these studies are conducted using large sample sizes (e.g. numerous software projects) in order to leverage statistical methods for hypothesis testing and to gather large quantities of data for mining methods and machine learning for building software tools to support programming tasks \cite{Posnett:2011}.  Inevitably, the need to decompose data, such as software projects, into analyzable data creates the opportunity for ecological inference to occur and, thus, an increased risk in the ecological fallacy.
 
 \section{Survey Overview}
 
@@ -72,7 +72,8 @@ Note that the organization of the following sections occurs chronologically, beg
 
 \section{Survey - Approaching 2011}
 
-The following papers were composed before Posnett \etal published on the prevalence of the ecological inference in Empirical Software Engineering.  For each paper, we will provide a bullet point format, defining keywords described by each author, summarizing select ideas presented in each paper, and finally, describing how the paper used ecological inference to test hypotheses or perform analysis.
+The following papers were composed before Posnett \etal  \\
+published on the prevalence of the ecological inference in Empirical Software Engineering.  For each paper, we will provide a bullet point format, defining keywords described by each author, summarizing select ideas presented in each paper, and finally, describing how the paper used ecological inference to test hypotheses or perform analysis.
 
 \subsection{Mining metrics to predict component failures \cite{Nagappan:2006}}
 
@@ -86,7 +87,7 @@ The following papers were composed before Posnett \etal published on the prevale
 TODO:// A brief summary of the paper.
 
 \subsubsection{Use of Ecological Inference}
-Posnett \etal provided a conceptual framework on how prediction models can vary if metrics that are collected at aggregated with that of metrics collected at non-aggregated level. This paper performed a holistic approach where analysis was performed on one level (did not differentiate between aggregated or dis-aggregated level).
+Nagappan \etal  took a holistic approach where analysis was performed on one level (did not differentiate between aggregated or dis-aggregated level).
 
 \subsection{Benchmarking Classification Models for Software Defect Prediction: A Proposed Framework and Novel Findings \cite{Lessmann:2008}}
 
@@ -101,7 +102,7 @@ Posnett \etal provided a conceptual framework on how prediction models can vary 
 \subsubsection{Summary:}
 TODO:// A brief summary of the paper.
 
-\subsubsection{Use of Ecological Inference}
+\subsubsection{Ecological Inference in ESE}
 Posnett \etal provided a conceptual framework on how prediction models can vary if metrics that are collected at aggregated with that of metrics collected at non-aggregated level. The "Ecological Inference in Empirical Software Engineering" paper makes use of the conclusion from "Benchmarking Classification Models.." paper - that simple statistic measures like TPR, FPR do not work well in a software defect prediction context as it is possible for two groups to use the same model on same data set and yet come with different results just because they had different threshold values. So the authors use ROC and statistical testing methods in their experiment to model defects.
 
 \subsection{Predicting failures with developer networks and social network analysis \cite{Meneely:2008}}
@@ -117,7 +118,7 @@ Posnett \etal provided a conceptual framework on how prediction models can vary 
 TODO:// A brief summary of the paper.
 
 \subsubsection{Use of Ecological Inference}
-Posnett \etal provided a conceptual framework on how prediction models can vary if metrics that are collected at aggregated with that of metrics collected at non-aggregated level. This paper performed a holistic approach where social network analysis was performed on one level.
+Meneely \etal took a holistic approach where social network analysis was performed on one level.
 
 \subsection{The Influence of Organizational Structure on Software Quality: An Empirical Case Study \cite{Nagappan:2008}}
 
@@ -133,7 +134,7 @@ Posnett \etal provided a conceptual framework on how prediction models can vary 
 TODO:// A brief summary of the paper.
 
 \subsubsection{Use of Ecological Inference}
-Posnett \etal provided a conceptual framework on how prediction models can vary if metrics that are collected at aggregated with that of metrics collected at non-aggregated level. In this paper, the authors take a holistic organizational approach, disregarding the difference of aggregated and dis-aggregated levels.
+Nagappan \etal take a holistic organizational approach, disregarding the difference of aggregated and dis-aggregated levels.
 
 \subsection{Does Distributed Development Affect Software Quality?: An Empirical Case Study of Windows Vista \cite{Bird:2009}}
 
@@ -149,7 +150,7 @@ Posnett \etal provided a conceptual framework on how prediction models can vary 
 TODO:// A brief summary of the paper.
 
 \subsubsection{Use of Ecological Inference}
-Posnett \etal provided a conceptual framework on how prediction models can vary if metrics that are collected at aggregated with that of metrics collected at non-aggregated level. In this paper, the authors take a holistic approach, and discuss the global distributed model of software development, at different levels of separation and its effect on software quality.
+Bird \etal take a holistic approach, and discuss the global distributed model of software development, at different levels of separation and its effect on software quality.
 
 \subsection{Cross-project defect prediction: a large scale experiment on data vs. domain vs. process \cite{Zimmerman:2009}}
 
@@ -211,7 +212,7 @@ Posnett \etal provided a conceptual framework on how prediction models can vary 
 TODO:// A brief summary of the paper
 
 \subsubsection{Use of Ecological Inference}
-Posnett \etal provided a conceptual framework on how prediction models can vary if metrics that are collected at aggregated with that of metrics collected at non-aggregated level. This paper analyzed social network analysis on two levels namely local, and global which were labeled as ego, and global, respectively.
+Nguyen \etal analyze social network analysis on two levels namely local, and global which are labeled as ego, and global, respectively.
 
 
 \section{Ecological Inference in ESE}
@@ -219,7 +220,7 @@ Discussion about Posnett, et al paper
 
 
 \section{Survey - Forward from 2011}
-The following papers were composed after Posnett \etal published on the prevalence of the ecological inference in Empirical Software Engineering.  For each paper, we will provide a bullet point format, defining keywords described by each author, summarizing select ideas presented in each paper, and finally, describing how the paper addressed ecological inference to perform more informed hypothesis testing and analysis.
+The following papers were composed after Posnett \etal \newline published on the prevalence of the ecological inference in Empirical Software Engineering.  For each paper, we will provide a bullet point format, defining keywords described by each author, summarizing select ideas presented in each paper, and finally, describing how the paper addressed ecological inference to perform more informed hypothesis testing and analysis.
 
 \subsection{Think Locally, Act Globally: Improving Defect and Effort Prediction Models \cite{Bettenburg:2012}}
 
@@ -234,8 +235,8 @@ The following papers were composed after Posnett \etal published on the prevalen
 \subsubsection{Summary:}
 TODO:// A brief summary of the paper.
 
-\subsubsection{Use of Ecological Inference}
-Posnett \etal provided evidence of varying prediction outcome when the same prediction model is applied on aggregated and dis-aggregated level. This paper uses the findings of our selected initial paper as a motivational aspect and tries to discover if the prediction results obtained at a dis-aggregated level, can be applied to get better prediction results at the aggregated level.
+\subsubsection{Acknowledgement of Ecological Inference}
+Bettenburg \etal use the findings Posnett \etal as a motivational aspect and try to discover if the prediction results obtained at a dis-aggregated level can be applied to get better prediction results at the aggregated level.
 
 \subsection{Recalling the imprecision of cross-project defect prediction \cite{Rahman:2012}}
 
@@ -251,7 +252,7 @@ Posnett \etal provided evidence of varying prediction outcome when the same pred
 TODO:// A brief summary of the paper.
 
 \subsubsection{Use of Ecological Inference}
-This paper demonstrates the consideration of the risk of ecological inference (Posnett et al) before proceeding, explicitly stating that their choice of file-level analysis was directly motivated by Posnett's findings.
+Rahman \etal demonstrate the consideration of the risk of ecological inference before proceeding, explicitly stating that their choice of file-level analysis was directly motivated by the publication by Posnett \etal.
 
 \subsection{Bug prediction based on fine-grained module histories \cite{Hata:2012}}
 
@@ -267,7 +268,7 @@ This paper demonstrates the consideration of the risk of ecological inference (P
 TODO:// A brief summary of the paper.
 
 \subsubsection{Use of Ecological Inference}
-Posnett \etal provided a conceptual framework on how prediction models can vary if metrics that are collected at aggregated with that of metrics collected at non-aggregated level. The "Ecological Inference in Empirical Software Engineering" paper makes use of the conclusion from "Benchmarking Classification Models.." paper - that simple statistic measures like TPR, FPR do not work well in a software defect prediction context as it is possible for two groups to use the same model on same data set and yet come with different results just because they had different threshold values. So the authors use ROC and statistical testing methods in their experiment to model defects. The authors of this paper use this information and argue that method-level fine-grained historical metrics give interesting bug-prediction models which yield better results as compared to file-level or package-level historical metics.
+\emph{Ecological Inference in Empirical Software Engineering} makes use of the conclusion from \emph{Benchmarking Classification Models for software defect prediction} - that simple statistic measures like TPR, FPR do not work well in a software defect prediction context as it is possible for two groups to use the same model on same data set and yet come with different results just because they had different threshold values. So the authors use ROC and statistical testing methods in their experiment to model defects. The authors of this paper use this information and argue that method-level fine-grained historical metrics give interesting bug-prediction models which yield better results as compared to file-level or package-level historical metics.
 
 \subsection{Method-level bug prediction \cite{Giger:2012}}
 
@@ -306,11 +307,11 @@ Discuss what changed, how did it change, is it sufficient?
 
 Posnett \etal raised an issue that the community has not yet fully realized how to sort out.  
 
-\section{Conclusions}
+\section{Conclusion}
 text here
 
 \bibliographystyle{abbrv}
 \bibliography{literature-review}
 
-%\balancecolumns % GM June 2007
+\balancecolumns % GM June 2007
 \end{document}
