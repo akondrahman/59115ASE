@@ -47,7 +47,7 @@ Talukder et al. [6] used DE to optimize schedulers in grid computing. The author
 
 Liao [7] analyzed how two hybrid approaches of DE compare to the classical version of DE in the context of an engineering design problem. In the first hybrid approach, random walk is incorporated the classical version of DE. In the second, he included harmony search to the basic differential algorithm. Liao studied 14 engineering design problems including non-linear programming problems, manufacturing design problem, and non-linear chemical engineering problems. For all the 14 engineering design problems the two hybrid approaches outperformed the classical DE in terms of convergence rate.
 
-Our work focuses on implementing IPMDFC proposed by Madachy, and running the classical version of Differential Evolution to optimize two objectives related to the model.
+This project aims on implementing and comparing three well-known optimizers namely, Simulated Annealing (SA), Max Walk Sat, and Differential Evolution (DE) on DTLZ7
 
   
 
