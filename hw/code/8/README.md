@@ -37,6 +37,20 @@ In order to compare the above algorithms , we use three types of comparisons whi
 
 **DTLZ7** : This model :[DTLZ7] (http://e-collection.library.ethz.ch/eserv/eth:24696/eth-24696-01.pdf) has two objectives and ten decisions. The above algorithms were tested and compared using this model.
 
+### Related Work 
+
+There have been some studies in different domains of science and engineering, as well as research studies that have investigated software quality and software defects and used various approaches for comparison. 
+
+Rocca et al. [5] conducted a survey on use of different variants of DE in computational electromagnetics. They studied 70 academic papers between 2000 and 2009 and found that _DE/best/1/bin_ was the most used variant of DE used in the domain of computational electromagnetics. 
+
+Talukder et al. [6] used DE to optimize schedulers in grid computing. The authors studied two parameters _execution time_, and _data transmission time_ through simulation. The authors claimed DE performs better that the _Pareto-archived Evolutionary Strategy (PAES)_ algorithm for this particular problem. 
+
+Liao [7] analyzed how two hybrid approaches of DE compare to the classical version of DE in the context of an engineering design problem. In the first hybrid approach, random walk is incorporated the classical version of DE. In the second, he included harmony search to the basic differential algorithm. Liao studied 14 engineering design problems including non-linear programming problems, manufacturing design problem, and non-linear chemical engineering problems. For all the 14 engineering design problems the two hybrid approaches outperformed the classical DE in terms of convergence rate.
+
+Our work focuses on implementing IPMDFC proposed by Madachy, and running the classical version of Differential Evolution to optimize two objectives related to the model.
+
+  
+
 ##II. Implementation:
 
 We implemented Differential Evolution, Simulated Annealing and MaxwalkSat to perform optimization on DTLZ7 model(with 2 objectives and 10 decisions)
@@ -192,10 +206,19 @@ We had chosen loss statistic to compare the different algorithms for our experim
 
 ##VII. References
 
-+ [Dr. Tim Menzies Course Website](https://github.com/txt/mase/blob/master/README.md)
-+ [DTLZ7 Information](http://www.tik.ee.ethz.ch/~sop/download/supplementary/testproblems/dtlz7/index.php)
-+ [DTLZ7 Pareto Frontier Information](http://mcis.jsu.edu/faculty/agarrett/ecspy/reference.html)
-+ [DTLZ7 Model Image Source](http://mcis.jsu.edu/faculty/agarrett/ecspy/reference.html)
+[1] [Dr. Tim Menzies Course Website](https://github.com/txt/mase/blob/master/README.md)
+
+[2] [DTLZ7 Information](http://www.tik.ee.ethz.ch/~sop/download/supplementary/testproblems/dtlz7/index.php)
+
+[3] [DTLZ7 Pareto Frontier Information](http://mcis.jsu.edu/faculty/agarrett/ecspy/reference.html)
+
+[4] [DTLZ7 Model Image Source](http://mcis.jsu.edu/faculty/agarrett/ecspy/reference.html)
+
+[5] P. Rocca, G. Oliveri, and A. Massa, "Differential Evolution as Applied to Electromagnetics," in IEEE Antennas and Propagation Magazine, vol.53, no.1, pages 38-49, February, 2011
+
+[6] A. Talukder, M. Kirley, and R. Buyya, "Multiobjective Differential Evolution for Scheduling Workflow Applications on Global Grids", in Journal of Conncurrency & Computation, pages 1742-1756 vol. 21 no. 13, September 2009
+
+[7] T. Liao, "Two Hybrid Differential Evolution Algorithms for Engineering Design Optimization", in Applied Soft Computing, vol. 10, no. 4, pages 1188-1199, September, 2010
 
 
 ##VIII. Acknowledgement
